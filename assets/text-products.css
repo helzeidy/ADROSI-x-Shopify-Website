@@ -1,0 +1,15 @@
+.index-text-products {
+  overflow-wrap: anywhere;
+}
+
+.text-products__heading {
+  --text-products-font-size: var(--text-products-font-size-desktop);
+}
+@media only screen and (max-width: 749px) {
+  .text-products__heading {
+    --text-products-font-size: var(--text-products-font-size-mobile);
+  }
+}
+.text-products__heading {
+  font-size: var(--text-products-font-size);
+}

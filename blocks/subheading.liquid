@@ -1,0 +1,62 @@
+{%- if block.settings.subheading != blank -%}
+  <p
+    class="hero__subheading block-padding"
+    data-aos="hero"
+    data-aos-order="auto"
+    data-aos-anchor="#{{ section.id }}"
+    {{ block.shopify_attributes }}
+    style="
+      {% if block.settings.color != blank and block.settings.color.alpha != 0 %}--text: {{ block.settings.color }};{% endif %}
+      --block-padding-bottom: {{ block.settings.padding_bottom }}px;
+    "
+  >
+    {{ block.settings.subheading }}
+  </p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Subheading",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Introducing"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text",
+      "alpha": true
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subheading",
+      "settings": {
+        "subheading": "Introducing"
+      }
+    }
+  ]
+}
+{% endschema %}

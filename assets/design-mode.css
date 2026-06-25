@@ -1,0 +1,113 @@
+/*================ Design mode ================*/
+html.iframe .timeline__row__editor {
+  --row-count: 0;
+  --row-height-min: 0px;
+  --row-height: max(var(--row-height-min), var(--height));
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html.iframe .shopify-section.hidden,
+html.iframe .countdown-block.hidden {
+  display: flex !important;
+  visibility: unset;
+  opacity: .35;
+}
+html.iframe .countdown-block.hidden .section-countdown { width: 100%; }
+
+html.iframe .drawer-editor-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--inner);
+  z-index: auto;
+  backdrop-filter: blur(5px);
+}
+html.iframe .drawer-editor-error:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--COLOR-BG);
+  opacity: .5;
+  z-index: -1;
+}
+
+html.iframe .drawer--duplicate .drawer__head {
+  order: -1;
+  background: transparent;
+}
+
+@media screen and (min-width: 750px) {
+  html.iframe .timeline__row__editor {
+    top: calc(var(--row-count) * var(--row-height) + 1px);
+    height: var(--row-height);
+  }
+}
+
+/*================ Preview mode ================*/
+.preview-mode .popup-promo {
+  position: relative;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.preview-mode .modal__overlay--newsletter {
+  position: relative;
+  display: flex;
+  max-width: 100%;
+}
+
+/*================ Dynamic Grid Editor States ================*/
+html.iframe .dynamic-grid.editor-is-selected::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    rgb(200 200 200 / 20%) 0,
+    rgb(200 200 200 / 20%) var(--dynamic-grid-cell-size),
+    transparent var(--dynamic-grid-cell-size),
+    transparent calc(var(--dynamic-grid-cell-size) + max(1px, var(--dynamic-grid-gap, 10px)))
+  ),
+    linear-gradient(
+    90deg,
+    rgb(200 200 200 / 20%) 0,
+    rgb(200 200 200 / 20%) var(--dynamic-grid-cell-size),
+    transparent var(--dynamic-grid-cell-size),
+    transparent 100%
+  );
+  background-repeat: no-repeat, repeat;
+  background-size: 100% calc(var(--dynamic-grid-cell-size) * var(--dynamic-grid-explicit-row-count, 4) + max(1px, var(--dynamic-grid-gap, 10px)) * (var(--dynamic-grid-explicit-row-count, 4) - 1)),
+    calc(var(--dynamic-grid-cell-size) + max(1px, var(--dynamic-grid-gap, 10px))) 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+html.iframe .dynamic-grid__cell.editor-is-selected,
+html.iframe .dynamic-grid__cell:has(.editor-is-selected) {
+  background-color: rgba(0, 0, 0, 0.05);
+  outline: 2px dotted #828282;
+}
+
+html.iframe .dynamic-grid.editor-is-selected .dynamic-grid__cell:not(.editor-is-selected) {
+  opacity: 0.6;
+}

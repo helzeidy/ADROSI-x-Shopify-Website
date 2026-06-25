@@ -1,0 +1,39 @@
+.socials {
+  --gap: 8px;
+  --gap-offset: calc(var(--gap) * -1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: var(--gap-offset);
+  list-style: none;
+}
+.socials li {
+  margin: var(--gap);
+}
+.socials:empty {
+  display: none;
+}
+
+.socials--newsletter {
+  margin-top: calc(var(--inner) - var(--gap));
+}
+
+.socials--mobile-menu {
+  display: block;
+}
+
+.text-center .socials {
+  justify-content: center;
+}
+
+.social-link {
+  --link: var(--text);
+  --icons: var(--text);
+  height: var(--icon-size);
+  width: var(--icon-size);
+  color: var(--link);
+}
+
+.social-link:hover {
+  color: var(--link-hover);
+}

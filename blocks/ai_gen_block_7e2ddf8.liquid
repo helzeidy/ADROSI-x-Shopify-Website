@@ -1,0 +1,109 @@
+{% doc %}
+  @prompt
+    Make the collection cards slider inside the custom content section fill the full height of its parent section. The collection block is inside section ID: template--28594666766680__section_custom_content_GcCeRY. Apply CSS so that the slider container and the collection cards stretch to 100% of the section's height.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-full-height-slider-{{ ai_gen_id }} {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: {{ block.settings.desktop_width_percent }}%;
+  }
+
+  .ai-full-height-slider-{{ ai_gen_id }} .flickity-viewport {
+    height: 100% !important;
+  }
+
+  .ai-full-height-slider-{{ ai_gen_id }} .flickity-slider {
+    height: 100%;
+  }
+
+  .ai-full-height-slider-{{ ai_gen_id }} .collection-card,
+  .ai-full-height-slider-{{ ai_gen_id }} .grid-item,
+  .ai-full-height-slider-{{ ai_gen_id }} .carousel__item {
+    height: 100%;
+  }
+
+  .ai-full-height-slider-{{ ai_gen_id }} .collection-card__image-wrapper,
+  .ai-full-height-slider-{{ ai_gen_id }} .grid-item__image-wrapper {
+    height: 100%;
+  }
+
+  .ai-full-height-slider-{{ ai_gen_id }} .collection-card__image,
+  .ai-full-height-slider-{{ ai_gen_id }} .grid-item__image {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #template--28594666766680__section_custom_content_GcCeRY {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #template--28594666766680__section_custom_content_GcCeRY .custom-content__wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #template--28594666766680__section_custom_content_GcCeRY .custom-content__blocks {
+    flex: 1;
+    display: flex;
+  }
+
+  #template--28594666766680__section_custom_content_GcCeRY .custom-content__block {
+    height: 100%;
+  }
+
+  #template--28594666766680__section_custom_content_GcCeRY .collection-list-slider,
+  #template--28594666766680__section_custom_content_GcCeRY .collection-list,
+  #template--28594666766680__section_custom_content_GcCeRY [data-slider] {
+    height: 100%;
+  }
+{% endstyle %}
+
+<div class="ai-full-height-slider-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-full-height-slider-{{ ai_gen_id }}__content">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-full-height-slider-{{ ai_gen_id }}__heading">{{ block.settings.heading }}</h2>
+    {% endif %}
+    {% if block.settings.description != blank %}
+      <div class="ai-full-height-slider-{{ ai_gen_id }}__description">{{ block.settings.description }}</div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Full height slider helper",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Full height slider helper"
+    }
+  ]
+}
+{% endschema %}

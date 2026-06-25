@@ -1,0 +1,255 @@
+<!-- /sections/section-dynamic-content.liquid -->
+
+{%- liquid
+  assign color_scheme = 'color-' | append: section.settings.color_scheme
+  assign width = section.settings.width
+  assign gap_desktop = section.settings.gap_desktop
+  assign gap_mobile = section.settings.gap_mobile
+
+  capture content_blocks
+    content_for 'blocks'
+  endcapture
+-%}
+
+<script src="{{ 'dynamic-grid.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  #DynamicContent--{{ section.id }} {
+    --PT: {{ section.settings.padding_top }}px;
+    --PB: {{ section.settings.padding_bottom }}px;
+    --dynamic-grid-gap: {{ gap_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #DynamicContent--{{ section.id }} {
+      --dynamic-grid-gap: {{ gap_desktop }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  id="DynamicContent--{{ section.id }}"
+  class="dynamic-content section-padding {{ color_scheme }} {{ width }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-content"
+>
+  {%- comment -%} Grid content {%- endcomment -%}
+  <div class="dynamic-content__wrapper">
+    {%- if section.blocks.size > 0 -%}
+      <dynamic-grid class="dynamic-grid" data-dynamic-grid>
+        {{ content_blocks }}
+      </dynamic-grid>
+    {%- else -%}
+      <div class="placeholder-noblocks">
+        <p class="text-center">{{ 'home_page.onboarding.no_content' | t }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dynamic content",
+  "blocks": [{"type": "_grid-item"}, {"type": "@app"}],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Desktop grid"
+    },
+    {
+      "type": "paragraph",
+      "content": "It uses an 16-column grid. Rows adjust automatically to fit your content."
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Mobile grid"
+    },
+    {
+      "type": "paragraph",
+      "content": "It uses an 8-column grid. Rows adjust automatically to fit your content. Switch to mobile preview to configure the section more easily."
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper--full-padded",
+      "options": [
+        {"value": "wrapper--full", "label": "Full width"},
+        {"value": "wrapper--full-padded", "label": "Full width padded"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic content",
+      "category": "Storytelling",
+      "blocks": [
+        {
+          "type": "_grid-item",
+          "settings": {
+            "row_start": 1,
+            "column_start": 3,
+            "column_end": 5,
+            "row_start_mobile": 1,
+            "column_start_mobile": 6,
+            "column_end_mobile": 9
+          },
+          "blocks": [
+            {
+              "type": "image"
+            }
+          ]
+        },
+        {
+          "type": "_grid-item",
+          "settings": {
+            "row_start": 1,
+            "column_start": 15,
+            "column_end": 17,
+            "row_start_mobile": 1,
+            "column_start_mobile": 1,
+            "column_end_mobile": 3
+          },
+          "blocks": [
+            {
+              "type": "image"
+            }
+          ]
+        },
+        {
+          "type": "_grid-item",
+          "settings": {
+            "row_start": 3,
+            "column_start": 1,
+            "column_end": 4,
+            "row_start_mobile": 9,
+            "column_start_mobile": 1,
+            "column_end_mobile": 4
+          },
+          "blocks": [
+            {
+              "type": "image"
+            }
+          ]
+        },
+        {
+          "type": "_grid-item",
+          "settings": {
+            "row_start": 3,
+            "column_start": 12,
+            "column_end": 15,
+            "row_start_mobile": 8,
+            "column_start_mobile": 6,
+            "column_end_mobile": 9
+          },
+          "blocks": [
+            {
+              "type": "image"
+            }
+          ]
+        },
+        {
+          "type": "_grid-item",
+          "settings": {
+            "row_start": 2,
+            "column_start": 4,
+            "column_end": 14,
+            "row_start_mobile": 4,
+            "column_start_mobile": 1,
+            "column_end_mobile": 9,
+            "align_text": "text-center",
+            "target_device_enabled": true,
+            "target_device": "desktop"
+          },
+          "blocks": [
+            {
+              "type": "heading",
+              "settings": {
+                "text": "write some impactful text and position it onto the grid.",
+                "heading_font_size": "heading-x-large"
+              }
+            }
+          ]
+        },
+        {
+          "type": "_grid-item",
+          "settings": {
+            "row_start": 6,
+            "column_start": 6,
+            "column_end": 13,
+            "row_start_mobile": 12,
+            "column_start_mobile": 1,
+            "column_end_mobile": 7,
+            "align_text": "text-center"
+          },
+          "blocks": [
+            {
+              "type": "rich-text",
+              "settings": {
+                "text": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor, and position it easily onto the grid.</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "aside", "footer"]
+  }
+}
+{% endschema %}

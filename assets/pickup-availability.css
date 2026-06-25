@@ -1,0 +1,101 @@
+pickup-availability {
+  display: block;
+}
+
+.pickup__preview {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+}
+.pickup__preview button.pickup__button:focus, .pickup__preview button.pickup__button:active {
+  transform: none;
+}
+.pickup__preview p {
+  margin: 0 0 6px;
+}
+
+.pickup__list__item .icon,
+.pickup__preview .icon {
+  --icon-size: 20px;
+  margin: -1px 6px 0 -4px;
+  height: 1.3125rem;
+}
+
+.pickup__preview .icon path,
+.pickup__list__item .icon path {
+  fill: none;
+}
+
+.pickup__preview .icon-check,
+.pickup__list__item .icon-check {
+  color: var(--COLOR-SUCCESS);
+}
+
+.pickup__preview .icon-cancel,
+.pickup__list__item .icon-cancel {
+  color: var(--COLOR-ERROR);
+}
+
+.pickup__address {
+  font-size: var(--font-body-small);
+  font-style: normal;
+  margin: 8px 0 0;
+}
+
+.pickup__product__wrap {
+  padding: var(--inner);
+  border-bottom: 1px solid var(--border);
+}
+
+.pickup__product__title {
+  font-family: var(--FONT-STACK-BODY);
+  font-weight: var(--FONT-WEIGHT-BODY-BOLD);
+  font-style: var(--FONT-STYLE-BODY);
+  letter-spacing: var(--LETTER-SPACING-BODY);
+  text-transform: none;
+  font-size: var(--font-body-large);
+  margin: 0;
+}
+
+.pickup__variant {
+  font-size: var(--font-body-x-small);
+  margin: 12px 0 0;
+}
+
+.pickup__variant .text-light {
+  color: var(--text-light);
+}
+
+.pickup__variant .divide {
+  color: var(--text-light);
+  opacity: 0.5;
+  padding: 0 1px;
+}
+
+.pickup__variant .badge {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+}
+
+.pickup__list {
+  padding: var(--inner);
+  margin: 0;
+  list-style: none;
+}
+
+.pickup__list__item {
+  --border: var(--bg-accent);
+  margin-bottom: 32px;
+}
+.pickup__list__item p {
+  margin: 2px 0;
+}
+.pickup__list__item p.small {
+  margin-top: 8px;
+}
+
+.pickup__list__item + .pickup__list__item {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}

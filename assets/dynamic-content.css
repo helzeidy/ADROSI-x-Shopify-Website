@@ -1,0 +1,80 @@
+.dynamic-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamic-content__wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+}
+
+.dynamic-grid {
+  --dynamic-grid-column-count: 8;
+  --dynamic-grid-cell-size: calc((100cqw + var(--dynamic-grid-gap, 10px)) / var(--dynamic-grid-column-count) - var(--dynamic-grid-gap, 10px));
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(var(--dynamic-grid-column-count), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--dynamic-grid-explicit-row-count, 4), minmax(var(--dynamic-grid-cell-size), auto));
+  gap: var(--dynamic-grid-gap, 10px);
+}
+@media only screen and (min-width: 750px) {
+  .dynamic-grid {
+    --dynamic-grid-column-count: 16;
+  }
+}
+.dynamic-grid .block__icon__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dynamic-grid .text-left .block__icon__container {
+  align-items: flex-start;
+}
+.dynamic-grid .block__icon {
+  width: var(--icon-size, 20px);
+}
+
+.dynamic-grid__cell {
+  position: relative;
+  isolation: isolate;
+  grid-area: var(--dynamic-grid-grid-area);
+  align-self: start;
+  inset-block-start: var(--dynamic-grid-vertical-adjustment);
+  inset-inline-start: var(--dynamic-grid-horizontal-adjustment);
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.block__image {
+  width: var(--image-width, 100%);
+}
+.block__image .image-wrapper {
+  overflow: hidden;
+}
+.block__image .image-wrapper img {
+  transition: transform 2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.block__image:hover .image-wrapper img {
+  transform: scale(1.08);
+}
+
+.block__video {
+  width: var(--video-width, 100%);
+}
+.block__video .video-background {
+  padding-top: calc(100% / var(--aspect-ratio, 1.778));
+}
+.block__video .video__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.block__video video-background.video__player {
+  inset: 0;
+  transform: none;
+  z-index: 2;
+}

@@ -1,0 +1,117 @@
+.share-holder {
+  position: relative;
+  display: block;
+  z-index: 2;
+}
+
+.sharing-button {
+  display: inline-flex;
+  padding: 10px 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sharing-button .icon {
+  flex-shrink: 0;
+}
+
+.sharing-button__text {
+  font-size: var(--BTN-FONT-SIZE);
+  font-family: var(--BTN-FONT-STACK);
+  font-weight: var(--BTN-FONT-WEIGHT);
+  font-style: var(--BTN-FONT-STYLE);
+  text-transform: var(--BTN-UPPERCASE);
+  letter-spacing: var(--BTN-LETTER-SPACING);
+}
+@media (hover: hover) {
+  .sharing-button__text .icon-nav-arrow-right {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+  .sharing-button__text:hover .icon-nav-arrow-right {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+.sharing-button__text {
+  align-self: center;
+  position: relative;
+  margin-left: 6px;
+  line-height: 1.4;
+}
+
+.share-button__message {
+  --bg: var(--COLOR-BG);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 5;
+  margin-top: 2px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.share-button__message.is-visible {
+  visibility: visible;
+  animation: showMessage 3s ease;
+  animation-fill-mode: both;
+}
+
+.share-button__message::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -1px;
+  left: 22px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  -webkit-clip-path: polygon(0% 0%, 100% 100%, 0 100%);
+          clip-path: polygon(0% 0%, 100% 100%, 0 100%);
+  transform: rotate(135deg) translateX(-50%);
+}
+
+.share-button__message--right {
+  right: 0;
+  left: auto;
+}
+
+.share-button__message--right::after {
+  right: 22px;
+  left: auto;
+}
+
+.share-button__message-text {
+  position: relative;
+  display: block;
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  color: var(--text-dark);
+  background: var(--bg);
+  font-size: var(--font-body-small);
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@keyframes showMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}

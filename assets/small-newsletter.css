@@ -1,0 +1,201 @@
+.newsletter__outer {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  left: 0;
+  top: calc(var(--header-height) + var(--announcement-height));
+  width: 100%;
+  height: calc(100% - var(--header-height) - var(--announcement-height));
+  pointer-events: none !important;
+}
+@media only screen and (max-width: 479px) {
+  .newsletter__outer {
+    position: fixed;
+    top: auto;
+    bottom: var(--outer);
+    right: var(--outer);
+    left: var(--outer);
+    width: auto;
+    height: auto;
+    z-index: 4003;
+  }
+}
+
+.newsletter__inner {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.small-newsletter {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  z-index: 4000;
+  width: 350px;
+  height: auto;
+  padding: 0 40px 0 16px;
+  background: var(--bg);
+  font-size: var(--font-body-small);
+  color: var(--text);
+  pointer-events: auto;
+}
+@media only screen and (max-width: 989px) {
+  .small-newsletter {
+    width: 48%;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .small-newsletter {
+    position: relative;
+    width: 100%;
+  }
+}
+.small-newsletter .newsletter__message {
+  padding: 0;
+  margin: 0.5em 0;
+  background: transparent;
+}
+
+.small-newsletter--top-left {
+  margin-right: auto;
+}
+
+.small-newsletter--top-right {
+  margin-left: auto;
+}
+
+.small-newsletter--bottom-left,
+.small-newsletter--bottom-right {
+  top: auto;
+  bottom: 80px;
+  transform: translateY(80px);
+  transition: transform 0.3s ease;
+}
+
+.cart-bar-visible .small-newsletter--bottom-left,
+.cart-bar-visible .small-newsletter--bottom-right {
+  transition: transform 0.5s ease;
+  transform: translateY(0);
+}
+
+.small-newsletter--bottom-left {
+  margin: auto auto 0 0;
+}
+
+.small-newsletter--bottom-right {
+  margin: auto 0 0 auto;
+}
+
+.small-newsletter .input-group {
+  position: static;
+  border: 0;
+}
+
+.small-newsletter .input-group__field {
+  width: 100%;
+  padding: 10px 0;
+  font-size: var(--font-body-small);
+}
+.small-newsletter .input-group__field:-webkit-autofill, .small-newsletter .input-group__field:-webkit-autofill:hover, .small-newsletter .input-group__field:-webkit-autofill:focus, .small-newsletter .input-group__field:-webkit-autofill:active {
+  -webkit-transition: background-color 5000s ease-in-out 0s, border-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s, border-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text) !important;
+}
+
+.small-newsletter .btn--arrow {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin-top: -10px;
+  color: inherit;
+  border: none;
+  background: none;
+  font-size: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.small-newsletter.has-value .btn--arrow {
+  opacity: 1;
+  visibility: visible;
+}
+
+.has-header-sticky .small-newsletter {
+  top: var(--header-height);
+}
+@media only screen and (max-width: 479px) {
+  .has-header-sticky .small-newsletter {
+    top: 0;
+  }
+}
+
+[data-scroll-locked] .small-newsletter:not([open]) {
+  visibility: hidden;
+  z-index: -1;
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: z-index 0.3s, opacity 0.3s, visibility 0s 0.3s;
+}
+
+.newsletter__heading {
+  padding: 10px 0;
+  cursor: pointer;
+}
+.newsletter__heading p {
+  margin: 0;
+}
+@media only screen and (max-width: 479px) {
+  .newsletter__heading p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.newsletter__close {
+  --icon-size: 24px;
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  color: var(--link);
+  background: transparent;
+  border-radius: var(--RADIUS);
+  font-size: 0;
+  text-decoration: none;
+  transform: translate3d(0, -50%, 0);
+  transition: color 0.3s ease;
+}
+.newsletter__close .icon {
+  display: block;
+  fill: currentcolor;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.22, 1);
+}
+@media (hover: hover) {
+  .newsletter__close:hover {
+    color: var(--link-hover);
+  }
+  .newsletter__close:hover .icon {
+    transform: scale(1.25);
+  }
+}
+.newsletter__close {
+  --icon-size: 20px;
+}
+.has-value .newsletter__close {
+  visibility: hidden;
+  opacity: 0;
+}

@@ -1,0 +1,63 @@
+.section-before-after compare-images {
+  height: 0;
+  padding-top: calc(1 / var(--aspect-ratio) * 100%);
+}
+
+@media only screen and (min-width: 750px) {
+  .before-after {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+.before-after__content {
+  overflow-wrap: anywhere;
+}
+@media only screen and (min-width: 750px) {
+  .before-after__content {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50%;
+    align-self: center;
+    padding-right: var(--outer);
+  }
+}
+.before-after__content p:not([style*="--block-padding-bottom"]) {
+  margin: 0;
+}
+
+.wrapper--full .before-after__content {
+  padding-left: var(--outer);
+}
+@media only screen and (max-width: 749px) {
+  .wrapper--full .before-after__content {
+    padding-right: var(--outer);
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .wrapper--full .before-after__buttons {
+    padding: 0 var(--outer);
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .before-after__buttons.mobile {
+    padding-top: var(--outer);
+  }
+}
+
+.before-after__images {
+  overflow: hidden;
+}
+@media only screen and (min-width: 750px) {
+  .before-after__images {
+    flex: 0 0 50%;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .before-after__images--full-width {
+    flex: 0 0 100%;
+  }
+}

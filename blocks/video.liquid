@@ -1,0 +1,106 @@
+{%- liquid
+  assign video = block.settings.video
+  assign video_width = block.settings.video_width
+  assign video_aspect_ratio = video.aspect_ratio | default: 1.778
+  assign image = block.settings.image | default: video.preview_image
+  assign image_sizes = '|||sizes|||'
+-%}
+
+<div
+  class="block__video block-padding"
+  data-aos="hero"
+  data-aos-order="auto"
+  data-aos-anchor="#{{ section.id }}"
+  {{ block.shopify_attributes }}
+  style="--video-width: {{ video_width }}%; --block-padding-bottom: {{ block.settings.padding_bottom }}px;"
+>
+  <div
+    class="video-background"
+    style="--aspect-ratio: {{ video_aspect_ratio | default: 1.778 }};"
+  >
+    {%- if video != null -%}
+      <div class="video__poster">
+        {%- render 'image',
+          image: image,
+          placeholder: 'lifestyle-1',
+          aspect_ratio: video_aspect_ratio,
+          cover: true,
+          sizes: image_sizes,
+          parallax: true,
+          parallax_speed: -1
+        -%}
+      </div>
+      <video-background
+        class="video__player is-loading"
+        data-video-player
+        data-video-id="{{ section.id }}-{{ block.id }}-video-background"
+      >
+        <template data-video-template>
+          {{ video | video_tag: image_size: '1085x', autoplay: true, loop: true, muted: true, controls: false }}
+        </template>
+      </video-background>
+
+      <script src="{{ 'video-background.js' | asset_url }}" defer="defer"></script>
+    {%- else -%}
+      <div class="video__poster">
+        {%- render 'image',
+          image: image,
+          placeholder: 'lifestyle-1',
+          aspect_ratio: video_aspect_ratio,
+          cover: true,
+          parallax: true,
+          parallax_speed: -1
+        -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video",
+  "tag": null,
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Displayed if the video isn't loaded"
+    },
+    {
+      "type": "range",
+      "id": "video_width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Width",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video"
+    }
+  ]
+}
+{% endschema %}

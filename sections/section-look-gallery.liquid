@@ -1,0 +1,587 @@
+{%- liquid
+  assign featured_type = section.settings.featured_type
+  assign featured_image = section.settings.featured_image
+  assign featured_video = section.settings.featured_video
+  assign featured_product = section.settings.featured_product
+  assign featured_position = section.settings.featured_position
+  assign layout_desktop = section.settings.layout_desktop
+  assign grid = section.settings.grid
+  assign layout_mobile = section.settings.layout_mobile
+  assign reverse_blocks = section.settings.reverse_blocks
+  assign width = section.settings.width
+  assign color_scheme = 'color-' | append: section.settings.color_scheme
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign dot_color = section.settings.dot_color
+  assign dot_background = section.settings.dot_background
+  assign image_aspect_ratio = 1 | divided_by: section.settings.image_aspect_ratio
+  assign quickview_enable = settings.quickview_enable
+
+  assign featured_show_product_link = false
+  assign featured_show_quick_add = false
+  if featured_product != blank
+    if quickview_enable
+      assign featured_show_quick_add = true
+    else
+      assign featured_show_product_link = true
+    endif
+  endif
+-%}
+
+{%- liquid
+  assign has_video = false
+  if featured_type == 'video'
+    assign has_video = true
+  endif
+
+  unless has_video
+    for block in section.blocks
+      if block.type == 'video'
+        assign has_video = true
+        break
+      endif
+    endfor
+  endunless
+-%}
+
+{%- liquid
+  assign columns_desktop = grid | plus: 0
+  assign columns_medium = 3
+  assign columns_small = 2
+  assign columns_mobile = layout_mobile | plus: 0
+
+  if columns_desktop == 2 or columns_desktop == 4
+    assign columns_medium = 2
+  endif
+
+  if layout_mobile == 'slider'
+    assign columns_mobile = 2
+  endif
+
+  # Calculate image sizes for grid items (1 column width)
+  if width == 'wrapper'
+    if settings.grid_style == 'compact'
+      assign grid_item_sizes = '(min-width: 1400px) calc(80vw / ' | append: columns_desktop | append: '), (min-width: 750px) calc(100vw / ' | append: columns_medium | append: '), (min-width: 480px) calc(100vw / ' | append: columns_small | append: '), calc(100vw / ' | append: columns_mobile | append: ')'
+    else
+      assign grid_item_sizes = '(min-width: 1400px) calc((80vw - 64px) / ' | append: columns_desktop | append: ' - 32px), (min-width: 750px) calc(100vw / ' | append: columns_medium | append: ' - 22px), (min-width: 480px) calc(100vw / ' | append: columns_small | append: ' - 16px), calc(100vw / ' | append: columns_mobile | append: ')'
+    endif
+  else
+    if settings.grid_style == 'compact'
+      assign grid_item_sizes = '(min-width: 1400px) calc(100vw / ' | append: columns_desktop | append: '), (min-width: 750px) calc(100vw / ' | append: columns_medium | append: '), (min-width: 480px) calc(100vw / ' | append: columns_small | append: '), calc(100vw / ' | append: columns_mobile | append: ')'
+    else
+      assign grid_item_sizes = '(min-width: 1400px) calc(100vw / ' | append: columns_desktop | append: ' - 32px), (min-width: 750px) calc(100vw / ' | append: columns_medium | append: ' - 22px), (min-width: 480px) calc(100vw / ' | append: columns_small | append: ' - 16px), calc(100vw / ' | append: columns_mobile | append: ')'
+    endif
+  endif
+
+  # Calculate image sizes for featured content (2 column width on desktop)
+  assign featured_columns = columns_desktop | divided_by: 2.0
+  if featured_columns < 1
+    assign featured_columns = 1
+  endif
+
+  if width == 'wrapper'
+    if settings.grid_style == 'compact'
+      assign featured_sizes = '(min-width: 1400px) calc(80vw / ' | append: featured_columns | append: '), (min-width: 750px) calc(100vw / ' | append: columns_mobile | append: '), (min-width: 480px) calc(100vw / ' | append: columns_small | append: '), calc(100vw / ' | append: columns_mobile | append: ')'
+    else
+      assign featured_sizes = '(min-width: 1400px) calc((80vw - 64px) / ' | append: featured_columns | append: ' - 32px), (min-width: 750px) 100vw, (min-width: 480px) calc(100vw - 16px), 100vw'
+    endif
+  else
+    if settings.grid_style == 'compact'
+      assign featured_sizes = '(min-width: 1400px) calc(100vw / ' | append: featured_columns | append: '), (min-width: 750px) 100vw, (min-width: 480px) 100vw, 100vw'
+    else
+      assign featured_sizes = '(min-width: 1400px) calc(100vw / ' | append: featured_columns | append: ' - 32px), (min-width: 750px) 100vw, (min-width: 480px) calc(100vw - 16px), 100vw'
+    endif
+  endif
+-%}
+
+{%- render 'stylesheet', name: 'look.css' -%}
+
+{%- style -%}
+  #IndexLookGallery--{{ section.id }} {
+    --PT: {{ padding_top }}px;
+    --PB: {{ padding_bottom }}px;
+    --COLUMNS: {{ columns_desktop }};
+    --COLUMNS-MEDIUM: {{ columns_medium }};
+    --COLUMNS-SMALL: {{ columns_small }};
+    --COLUMNS-MOBILE: {{ columns_mobile }};
+  }
+
+  {%- if dot_background != 'rgba(0,0,0,0)' and dot_background != '' -%}
+    #IndexLookGallery--{{ section.id }} .look__dot__button { --bg: {{ dot_background }}; }
+  {%- endif -%}
+
+  {%- if dot_color != 'rgba(0,0,0,0)' and dot_color != '' -%}
+    #IndexLookGallery--{{ section.id }} .look__dot__button { --accent: {{ dot_color }}; }
+  {%- endif -%}
+
+  #IndexLookGallery--{{ section.id }} .look__image-container,
+  #IndexLookGallery--{{ section.id }} .look__video-container { --aspect-ratio: {{ image_aspect_ratio }}; }
+{%- endstyle -%}
+
+{%- if has_video -%}
+  <script src="{{ 'video-background.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if quickview_enable -%}
+  <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<section
+  id="IndexLookGallery--{{ section.id }}"
+  class="index-look index-look--gallery section-padding {{ color_scheme }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="look-gallery"
+>
+  <div class="{{ width }}">
+    {%- capture look_container -%}
+      <div class="look__container{% if columns_desktop == 2 %} look__container--desktop-2-cols{% endif %}{% if columns_medium == 2 %} look__container--medium-2-cols{% endif %}{% if featured_position != '' %} {{ featured_position }}{% endif %}{% if reverse_blocks %} look__container--reversed-mobile{% endif %}{% if layout_mobile == 'slider' %} look__container--mobile-slider{% else %} look__container--mobile-grid{% endif %}{% if layout_desktop == 'slider' %} look__container--desktop-slider grid--slider{% else %} look__container--desktop-grid{% endif %}"
+        {% if layout_desktop == 'slider' %}
+          data-grid-slider
+        {% endif %}
+        {% if request.design_mode %}
+          data-block-scroll
+        {% endif %}
+      >
+        {%- if featured_type != 'none' -%}
+        <div class="look__featured"
+          {% if layout_desktop == 'slider' %}
+            data-grid-item
+          {% endif %}
+        >
+          {%- if featured_type == 'image' -%}
+            {%- if featured_show_product_link -%}
+              <a
+                class="look__link"
+                href="{{ featured_product.url }}"
+                aria-label="{{ featured_product.title | strip_html | escape }}"
+              >
+            {%- endif -%}
+            <div class="look__image-container">
+              {%- render 'image',
+                image: featured_image,
+                sizes: featured_sizes,
+                aspect_ratio: image_aspect_ratio,
+                modifier: 'look__image-bg',
+                placeholder: 'collection-1'
+              -%}
+
+              {%- if featured_show_quick_add -%}
+                {%- render 'quick-add-product', product: featured_product, use_icon: true -%}
+              {%- endif -%}
+            </div>
+            {%- if featured_show_product_link -%}
+              </a>
+            {%- endif -%}
+          {%- elsif featured_type == 'video' -%}
+            {%- if featured_show_product_link -%}
+              <a
+                class="look__link"
+                href="{{ featured_product.url }}"
+                aria-label="{{ featured_product.title | strip_html | escape }}"
+              >
+            {%- endif -%}
+            <div class="look__video-container">
+              {%- if featured_video != null -%}
+                <div
+                  class="video-background"
+                  style="--aspect-ratio: {{ image_aspect_ratio }};"
+                >
+                  <video-background
+                    class="video__player is-loading"
+                    data-video-player
+                    data-video-id="{{ section.id }}-video-background"
+                  >
+                    <template data-video-template>
+                      {{
+                        featured_video
+                        | video_tag: autoplay: true, image_size: '1085x', loop: true, muted: true, controls: false
+                      }}
+                    </template>
+                  </video-background>
+                </div>
+              {%- else -%}
+                {%- render 'image',
+                  image: null,
+                  sizes: featured_sizes,
+                  aspect_ratio: image_aspect_ratio,
+                  modifier: 'look__image-bg',
+                  placeholder: 'lifestyle-1'
+                -%}
+              {%- endif -%}
+
+              {%- if featured_show_quick_add -%}
+                {%- render 'quick-add-product', product: featured_product, use_icon: true -%}
+              {%- endif -%}
+            </div>
+            {%- if featured_show_product_link -%}
+              </a>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign show_product_link = false
+            assign show_quick_add = false
+            if block.settings.product != blank
+              if quickview_enable
+                assign show_quick_add = true
+              else
+                assign show_product_link = true
+              endif
+            endif
+          -%}
+          {%- if block.type == 'image' -%}
+            <div class="look__image"
+              {% if layout_desktop == 'slider' %}
+                data-grid-item
+              {% endif %}
+              {{ block.shopify_attributes }}
+            >
+              {%- if show_product_link -%}
+                <a
+                  class="look__link"
+                  href="{{ block.settings.product.url }}"
+                  aria-label="{{ block.settings.product.title | strip_html | escape }}"
+                >
+              {%- endif -%}
+              <div class="look__image-container">
+                {%- render 'image',
+                  image: block.settings.image,
+                  sizes: grid_item_sizes,
+                  aspect_ratio: image_aspect_ratio,
+                  modifier: 'look__image-bg',
+                  placeholder: 'collection-1'
+                -%}
+
+                {%- if show_quick_add -%}
+                  {%- render 'quick-add-product', product: block.settings.product, use_icon: true -%}
+                {%- endif -%}
+              </div>
+              {%- if show_product_link -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- elsif block.type == 'video' -%}
+            <div class="look__video"
+              {% if layout_desktop == 'slider' %}
+                data-grid-item
+              {% endif %}
+              {{ block.shopify_attributes }}
+            >
+              {%- if show_product_link -%}
+                <a
+                  class="look__link"
+                  href="{{ block.settings.product.url }}"
+                  aria-label="{{ block.settings.product.title | strip_html | escape }}"
+                >
+              {%- endif -%}
+              <div class="look__video-container">
+                {%- if block.settings.video != null -%}
+                  <div
+                    class="video-background"
+                    style="--aspect-ratio: {{ image_aspect_ratio }};"
+                  >
+                    <video-background
+                      class="video__player is-loading"
+                      data-video-player
+                      data-video-id="{{ section.id }}-{{ block.id }}-video-background"
+                    >
+                      <template data-video-template>
+                        {{
+                          block.settings.video
+                          | video_tag: autoplay: true, image_size: '1085x', loop: true, muted: true, controls: false
+                        }}
+                      </template>
+                    </video-background>
+                  </div>
+                {%- else -%}
+                  {%- render 'image',
+                    image: null,
+                    sizes: grid_item_sizes,
+                    aspect_ratio: image_aspect_ratio,
+                    modifier: 'look__image-bg',
+                    placeholder: 'lifestyle-1'
+                  -%}
+                {%- endif -%}
+
+                {%- if show_quick_add -%}
+                  {%- render 'quick-add-product', product: block.settings.product, use_icon: true -%}
+                {%- endif -%}
+              </div>
+              {%- if show_product_link -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      </div>
+    {%- endcapture -%}
+
+    {%- if layout_desktop == 'slider' -%}
+      <grid-slider align-arrows>
+        {{ look_container }}
+      </grid-slider>
+    {%- else -%}
+      {{ look_container }}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop the look: Gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Featured content"
+    },
+    {
+      "type": "select",
+      "id": "featured_type",
+      "label": "Type",
+      "default": "none",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "image", "label": "Image"},
+        {"value": "video", "label": "Video"}
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Image",
+      "visible_if": "{{ section.settings.featured_type == 'image' }}"
+    },
+    {
+      "type": "video",
+      "id": "featured_video",
+      "label": "Video",
+      "visible_if": "{{ section.settings.featured_type == 'video' }}"
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Product",
+      "info": "This will only work when Featured Type is set to Image or Video"
+    },
+    {
+      "type": "select",
+      "id": "featured_position",
+      "label": "Position",
+      "default": "",
+      "options": [
+        {"value": "", "label": "Left"},
+        {"value": "is-reversed", "label": "Right"}
+      ],
+      "visible_if": "{{ section.settings.featured_type == 'image' or section.settings.featured_type == 'video' }}"
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": ":1",
+      "default": 1.4
+    },
+    {
+      "type": "select",
+      "id": "layout_desktop",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "visible_if": "{{ section.settings.layout_desktop == 'grid' }}",
+      "label": "Products per row",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "layout_mobile",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 item per row"
+        },
+        {
+          "value": "2",
+          "label": "2 items per row"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_blocks",
+      "label": "Reverse block placement",
+      "default": false,
+      "visible_if": "{{ section.settings.featured_type == 'image' or section.settings.featured_type == 'video' }}"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper--full-padded",
+      "options": [
+        {"value": "wrapper--full", "label": "Full width"},
+        {"value": "wrapper--full-padded", "label": "Full width padded"},
+        {"value": "wrapper", "label": "Normal"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot icon",
+      "default": "rgba(0,0,0,0)",
+      "alpha": true
+    },
+    {
+      "type": "color",
+      "id": "dot_background",
+      "label": "Dot background",
+      "default": "rgba(0,0,0,0)",
+      "alpha": true
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the look: Gallery",
+      "category": "Products",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "aside", "custom.pre_footer", "footer"]
+  }
+}
+{% endschema %}

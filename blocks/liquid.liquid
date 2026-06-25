@@ -1,0 +1,44 @@
+<div
+  class="block__liquid block-padding"
+  data-aos="hero"
+  data-aos-order="auto"
+  data-aos-anchor="#{{ section.id }}"
+  {{ block.shopify_attributes }}
+  style="--block-padding-bottom: {{ block.settings.padding_bottom }}px;"
+>
+  {{ block.settings.code }}
+</div>
+
+{% schema %}
+{
+  "name": "Liquid",
+  "tag": null,
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "code",
+      "label": "Custom code",
+      "default": "<p>Once you write some custom code, it will render right here.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Liquid"
+    }
+  ]
+}
+{% endschema %}

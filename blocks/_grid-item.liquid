@@ -1,0 +1,211 @@
+{%- capture content_blocks -%}
+  {% content_for 'blocks' %}
+{%- endcapture -%}
+
+{%- liquid
+  assign target_device_enabled = block.settings.target_device_enabled
+  assign target_device = block.settings.target_device
+
+  comment
+    Desktop grid positioning
+  endcomment
+  assign row_start = block.settings.row_start
+  assign column_start = block.settings.column_start
+  assign column_end = block.settings.column_end
+
+  comment
+    Mobile grid positioning
+  endcomment
+  assign row_start_mobile = block.settings.row_start_mobile
+  assign column_start_mobile = block.settings.column_start_mobile
+  assign column_end_mobile = block.settings.column_end_mobile
+
+  comment
+    Image size calculations
+  endcomment
+  assign section_width = section.settings.width
+  assign gap_desktop = section.settings.gap_desktop
+  assign gap_mobile = section.settings.gap_mobile
+
+  if section_width == 'wrapper--full-padded'
+    assign padding_desktop = 100
+    assign padding_mobile = 40
+  else
+    assign padding_desktop = 0
+    assign padding_mobile = 0
+  endif
+
+  # Desktop
+  assign col_span = column_end | minus: column_start
+  assign gap_count_desktop = col_span | minus: 1
+  assign gap_total_desktop = gap_count_desktop | times: gap_desktop
+  assign total_gap_row_desktop = 15 | times: gap_desktop
+  assign deduction_desktop = total_gap_row_desktop | plus: padding_desktop
+
+  capture sizes_desktop
+    echo 'calc(((100vw - ' | append: deduction_desktop | append: 'px) / 16 * ' | append: col_span | append: ') + ' | append: gap_total_desktop | append: 'px)'
+  endcapture
+
+  # Mobile
+  assign col_span_mobile = column_end_mobile | minus: column_start_mobile
+  assign gap_count_mobile = col_span_mobile | minus: 1
+  assign gap_total_mobile = gap_count_mobile | times: gap_mobile
+  assign total_gap_row_mobile = 7 | times: gap_mobile
+  assign deduction_mobile = total_gap_row_mobile | plus: padding_mobile
+
+  capture sizes_mobile
+    echo 'calc(((100vw - ' | append: deduction_mobile | append: 'px) / 8 * ' | append: col_span_mobile | append: ') + ' | append: gap_total_mobile | append: 'px)'
+  endcapture
+
+  assign grid_item_sizes = '(min-width: 750px) ' | append: sizes_desktop | append: ', ' | append: sizes_mobile
+
+  assign block_id = block.id | replace: '-', ''
+-%}
+
+{%- style -%}
+  #shopify-block-{{ block_id }} {
+    --dynamic-grid-grid-area: {{ row_start_mobile }} / {{ column_start_mobile }} / -1 / {{ column_end_mobile }};
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-block-{{ block_id }} {
+      --dynamic-grid-grid-area: {{ row_start }} / {{ column_start }} / -1 / {{ column_end }};
+    }
+  }
+{%- endstyle -%}
+
+{%- render 'stylesheet', name: 'dynamic-content.css' -%}
+
+<div
+  id="shopify-block-{{ block_id }}"
+  class="dynamic-grid__cell{% if target_device_enabled %} {{ target_device }}{% endif %} {{ block.settings.align_text }}"
+  data-dynamic-grid-cell
+  data-row-start="{{ row_start }}"
+  data-row-start-mobile="{{ row_start_mobile }}"
+  {{ block.shopify_attributes }}
+>
+  {{ content_blocks | replace: '|||sizes|||', grid_item_sizes }}
+</div>
+
+{% schema %}
+{
+  "name": "Grid item",
+  "blocks": [
+    {"type": "heading"},
+    {"type": "subheading"},
+    {"type": "rich-text"},
+    {"type": "button"},
+    {"type": "_group-buttons"},
+    {"type": "image"},
+    {"type": "video"},
+    {"type": "icon"},
+    {"type": "liquid"},
+    {"type": "@app"}
+  ],
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "align_text",
+      "label": "Text alignment",
+      "default": "text-center",
+      "options": [
+        {"value": "text-left", "label": "Left"},
+        {"value": "text-center", "label": "Center"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "row_start",
+      "min": 1,
+      "max": 99,
+      "step": 1,
+      "label": "Row start",
+      "info": "Increase the value to add extra rows. The content automatically defines the row end.",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_start",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "label": "Column start",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_end",
+      "min": 2,
+      "max": 17,
+      "step": 1,
+      "label": "Column end",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "row_start_mobile",
+      "min": 1,
+      "max": 99,
+      "step": 1,
+      "label": "Row start",
+      "info": "Increase the value to add extra rows. The content automatically defines the row end.",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_start_mobile",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "Column start",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_end_mobile",
+      "min": 2,
+      "max": 9,
+      "step": 1,
+      "label": "Column end",
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Target device"
+    },
+    {
+      "id": "target_device_enabled",
+      "type": "checkbox",
+      "label": "Limit to desktop or mobile"
+    },
+    {
+      "type": "select",
+      "id": "target_device",
+      "label": "Device ",
+      "default": "mobile",
+      "options": [
+        {"value": "mobile", "label": "Only show on mobile"},
+        {"value": "desktop", "label": "Only show on desktop"}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grid item",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

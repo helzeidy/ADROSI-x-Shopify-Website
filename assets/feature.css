@@ -1,0 +1,49 @@
+.product__features {
+  position: relative;
+}
+.product__features .flickity-page-dots {
+  --text: var(--accent);
+  justify-content: flex-end;
+  bottom: 0;
+  padding: 0 var(--inner) var(--inner);
+}
+
+.product__features:not(.flickity-enabled) {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.product__features:not(.flickity-enabled) .product__feature {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  min-height: 100%;
+  width: 100%;
+}
+.product__features:not(.flickity-enabled) .product__feature:not(:first-child) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.product__feature {
+  --dots-height: 16px;
+  --icons: var(--text);
+  width: 100%;
+  color: var(--text);
+  background: var(--bg-accent);
+  padding: calc(var(--inner) - 0.5em) var(--inner);
+}
+.product__feature .block__icon {
+  margin: 0.5em 10px 0.5em 0;
+}
+
+.flickity-enabled .product__feature {
+  padding-bottom: calc(var(--inner) * 2 - 0.5em + var(--dots-height));
+}
+
+.product__feature__content {
+  overflow-wrap: anywhere;
+}
+
+.product__feature__heading {
+  font-size: var(--font-body-medium);
+  font-weight: var(--FONT-WEIGHT-BODY-BOLD);
+}

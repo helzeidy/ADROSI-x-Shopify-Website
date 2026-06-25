@@ -1,0 +1,211 @@
+{%- comment -%}
+  * Used for Hero image sections that support parallax
+  * A cropped image that fills the container width using object-fit: cover
+  * height is defined by the optional aspect ratio.  If aspect ratio is false or nil
+  * the image will use natural height and will not be cropped.
+
+  *  image {object} - The Image object
+  *  image_desktop {object} - The Image object for desktop (Optional)
+  *  image_mobile {object} - The Image object for mobile (Optional)
+  *  desktop_height {Int} - A specific height of the image on desktop (Optional)
+  *  mobile_height {Int} - A specific height of the image on mobile (Optional)
+  *  aspect_ratio: {Int} Image aspect ratio (Optional)
+  *  aspect_ratio_mobile: {Int} Image aspect ratio for mobile (Optional)
+  *  sizes {String} - A set of media conditions (Optional)
+  *  widths {Array} - An array of the image widths for srcset (Optional)
+  *  width {Int} - The default image width (Optional)
+  *  modifier {String} - Additional classes for the image container tag (Optional)
+  *  attributes {String} - Additional attributes for the image container tag (Optional)
+  *  alt {String} - Overrides image alt value (Optional)
+  *  loading {String} - Default: "lazy" (Optional)
+  *  animation_delay {Int} - A specific animation delay to set an image animation (Optional)
+  *  show_backfill {Boolean} - Default: true (Optional)
+  *  parallax_disable {Boolean} - Prevents image parallax animation. Default: false (Optional)
+
+  {% render 'image-hero', image: image, sizes: sizes, widths: widths, modifier: modifier, attributes: attributes, animation_delay: animation_delay, show_backfill: true %}
+{%- endcomment -%}
+
+{%- liquid
+  assign animation_delay = animation_delay | default: false
+  assign image = image_mobile | default: image_desktop | default: image
+  assign image_desktop = image_desktop | default: image
+  assign image_mobile = image_mobile | default: null
+  assign aspect_ratio = aspect_ratio | default: image_desktop.aspect_ratio | default: 2.63
+  assign aspect_ratio_mobile = aspect_ratio_mobile | default: image_mobile.aspect_ratio | default: aspect_ratio
+  assign image_width = image.width | at_most: 5760 | default: 5760
+  assign width = width | default: image_width
+  assign sizes = sizes | default: '100vw'
+  assign modifier = modifier | default: ''
+  assign widths_default = '180, 360, 540, 720, 900, 1080, 1296, 1440, 1800, 2100, 2450, 2880, 3600, 4400, 4900, 5760'
+  assign widths = widths | default: widths_default
+  assign default_image_label = 'general.accessibility.slide_image' | t
+  assign alt = alt | default: image.alt | default: default_image_label
+  assign alt = alt | escape
+  assign preload = preload | default: null
+  assign fetchpriority = fetchpriority | default: null
+  assign parallax_enable = settings.parallax_enable
+  assign parallax_speed = parallax_speed | default: -2
+  assign prevent_parallax = parallax_disable | default: false
+  assign is_mixed_picture = false
+  assign wrapper_tag = 'div'
+
+  if prevent_parallax
+    assign parallax_enable = false
+  endif
+
+  if parallax_enable
+    assign wrapper_tag = 'parallax-hero'
+  endif
+
+  comment
+    Set loading="eager" to the first 2 sections images
+    Set loading="lazy" to the rest by default
+  endcomment
+
+  if section.location == 'template' and section.index < 3
+    unless loading == 'lazy'
+      assign loading = 'eager'
+    endunless
+  else
+    assign loading = 'lazy'
+  endif
+
+  if show_backfill == null
+    assign show_backfill = true
+  endif
+
+  capture wrapper_classes
+    echo 'image__hero__frame'
+
+    if desktop_height != blank
+      echo ' ' | append: desktop_height
+    endif
+
+    if mobile_height != blank
+      echo ' ' | append: mobile_height
+    endif
+
+    if modifier != blank
+      echo ' ' | append: modifier
+    endif
+  endcapture
+
+  capture wrapper_attributes
+    echo 'style="'
+    echo '--aspect-ratio: ' | append: aspect_ratio | append: ';'
+    echo '--aspect-ratio-mobile: ' | append: aspect_ratio_mobile | append: ';'
+    echo '"'
+
+    if parallax_enable
+      echo ' data-parallax-wrapper'
+      echo ' data-parallax-speed="' | append: parallax_speed | append: '"'
+    endif
+
+    if attributes != blank
+      echo ' ' | append: attributes
+    endif
+  endcapture
+
+  if image_desktop and image_mobile
+    assign is_mixed_picture = true
+    assign unique = section.id | append: image.id | md5
+    assign id = 'Picture-' | append: unique
+
+    capture srcset_desktop
+      render 'image-srcset', image: image_desktop, widths: widths, desktop: true
+    endcapture
+
+    capture srcset_mobile
+      render 'image-srcset', image: image_mobile, widths: widths, mobile: true
+    endcapture
+  elsif image
+    capture srcset
+      render 'image-srcset', image: image, widths: widths
+    endcapture
+  endif
+
+  assign focal_point_default = image.presentation.focal_point
+  capture focal_point_desktop
+    if image_desktop
+      echo image_desktop.presentation.focal_point
+    else
+      echo focal_point_default
+    endif
+  endcapture
+
+  capture focal_point_mobile
+    if image_mobile
+      echo image_mobile.presentation.focal_point
+    else
+      echo focal_point_default
+    endif
+  endcapture
+-%}
+
+{%- capture aos_animation -%}
+  {%- if animation_delay -%}
+    data-aos="img-in"
+    data-aos-delay="{{ animation_delay | times: 150 }}"
+  {%- endif -%}
+{%- endcapture -%}
+
+<{{ wrapper_tag }} class="{{ wrapper_classes }}" {{ wrapper_attributes }}>
+  <div class="image__hero__pane" {{ aos_animation }}>
+    <div
+      class="image__hero__scale image__fill lazy-image{% if show_backfill %} lazy-image--backfill{% endif %} is-loading"
+      {% if parallax_enable %}
+        data-parallax-img
+      {% endif %}
+    >
+      {%- if is_mixed_picture -%}
+        {%- style -%}
+          @media (min-width: 750px) {
+            #{{ id }} { --focal-point: {{ focal_point_desktop }}; }
+          }
+          @media (max-width: 749px) {
+            #{{ id }} { --focal-point: {{ focal_point_mobile }}; }
+          }
+        {%- endstyle -%}
+
+        <picture id="{{ id }}">
+          <source media="(min-width: 750px)" sizes="{{ sizes }}" srcset="{{ srcset_desktop }}">
+          <source media="(max-width: 749px)" sizes="{{ sizes }}" srcset="{{ srcset_mobile }}">
+
+          {{
+            image
+            | image_url: width: image.width
+            | image_tag:
+              loading: loading,
+              fetchpriority: fetchpriority,
+              preload: preload,
+              alt: alt,
+              sizes: sizes,
+              srcset: srcset_mobile,
+              class: 'is-loading',
+              style: 'object-position: var(--focal-point, center)'
+          }}
+        </picture>
+      {%- elsif image contains 'blank.svg' or image == blank -%}
+        <img
+          src="{{ 'blank.svg' | asset_url }}"
+          loading="{{ loading }}"
+          class="is-loading"
+          alt="{{ alt }}"
+        >
+      {%- else -%}
+        {{
+          image
+          | image_url: width: width
+          | image_tag:
+            loading: loading,
+            srcset: srcset,
+            sizes: sizes,
+            alt: alt,
+            fetchpriority: fetchpriority,
+            preload: preload,
+            class: 'is-loading'
+        }}
+      {%- endif -%}
+    </div>
+  </div>
+</{{ wrapper_tag }}>

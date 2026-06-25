@@ -1,0 +1,28 @@
+.recipient-form input[type=checkbox]:checked ~ .recipient-fields {
+  display: block;
+}
+
+.recipient-form input[type=checkbox] + label {
+  padding-bottom: 1em;
+}
+
+.recipient-form .recipient-fields {
+  display: none;
+}
+
+.recipient-form .select__fieldset {
+  align-items: center;
+}
+
+.recipient-form .select__fieldset .select__label--textarea {
+  align-self: flex-start;
+}
+
+.recipient-form .field {
+  border-bottom: none;
+}
+
+.recipient-form .recipient-form-field-label {
+  display: block;
+  text-align: right;
+}

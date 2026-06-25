@@ -1,0 +1,174 @@
+.collections-hover {
+  position: relative;
+}
+@media only screen and (max-width: 749px) {
+  .collections-hover {
+    min-height: 0;
+  }
+}
+
+.collections-hover--empty {
+  display: block;
+  min-height: 0;
+  color: var(--text-dark);
+}
+
+@media only screen and (max-width: 749px) {
+  .collections-hover__images,
+  .collections-hover__inner {
+    min-height: initial;
+  }
+}
+
+.collections-hover__images {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+@media only screen and (min-width: 750px) {
+  .collections-hover__images {
+    display: grid;
+    height: 100%;
+  }
+}
+
+.collections-hover__image {
+  flex: 0 1 100%;
+  display: flex;
+  position: relative;
+  background: var(--bg);
+}
+@media only screen and (min-width: 750px) {
+  .collections-hover__image {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    overflow: hidden;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .collections-hover__image.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.collections-hover__image .svg-placeholder,
+.collections-hover__image .image-wrapper {
+  flex: 1;
+  min-height: 100%;
+}
+
+@media only screen and (max-width: 749px) {
+  .collections-hover__image:not(.image-height--mobile) .image-wrapper {
+    height: 100%;
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .collections-hover:not(.image-height) .collections-hover__image .image-wrapper {
+    height: 100%;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .collections-hover__image:not(.image-height--mobile) .svg-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .collections-hover:not(.image-height) .collections-hover__image .svg-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.collections-hover__inner {
+  position: relative;
+  z-index: 2;
+  max-width: calc(100vw - var(--scrollbar-width));
+}
+
+.collections-hover__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: sticky;
+  top: var(--header-sticky-height, 0);
+  overflow: hidden;
+  min-height: min(var(--full-screen), 100%);
+  text-align: center;
+}
+
+[data-overlay-header] .collections-hover__content {
+  padding-top: var(--header-height);
+  padding-bottom: var(--header-height);
+}
+
+.collections-hover__actions,
+.collections-hover__actions-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: anywhere;
+}
+@media only screen and (max-width: 749px) {
+  .collections-hover__actions,
+  .collections-hover__actions-inner {
+    flex-direction: column;
+  }
+}
+
+.collection-hover__button {
+  --link: var(--text-a50);
+  --link-hover: var(--text);
+  font-family: var(--FONT-STACK-HEADING);
+  font-style: var(--FONT-STYLE-HEADING);
+  font-weight: var(--FONT-WEIGHT-HEADING);
+  letter-spacing: var(--LETTER-SPACING-HEADING);
+  text-transform: var(--FONT-UPPERCASE-HEADING);
+  display: inline-block;
+  align-self: center;
+  padding: 0;
+  margin: var(--gutter);
+}
+.collection-hover__button span {
+  --main-color: var(--link);
+  --hover-color: var(--link-hover);
+  display: inline-block;
+  padding-bottom: 2px;
+  background-image: linear-gradient(to right, var(--hover-color) 0% 50%, var(--main-color) 50% 100%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.collection-hover__button .sup {
+  transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.collection-hover__button.is-selected .sup {
+  color: var(--text);
+}
+.collection-hover__button.is-selected span {
+  background-position: 0 0;
+}
+@media (hover: hover) {
+  .collection-hover__button span:hover {
+    background-position: 0 0;
+  }
+}

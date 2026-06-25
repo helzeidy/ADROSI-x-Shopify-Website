@@ -1,0 +1,17 @@
+.related__wrapper {
+  background: var(--bg);
+}
+
+.related__products {
+  text-align: center;
+}
+.related__products .tab-link,
+.related__products .tab-content {
+  padding: 0;
+}
+@media only screen and (min-width: 750px) {
+  .related__products .grid--slider::after {
+    content: "flickity";
+    display: none;
+  }
+}

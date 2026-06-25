@@ -1,0 +1,71 @@
+.spotlight {
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spotlight__links {
+  margin-top: var(--inner);
+}
+
+.spotlight__images {
+  position: relative;
+  overflow: hidden;
+}
+@media only screen and (min-width: 750px) {
+  .spotlight__images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.spotlight__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: var(--aspect-ratio, 1);
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.spotlight__image.is-visible {
+  opacity: 1;
+  visibility: unset;
+  z-index: unset;
+}
+@media only screen and (min-width: 750px) {
+  .spotlight__image {
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.spotlight__button {
+  position: absolute;
+  padding: var(--inner);
+}
+
+.spotlight__links .hero__title {
+  transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.spotlight__links .hero__title.is-selected {
+  transform: translateX(1rem);
+}
+.spotlight__links .hero__title.is-selected .spotlight__collection-link {
+  background-position: 0 0;
+}
+
+.spotlight__collection-link {
+  --main-color: var(--text-a50);
+  --hover-color: var(--text);
+  background-image: linear-gradient(to right, var(--hover-color) 0% 50%, var(--main-color) 50% 100%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}

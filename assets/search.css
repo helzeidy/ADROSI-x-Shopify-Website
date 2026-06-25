@@ -1,0 +1,112 @@
+.search-form {
+  position: relative;
+  display: flex;
+}
+.search-form input[type=search] {
+  width: 100%;
+  margin: 0;
+  padding: 15px;
+  font-size: var(--font-body-medium);
+  border: 0;
+}
+@supports (-webkit-touch-callout: none) {
+  .search-form input[type=search] {
+    font-size: max(var(--font-nav-small) * var(--FONT-SIZE-NAV), 16px);
+  }
+}
+.search-form button[type=reset] {
+  flex: 0 0 auto;
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  color: var(--link);
+  font-size: var(--font-body-x-small);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.input-holder {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.search-submit {
+  text-transform: uppercase;
+  font-size: var(--font-body-x-small);
+  font-family: var(--FONT-STACK-BODY);
+  font-weight: var(--FONT-WEIGHT-BODY);
+  letter-spacing: var(--LETTER-SPACING-BODY);
+  --icon-size: 24px;
+  margin: 0;
+  border-radius: 0 var(--RADIUS) var(--RADIUS) 0;
+}
+
+.search-box {
+  border-radius: var(--RADIUS) 0 0 var(--RADIUS);
+}
+
+main-search .input-holder {
+  border: 1px solid var(--border);
+  border-radius: var(--RADIUS) 0 0 var(--RADIUS);
+}
+
+.search-results-item__image {
+  display: block;
+  padding-top: var(--PRODUCT-GRID-ASPECT-RATIO);
+  height: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--text-a5);
+}
+.search-results-item__image:only-child {
+  border-bottom: none;
+}
+.is-focused .search-results-item__image {
+  overflow: visible;
+}
+.search-results-item__image.is-visible {
+  overflow: visible;
+  z-index: 12;
+}
+.search-results-item__image .item-link {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.search-results-item__image .svg-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.has-line-design .search-results-item__image {
+  border-bottom: 1px solid var(--border);
+}
+
+.search-results-item__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 1;
+  will-change: transform, opacity;
+}
+
+.item-link {
+  display: block;
+  padding: calc(var(--inner) / 2) var(--inner);
+}
+@media only screen and (max-width: 749px) {
+  .item-link {
+    padding: 12px;
+  }
+}

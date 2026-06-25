@@ -1,0 +1,227 @@
+/*====== Free shipping ======*/
+.free-shipping {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: var(--inner);
+  padding-bottom: var(--inner);
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+  line-height: 1.3;
+  transition: max-height 0.3s, padding 0.3s, border 0.3s, opacity 0.3s, visibility 0.3s;
+}
+
+.free-shipping.is-hidden {
+  overflow: hidden;
+  visibility: hidden;
+  max-height: 0;
+  padding: 0 15px;
+  border: none;
+  opacity: 0;
+}
+
+.free-shipping__success-message {
+  display: none;
+}
+
+.is-success .free-shipping__success-message {
+  display: inline;
+}
+
+.is-success .free-shipping__success-message ~ .free-shipping__default-message {
+  display: none;
+}
+
+/*====== Free Shipping Graph ======*/
+.free-shipping__graph {
+  --stroke-dashoffset: 87.96459430051421;
+  position: relative;
+  display: flex;
+  margin-right: 8px;
+  transform: scale(-1, 1);
+}
+
+.free-shipping__graph circle {
+  transform-origin: 50% 50%;
+  stroke-width: 2;
+  stroke: var(--text-a35);
+  fill: none;
+}
+
+.free-shipping__graph-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+  stroke: var(--text-a80);
+  stroke-dashoffset: var(--stroke-dashoffset);
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+/*====== Free Shipping Progress Bar ======*/
+/* WEBKIT BROWSERS - CHROME, OPERA AND SAFARI */
+.free-shipping__progress-bar {
+  --progress-bg: transparent;
+  --progress-value-bg: var(--FREE-SHIPPING-GRADIENT);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: block;
+  width: 100%;
+  height: 8px;
+  background: var(--bg-accent);
+  border-radius: 4px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.free-shipping__progress-bar::-webkit-progress-bar {
+  width: 100%;
+  background: var(--progress-bg);
+  border-radius: 6px;
+}
+
+.free-shipping__progress-bar::-webkit-progress-value {
+  background: var(--progress-value-bg);
+  border-radius: 4px;
+  -webkit-transition: width 1s ease-in-out, transform 1s ease-in-out 0.5s;
+  transition: width 1s ease-in-out, transform 1s ease-in-out 0.5s;
+  transform-origin: center left;
+}
+
+.free-shipping__progress-bar::-webkit-progress-value {
+  transform: scaleX(0);
+}
+
+.is-animated .free-shipping__progress-bar::-webkit-progress-value {
+  transform: scaleX(1);
+}
+
+/* MOZILLA FIREFOX */
+@-moz-document url-prefix() {
+  .free-shipping__progress-bar::-moz-progress-bar {
+    background: var(--progress-value-bg);
+    border-radius: 4px;
+    -moz-transition: width 1s ease-in-out, transform 1s ease-in-out 0.5s;
+    transition: width 1s ease-in-out, transform 1s ease-in-out 0.5s;
+    transform-origin: center left;
+  }
+  .free-shipping__progress-bar::-moz-progress-bar {
+    transform: scaleX(0);
+  }
+  .is-animated .free-shipping__progress-bar::-moz-progress-bar {
+    transform: scaleX(1);
+  }
+}
+/* Confetti animation on success */
+.confetti {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.confetti__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: rotate(90deg);
+}
+
+.confetti__dot--2 {
+  color: var(--accent);
+}
+
+.confetti__dot--3 {
+  color: var(--COLOR-SALE);
+}
+
+.confetti__dot--4 {
+  color: var(--border);
+}
+
+.confetti__dot--5 {
+  color: var(--link);
+}
+
+.confetti__dot--6 {
+  color: var(--bg-accent);
+}
+
+.confetti__dot--4,
+.confetti__dot--5,
+.confetti__dot--6 {
+  transform: rotate(205deg);
+}
+
+.confetti__dot::before,
+.confetti__dot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: currentcolor;
+  transform: scale(0);
+}
+
+.is-success .confetti__dot {
+  transition: top 0.4s;
+}
+.is-success .confetti__dot::before,
+.is-success .confetti__dot::after {
+  transform: scale(1);
+  opacity: 0;
+  transition: top 1s, left 1s, transform 1s, opacity 0.6s 0.4s;
+}
+.is-success .confetti__dot--1::before {
+  top: -35px;
+  left: 65px;
+}
+.is-success .confetti__dot--4::after,
+.is-success .confetti__dot--1::after {
+  top: 5px;
+  left: 45px;
+}
+.is-success .confetti__dot--2::before {
+  top: 35px;
+  left: 15px;
+}
+.is-success .confetti__dot--5::after,
+.is-success .confetti__dot--2::after {
+  top: 5px;
+  left: -35px;
+}
+.is-success .confetti__dot--3::before {
+  top: -25px;
+  left: 5px;
+}
+.is-success .confetti__dot--6::after,
+.is-success .confetti__dot--3::after {
+  top: 45px;
+  left: -45px;
+}
+.is-success .confetti__dot--4::before {
+  top: -35px;
+  left: 90px;
+}
+.is-success .confetti__dot--5::before {
+  top: -70px;
+  left: 15px;
+}
+.is-success .confetti__dot--6::before {
+  top: -50px;
+  left: 55px;
+}

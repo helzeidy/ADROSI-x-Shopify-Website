@@ -1,0 +1,19 @@
+.pagination {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.pagination__loading {
+  position: relative;
+  padding-top: 40px;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}
+.pagination__loading .btn__loader {
+  opacity: 1;
+  visibility: visible;
+}
+.pagination__loading .btn__loader circle ~ circle {
+  animation-play-state: running;
+}

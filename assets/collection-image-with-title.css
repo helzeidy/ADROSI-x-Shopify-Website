@@ -1,0 +1,46 @@
+/**
+ * COLLECTION PAGE HEADER
+ */
+.collection-image-with-title {
+  overflow: hidden;
+}
+
+.collection__image {
+  position: relative;
+}
+
+.collection__image-inline {
+  display: grid;
+  grid-template-columns: minmax(0, 65fr) minmax(0, 35fr);
+  align-items: stretch;
+  position: relative;
+}
+.collection__image-inline .hero__content__wrapper {
+  height: 100%;
+}
+.collection__image-inline .hero__content {
+  height: 100%;
+  width: 100%;
+  max-width: none;
+  justify-content: center;
+}
+.collection__image-inline .hero__content:not(.hero__content--transparent) {
+  margin: 0;
+}
+@media only screen and (max-width: 989px) {
+  .collection__image-inline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .collection__image-inline .collection__title-wrapper {
+    min-height: auto;
+  }
+}
+
+.collection__title-wrapper {
+  background: var(--bg);
+}
+
+.collection__title--no-image {
+  padding: var(--gutter) var(--outer);
+  background: var(--bg);
+}
