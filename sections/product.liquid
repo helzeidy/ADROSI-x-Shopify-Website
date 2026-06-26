@@ -1621,6 +1621,31 @@
         },
         {
           "type": "header",
+          "content": "Record on the order"
+        },
+        {
+          "type": "checkbox",
+          "id": "record_on_order",
+          "label": "Save the chosen scale & size to the cart/order",
+          "default": true,
+          "info": "Adds the selected scale and its size as line item properties on the product, visible in the cart, checkout and Shopify order."
+        },
+        {
+          "type": "text",
+          "id": "scale_property_name",
+          "label": "Scale property name",
+          "default": "Scale",
+          "visible_if": "{{ block.settings.record_on_order }}"
+        },
+        {
+          "type": "text",
+          "id": "size_property_name",
+          "label": "Size property name",
+          "default": "Size",
+          "visible_if": "{{ block.settings.record_on_order }}"
+        },
+        {
+          "type": "header",
           "content": "Padding"
         },
         {

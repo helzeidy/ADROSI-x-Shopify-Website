@@ -46,7 +46,23 @@
     return document.querySelector('.selector-wrapper--size');
   }
 
+  /* Create (once) a hidden line item property input on the product form. */
+  function ensureHiddenInput(form, propName) {
+    var name = 'properties[' + propName + ']';
+    var existing = form.querySelector('input[data-size-scale-prop="' + propName + '"]');
+    if (existing) return existing;
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = name;
+    input.setAttribute('data-size-scale-prop', propName);
+    form.appendChild(input);
+    return input;
+  }
+
   function setup(configEl) {
+    if (configEl.dataset.scaleReady) return;
+    configEl.dataset.scaleReady = 'true';
+
     var scales = (configEl.getAttribute('data-scales') || '')
       .split(',')
       .map(function (s) { return s.trim(); })
@@ -77,17 +93,45 @@
 
     var current = defaultScale;
 
+    // Optional: record the chosen scale + size as line item properties.
+    var scaleInput = null;
+    var sizeInput = null;
+    if (configEl.hasAttribute('data-record')) {
+      var formId = configEl.getAttribute('data-product-form-id');
+      var form =
+        (formId && document.getElementById(formId)) ||
+        document.querySelector('form[data-product-form]') ||
+        document.querySelector('form[data-type="add-to-cart-form"]');
+      if (form) {
+        scaleInput = ensureHiddenInput(form, configEl.getAttribute('data-scale-prop') || 'Scale');
+        sizeInput = ensureHiddenInput(form, configEl.getAttribute('data-size-prop') || 'Size');
+      }
+    }
+
     function convert(base, scale) {
       if (scale === baseScale) return base;
       if (map[base] && map[base][scale] != null) return map[base][scale];
       return base; // no mapping: fall back to the base value
     }
 
-    function updateSelected() {
-      if (!selectedDisplay) return;
+    function selectedBase() {
       var checked = sizeWrapper.querySelector('input[type="radio"]:checked');
-      if (!checked) return;
-      selectedDisplay.textContent = convert((checked.value || '').trim(), current);
+      return checked ? (checked.value || '').trim() : '';
+    }
+
+    function updateProperties() {
+      if (!scaleInput || !sizeInput) return;
+      var base = selectedBase();
+      scaleInput.value = current;
+      sizeInput.value = base ? convert(base, current) : '';
+    }
+
+    function updateSelected() {
+      if (selectedDisplay) {
+        var base = selectedBase();
+        if (base) selectedDisplay.textContent = convert(base, current);
+      }
+      updateProperties();
     }
 
     function relabel() {

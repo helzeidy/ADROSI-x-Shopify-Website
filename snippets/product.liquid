@@ -688,7 +688,7 @@
                       <script src="{{ 'size-scale.js' | asset_url }}" defer></script>
                       {%- assign size_scale_assets_enqueued = true -%}
                     {%- endunless -%}
-                    {%- render 'size-scale', block: block -%}
+                    {%- render 'size-scale', block: block, product_form_id: product_form_id -%}
 
                   {%- when 'features' -%}
                     {%- liquid

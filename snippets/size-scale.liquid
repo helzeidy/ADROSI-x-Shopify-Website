@@ -27,6 +27,12 @@
   data-base-scale="{{ base_scale | escape }}"
   data-default-scale="{{ default_scale | escape }}"
   data-heading="{{ heading | escape }}"
+  data-product-form-id="{{ product_form_id | escape }}"
+  {% if block.settings.record_on_order %}
+    data-record
+    data-scale-prop="{{ block.settings.scale_property_name | default: 'Scale' | escape }}"
+    data-size-prop="{{ block.settings.size_property_name | default: 'Size' | escape }}"
+  {% endif %}
   {{ block.shopify_attributes }}
   hidden
 >
