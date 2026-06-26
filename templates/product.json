@@ -1,1 +1,276 @@
-{"sections":{"main":{"type":"product","blocks":{"title":{"type":"title","settings":{"subheading_option":"breadcrumb","heading_font_size":"heading-medium","padding_bottom":8}},"price":{"type":"price","settings":{"text_font_size":"body-medium","show_shipping_policy":true,"padding_bottom":16}},"icon_1":{"type":"icon","settings":{"icon_name":"icon-email","icon_size":20,"icon_color":"#545454","text":"<p>Title<\/p>","text_font_size":"body-medium","width":"full","padding_bottom":16}},"icon_2":{"type":"icon","settings":{"icon_name":"icon-truck","icon_size":20,"icon_color":"#545454","text":"<p>Title<\/p>","text_font_size":"body-medium","width":"full","padding_bottom":16}},"icon_nWrbgH":{"type":"icon","settings":{"icon_name":"icon-award","icon_size":20,"icon_color":"#545454","text":"<p>Title<\/p>","text_font_size":"body-medium","width":"full","padding_bottom":16}},"icon_Hc4jVe":{"type":"icon","settings":{"icon_name":"icon-donation","icon_size":20,"icon_color":"#545454","text":"<p>Title<\/p>","text_font_size":"body-medium","width":"full","padding_bottom":16}},"icon_TmYz4p":{"type":"icon","settings":{"icon_name":"icon-phone","icon_size":20,"icon_color":"#545454","text":"<p>Title<\/p>","text_font_size":"body-medium","width":"full","padding_bottom":16}},"variants":{"type":"variants","settings":{"info_page":"","size_chart_style":"text","option_font_size":"body-medium","value_font_size":"body-x-small","padding_bottom":16}},"buttons":{"type":"buttons","settings":{"show_quantity":true,"button_type":"btn--primary","button_size":"btn--large","button_style":"btn--solid","show_dynamic_checkout":false,"button_type_dynamic":"btn--secondary","button_size_dynamic":"btn--large","button_style_dynamic":"btn--solid","show_gift_card_recipient":false,"padding_bottom":32}},"tabs":{"type":"tab_richtext","settings":{"show_description":true,"show_read_more":true,"title_1":"Product Details","raw_content_1":"<p>Upper: Aubergine – Hand Patina Leather<\/p><p>Patina Pattern: Museum<\/p><p>Eyelets: Graphite<\/p><p>Buckle: Old Silver<\/p><p>Laces: Grey<\/p><p>Lining: Brown Calf Leather<\/p><p>Sole: Hand Painted Dark Red Leather \/ Mountain Rubber Injections<\/p><p>Welt: City<\/p><p>Last: Featuring a Slightly Squared Toe<\/p><p>Construction: Goodyear Welt<\/p>","title_2":"Info","raw_content_2":"<p>You can use product metafields to assign content to this tab that is unique to an individual product.  Use tabs to highlight unique features, sizing information, or other sales information.<\/p>","title_3":"Free remake guarantee ","raw_content_3":"<p>test<\/p>","title_4":"Made to order ","raw_content_4":"<p>test<\/p>","title_5":"Shipping","raw_content_5":"<p>test<\/p>","padding_bottom":0}},"divider_1":{"type":"divider","settings":{"show_line":true,"padding_bottom":16}},"upsell":{"type":"upsell","settings":{"upsell_product":"","upsell_product_list":[],"show_available_upsell_only":false,"layout":"stacked","autoplay":false,"autoplay_speed":8,"bg_color":"","padding_bottom":16}}},"block_order":["title","price","icon_1","icon_2","icon_nWrbgH","icon_Hc4jVe","icon_TmYz4p","variants","buttons","tabs","divider_1","upsell"],"settings":{"product_sticky_enable":true,"variant_image_scroll":true,"show_cart_bar":true,"enable_zoom":true,"enable_video_looping":false,"image_layout":"stacked","image_size":"normal","mobile_image_style":"thumbs","color_scheme":"scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618","padding_top":90,"padding_bottom":30}},"17254558578b312487":{"type":"apps","blocks":{"loox_reviews_loox_card_carousel_section_AXheDf":{"type":"shopify:\/\/apps\/loox-reviews\/blocks\/loox-card-carousel-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e","settings":{"maxWidth":1600,"borderRadius":2,"itemsPerView":4,"mobileItemsPerView":2,"maxNumberOfCharacters":100,"imageRatio":"1","reviewerNameColor":"#000000","textColor":"#696969","itemBackgroundColor":"#ffffff","starsColor":"","starsBackgroundColor":"#ffffff","arrows_backgroundColor":"#ffffff","arrows_iconColor":"#9a9a9a","shadow":"none","border_active":true,"border_width":1,"border_color":"#d9d9d9","productIds":""}}},"block_order":["loox_reviews_loox_card_carousel_section_AXheDf"],"settings":{"include_margins":false}},"related":{"type":"related","blocks":{"related":{"type":"related","settings":{"product_recommendations_heading":"Related products"}},"recent":{"type":"recent","settings":{"product_recently_heading":"Recently viewed"}}},"block_order":["related","recent"],"settings":{"enable_tabs":true,"heading_alignment":"text-center","heading_font_size":"heading-small","limit":4,"layout_desktop":"slider","grid":4,"rows":3,"layout_mobile":"slider","color_scheme":"","padding_top":30,"padding_bottom":0}}},"order":["main","17254558578b312487","related"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "subheading_option": "breadcrumb",
+            "heading_font_size": "heading-medium",
+            "padding_bottom": 8
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "text_font_size": "body-medium",
+            "show_shipping_policy": true,
+            "padding_bottom": 16
+          }
+        },
+        "icon_1": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-email",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "text": "<p>Title</p>",
+            "text_font_size": "body-medium",
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-truck",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "text": "<p>Title</p>",
+            "text_font_size": "body-medium",
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "icon_nWrbgH": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "text": "<p>Title</p>",
+            "text_font_size": "body-medium",
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "icon_Hc4jVe": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-donation",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "text": "<p>Title</p>",
+            "text_font_size": "body-medium",
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "icon_TmYz4p": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-phone",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "text": "<p>Title</p>",
+            "text_font_size": "body-medium",
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "variants": {
+          "type": "variants",
+          "settings": {
+            "info_page": "",
+            "size_chart_style": "text",
+            "option_font_size": "body-medium",
+            "value_font_size": "body-x-small",
+            "padding_bottom": 16
+          }
+        },
+        "addon_TWP3Lb": {
+          "type": "addon",
+          "settings": {
+            "title": "Initials, in the heel",
+            "description": "Up to three letters, hot-foil stamped in gold on the inside heel.",
+            "product": "heel-initials",
+            "price_text": "+$25",
+            "enable_text_input": true,
+            "text_label": "Initials",
+            "text_placeholder": "e.g. AHM",
+            "text_maxlength": 3,
+            "text_uppercase": true,
+            "text_required": true,
+            "error_text": "Please add your initials.",
+            "stamp_on_product": true,
+            "padding_bottom": 16
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "show_quantity": true,
+            "button_type": "btn--primary",
+            "button_size": "btn--large",
+            "button_style": "btn--solid",
+            "show_dynamic_checkout": false,
+            "button_type_dynamic": "btn--secondary",
+            "button_size_dynamic": "btn--large",
+            "button_style_dynamic": "btn--solid",
+            "show_gift_card_recipient": false,
+            "padding_bottom": 32
+          }
+        },
+        "tabs": {
+          "type": "tab_richtext",
+          "settings": {
+            "show_description": true,
+            "show_read_more": true,
+            "title_1": "Product Details",
+            "raw_content_1": "<p>Upper: Aubergine – Hand Patina Leather</p><p>Patina Pattern: Museum</p><p>Eyelets: Graphite</p><p>Buckle: Old Silver</p><p>Laces: Grey</p><p>Lining: Brown Calf Leather</p><p>Sole: Hand Painted Dark Red Leather / Mountain Rubber Injections</p><p>Welt: City</p><p>Last: Featuring a Slightly Squared Toe</p><p>Construction: Goodyear Welt</p>",
+            "title_2": "Info",
+            "raw_content_2": "<p>You can use product metafields to assign content to this tab that is unique to an individual product.  Use tabs to highlight unique features, sizing information, or other sales information.</p>",
+            "title_3": "Free remake guarantee ",
+            "raw_content_3": "<p>test</p>",
+            "title_4": "Made to order ",
+            "raw_content_4": "<p>test</p>",
+            "title_5": "Shipping",
+            "raw_content_5": "<p>test</p>",
+            "padding_bottom": 0
+          }
+        },
+        "divider_1": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 16
+          }
+        },
+        "upsell": {
+          "type": "upsell",
+          "settings": {
+            "upsell_product": "",
+            "upsell_product_list": [],
+            "show_available_upsell_only": false,
+            "layout": "stacked",
+            "autoplay": false,
+            "autoplay_speed": 8,
+            "bg_color": "",
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "icon_1",
+        "icon_2",
+        "icon_nWrbgH",
+        "icon_Hc4jVe",
+        "icon_TmYz4p",
+        "variants",
+        "addon_TWP3Lb",
+        "buttons",
+        "tabs",
+        "divider_1",
+        "upsell"
+      ],
+      "settings": {
+        "product_sticky_enable": true,
+        "variant_image_scroll": true,
+        "show_cart_bar": true,
+        "enable_zoom": true,
+        "enable_video_looping": false,
+        "image_layout": "stacked",
+        "image_size": "normal",
+        "mobile_image_style": "thumbs",
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "padding_top": 90,
+        "padding_bottom": 30
+      }
+    },
+    "17254558578b312487": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_card_carousel_section_AXheDf": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1600,
+            "borderRadius": 2,
+            "itemsPerView": 4,
+            "mobileItemsPerView": 2,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "1",
+            "reviewerNameColor": "#000000",
+            "textColor": "#696969",
+            "itemBackgroundColor": "#ffffff",
+            "starsColor": "",
+            "starsBackgroundColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "none",
+            "border_active": true,
+            "border_width": 1,
+            "border_color": "#d9d9d9",
+            "productIds": ""
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_card_carousel_section_AXheDf"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "related": {
+      "type": "related",
+      "blocks": {
+        "related": {
+          "type": "related",
+          "settings": {
+            "product_recommendations_heading": "Related products"
+          }
+        },
+        "recent": {
+          "type": "recent",
+          "settings": {
+            "product_recently_heading": "Recently viewed"
+          }
+        }
+      },
+      "block_order": [
+        "related",
+        "recent"
+      ],
+      "settings": {
+        "enable_tabs": true,
+        "heading_alignment": "text-center",
+        "heading_font_size": "heading-small",
+        "limit": 4,
+        "layout_desktop": "slider",
+        "grid": 4,
+        "rows": 3,
+        "layout_mobile": "slider",
+        "color_scheme": "",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "17254558578b312487",
+    "related"
+  ]
+}
