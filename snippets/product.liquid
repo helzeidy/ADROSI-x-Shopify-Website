@@ -669,6 +669,19 @@
                       product_form_id: product_form_id
                     -%}
 
+                  {%- when 'addon' -%}
+                    {%- unless addon_assets_enqueued -%}
+                      {{ 'product-addons.css' | asset_url | stylesheet_tag }}
+                      <script src="{{ 'product-addons.js' | asset_url }}" defer></script>
+                      {%- assign addon_assets_enqueued = true -%}
+                    {%- endunless -%}
+                    {%- render 'product-addon',
+                      product: product,
+                      block: block,
+                      block_style: block_style,
+                      product_form_id: product_form_id
+                    -%}
+
                   {%- when 'features' -%}
                     {%- liquid
                       assign block_id = block.id

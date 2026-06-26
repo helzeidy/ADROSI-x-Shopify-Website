@@ -1,0 +1,86 @@
+{% comment %}
+  Renders a single modular product add-on.
+
+  When the customer toggles it on, the linked add-on product is added to the
+  cart as a separate paid line item (handled by assets/product-addons.js), and
+  any custom text is stored as a line item property.
+
+  Accepts:
+  - product: {Object} the main product object.
+  - block: {Object} the add-on block.
+  - block_style: {String} inline style for block padding.
+  - product_form_id: {String} id of the product form this add-on belongs to.
+
+  Usage:
+  {% render 'product-addon', product: product, block: block, block_style: block_style, product_form_id: product_form_id %}
+{% endcomment %}
+
+{%- liquid
+  assign addon_product = block.settings.product
+  assign addon_variant = addon_product.selected_or_first_available_variant | default: addon_product.variants.first
+  assign uid = section.id | append: '-' | append: block.id
+  assign property_name = block.settings.text_label | default: 'Custom text'
+-%}
+
+<div class="product__block product-addon block-padding" {{ block.shopify_attributes }} {{ block_style }}>
+  <div
+    class="product-addon__card"
+    data-product-addon
+    data-product-form-id="{{ product_form_id }}"
+    {% if addon_variant %}data-variant-id="{{ addon_variant.id }}"{% endif %}
+    data-addon-title="{{ block.settings.title | escape }}"
+    data-addon-for-title="{{ product.title | escape }}"
+    {% if block.settings.enable_text_input %}data-property-name="{{ property_name | escape }}"{% endif %}
+    data-stamp-main="{{ block.settings.stamp_on_product }}"
+  >
+    <label class="product-addon__row" for="addon-{{ uid }}">
+      <span class="product-addon__switch">
+        <input
+          type="checkbox"
+          class="product-addon__switch-input"
+          id="addon-{{ uid }}"
+          data-addon-toggle
+        >
+        <span class="product-addon__switch-track" aria-hidden="true"></span>
+      </span>
+
+      <span class="product-addon__content">
+        <span class="product-addon__head">
+          <span class="product-addon__title">{{ block.settings.title | escape_once }}</span>
+          {%- if block.settings.price_text != blank -%}
+            <span class="product-addon__price">{{ block.settings.price_text | escape_once }}</span>
+          {%- elsif addon_variant.price > 0 -%}
+            <span class="product-addon__price">+{{ addon_variant.price | money }}</span>
+          {%- endif -%}
+        </span>
+
+        {%- if block.settings.description != blank -%}
+          <span class="product-addon__desc">{{ block.settings.description | escape_once }}</span>
+        {%- endif -%}
+      </span>
+    </label>
+
+    {%- if block.settings.enable_text_input -%}
+      <div class="product-addon__reveal" data-addon-reveal hidden>
+        <label class="product-addon__field-label" for="addon-input-{{ uid }}">
+          {{- property_name | escape_once -}}
+        </label>
+        <input
+          type="text"
+          class="product-addon__input{% if block.settings.text_uppercase %} product-addon__input--upper{% endif %}"
+          id="addon-input-{{ uid }}"
+          data-addon-input
+          autocomplete="off"
+          {% if block.settings.text_maxlength > 0 %}maxlength="{{ block.settings.text_maxlength }}"{% endif %}
+          {% if block.settings.text_placeholder != blank %}placeholder="{{ block.settings.text_placeholder | escape }}"{% endif %}
+          {% if block.settings.text_required %}required{% endif %}
+        >
+        {%- if block.settings.text_required -%}
+          <span class="product-addon__error" data-addon-error hidden role="alert">
+            {{- block.settings.error_text | default: 'Please complete this field.' | escape_once -}}
+          </span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>

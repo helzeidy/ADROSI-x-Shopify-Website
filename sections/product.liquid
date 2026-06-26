@@ -1435,6 +1435,119 @@
       ]
     },
     {
+      "type": "addon",
+      "name": "Add-on option",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "A toggle add-on. When the customer turns it on, the linked product is added to the cart as a separate paid line item, and any custom text is saved as a line item property. Add more of these blocks to offer more add-ons."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Initials, in the heel"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Up to three letters, hot-foil stamped in gold on the inside heel."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Add-on product (the charge)",
+          "info": "Create a hidden product (e.g. \"Heel Initials\") priced at the add-on cost. Its price is what gets charged. Leave blank to capture the text only, with no charge."
+        },
+        {
+          "type": "text",
+          "id": "price_text",
+          "label": "Price label",
+          "default": "+$25",
+          "info": "Shown next to the title. Leave blank to use the add-on product's price."
+        },
+        {
+          "type": "header",
+          "content": "Customization input"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_text_input",
+          "label": "Show a text field when toggled on",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "text_label",
+          "label": "Field label / cart property name",
+          "default": "Initials",
+          "visible_if": "{{ block.settings.enable_text_input }}"
+        },
+        {
+          "type": "text",
+          "id": "text_placeholder",
+          "label": "Placeholder",
+          "default": "e.g. AHM",
+          "visible_if": "{{ block.settings.enable_text_input }}"
+        },
+        {
+          "type": "range",
+          "id": "text_maxlength",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "label": "Max characters",
+          "default": 3,
+          "info": "0 = no limit.",
+          "visible_if": "{{ block.settings.enable_text_input }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "text_uppercase",
+          "label": "Force uppercase",
+          "default": true,
+          "visible_if": "{{ block.settings.enable_text_input }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "text_required",
+          "label": "Required when toggled on",
+          "default": true,
+          "visible_if": "{{ block.settings.enable_text_input }}"
+        },
+        {
+          "type": "text",
+          "id": "error_text",
+          "label": "Error message",
+          "default": "Please add your initials.",
+          "visible_if": "{{ block.settings.enable_text_input and block.settings.text_required }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "stamp_on_product",
+          "label": "Also add the text to the main product line",
+          "default": true,
+          "info": "Helpful so your workshop sees the personalization on the product itself, not only on the add-on line.",
+          "visible_if": "{{ block.settings.enable_text_input }}"
+        },
+        {
+          "type": "header",
+          "content": "Padding"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 16
+        }
+      ]
+    },
+    {
       "type": "features",
       "name": "Feature",
       "settings": [

@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Product add-ons
+   Modular toggle add-ons rendered by snippets/product-addon.liquid and driven
+   by assets/product-addons.js.
+   ========================================================================== */
+
+.product-addon__card {
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+  padding: 16px 20px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.product-addon__card.is-active {
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+.product-addon__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Toggle switch -------------------------------------------------------- */
+.product-addon__switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 24px;
+  margin-top: 2px;
+}
+
+.product-addon__switch-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.product-addon__switch-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s ease;
+  pointer-events: none;
+}
+
+.product-addon__switch-track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.product-addon__switch-input:checked + .product-addon__switch-track {
+  background: var(--btn-primary-bg, #1c1c1c);
+}
+
+.product-addon__switch-input:checked + .product-addon__switch-track::after {
+  transform: translateX(18px);
+}
+
+.product-addon__switch-input:focus-visible + .product-addon__switch-track {
+  outline: 2px solid var(--btn-primary-bg, #1c1c1c);
+  outline-offset: 2px;
+}
+
+/* Content -------------------------------------------------------------- */
+.product-addon__content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.product-addon__head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-addon__title {
+  font-family: var(--font-heading-family, inherit);
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.product-addon__price {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.product-addon__desc {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Revealed text field -------------------------------------------------- */
+.product-addon__reveal[hidden] {
+  display: none;
+}
+
+.product-addon__reveal {
+  margin-top: 14px;
+  padding-left: 58px; /* align under content, past the switch */
+}
+
+.product-addon__field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.product-addon__input {
+  width: 100%;
+  max-width: 280px;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.product-addon__input--upper {
+  text-transform: uppercase;
+}
+
+.product-addon__input:focus {
+  outline: none;
+  border-color: var(--btn-primary-bg, #1c1c1c);
+}
+
+.product-addon__error {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #b3261e;
+}
+
+.product-addon__error[hidden] {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .product-addon__reveal {
+    padding-left: 0;
+  }
+}
