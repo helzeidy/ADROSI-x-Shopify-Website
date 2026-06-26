@@ -86,5 +86,20 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+
+    {%- if block.settings.show_debug -%}
+      <div class="product-addon__debug" data-addon-debug>
+        <strong>Add-on debug</strong> — turn off in this block's settings when done.<br>
+        Linked product:
+        {%- if addon_variant -%}
+          ✓ variant {{ addon_variant.id }} ({{ addon_variant.price | money }})
+        {%- else -%}
+          ✗ NOT SET — choose an “Add-on product” in this block
+        {%- endif -%}
+        <br>
+        Form id: {{ product_form_id }}<br>
+        Script: <span data-addon-js>✗ not loaded</span>
+      </div>
+    {%- endif -%}
   </div>
 </div>

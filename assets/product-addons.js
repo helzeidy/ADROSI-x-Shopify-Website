@@ -53,6 +53,14 @@
     return !!(toggle && toggle.checked);
   }
 
+  /* Update the on-card debug readout (only present when "Show debug info" is on). */
+  function debug(message) {
+    var nodes = document.querySelectorAll('[data-addon-js]');
+    Array.prototype.forEach.call(nodes, function (node) {
+      node.textContent = message;
+    });
+  }
+
   /* Validate a single active add-on's required text field. */
   function validate(addon) {
     if (!isActive(addon)) return true;
@@ -163,6 +171,7 @@
 
     var items = [mainItem].concat(built.items);
     setLoading(buttons, true);
+    debug('⏳ adding ' + items.length + ' item(s): ' + JSON.stringify(items.map(function (i) { return i.id; })));
 
     fetch(CART_ADD_URL, {
       method: 'POST',
@@ -179,6 +188,7 @@
         });
       })
       .then(function () {
+        debug('✓ added ' + items.length + ' item(s)');
         if (CART_TYPE === 'page') {
           window.location = CART_URL;
           return;
@@ -190,6 +200,7 @@
         var message =
           (error && (error.description || error.message)) ||
           'Sorry, this could not be added to your cart.';
+        debug('✗ error: ' + message);
         showError(form, message);
         // eslint-disable-next-line no-console
         console.error('[product-addons] Add to cart failed:', error);
@@ -222,6 +233,7 @@
     var addons = document.querySelectorAll(SELECTORS.addon);
     // eslint-disable-next-line no-console
     console.log('[product-addons] loaded; add-ons found on page:', addons.length);
+    debug('✓ loaded (found ' + addons.length + ' add-on' + (addons.length === 1 ? '' : 's') + ')');
     if (!addons.length) return;
 
     Array.prototype.forEach.call(addons, function (addon) {

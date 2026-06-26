@@ -173,3 +173,21 @@
     padding-left: 0;
   }
 }
+
+/* Debug readout -------------------------------------------------------- */
+.product-addon__debug {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fff8e1;
+  border: 1px dashed #e0b400;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #6b5800;
+  word-break: break-word;
+}
+
+.product-addon__debug strong {
+  color: #8a6d00;
+}
