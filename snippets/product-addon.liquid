@@ -5,6 +5,9 @@
   cart as a separate paid line item (handled by assets/product-addons.js), and
   any custom text is stored as a line item property.
 
+  The toggle + reveal is CSS-only so the field always appears on toggle, even
+  before product-addons.js runs.
+
   Accepts:
   - product: {Object} the main product object.
   - block: {Object} the add-on block.
@@ -33,14 +36,15 @@
     {% if block.settings.enable_text_input %}data-property-name="{{ property_name | escape }}"{% endif %}
     data-stamp-main="{{ block.settings.stamp_on_product }}"
   >
+    <input
+      type="checkbox"
+      class="product-addon__switch-input"
+      id="addon-{{ uid }}"
+      data-addon-toggle
+    >
+
     <label class="product-addon__row" for="addon-{{ uid }}">
       <span class="product-addon__switch">
-        <input
-          type="checkbox"
-          class="product-addon__switch-input"
-          id="addon-{{ uid }}"
-          data-addon-toggle
-        >
         <span class="product-addon__switch-track" aria-hidden="true"></span>
       </span>
 
@@ -61,7 +65,7 @@
     </label>
 
     {%- if block.settings.enable_text_input -%}
-      <div class="product-addon__reveal" data-addon-reveal hidden>
+      <div class="product-addon__reveal" data-addon-reveal>
         <label class="product-addon__field-label" for="addon-input-{{ uid }}">
           {{- property_name | escape_once -}}
         </label>

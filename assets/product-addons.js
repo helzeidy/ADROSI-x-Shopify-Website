@@ -53,13 +53,6 @@
     return !!(toggle && toggle.checked);
   }
 
-  function syncReveal(addon) {
-    var reveal = addon.querySelector(SELECTORS.reveal);
-    var active = isActive(addon);
-    addon.classList.toggle('is-active', active);
-    if (reveal) reveal.hidden = !active;
-  }
-
   /* Validate a single active add-on's required text field. */
   function validate(addon) {
     if (!isActive(addon)) return true;
@@ -227,18 +220,11 @@
 
   function init() {
     var addons = document.querySelectorAll(SELECTORS.addon);
+    // eslint-disable-next-line no-console
+    console.log('[product-addons] loaded; add-ons found on page:', addons.length);
     if (!addons.length) return;
 
     Array.prototype.forEach.call(addons, function (addon) {
-      syncReveal(addon);
-
-      var toggle = addon.querySelector(SELECTORS.toggle);
-      if (toggle) {
-        toggle.addEventListener('change', function () {
-          syncReveal(addon);
-        });
-      }
-
       var input = addon.querySelector(SELECTORS.input);
       var error = addon.querySelector(SELECTORS.error);
       if (input && error) {
