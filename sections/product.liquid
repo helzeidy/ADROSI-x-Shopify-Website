@@ -1448,8 +1448,8 @@
           "label": "Add-on type",
           "default": "toggle",
           "options": [
-            {"value": "toggle", "label": "Simple toggle (one paid extra, optional custom text)"},
-            {"value": "configurable", "label": "Configurable product (variant options like size / buckle)"}
+            {"value": "toggle", "label": "Simple toggle (paid extra + text)"},
+            {"value": "configurable", "label": "Configurable product (variants)"}
           ],
           "info": "Configurable builds dropdowns from the linked product's variant options and charges the chosen variant's price."
         },
@@ -1541,8 +1541,7 @@
           "id": "error_text",
           "label": "Error message",
           "default": "Please add your initials.",
-          "info": "Shown if the customer turns the add-on on but hasn't completed it (text field empty, or options not chosen).",
-          "visible_if": "{{ block.settings.addon_type == 'configurable' or (block.settings.enable_text_input and block.settings.text_required) }}"
+          "info": "Shown if the customer turns the add-on on but hasn't completed it (text field empty, or options not chosen)."
         },
         {
           "type": "checkbox",
