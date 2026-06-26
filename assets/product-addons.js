@@ -4,12 +4,12 @@
    Modular paid add-ons for the product page (Broadcast theme).
 
    Each add-on (snippets/product-addon.liquid) renders a toggle and an optional
-   text field. When the customer enables one or more add-ons and submits the
-   product form, this script:
+   text field. When the customer enables one or more add-ons and adds to cart,
+   this script:
 
-     1. Intercepts the submit (capture phase, before the theme's <product-form>),
-        but ONLY when at least one add-on is active. Otherwise the theme adds to
-        cart normally.
+     1. Intercepts the add (both the main "Add to cart" button AND the sticky
+        cart bar), but ONLY when at least one add-on is active. Otherwise the
+        theme adds to cart normally.
      2. Builds a single /cart/add.js request containing the main product plus
         each active add-on product (the paid line item), carrying the custom
         text as a line item property.
@@ -29,6 +29,8 @@
     reveal: '[data-addon-reveal]',
     error: '[data-addon-error]',
     submit: '[type="submit"]',
+    cartBarButton: '[data-cart-bar-add-to-cart]',
+    productForm: '[data-product-form]',
     errorsContainer: '[data-cart-errors-container]',
     errorMessage: '[data-cart-error-message]'
   };
@@ -40,6 +42,7 @@
   var CART_TYPE = (theme.settings && theme.settings.cartType) || 'drawer';
 
   function addonsForForm(formId) {
+    if (!formId) return [];
     return Array.prototype.slice.call(
       document.querySelectorAll(SELECTORS.addon + '[data-product-form-id="' + formId + '"]')
     );
@@ -115,9 +118,15 @@
           quantity: quantity,
           properties: properties
         });
-      } else if (propName && value) {
-        // No charge product configured yet: at least keep the text on the main line.
-        mainStamp[propName] = value;
+      } else {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '[product-addons] Add-on "' +
+            (data.addonTitle || 'untitled') +
+            '" has no linked product, so no charge will be added. ' +
+            'Set the "Add-on product" in the block settings.'
+        );
+        if (propName && value) mainStamp[propName] = value;
       }
     });
 
@@ -131,28 +140,24 @@
     if (container) container.classList.add('is-visible');
   }
 
-  function setLoading(button, loading) {
-    if (!button) return;
-    button.classList.toggle('loading', loading);
-    button.disabled = loading;
+  function setLoading(buttons, loading) {
+    buttons.forEach(function (button) {
+      if (!button) return;
+      button.classList.toggle('loading', loading);
+      button.classList.toggle('is-loading', loading);
+      button.disabled = loading;
+    });
   }
 
-  function onSubmit(form, evt) {
+  /* Core: add the main product + active add-ons in one request. */
+  function handleAdd(form, buttons) {
     var addons = addonsForForm(form.id);
     var active = addons.filter(isActive);
-    if (!active.length) return; // No add-ons selected: let the theme handle it.
 
-    // Validate required text fields before we take over.
+    // Validate required text fields first.
     for (var i = 0; i < active.length; i++) {
-      if (!validate(active[i])) {
-        evt.preventDefault();
-        evt.stopImmediatePropagation();
-        return;
-      }
+      if (!validate(active[i])) return;
     }
-
-    evt.preventDefault();
-    evt.stopImmediatePropagation();
 
     var mainItem = parseMainItem(form);
     var built = buildAddons(addons, mainItem.quantity);
@@ -164,8 +169,7 @@
     }
 
     var items = [mainItem].concat(built.items);
-    var button = form.querySelector(SELECTORS.submit);
-    setLoading(button, true);
+    setLoading(buttons, true);
 
     fetch(CART_ADD_URL, {
       method: 'POST',
@@ -190,21 +194,40 @@
         document.dispatchEvent(new CustomEvent('theme:cart:refresh', { bubbles: true }));
       })
       .catch(function (error) {
-        var message = (error && (error.description || error.message)) || 'Sorry, this could not be added to your cart.';
+        var message =
+          (error && (error.description || error.message)) ||
+          'Sorry, this could not be added to your cart.';
         showError(form, message);
         // eslint-disable-next-line no-console
         console.error('[product-addons] Add to cart failed:', error);
       })
       .finally(function () {
-        setLoading(button, false);
+        setLoading(buttons, false);
       });
+  }
+
+  /* Resolve the product <form> for a sticky cart-bar button. */
+  function formForCartBar(button) {
+    var info = button.closest('product-info');
+    var form = info && info.querySelector(SELECTORS.productForm);
+    if (form && form.id) return form;
+    // Fallback: if there is exactly one add-on form on the page, use it.
+    var formIds = uniqueFormIds();
+    if (formIds.length === 1) return document.getElementById(formIds[0]);
+    return null;
+  }
+
+  function uniqueFormIds() {
+    var ids = {};
+    Array.prototype.forEach.call(document.querySelectorAll(SELECTORS.addon), function (addon) {
+      if (addon.dataset.productFormId) ids[addon.dataset.productFormId] = true;
+    });
+    return Object.keys(ids);
   }
 
   function init() {
     var addons = document.querySelectorAll(SELECTORS.addon);
     if (!addons.length) return;
-
-    var formIds = {};
 
     Array.prototype.forEach.call(addons, function (addon) {
       syncReveal(addon);
@@ -223,18 +246,35 @@
           if (input.value.trim()) error.hidden = true;
         });
       }
-
-      if (addon.dataset.productFormId) formIds[addon.dataset.productFormId] = true;
     });
 
-    // One capture-phase listener on the document guarantees we run before the
-    // theme's <product-form> submit handler (which lives on the form itself).
+    // 1) Main "Add to cart": a real form submit. Capture phase guarantees we
+    //    run before the theme's <product-form> submit handler on the form.
     document.addEventListener(
       'submit',
       function (evt) {
         var form = evt.target;
-        if (!form || !form.id || !formIds[form.id]) return;
-        onSubmit(form, evt);
+        if (!form || !form.id) return;
+        if (!addonsForForm(form.id).some(isActive)) return; // let theme handle it
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+        handleAdd(form, [form.querySelector(SELECTORS.submit)]);
+      },
+      true
+    );
+
+    // 2) Sticky cart bar: it calls product-form.onSubmitHandler directly (no
+    //    submit event), so intercept the click before cart-bar.js handles it.
+    document.addEventListener(
+      'click',
+      function (evt) {
+        var button = evt.target.closest && evt.target.closest(SELECTORS.cartBarButton);
+        if (!button) return;
+        var form = formForCartBar(button);
+        if (!form || !addonsForForm(form.id).some(isActive)) return; // let theme handle it
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+        handleAdd(form, [button, form.querySelector(SELECTORS.submit)]);
       },
       true
     );
