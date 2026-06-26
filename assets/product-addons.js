@@ -29,6 +29,7 @@
     reveal: '[data-addon-reveal]',
     error: '[data-addon-error]',
     submit: '[type="submit"]',
+    addToCart: '[data-add-to-cart]',
     cartBarButton: '[data-cart-bar-add-to-cart]',
     productForm: '[data-product-form]',
     errorsContainer: '[data-cart-errors-container]',
@@ -150,8 +151,11 @@
     });
   }
 
+  var adding = false; // guard so a click + its submit don't both add
+
   /* Core: add the main product + active add-ons in one request. */
   function handleAdd(form, buttons) {
+    if (adding) return;
     var addons = addonsForForm(form.id);
     var active = addons.filter(isActive);
 
@@ -160,6 +164,7 @@
       if (!validate(active[i])) return;
     }
 
+    adding = true;
     var mainItem = parseMainItem(form);
     var built = buildAddons(addons, mainItem.quantity);
 
@@ -206,14 +211,19 @@
         console.error('[product-addons] Add to cart failed:', error);
       })
       .finally(function () {
+        adding = false;
         setLoading(buttons, false);
       });
   }
 
-  /* Resolve the product <form> for a sticky cart-bar button. */
-  function formForCartBar(button) {
+  /* Resolve the product <form> for a given add-to-cart button. */
+  function formForButton(button) {
+    // Main button lives inside the form.
+    var form = button.closest('form');
+    if (form && form.id && addonsForForm(form.id).length) return form;
+    // Sticky cart bar / detached button: look within the product-info wrapper.
     var info = button.closest('product-info');
-    var form = info && info.querySelector(SELECTORS.productForm);
+    form = info && info.querySelector(SELECTORS.productForm);
     if (form && form.id) return form;
     // Fallback: if there is exactly one add-on form on the page, use it.
     var formIds = uniqueFormIds();
@@ -246,33 +256,38 @@
       }
     });
 
-    // 1) Main "Add to cart": a real form submit. Capture phase guarantees we
-    //    run before the theme's <product-form> submit handler on the form.
+    // Intercept the add-to-cart CLICK in capture phase. This is the most
+    // reliable hook: it covers the main button and the sticky cart bar, and
+    // preventing the click stops the theme's own add (no submit fires).
+    document.addEventListener(
+      'click',
+      function (evt) {
+        if (!evt.target.closest) return;
+        var button = evt.target.closest(SELECTORS.addToCart + ',' + SELECTORS.cartBarButton);
+        if (!button) return;
+
+        var form = formForButton(button);
+        if (!form) return;
+        debug('🖱️ add-to-cart clicked');
+        if (!addonsForForm(form.id).some(isActive)) return; // no add-on active: let theme handle it
+
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+        handleAdd(form, [button, form.querySelector(SELECTORS.submit)]);
+      },
+      true
+    );
+
+    // Fallback for Enter-key submits. The `adding` guard prevents double-adds.
     document.addEventListener(
       'submit',
       function (evt) {
         var form = evt.target;
         if (!form || !form.id) return;
-        if (!addonsForForm(form.id).some(isActive)) return; // let theme handle it
+        if (!addonsForForm(form.id).some(isActive)) return;
         evt.preventDefault();
         evt.stopImmediatePropagation();
         handleAdd(form, [form.querySelector(SELECTORS.submit)]);
-      },
-      true
-    );
-
-    // 2) Sticky cart bar: it calls product-form.onSubmitHandler directly (no
-    //    submit event), so intercept the click before cart-bar.js handles it.
-    document.addEventListener(
-      'click',
-      function (evt) {
-        var button = evt.target.closest && evt.target.closest(SELECTORS.cartBarButton);
-        if (!button) return;
-        var form = formForCartBar(button);
-        if (!form || !addonsForForm(form.id).some(isActive)) return; // let theme handle it
-        evt.preventDefault();
-        evt.stopImmediatePropagation();
-        handleAdd(form, [button, form.querySelector(SELECTORS.submit)]);
       },
       true
     );
