@@ -22,7 +22,7 @@
 (function () {
   'use strict';
 
-  var VERSION = 'v9';
+  var VERSION = 'v10';
 
   var SELECTORS = {
     addon: '[data-product-addon]',
@@ -44,10 +44,18 @@
   var CART_URL = routes.cart_url || '/cart';
   var CART_TYPE = (theme.settings && theme.settings.cartType) || 'drawer';
 
-  function addonsForForm(formId) {
-    if (!formId) return [];
-    return Array.prototype.slice.call(
-      document.querySelectorAll(SELECTORS.addon + '[data-product-form-id="' + formId + '"]')
+  function allAddons() {
+    return Array.prototype.slice.call(document.querySelectorAll(SELECTORS.addon));
+  }
+
+  /* The product add-to-cart form for a given button. */
+  function getProductForm(button) {
+    var form = button && button.closest('form');
+    if (form && form.querySelector('[name="id"]')) return form;
+    return (
+      document.querySelector('form[data-product-form]') ||
+      document.querySelector('form[data-type="add-to-cart-form"]') ||
+      null
     );
   }
 
@@ -158,7 +166,7 @@
   /* Core: add the main product + active add-ons in one request. */
   function handleAdd(form, buttons) {
     if (adding) return;
-    var addons = addonsForForm(form.id);
+    var addons = allAddons();
     var active = addons.filter(isActive);
 
     // Validate required text fields first.
@@ -218,29 +226,6 @@
       });
   }
 
-  /* Resolve the product <form> for a given add-to-cart button. */
-  function formForButton(button) {
-    // Main button lives inside the form.
-    var form = button.closest('form');
-    if (form && form.id && addonsForForm(form.id).length) return form;
-    // Sticky cart bar / detached button: look within the product-info wrapper.
-    var info = button.closest('product-info');
-    form = info && info.querySelector(SELECTORS.productForm);
-    if (form && form.id) return form;
-    // Fallback: if there is exactly one add-on form on the page, use it.
-    var formIds = uniqueFormIds();
-    if (formIds.length === 1) return document.getElementById(formIds[0]);
-    return null;
-  }
-
-  function uniqueFormIds() {
-    var ids = {};
-    Array.prototype.forEach.call(document.querySelectorAll(SELECTORS.addon), function (addon) {
-      if (addon.dataset.productFormId) ids[addon.dataset.productFormId] = true;
-    });
-    return Object.keys(ids);
-  }
-
   function init() {
     var addons = document.querySelectorAll(SELECTORS.addon);
     // eslint-disable-next-line no-console
@@ -271,14 +256,14 @@
         if (!button) return;
 
         debug('🖱️ clicked');
-        var form = formForButton(button);
-        if (!form) {
-          debug('🖱️ clicked, but no add-on form found');
-          return;
-        }
-        if (!addonsForForm(form.id).some(isActive)) {
+        if (!allAddons().some(isActive)) {
           debug('🖱️ clicked, toggle is OFF — theme adds normally');
           return; // no add-on active: let theme handle it
+        }
+        var form = getProductForm(button);
+        if (!form) {
+          debug('🖱️ clicked, but no product form found');
+          return;
         }
 
         evt.preventDefault();
@@ -293,8 +278,8 @@
       'submit',
       function (evt) {
         var form = evt.target;
-        if (!form || !form.id) return;
-        if (!addonsForForm(form.id).some(isActive)) return;
+        if (!form || form.tagName !== 'FORM') return;
+        if (!allAddons().some(isActive)) return;
         evt.preventDefault();
         evt.stopImmediatePropagation();
         handleAdd(form, [form.querySelector(SELECTORS.submit)]);
