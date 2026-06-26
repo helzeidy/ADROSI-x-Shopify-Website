@@ -10,7 +10,7 @@
   position: relative;
   display: block;
   border: 1px solid rgba(0, 0, 0, 0.14);
-  border-radius: 10px;
+  border-radius: 0;
   padding: 16px 20px;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
