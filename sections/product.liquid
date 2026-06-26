@@ -1440,7 +1440,18 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "A toggle add-on. When the customer turns it on, the linked product is added to the cart as a separate paid line item, and any custom text is saved as a line item property. Add more of these blocks to offer more add-ons."
+          "content": "A bundled add-on. When the customer turns it on, the linked product is added to the cart alongside the main product. Add more of these blocks to offer more add-ons."
+        },
+        {
+          "type": "select",
+          "id": "addon_type",
+          "label": "Add-on type",
+          "default": "toggle",
+          "options": [
+            {"value": "toggle", "label": "Simple toggle (one paid extra, optional custom text)"},
+            {"value": "configurable", "label": "Configurable product (variant options like size / buckle)"}
+          ],
+          "info": "Configurable builds dropdowns from the linked product's variant options and charges the chosen variant's price."
         },
         {
           "type": "text",
@@ -1458,38 +1469,47 @@
           "type": "product",
           "id": "product",
           "label": "Add-on product (the charge)",
-          "info": "Create a hidden product (e.g. \"Heel Initials\") priced at the add-on cost. Its price is what gets charged. Leave blank to capture the text only, with no charge."
+          "info": "Toggle mode: a single hidden product priced at the add-on cost. Configurable mode: a product whose variant options (e.g. Size, Buckle) become the dropdowns, and whose chosen variant price is charged."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_image",
+          "label": "Show product image",
+          "default": true,
+          "visible_if": "{{ block.settings.addon_type == 'configurable' }}"
         },
         {
           "type": "text",
           "id": "price_text",
           "label": "Price label",
           "default": "+$25",
-          "info": "Shown next to the title. Leave blank to use the add-on product's price."
+          "info": "Shown next to the title. Leave blank to use the add-on product's price (configurable mode updates it as options change)."
         },
         {
           "type": "header",
-          "content": "Customization input"
+          "content": "Customization input",
+          "visible_if": "{{ block.settings.addon_type == 'toggle' }}"
         },
         {
           "type": "checkbox",
           "id": "enable_text_input",
           "label": "Show a text field when toggled on",
-          "default": true
+          "default": true,
+          "visible_if": "{{ block.settings.addon_type == 'toggle' }}"
         },
         {
           "type": "text",
           "id": "text_label",
           "label": "Field label / cart property name",
           "default": "Initials",
-          "visible_if": "{{ block.settings.enable_text_input }}"
+          "visible_if": "{{ block.settings.addon_type == 'toggle' and block.settings.enable_text_input }}"
         },
         {
           "type": "text",
           "id": "text_placeholder",
           "label": "Placeholder",
           "default": "e.g. AHM",
-          "visible_if": "{{ block.settings.enable_text_input }}"
+          "visible_if": "{{ block.settings.addon_type == 'toggle' and block.settings.enable_text_input }}"
         },
         {
           "type": "range",
@@ -1500,28 +1520,29 @@
           "label": "Max characters",
           "default": 3,
           "info": "0 = no limit.",
-          "visible_if": "{{ block.settings.enable_text_input }}"
+          "visible_if": "{{ block.settings.addon_type == 'toggle' and block.settings.enable_text_input }}"
         },
         {
           "type": "checkbox",
           "id": "text_uppercase",
           "label": "Force uppercase",
           "default": true,
-          "visible_if": "{{ block.settings.enable_text_input }}"
+          "visible_if": "{{ block.settings.addon_type == 'toggle' and block.settings.enable_text_input }}"
         },
         {
           "type": "checkbox",
           "id": "text_required",
           "label": "Required when toggled on",
           "default": true,
-          "visible_if": "{{ block.settings.enable_text_input }}"
+          "visible_if": "{{ block.settings.addon_type == 'toggle' and block.settings.enable_text_input }}"
         },
         {
           "type": "text",
           "id": "error_text",
           "label": "Error message",
           "default": "Please add your initials.",
-          "visible_if": "{{ block.settings.enable_text_input and block.settings.text_required }}"
+          "info": "Shown if the customer turns the add-on on but hasn't completed it (text field empty, or options not chosen).",
+          "visible_if": "{{ block.settings.addon_type == 'configurable' or (block.settings.enable_text_input and block.settings.text_required) }}"
         },
         {
           "type": "checkbox",
@@ -1529,7 +1550,7 @@
           "label": "Also add the text to the main product line",
           "default": true,
           "info": "Helpful so your workshop sees the personalization on the product itself, not only on the add-on line.",
-          "visible_if": "{{ block.settings.enable_text_input }}"
+          "visible_if": "{{ block.settings.addon_type == 'toggle' and block.settings.enable_text_input }}"
         },
         {
           "type": "header",

@@ -1,39 +1,52 @@
 {% comment %}
-  Renders a single modular product add-on.
+  Renders a single modular product add-on. Two modes:
 
-  When the customer toggles it on, the linked add-on product is added to the
-  cart as a separate paid line item (handled by assets/product-addons.js), and
-  any custom text is stored as a line item property.
+  - toggle:       a simple paid extra with an optional custom-text field.
+  - configurable: a product with selectable variant options (e.g. Size, Buckle).
+                  The dropdowns are built from the linked product's variants and
+                  the chosen variant's price is what gets charged.
 
-  The toggle + reveal is CSS-only so the field always appears on toggle, even
-  before product-addons.js runs.
+  In both modes the add-on is bundled with the main product: when the customer
+  turns it on (and, for configurable, picks the options) the add-on product is
+  added to the cart as a separate line item alongside the main product. See
+  assets/product-addons.js.
+
+  The toggle + reveal is CSS-only so it works even before the JS runs.
 
   Accepts:
   - product: {Object} the main product object.
   - block: {Object} the add-on block.
   - block_style: {String} inline style for block padding.
   - product_form_id: {String} id of the product form this add-on belongs to.
-
-  Usage:
-  {% render 'product-addon', product: product, block: block, block_style: block_style, product_form_id: product_form_id %}
 {% endcomment %}
 
 {%- liquid
   assign addon_product = block.settings.product
-  assign addon_variant = addon_product.selected_or_first_available_variant | default: addon_product.variants.first
+  assign addon_type = block.settings.addon_type | default: 'toggle'
   assign uid = section.id | append: '-' | append: block.id
   assign property_name = block.settings.text_label | default: 'Custom text'
+  assign default_variant = addon_product.selected_or_first_available_variant | default: addon_product.variants.first
+
+  assign single_variant = false
+  if addon_product.variants.size == 1
+    assign single_variant = true
+  endif
 -%}
 
 <div class="product__block product-addon block-padding" {{ block.shopify_attributes }} {{ block_style }}>
   <div
-    class="product-addon__card"
+    class="product-addon__card product-addon__card--{{ addon_type }}"
     data-product-addon
+    data-addon-type="{{ addon_type }}"
     data-product-form-id="{{ product_form_id }}"
-    {% if addon_variant %}data-variant-id="{{ addon_variant.id }}"{% endif %}
+    {%- if addon_type == 'toggle' and default_variant -%}
+      data-variant-id="{{ default_variant.id }}"
+    {%- elsif addon_type == 'configurable' and single_variant and default_variant -%}
+      data-variant-id="{{ default_variant.id }}"
+    {%- endif -%}
     data-addon-title="{{ block.settings.title | escape }}"
     data-addon-for-title="{{ product.title | escape }}"
-    {% if block.settings.enable_text_input %}data-property-name="{{ property_name | escape }}"{% endif %}
+    {% if block.settings.enable_text_input and addon_type == 'toggle' %}data-property-name="{{ property_name | escape }}"{% endif %}
     data-stamp-main="{{ block.settings.stamp_on_product }}"
   >
     <input
@@ -43,6 +56,16 @@
       data-addon-toggle
     >
 
+    {%- if addon_type == 'configurable' and block.settings.show_image and addon_product.featured_image -%}
+      <label class="product-addon__image-wrap" for="addon-{{ uid }}">
+        {{
+          addon_product.featured_image
+          | image_url: width: 480
+          | image_tag: loading: 'lazy', widths: '240, 360, 480', alt: addon_product.title, class: 'product-addon__image'
+        }}
+      </label>
+    {%- endif -%}
+
     <label class="product-addon__row" for="addon-{{ uid }}">
       <span class="product-addon__switch">
         <span class="product-addon__switch-track" aria-hidden="true"></span>
@@ -51,11 +74,13 @@
       <span class="product-addon__content">
         <span class="product-addon__head">
           <span class="product-addon__title">{{ block.settings.title | escape_once }}</span>
-          {%- if block.settings.price_text != blank -%}
-            <span class="product-addon__price">{{ block.settings.price_text | escape_once }}</span>
-          {%- elsif addon_variant.price > 0 -%}
-            <span class="product-addon__price">+{{ addon_variant.price | money }}</span>
-          {%- endif -%}
+          <span class="product-addon__price" data-addon-price>
+            {%- if block.settings.price_text != blank -%}
+              {{ block.settings.price_text | escape_once }}
+            {%- elsif default_variant.price > 0 -%}
+              +{{ default_variant.price | money }}
+            {%- endif -%}
+          </span>
         </span>
 
         {%- if block.settings.description != blank -%}
@@ -64,7 +89,47 @@
       </span>
     </label>
 
-    {%- if block.settings.enable_text_input -%}
+    {%- if addon_type == 'configurable' -%}
+      <div class="product-addon__reveal product-addon__config" data-addon-reveal>
+        {%- unless single_variant -%}
+          <script type="application/json" data-addon-variants>
+            [
+              {%- for v in addon_product.variants -%}
+                {"id": {{ v.id }}, "options": {{ v.options | json }}, "price": {{ v.price }}, "available": {{ v.available }}}{%- unless forloop.last -%},{%- endunless -%}
+              {%- endfor -%}
+            ]
+          </script>
+
+          <div class="product-addon__options">
+            {%- for opt in addon_product.options_with_values -%}
+              <div class="product-addon__option">
+                <label class="product-addon__field-label" for="addon-opt-{{ uid }}-{{ opt.position }}">
+                  {{- opt.name | escape_once -}}
+                </label>
+                <div class="product-addon__select-wrap">
+                  <select
+                    class="product-addon__select"
+                    id="addon-opt-{{ uid }}-{{ opt.position }}"
+                    data-addon-option
+                    data-option-position="{{ opt.position }}"
+                  >
+                    <option value="">Choose…</option>
+                    {%- for val in opt.values -%}
+                      <option value="{{ val | escape }}">{{ val | escape_once }}</option>
+                    {%- endfor -%}
+                  </select>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
+
+        <span class="product-addon__error" data-addon-error hidden role="alert">
+          {{- block.settings.error_text | default: 'Please choose all options.' | escape_once -}}
+        </span>
+      </div>
+
+    {%- elsif block.settings.enable_text_input -%}
       <div class="product-addon__reveal" data-addon-reveal>
         <label class="product-addon__field-label" for="addon-input-{{ uid }}">
           {{- property_name | escape_once -}}
@@ -90,9 +155,10 @@
     {%- if block.settings.show_debug -%}
       <div class="product-addon__debug" data-addon-debug>
         <strong>Add-on debug</strong> — turn off in this block's settings when done.<br>
+        Mode: {{ addon_type }}<br>
         Linked product:
-        {%- if addon_variant -%}
-          ✓ variant {{ addon_variant.id }} ({{ addon_variant.price | money }})
+        {%- if addon_product != blank -%}
+          ✓ {{ addon_product.title }} ({{ addon_product.variants.size }} variant{% if addon_product.variants.size != 1 %}s{% endif %})
         {%- else -%}
           ✗ NOT SET — choose an “Add-on product” in this block
         {%- endif -%}

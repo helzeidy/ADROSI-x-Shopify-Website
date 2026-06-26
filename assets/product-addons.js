@@ -22,12 +22,15 @@
 (function () {
   'use strict';
 
-  var VERSION = 'v10';
+  var VERSION = 'v11';
 
   var SELECTORS = {
     addon: '[data-product-addon]',
     toggle: '[data-addon-toggle]',
     input: '[data-addon-input]',
+    option: '[data-addon-option]',
+    variants: '[data-addon-variants]',
+    price: '[data-addon-price]',
     reveal: '[data-addon-reveal]',
     error: '[data-addon-error]',
     submit: '[type="submit"]',
@@ -72,11 +75,70 @@
     });
   }
 
-  /* Validate a single active add-on's required text field. */
+  function money(cents) {
+    if (window.theme && typeof window.theme.formatMoney === 'function') {
+      return window.theme.formatMoney(cents, window.theme.moneyFormat);
+    }
+    return '$' + (cents / 100).toFixed(2);
+  }
+
+  /* Wire up a configurable add-on: resolve the chosen variant from the option
+     dropdowns, update the displayed price, and keep data-variant-id current. */
+  function setupConfigurable(addon) {
+    var dataEl = addon.querySelector(SELECTORS.variants);
+    if (!dataEl) return; // single-variant product: data-variant-id is already set
+    var variants;
+    try {
+      variants = JSON.parse(dataEl.textContent);
+    } catch (e) {
+      return;
+    }
+    var priceEl = addon.querySelector(SELECTORS.price);
+    var selects = Array.prototype.slice.call(addon.querySelectorAll(SELECTORS.option));
+    selects.sort(function (a, b) {
+      return parseInt(a.dataset.optionPosition, 10) - parseInt(b.dataset.optionPosition, 10);
+    });
+
+    function resolve() {
+      var chosen = selects.map(function (s) { return s.value; });
+      var complete = chosen.every(function (v) { return v !== ''; });
+      var match = null;
+      if (complete) {
+        match = variants.filter(function (v) {
+          return v.options.length === chosen.length && v.options.every(function (o, i) { return o === chosen[i]; });
+        })[0];
+      }
+      if (match) {
+        addon.dataset.variantId = String(match.id);
+        if (priceEl) priceEl.textContent = '+' + money(match.price);
+        var err = addon.querySelector(SELECTORS.error);
+        if (err) err.hidden = true;
+      } else {
+        delete addon.dataset.variantId;
+      }
+    }
+
+    selects.forEach(function (s) { s.addEventListener('change', resolve); });
+    resolve();
+  }
+
+  /* Validate a single active add-on before adding. */
   function validate(addon) {
     if (!isActive(addon)) return true;
-    var input = addon.querySelector(SELECTORS.input);
     var error = addon.querySelector(SELECTORS.error);
+
+    if (addon.dataset.addonType === 'configurable') {
+      if (!addon.dataset.variantId) {
+        if (error) error.hidden = false;
+        var select = addon.querySelector(SELECTORS.option);
+        if (select) select.focus();
+        return false;
+      }
+      if (error) error.hidden = true;
+      return true;
+    }
+
+    var input = addon.querySelector(SELECTORS.input);
     if (input && input.required && !input.value.trim()) {
       if (error) error.hidden = false;
       input.focus();
@@ -234,6 +296,10 @@
     if (!addons.length) return;
 
     Array.prototype.forEach.call(addons, function (addon) {
+      if (addon.dataset.addonType === 'configurable') {
+        setupConfigurable(addon);
+      }
+
       var input = addon.querySelector(SELECTORS.input);
       var error = addon.querySelector(SELECTORS.error);
       if (input && error) {
