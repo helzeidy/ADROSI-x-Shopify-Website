@@ -22,6 +22,8 @@
 (function () {
   'use strict';
 
+  var VERSION = 'v9';
+
   var SELECTORS = {
     addon: '[data-product-addon]',
     toggle: '[data-addon-toggle]',
@@ -243,7 +245,7 @@
     var addons = document.querySelectorAll(SELECTORS.addon);
     // eslint-disable-next-line no-console
     console.log('[product-addons] loaded; add-ons found on page:', addons.length);
-    debug('✓ loaded (found ' + addons.length + ' add-on' + (addons.length === 1 ? '' : 's') + ')');
+    debug('✓ loaded ' + VERSION + ' (found ' + addons.length + ' add-on' + (addons.length === 1 ? '' : 's') + ')');
     if (!addons.length) return;
 
     Array.prototype.forEach.call(addons, function (addon) {
@@ -263,13 +265,21 @@
       'click',
       function (evt) {
         if (!evt.target.closest) return;
-        var button = evt.target.closest(SELECTORS.addToCart + ',' + SELECTORS.cartBarButton);
+        var button = evt.target.closest(
+          SELECTORS.addToCart + ',' + SELECTORS.cartBarButton + ',button[name="add"]'
+        );
         if (!button) return;
 
+        debug('🖱️ clicked');
         var form = formForButton(button);
-        if (!form) return;
-        debug('🖱️ add-to-cart clicked');
-        if (!addonsForForm(form.id).some(isActive)) return; // no add-on active: let theme handle it
+        if (!form) {
+          debug('🖱️ clicked, but no add-on form found');
+          return;
+        }
+        if (!addonsForForm(form.id).some(isActive)) {
+          debug('🖱️ clicked, toggle is OFF — theme adds normally');
+          return; // no add-on active: let theme handle it
+        }
 
         evt.preventDefault();
         evt.stopImmediatePropagation();
