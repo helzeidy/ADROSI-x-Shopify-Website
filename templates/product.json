@@ -113,6 +113,7 @@
             "text_required": true,
             "error_text": "Please add your initials.",
             "stamp_on_product": true,
+            "show_debug": false,
             "padding_bottom": 16
           }
         },
