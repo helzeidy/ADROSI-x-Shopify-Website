@@ -1579,6 +1579,63 @@
       ]
     },
     {
+      "type": "size_scale",
+      "name": "Size scale converter",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Adds a Scale selector (US / UK / EU / JP / KR …) above your Size options and relabels them to the chosen scale. Display only — the product variant stays your base scale (US), so the cart and order keep the US size. Place this block near the Variant picker."
+        },
+        {
+          "type": "text",
+          "id": "size_option_name",
+          "label": "Size option name",
+          "default": "Size",
+          "info": "Must match your product's size option name exactly (e.g. Size)."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Selector label",
+          "default": "Scale"
+        },
+        {
+          "type": "text",
+          "id": "scales",
+          "label": "Scales",
+          "default": "US, UK, EU, JP, KR",
+          "info": "Comma-separated. The FIRST one is your base — it must match the actual variant size values."
+        },
+        {
+          "type": "text",
+          "id": "default_scale",
+          "label": "Default scale shown",
+          "default": "US"
+        },
+        {
+          "type": "textarea",
+          "id": "conversion_table",
+          "label": "Conversion table",
+          "default": "US, UK, EU, JP, KR\n5, 4.5, 37.5, 23, 235\n5.5, 5, 38, 23.5, 235\n6, 5.5, 38.5, 24, 240\n6.5, 6, 39, 24.5, 245\n7, 6.5, 40, 25, 250\n7.5, 7, 40.5, 25.5, 255\n8, 7.5, 41, 26, 260\n8.5, 8, 42, 26.5, 265\n9, 8.5, 42.5, 27, 270\n9.5, 9, 43, 27.5, 275\n10, 9.5, 44, 28, 280\n10.5, 10, 44.5, 28.5, 285\n11, 10.5, 45, 29, 290\n11.5, 11, 45.5, 29.5, 295\n12, 11.5, 46, 30, 300\n13, 12.5, 47.5, 31, 310\n14, 13.5, 48.5, 32, 320",
+          "info": "One row per base size. Columns must be in the same order as Scales. The first row can be a header. These are MEN'S conversions — verify and edit to match your sizing."
+        },
+        {
+          "type": "header",
+          "content": "Padding"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 16
+        }
+      ]
+    },
+    {
       "type": "features",
       "name": "Feature",
       "settings": [

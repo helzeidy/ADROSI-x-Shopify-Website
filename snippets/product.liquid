@@ -682,6 +682,14 @@
                       product_form_id: product_form_id
                     -%}
 
+                  {%- when 'size_scale' -%}
+                    {%- unless size_scale_assets_enqueued -%}
+                      {{ 'size-scale.css' | asset_url | stylesheet_tag }}
+                      <script src="{{ 'size-scale.js' | asset_url }}" defer></script>
+                      {%- assign size_scale_assets_enqueued = true -%}
+                    {%- endunless -%}
+                    {%- render 'size-scale', block: block -%}
+
                   {%- when 'features' -%}
                     {%- liquid
                       assign block_id = block.id

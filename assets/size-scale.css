@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Size scale converter — the "Scale" selector injected above the Size group.
+   ========================================================================== */
+
+.size-scale__row {
+  margin: 0 0 16px;
+}
+
+.size-scale__heading {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.size-scale__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.size-scale__btn {
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  font-size: 1rem;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.size-scale__btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.size-scale__btn.is-active {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.size-scale__btn:focus-visible {
+  outline: 2px solid var(--btn-primary-bg, #1c1c1c);
+  outline-offset: 2px;
+}

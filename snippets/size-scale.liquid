@@ -1,0 +1,34 @@
+{% comment %}
+  Size scale converter (config + asset loader).
+
+  Renders a hidden config node read by assets/size-scale.js. The script injects
+  a "Scale" selector (US / UK / EU / JP / KR …) just above the product's Size
+  option group and relabels the size buttons to the chosen scale. Only the
+  DISPLAYED labels change — the product variant value stays the base scale (US),
+  so the cart, checkout and order all keep the US size.
+
+  Accepts:
+  - block: {Object} the size_scale block.
+{% endcomment %}
+
+{%- liquid
+  assign size_option_name = block.settings.size_option_name | default: 'Size'
+  assign scales_raw = block.settings.scales | default: 'US, UK, EU, JP, KR'
+  assign heading = block.settings.heading | default: 'Scale'
+  assign base_scale = scales_raw | split: ',' | first | strip
+  assign default_scale = block.settings.default_scale | default: base_scale
+-%}
+
+<div
+  class="size-scale"
+  data-size-scale
+  data-size-option-name="{{ size_option_name | escape }}"
+  data-scales="{{ scales_raw | escape }}"
+  data-base-scale="{{ base_scale | escape }}"
+  data-default-scale="{{ default_scale | escape }}"
+  data-heading="{{ heading | escape }}"
+  {{ block.shopify_attributes }}
+  hidden
+>
+  <script type="text/plain" data-scale-table>{{ block.settings.conversion_table | escape }}</script>
+</div>
