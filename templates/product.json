@@ -98,12 +98,35 @@
             "padding_bottom": 16
           }
         },
+        "addon_mUmDKp": {
+          "type": "addon",
+          "settings": {
+            "addon_type": "configurable",
+            "title": "Add Matching Belt",
+            "description": "The matching belt will be manufactured and shipped together with the shoes. Artisans will decide the best design to match the shoes as closely as possible.",
+            "product": "matching-belt-test",
+            "show_image": false,
+            "price_text": "+$220",
+            "enable_text_input": true,
+            "text_label": "Initials",
+            "text_placeholder": "e.g. AHM",
+            "text_maxlength": 3,
+            "text_uppercase": true,
+            "text_required": true,
+            "error_text": "Please add your initials.",
+            "stamp_on_product": true,
+            "show_debug": false,
+            "padding_bottom": 16
+          }
+        },
         "addon_TWP3Lb": {
           "type": "addon",
           "settings": {
+            "addon_type": "toggle",
             "title": "Initials, in the heel",
             "description": "Type your initials (max 8 char) numbers [0 - 9], letters, white space or chars / - @ $ &",
             "product": "heel-initials",
+            "show_image": true,
             "price_text": "+$25",
             "enable_text_input": true,
             "text_label": "Initials",
@@ -180,6 +203,7 @@
         "icon_Hc4jVe",
         "icon_TmYz4p",
         "variants",
+        "addon_mUmDKp",
         "addon_TWP3Lb",
         "buttons",
         "tabs",
