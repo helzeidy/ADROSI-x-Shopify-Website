@@ -125,7 +125,7 @@
             "property_name": "Width",
             "default_value": "",
             "paid_value": "$20",
-            "charge_product": "",
+            "charge_product": "wide-eee",
             "show_price_on_option": true,
             "padding_bottom": 16
           }
