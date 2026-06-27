@@ -31,8 +31,24 @@
   if addon_product.variants.size == 1
     assign single_variant = true
   endif
+
+  comment
+    Optional per-product visibility: only show when a boolean metafield is true.
+  endcomment
+  assign show_block = true
+  assign visibility_mf = block.settings.visibility_metafield | strip
+  if visibility_mf != blank
+    assign vparts = visibility_mf | split: '.'
+    assign vns = vparts[0]
+    assign vkey = vparts[1]
+    assign vval = product.metafields[vns][vkey].value
+    unless vval == true
+      assign show_block = false
+    endunless
+  endif
 -%}
 
+{%- if show_block -%}
 <div class="product__block product-addon block-padding" {{ block.shopify_attributes }} {{ block_style }}>
   <div
     class="product-addon__card product-addon__card--{{ addon_type }}"
@@ -169,3 +185,4 @@
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
