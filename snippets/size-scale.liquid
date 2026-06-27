@@ -1,14 +1,16 @@
 {% comment %}
-  Size scale converter (config + asset loader).
+  Size scale converter.
 
-  Renders a hidden config node read by assets/size-scale.js. The script injects
-  a "Scale" selector (US / UK / EU / JP / KR …) just above the product's Size
-  option group and relabels the size buttons to the chosen scale. Only the
-  DISPLAYED labels change — the product variant value stays the base scale (US),
-  so the cart, checkout and order all keep the US size.
+  Renders a persistent "Scale" selector (US / UK / EU / JP / KR …). The selector
+  is server-rendered (not injected by JS) so it never flickers when the theme
+  re-renders the size options on variant change. assets/size-scale.js relabels
+  the size buttons to the chosen scale and records the choice.
+
+  Place this block directly ABOVE the Variant picker block so the Scale row sits
+  above the Size options.
 
   Accepts:
-  - block: {Object} the size_scale block.
+  - block, product_form_id.
 {% endcomment %}
 
 {%- liquid
@@ -17,11 +19,13 @@
   assign heading = block.settings.heading | default: 'Scale'
   assign base_scale = scales_raw | split: ',' | first | strip
   assign default_scale = block.settings.default_scale | default: base_scale
+  assign scales_list = scales_raw | split: ','
 -%}
 
 <div
   class="size-scale"
   data-size-scale
+  data-block-id="{{ block.id }}"
   data-size-option-name="{{ size_option_name | escape }}"
   data-scales="{{ scales_raw | escape }}"
   data-base-scale="{{ base_scale | escape }}"
@@ -34,7 +38,24 @@
     data-size-prop="{{ block.settings.size_property_name | default: 'Size' | escape }}"
   {% endif %}
   {{ block.shopify_attributes }}
-  hidden
 >
+  <div class="size-scale__row">
+    <span class="size-scale__heading">{{ heading | escape_once }}</span>
+    <div class="size-scale__options">
+      {%- for sc in scales_list -%}
+        {%- assign sc = sc | strip -%}
+        {%- if sc != blank -%}
+          <button
+            type="button"
+            class="size-scale__btn{% if sc == default_scale %} is-active{% endif %}"
+            data-scale="{{ sc | escape }}"
+          >
+            {{- sc | escape_once -}}
+          </button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
   <script type="text/plain" data-scale-table>{{ block.settings.conversion_table | escape }}</script>
 </div>

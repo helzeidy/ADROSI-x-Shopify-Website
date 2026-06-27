@@ -1,30 +1,30 @@
 /* ==========================================================================
    Size scale converter
    --------------------------------------------------------------------------
-   Adds a "Scale" selector above the product's Size option group and relabels
-   the size buttons (US -> UK / EU / JP / KR …) using an editable conversion
-   table. Display-only: the radio `value` (and the variant added to cart) always
-   stays the base scale (US).
-
-   The theme re-renders the option group on every variant change, so we watch
-   for that and re-apply (re-inject the selector, re-cache labels, keep the
-   recorded scale/size in sync).
+   The "Scale" selector is rendered server-side (in snippets/size-scale.liquid)
+   so it is always present and never flickers. This script only:
+     - relabels the size buttons to the chosen scale (US -> UK / EU / JP / KR …),
+       re-applying after the theme re-renders the options on variant change;
+     - records the chosen scale + size as line item properties.
+   Display-only: the radio value (and the variant added to cart) stays US.
    ========================================================================== */
 (function () {
   'use strict';
 
-  var VERSION = 'v2';
+  var VERSION = 'v3';
+  var configs = {};
+  var observer = null;
+  var scheduled = false;
 
   function parseTable(text, scales, baseScale) {
     var map = {};
     var baseIdx = scales.indexOf(baseScale);
     if (baseIdx < 0) baseIdx = 0;
-
     text.split(/\r?\n/).forEach(function (line) {
       line = line.trim();
       if (!line || line.charAt(0) === '#') return;
       var cells = line.split(/[|,\t]/).map(function (c) { return c.trim(); });
-      if (cells[baseIdx] && cells[baseIdx].toLowerCase() === baseScale.toLowerCase()) return; // header
+      if (cells[baseIdx] && cells[baseIdx].toLowerCase() === baseScale.toLowerCase()) return;
       var base = cells[baseIdx];
       if (!base) return;
       map[base] = {};
@@ -57,155 +57,115 @@
     return input;
   }
 
-  function setup(configEl) {
-    if (configEl.dataset.scaleReady) return;
-    configEl.dataset.scaleReady = 'true';
+  function convert(cfg, base, scale) {
+    if (scale === cfg.baseScale) return base;
+    if (cfg.map[base] && cfg.map[base][scale] != null) return cfg.map[base][scale];
+    return base;
+  }
 
-    var scales = (configEl.getAttribute('data-scales') || '')
+  function updateProperties(cfg, wrapper) {
+    if (!cfg.record) return;
+    var form =
+      (cfg.formId && document.getElementById(cfg.formId)) ||
+      document.querySelector('form[data-product-form]') ||
+      document.querySelector('form[data-type="add-to-cart-form"]');
+    if (!form) return;
+    var checked = wrapper.querySelector('input[type="radio"]:checked');
+    var base = checked ? (checked.value || '').trim() : '';
+    ensureHiddenInput(form, cfg.scaleProp).value = cfg.current;
+    ensureHiddenInput(form, cfg.sizeProp).value = base ? convert(cfg, base, cfg.current) : '';
+    ensureHiddenInput(form, '_size_option').value = cfg.optionName;
+  }
+
+  function applyCfg(cfg) {
+    var el = document.querySelector('[data-size-scale][data-block-id="' + cfg.id + '"]');
+    if (el) {
+      Array.prototype.forEach.call(el.querySelectorAll('[data-scale]'), function (b) {
+        b.classList.toggle('is-active', b.getAttribute('data-scale') === cfg.current);
+      });
+    }
+
+    var wrapper = findSizeWrapper(cfg.optionName);
+    if (!wrapper) return;
+
+    Array.prototype.forEach.call(wrapper.querySelectorAll('.option-title'), function (t) {
+      if (!t.dataset.baseValue) t.dataset.baseValue = (t.textContent || '').trim();
+      var converted = convert(cfg, t.dataset.baseValue, cfg.current);
+      if (t.textContent !== converted) t.textContent = converted;
+    });
+
+    var selectedDisplay = wrapper.querySelector('[data-selected-value]');
+    if (selectedDisplay) {
+      var checked = wrapper.querySelector('input[type="radio"]:checked');
+      if (checked) {
+        var conv = convert(cfg, (checked.value || '').trim(), cfg.current);
+        if (selectedDisplay.textContent !== conv) selectedDisplay.textContent = conv;
+      }
+    }
+
+    updateProperties(cfg, wrapper);
+  }
+
+  function applyAll() {
+    if (observer) observer.disconnect();
+    for (var id in configs) {
+      if (Object.prototype.hasOwnProperty.call(configs, id)) applyCfg(configs[id]);
+    }
+    if (observer) observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    (window.requestAnimationFrame || window.setTimeout)(function () {
+      scheduled = false;
+      applyAll();
+    }, 0);
+  }
+
+  function setup(el) {
+    var id = el.getAttribute('data-block-id');
+    if (!id || configs[id]) return;
+    var scales = (el.getAttribute('data-scales') || '')
       .split(',')
       .map(function (s) { return s.trim(); })
       .filter(Boolean);
     if (!scales.length) return;
-
-    var baseScale = configEl.getAttribute('data-base-scale') || scales[0];
-    var heading = configEl.getAttribute('data-heading') || 'Scale';
-    var optionName = configEl.getAttribute('data-size-option-name') || 'Size';
-    var current = configEl.getAttribute('data-default-scale') || baseScale;
-
-    var record = configEl.hasAttribute('data-record');
-    var formId = configEl.getAttribute('data-product-form-id');
-    var scaleProp = configEl.getAttribute('data-scale-prop') || 'Scale';
-    var sizeProp = configEl.getAttribute('data-size-prop') || 'Size';
-
-    var tableEl = configEl.querySelector('[data-scale-table]');
-    var map = parseTable(tableEl ? tableEl.textContent : '', scales, baseScale);
-
-    var row = null;
-    var observeTarget = null;
-    var observer = null;
-    var applyTimer = null;
-
-    function convert(base, scale) {
-      if (scale === baseScale) return base;
-      if (map[base] && map[base][scale] != null) return map[base][scale];
-      return base;
-    }
-
-    function buildRow() {
-      row = document.createElement('div');
-      row.className = 'size-scale__row';
-
-      var label = document.createElement('span');
-      label.className = 'size-scale__heading';
-      label.textContent = heading;
-      row.appendChild(label);
-
-      var options = document.createElement('div');
-      options.className = 'size-scale__options';
-
-      scales.forEach(function (scale) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'size-scale__btn';
-        btn.setAttribute('data-scale', scale);
-        btn.textContent = scale;
-        btn.addEventListener('click', function () {
-          current = scale;
-          apply();
-        });
-        options.appendChild(btn);
-      });
-
-      row.appendChild(options);
-    }
-
-    function syncActive() {
-      if (!row) return;
-      var btns = row.querySelectorAll('.size-scale__btn');
-      Array.prototype.forEach.call(btns, function (b) {
-        b.classList.toggle('is-active', b.getAttribute('data-scale') === current);
-      });
-    }
-
-    function selectedBase(wrapper) {
-      var checked = wrapper.querySelector('input[type="radio"]:checked');
-      return checked ? (checked.value || '').trim() : '';
-    }
-
-    function updateProperties(wrapper) {
-      if (!record) return;
-      var form =
-        (formId && document.getElementById(formId)) ||
-        document.querySelector('form[data-product-form]') ||
-        document.querySelector('form[data-type="add-to-cart-form"]');
-      if (!form) return;
-      var scaleInput = ensureHiddenInput(form, scaleProp);
-      var sizeInput = ensureHiddenInput(form, sizeProp);
-      var optionInput = ensureHiddenInput(form, '_size_option');
-      var base = selectedBase(wrapper);
-      scaleInput.value = current;
-      sizeInput.value = base ? convert(base, current) : '';
-      optionInput.value = optionName; // tells the cart which variant option to hide
-    }
-
-    function apply() {
-      var wrapper = findSizeWrapper(optionName);
-      if (!wrapper) return;
-
-      if (observer) observer.disconnect();
-
-      // Cache the original (base) label of each size option.
-      var titles = wrapper.querySelectorAll('.option-title');
-      Array.prototype.forEach.call(titles, function (t) {
-        if (!t.dataset.baseValue) t.dataset.baseValue = (t.textContent || '').trim();
-        t.textContent = convert(t.dataset.baseValue, current);
-      });
-
-      // Convert the selected-size readout too.
-      var selectedDisplay = wrapper.querySelector('[data-selected-value]');
-      var base = selectedBase(wrapper);
-      if (selectedDisplay && base) selectedDisplay.textContent = convert(base, current);
-
-      // (Re)inject the scale selector directly above the size group.
-      if (!row) buildRow();
-      if (!row.isConnected || row.nextElementSibling !== wrapper) {
-        wrapper.parentNode.insertBefore(row, wrapper);
-      }
-      syncActive();
-
-      updateProperties(wrapper);
-
-      if (!observeTarget) {
-        observeTarget =
-          wrapper.closest('product-info') ||
-          wrapper.closest('[data-product-information]') ||
-          wrapper.closest('.product__wrapper') ||
-          document.body;
-      }
-      if (observer && observeTarget && observeTarget.isConnected) {
-        observer.observe(observeTarget, { childList: true, subtree: true });
-      }
-    }
-
-    function scheduleApply() {
-      clearTimeout(applyTimer);
-      applyTimer = setTimeout(apply, 60);
-    }
-
-    observer = new MutationObserver(scheduleApply);
-
-    if (findSizeWrapper(optionName)) {
-      apply();
-    } else {
-      // Size option not on the page yet (or named differently) — keep watching.
-      observer.observe(document.body, { childList: true, subtree: true });
-      // eslint-disable-next-line no-console
-      console.warn('[size-scale] ' + VERSION + ': size option "' + optionName + '" not found yet.');
-    }
+    var baseScale = el.getAttribute('data-base-scale') || scales[0];
+    var tableEl = el.querySelector('[data-scale-table]');
+    configs[id] = {
+      id: id,
+      scales: scales,
+      baseScale: baseScale,
+      optionName: el.getAttribute('data-size-option-name') || 'Size',
+      current: el.getAttribute('data-default-scale') || baseScale,
+      map: parseTable(tableEl ? tableEl.textContent : '', scales, baseScale),
+      record: el.hasAttribute('data-record'),
+      formId: el.getAttribute('data-product-form-id'),
+      scaleProp: el.getAttribute('data-scale-prop') || 'Scale',
+      sizeProp: el.getAttribute('data-size-prop') || 'Size'
+    };
   }
 
   function init() {
-    Array.prototype.forEach.call(document.querySelectorAll('[data-size-scale]'), setup);
+    var els = document.querySelectorAll('[data-size-scale]');
+    if (!els.length) return;
+    Array.prototype.forEach.call(els, setup);
+
+    // Scale button clicks (delegated so they survive theme re-renders).
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('[data-size-scale] [data-scale]');
+      if (!btn) return;
+      e.preventDefault();
+      var el = btn.closest('[data-size-scale]');
+      var id = el && el.getAttribute('data-block-id');
+      if (!id || !configs[id]) return;
+      configs[id].current = btn.getAttribute('data-scale');
+      applyAll();
+    });
+
+    observer = new MutationObserver(schedule);
+    applyAll();
   }
 
   if (document.readyState === 'loading') {
