@@ -11,7 +11,13 @@
 (function () {
   'use strict';
 
-  var VERSION = 'v3';
+  // Run once even if the script is included more than once (e.g. the product
+  // blocks are rendered twice). A second instance would fight the first and
+  // keep resetting the labels to the base scale.
+  if (window.__sizeScaleInit) return;
+  window.__sizeScaleInit = true;
+
+  var VERSION = 'v4';
   var configs = {};
   var observer = null;
   var scheduled = false;
@@ -35,15 +41,20 @@
     return map;
   }
 
-  function findSizeWrapper(optionName) {
+  function findSizeWrappers(optionName) {
     var name = (optionName || '').trim().toLowerCase();
+    var found = [];
     var wrappers = document.querySelectorAll('.selector-wrapper');
     for (var i = 0; i < wrappers.length; i++) {
       var legend = wrappers[i].querySelector('.radio__legend__option-name, .radio__legend__label');
       var text = legend ? (legend.textContent || '').trim().toLowerCase() : '';
-      if (text === name || (name && text.indexOf(name) === 0)) return wrappers[i];
+      if (text === name || (name && text.indexOf(name) === 0)) found.push(wrappers[i]);
     }
-    return document.querySelector('.selector-wrapper--size');
+    if (!found.length) {
+      var fallback = document.querySelector('.selector-wrapper--size');
+      if (fallback) found.push(fallback);
+    }
+    return found;
   }
 
   function ensureHiddenInput(form, propName) {
@@ -78,8 +89,8 @@
   }
 
   function applyCfg(cfg) {
-    var el = document.querySelector('[data-size-scale][data-block-id="' + cfg.id + '"]');
-    if (el) {
+    var els = document.querySelectorAll('[data-size-scale][data-block-id="' + cfg.id + '"]');
+    Array.prototype.forEach.call(els, function (el) {
       Array.prototype.forEach.call(el.querySelectorAll('[data-scale]'), function (b) {
         b.classList.toggle('is-active', b.getAttribute('data-scale') === cfg.current);
         if (!b.getAttribute('data-scale-bound')) {
@@ -92,44 +103,44 @@
           });
         }
       });
-    }
+    });
 
-    var debugEl = el && el.querySelector('[data-scale-debug]');
-    var wrapper = findSizeWrapper(cfg.optionName);
-    if (!wrapper) {
+    var debugEl = els[0] ? els[0].querySelector('[data-scale-debug]') : null;
+    var wrappers = findSizeWrappers(cfg.optionName);
+    if (!wrappers.length) {
       if (debugEl) debugEl.textContent = 'Size option "' + cfg.optionName + '" NOT found on the page.';
       return;
     }
 
     var bases = [];
     var matched = 0;
-    Array.prototype.forEach.call(wrapper.querySelectorAll('.option-title'), function (t) {
-      if (!t.dataset.baseValue) t.dataset.baseValue = (t.textContent || '').trim();
-      bases.push(t.dataset.baseValue);
-      if (cfg.map[t.dataset.baseValue]) matched++;
-      var converted = convert(cfg, t.dataset.baseValue, cfg.current);
-      if (t.textContent !== converted) t.textContent = converted;
+    Array.prototype.forEach.call(wrappers, function (wrapper) {
+      Array.prototype.forEach.call(wrapper.querySelectorAll('.option-title'), function (t) {
+        if (!t.dataset.baseValue) t.dataset.baseValue = (t.textContent || '').trim();
+        bases.push(t.dataset.baseValue);
+        if (cfg.map[t.dataset.baseValue]) matched++;
+        var converted = convert(cfg, t.dataset.baseValue, cfg.current);
+        if (t.textContent !== converted) t.textContent = converted;
+      });
+
+      var selectedDisplay = wrapper.querySelector('[data-selected-value]');
+      if (selectedDisplay) {
+        var checked = wrapper.querySelector('input[type="radio"]:checked');
+        if (checked) {
+          var conv = convert(cfg, (checked.value || '').trim(), cfg.current);
+          if (selectedDisplay.textContent !== conv) selectedDisplay.textContent = conv;
+        }
+      }
+
+      updateProperties(cfg, wrapper);
     });
 
     if (debugEl) {
       debugEl.textContent =
         'scale: ' + cfg.current +
         ' · clicks: ' + (cfg.clicks || 0) +
-        ' · matched ' + matched + '/' + bases.length + ' sizes' +
-        ' · sizes: [' + bases.join(', ') + ']' +
-        ' · table base values: [' + Object.keys(cfg.map).join(', ') + ']';
+        ' · matched ' + matched + '/' + bases.length + ' sizes';
     }
-
-    var selectedDisplay = wrapper.querySelector('[data-selected-value]');
-    if (selectedDisplay) {
-      var checked = wrapper.querySelector('input[type="radio"]:checked');
-      if (checked) {
-        var conv = convert(cfg, (checked.value || '').trim(), cfg.current);
-        if (selectedDisplay.textContent !== conv) selectedDisplay.textContent = conv;
-      }
-    }
-
-    updateProperties(cfg, wrapper);
   }
 
   function applyAll() {
