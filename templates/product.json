@@ -99,7 +99,7 @@
             "record_on_order": true,
             "scale_property_name": "Scale",
             "size_property_name": "Size",
-            "padding_bottom": 16
+            "padding_bottom": 0
           }
         },
         "variants": {
