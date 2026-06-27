@@ -104,7 +104,7 @@
             "record_on_order": true,
             "scale_property_name": "Scale",
             "size_property_name": "Size",
-            "show_debug": true,
+            "show_debug": false,
             "padding_bottom": 0
           }
         },
