@@ -38,6 +38,19 @@
   unless has_default
     assign resolved_default = width_values.first
   endunless
+
+  comment
+    Tolerant match (ignore case + surrounding spaces) so the Paid value setting
+    doesn't have to match the metafield value byte-for-byte.
+  endcomment
+  assign paid_norm = paid_value | strip | downcase
+  assign paid_matched = false
+  for val in width_values
+    assign val_norm = val | strip | downcase
+    if paid_norm != '' and val_norm == paid_norm
+      assign paid_matched = true
+    endif
+  endfor
 -%}
 
 {%- if width_values.size > 0 -%}
@@ -56,7 +69,13 @@
 
           <div class="radio__buttons">
             {%- for val in width_values -%}
-              {%- assign opt_id = 'width-' | append: uid | append: '-' | append: forloop.index0 -%}
+              {%- liquid
+                assign opt_id = 'width-' | append: uid | append: '-' | append: forloop.index0
+                assign is_paid = false
+                if paid_norm != '' and val | strip | downcase == paid_norm
+                  assign is_paid = true
+                endif
+              -%}
               <span class="radio__button">
                 <input
                   type="radio"
@@ -65,13 +84,13 @@
                   value="{{ val | escape }}"
                   form="{{ product_form_id }}"
                   data-width-option
-                  {% if val == paid_value %}data-width-paid{% endif %}
+                  {% if is_paid %}data-width-paid{% endif %}
                   {% if val == resolved_default %}checked{% endif %}
                 >
                 <label for="{{ opt_id }}">
                   <span class="option-title">
                     {{- val | escape_once -}}
-                    {%- if val == paid_value and charge_variant.price > 0 and block.settings.show_price_on_option -%}
+                    {%- if is_paid and charge_variant.price > 0 and block.settings.show_price_on_option -%}
                       <small class="product-width__upcharge">+{{ charge_variant.price | money }}</small>
                     {%- endif -%}
                   </span>
@@ -98,6 +117,30 @@
         >
           <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}">
         </div>
+      </div>
+    {%- endif -%}
+
+    {%- if block.settings.show_debug -%}
+      <div class="product-addon__debug">
+        <strong>Width debug</strong> — turn off in this block's settings when done.<br>
+        Metafield <code>{{ mf_key }}</code>: {{ width_values.size }} value(s)<br>
+        Paid value setting: "{{ paid_value }}" —
+        {%- if paid_value == blank -%}
+          none set (no width will charge)
+        {%- elsif paid_matched -%}
+          ✓ matches an option
+        {%- else -%}
+          ✗ does NOT match any metafield value (check spelling/spaces)
+        {%- endif -%}
+        <br>
+        Charge product:
+        {%- if charge_variant -%}
+          ✓ variant {{ charge_variant.id }} ({{ charge_variant.price | money }})
+        {%- else -%}
+          ✗ NOT SET or not published to Online Store
+        {%- endif -%}
+        <br>
+        Values: {% for val in width_values %}"{{ val }}"{% unless forloop.last %}, {% endunless %}{% endfor %}
       </div>
     {%- endif -%}
   </div>

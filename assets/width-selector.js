@@ -16,7 +16,7 @@
     if (group.dataset.widthReady) return;
     group.dataset.widthReady = 'true';
 
-    var paid = group.getAttribute('data-paid-value') || '';
+    var paid = (group.getAttribute('data-paid-value') || '').trim().toLowerCase();
     var toggleId = group.getAttribute('data-charge-toggle') || '';
     var radios = group.querySelectorAll('input[type="radio"][data-width-option]');
 
@@ -25,7 +25,7 @@
       var toggle = document.getElementById(toggleId);
       if (!toggle) return;
       var checked = group.querySelector('input[type="radio"][data-width-option]:checked');
-      var value = checked ? checked.value : '';
+      var value = checked ? (checked.value || '').trim().toLowerCase() : '';
       toggle.checked = !!(paid && value === paid);
     }
 
