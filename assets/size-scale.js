@@ -1,54 +1,47 @@
 /* ==========================================================================
    Size scale converter
    --------------------------------------------------------------------------
-   The "Scale" selector is rendered server-side (in snippets/size-scale.liquid)
-   so it is always present and never flickers. This script only:
-     - relabels the size buttons to the chosen scale (US -> UK / EU / JP / KR …),
-       re-applying after the theme re-renders the options on variant change;
-     - records the chosen scale + size as line item properties.
+   The "Scale" selector is rendered server-side so it never flickers. This
+   script relabels the size buttons to the chosen scale and records the choice.
+
+   Matching is done by COLUMN INDEX, not by scale name: the scale buttons are in
+   the same order as the conversion-table columns (US=0, UK=1, EU=2, …), so a
+   click selects a column index and each size's label becomes that column's
+   value. No string matching of scale names — that avoids the invisible-char
+   pitfalls entirely.
+
    Display-only: the radio value (and the variant added to cart) stays US.
    ========================================================================== */
 (function () {
   'use strict';
 
-  // Run once even if the script is included more than once (e.g. the product
-  // blocks are rendered twice). A second instance would fight the first and
-  // keep resetting the labels to the base scale.
   if (window.__sizeScaleInit) return;
   window.__sizeScaleInit = true;
 
-  var VERSION = 'v6';
+  var VERSION = 'v7';
   var configs = {};
   var observer = null;
   var scheduled = false;
 
-  // Scale identifiers compared as letters/digits only (case-insensitive) so no
-  // stray character can break the match between a button and the table column.
+  function norm(s) {
+    return (s == null ? '' : String(s)).replace(/[ ​‌‍﻿]/g, '').trim();
+  }
+
   function normScale(s) {
     return (s == null ? '' : String(s)).replace(/[^a-z0-9]/gi, '').toUpperCase();
   }
 
-  // Trim and strip invisible characters (non-breaking / zero-width spaces) that
-  // can sneak into scale names and break exact-string matching.
-  function norm(s) {
-    return (s == null ? "" : String(s)).replace(/[\u00a0\u200b\u200c\u200d\ufeff]/g, "").trim();
-  }
-
-  function parseTable(text, scales, baseScale) {
+  /* Parse the table into { baseSizeValue: [col0, col1, col2, …] }. */
+  function parseTable(text, scaleSet) {
     var map = {};
-    var baseIdx = scales.indexOf(baseScale);
-    if (baseIdx < 0) baseIdx = 0;
     text.split(/\r?\n/).forEach(function (line) {
       line = line.trim();
       if (!line || line.charAt(0) === '#') return;
       var cells = line.split(/[|,\t]/).map(function (c) { return norm(c); });
-      if (cells[baseIdx] && cells[baseIdx].toLowerCase() === baseScale.toLowerCase()) return;
-      var base = cells[baseIdx];
-      if (!base) return;
-      map[base] = {};
-      scales.forEach(function (scale, i) {
-        if (cells[i] !== undefined && cells[i] !== '') map[base][scale] = cells[i];
-      });
+      var first = cells[0];
+      if (!first) return;
+      if (scaleSet[normScale(first)]) return; // header row (first cell is a scale name)
+      map[first] = cells;
     });
     return map;
   }
@@ -80,9 +73,11 @@
     return input;
   }
 
-  function convert(cfg, base, scale) {
-    if (scale === cfg.baseScale) return base;
-    if (cfg.map[base] && cfg.map[base][scale] != null) return cfg.map[base][scale];
+  /* Convert a base size to the value in the chosen column index. */
+  function convert(cfg, base, idx) {
+    if (idx === cfg.baseIndex) return base;
+    var row = cfg.map[base];
+    if (row && row[idx] != null && row[idx] !== '') return row[idx];
     return base;
   }
 
@@ -95,7 +90,7 @@
     if (!form) return;
     var checked = wrapper.querySelector('input[type="radio"]:checked');
     var base = checked ? (checked.value || '').trim() : '';
-    ensureHiddenInput(form, cfg.scaleProp).value = cfg.current;
+    ensureHiddenInput(form, cfg.scaleProp).value = cfg.scales[cfg.current] || '';
     ensureHiddenInput(form, cfg.sizeProp).value = base ? convert(cfg, base, cfg.current) : '';
     ensureHiddenInput(form, '_size_option').value = cfg.optionName;
   }
@@ -104,13 +99,14 @@
     var els = document.querySelectorAll('[data-size-scale][data-block-id="' + cfg.id + '"]');
     Array.prototype.forEach.call(els, function (el) {
       Array.prototype.forEach.call(el.querySelectorAll('[data-scale]'), function (b) {
-        b.classList.toggle('is-active', b.getAttribute('data-scale') === cfg.current);
+        var idx = parseInt(b.getAttribute('data-scale-index'), 10);
+        b.classList.toggle('is-active', idx === cfg.current);
         if (!b.getAttribute('data-scale-bound')) {
           b.setAttribute('data-scale-bound', '1');
           b.addEventListener('click', function (ev) {
             ev.preventDefault();
             cfg.clicks = (cfg.clicks || 0) + 1;
-            cfg.current = normScale(b.getAttribute('data-scale'));
+            cfg.current = parseInt(b.getAttribute('data-scale-index'), 10) || 0;
             applyAll();
           });
         }
@@ -120,7 +116,7 @@
     var debugEl = els[0] ? els[0].querySelector('[data-scale-debug]') : null;
     var wrappers = findSizeWrappers(cfg.optionName);
     if (!wrappers.length) {
-      if (debugEl) debugEl.textContent = 'Size option "' + cfg.optionName + '" NOT found on the page.';
+      if (debugEl) debugEl.textContent = VERSION + ' · Size option "' + cfg.optionName + '" NOT found.';
       return;
     }
 
@@ -149,21 +145,12 @@
 
     if (debugEl) {
       var sample = bases[0];
-      var row = cfg.map[sample] || {};
-      var keys = Object.keys(row);
-      var codes = function (s) {
-        return Array.prototype.map
-          .call(s || '', function (c) { return c.charCodeAt(0); })
-          .join('.');
-      };
       debugEl.textContent =
         VERSION +
-        ' · scale=' + cfg.current + ' [' + codes(cfg.current) + ']' +
-        ' · sample ' + sample + '→' + convert(cfg, sample, cfg.current) +
-        ' · keys=' + keys.join('/') +
-        ' · key0=' + keys[0] + ' [' + codes(keys[0]) + ']' +
-        ' · base=' + cfg.baseScale + ' [' + codes(cfg.baseScale) + ']' +
-        ' · direct=' + row[cfg.current];
+        ' · scale=' + (cfg.scales[cfg.current] || '?') + ' (col ' + cfg.current + ')' +
+        ' · clicks=' + (cfg.clicks || 0) +
+        ' · matched ' + matched + '/' + bases.length +
+        ' · sample ' + sample + '→' + convert(cfg, sample, cfg.current);
     }
   }
 
@@ -194,18 +181,33 @@
     if (!id || configs[id]) return;
     var scales = (el.getAttribute('data-scales') || '')
       .split(',')
-      .map(function (s) { return normScale(s); })
+      .map(function (s) { return norm(s); })
       .filter(Boolean);
     if (!scales.length) return;
-    var baseScale = normScale(el.getAttribute('data-base-scale')) || scales[0];
+
+    var scaleSet = {};
+    scales.forEach(function (s) { scaleSet[normScale(s)] = true; });
+
+    var baseScale = norm(el.getAttribute('data-base-scale')) || scales[0];
+    var baseIndex = 0;
+    for (var i = 0; i < scales.length; i++) {
+      if (normScale(scales[i]) === normScale(baseScale)) { baseIndex = i; break; }
+    }
+
+    var defaultScale = norm(el.getAttribute('data-default-scale')) || baseScale;
+    var current = baseIndex;
+    for (var j = 0; j < scales.length; j++) {
+      if (normScale(scales[j]) === normScale(defaultScale)) { current = j; break; }
+    }
+
     var tableEl = el.querySelector('[data-scale-table]');
     configs[id] = {
       id: id,
       scales: scales,
-      baseScale: baseScale,
+      baseIndex: baseIndex,
+      current: current,
       optionName: el.getAttribute('data-size-option-name') || 'Size',
-      current: normScale(el.getAttribute('data-default-scale')) || baseScale,
-      map: parseTable(tableEl ? tableEl.textContent : '', scales, baseScale),
+      map: parseTable(tableEl ? tableEl.textContent : '', scaleSet),
       record: el.hasAttribute('data-record'),
       formId: el.getAttribute('data-product-form-id'),
       scaleProp: el.getAttribute('data-scale-prop') || 'Scale',
@@ -217,18 +219,6 @@
     var els = document.querySelectorAll('[data-size-scale]');
     if (!els.length) return;
     Array.prototype.forEach.call(els, setup);
-
-    // Scale button clicks (delegated so they survive theme re-renders).
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest && e.target.closest('[data-size-scale] [data-scale]');
-      if (!btn) return;
-      e.preventDefault();
-      var el = btn.closest('[data-size-scale]');
-      var id = el && el.getAttribute('data-block-id');
-      if (!id || !configs[id]) return;
-      configs[id].current = btn.getAttribute('data-scale');
-      applyAll();
-    });
 
     observer = new MutationObserver(schedule);
     applyAll();

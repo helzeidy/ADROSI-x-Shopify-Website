@@ -49,6 +49,7 @@
             type="button"
             class="size-scale__btn{% if sc == default_scale %} is-active{% endif %}"
             data-scale="{{ sc | escape }}"
+            data-scale-index="{{ forloop.index0 }}"
           >
             {{- sc | escape_once -}}
           </button>
