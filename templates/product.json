@@ -203,7 +203,11 @@
           "type": "upsell",
           "settings": {
             "upsell_product": "",
-            "upsell_product_list": [],
+            "upsell_product_list": [
+              "aubergine-patina-leather-hiking-boots",
+              "beige-black-linen-top-sider-trainers",
+              "beige-suede-wholecut-shoes"
+            ],
             "show_available_upsell_only": false,
             "layout": "stacked",
             "autoplay": false,
