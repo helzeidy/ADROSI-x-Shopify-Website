@@ -95,12 +95,16 @@
               {%- endif -%}
 
               {%- unless line_item.product.has_only_default_variant -%}
+                {%- comment -%} Size scale converter hides the base (US) size option in favour of its Scale/Size properties. {%- endcomment -%}
+                {%- assign hide_size_option = line_item.properties['_size_option'] -%}
                 {%- for option in line_item.options_with_values -%}
-                  <p class="cart__item__selected-options">
-                    <strong>{{ option.name }}:</strong>
+                  {%- unless hide_size_option != blank and option.name == hide_size_option -%}
+                    <p class="cart__item__selected-options">
+                      <strong>{{ option.name }}:</strong>
 
-                    <span>{{ option.value }}</span>
-                  </p>
+                      <span>{{ option.value }}</span>
+                    </p>
+                  {%- endunless -%}
                 {%- endfor -%}
               {%- endunless -%}
 
