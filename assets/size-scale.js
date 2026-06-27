@@ -17,10 +17,16 @@
   if (window.__sizeScaleInit) return;
   window.__sizeScaleInit = true;
 
-  var VERSION = 'v4';
+  var VERSION = 'v5';
   var configs = {};
   var observer = null;
   var scheduled = false;
+
+  // Trim and strip invisible characters (non-breaking / zero-width spaces) that
+  // can sneak into scale names and break exact-string matching.
+  function norm(s) {
+    return (s == null ? "" : String(s)).replace(/[\u00a0\u200b\u200c\u200d\ufeff]/g, "").trim();
+  }
 
   function parseTable(text, scales, baseScale) {
     var map = {};
@@ -29,7 +35,7 @@
     text.split(/\r?\n/).forEach(function (line) {
       line = line.trim();
       if (!line || line.charAt(0) === '#') return;
-      var cells = line.split(/[|,\t]/).map(function (c) { return c.trim(); });
+      var cells = line.split(/[|,\t]/).map(function (c) { return norm(c); });
       if (cells[baseIdx] && cells[baseIdx].toLowerCase() === baseScale.toLowerCase()) return;
       var base = cells[baseIdx];
       if (!base) return;
@@ -98,7 +104,7 @@
           b.addEventListener('click', function (ev) {
             ev.preventDefault();
             cfg.clicks = (cfg.clicks || 0) + 1;
-            cfg.current = b.getAttribute('data-scale');
+            cfg.current = norm(b.getAttribute('data-scale'));
             applyAll();
           });
         }
@@ -176,17 +182,17 @@
     if (!id || configs[id]) return;
     var scales = (el.getAttribute('data-scales') || '')
       .split(',')
-      .map(function (s) { return s.trim(); })
+      .map(function (s) { return norm(s); })
       .filter(Boolean);
     if (!scales.length) return;
-    var baseScale = el.getAttribute('data-base-scale') || scales[0];
+    var baseScale = norm(el.getAttribute('data-base-scale')) || scales[0];
     var tableEl = el.querySelector('[data-scale-table]');
     configs[id] = {
       id: id,
       scales: scales,
       baseScale: baseScale,
       optionName: el.getAttribute('data-size-option-name') || 'Size',
-      current: el.getAttribute('data-default-scale') || baseScale,
+      current: norm(el.getAttribute('data-default-scale')) || baseScale,
       map: parseTable(tableEl ? tableEl.textContent : '', scales, baseScale),
       record: el.hasAttribute('data-record'),
       formId: el.getAttribute('data-product-form-id'),
