@@ -82,6 +82,15 @@
     if (el) {
       Array.prototype.forEach.call(el.querySelectorAll('[data-scale]'), function (b) {
         b.classList.toggle('is-active', b.getAttribute('data-scale') === cfg.current);
+        if (!b.getAttribute('data-scale-bound')) {
+          b.setAttribute('data-scale-bound', '1');
+          b.addEventListener('click', function (ev) {
+            ev.preventDefault();
+            cfg.clicks = (cfg.clicks || 0) + 1;
+            cfg.current = b.getAttribute('data-scale');
+            applyAll();
+          });
+        }
       });
     }
 
@@ -105,6 +114,7 @@
     if (debugEl) {
       debugEl.textContent =
         'scale: ' + cfg.current +
+        ' · clicks: ' + (cfg.clicks || 0) +
         ' · matched ' + matched + '/' + bases.length + ' sizes' +
         ' · sizes: [' + bases.join(', ') + ']' +
         ' · table base values: [' + Object.keys(cfg.map).join(', ') + ']';
