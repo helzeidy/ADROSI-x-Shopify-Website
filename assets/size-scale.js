@@ -100,11 +100,12 @@
     Array.prototype.forEach.call(els, function (el) {
       Array.prototype.forEach.call(el.querySelectorAll('[data-scale]'), function (b) {
         var idx = parseInt(b.getAttribute('data-scale-index'), 10);
+        // Restore the selected radio (the theme fills the checked box).
+        if (b.checked !== (idx === cfg.current)) b.checked = idx === cfg.current;
         b.classList.toggle('is-active', idx === cfg.current);
         if (!b.getAttribute('data-scale-bound')) {
           b.setAttribute('data-scale-bound', '1');
-          b.addEventListener('click', function (ev) {
-            ev.preventDefault();
+          b.addEventListener('change', function () {
             cfg.clicks = (cfg.clicks || 0) + 1;
             cfg.current = parseInt(b.getAttribute('data-scale-index'), 10) || 0;
             applyAll();

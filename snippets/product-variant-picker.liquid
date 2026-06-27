@@ -199,6 +199,12 @@
 {%- unless product.has_only_default_variant -%}
   <div class="product__block{% if settings.show_lines %} product__block--lines{% endif %} product__form__holder block-padding">
     <div class="product__form__outer{{ hide_labels_class }}">
+      {%- if block.settings.enable_size_scale and has_size_option -%}
+        {{ 'size-scale.css' | asset_url | stylesheet_tag }}
+        <script src="{{ 'size-scale.js' | asset_url }}" defer></script>
+        {%- render 'size-scale', block: block, product_form_id: product_form_id -%}
+      {%- endif -%}
+
       <variant-selects
         id="variant-selects-{{ section.id }}"
         data-section="{{ section.id }}"

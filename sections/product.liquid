@@ -297,6 +297,82 @@
         },
         {
           "type": "header",
+          "content": "Size scale"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_size_scale",
+          "label": "Show a Scale selector above the size options",
+          "default": false,
+          "info": "Lets customers view the size in US / UK / EU / JP / KR. The variant stays your base scale (US); only the labels change."
+        },
+        {
+          "type": "text",
+          "id": "size_option_name",
+          "label": "Size option name",
+          "default": "Size",
+          "visible_if": "{{ block.settings.enable_size_scale }}"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Scale label",
+          "default": "Scale",
+          "visible_if": "{{ block.settings.enable_size_scale }}"
+        },
+        {
+          "type": "text",
+          "id": "scales",
+          "label": "Scales",
+          "default": "US, UK, EU, JP, KR",
+          "info": "Comma-separated; the FIRST is your base (the actual variant values).",
+          "visible_if": "{{ block.settings.enable_size_scale }}"
+        },
+        {
+          "type": "text",
+          "id": "default_scale",
+          "label": "Default scale shown",
+          "default": "US",
+          "visible_if": "{{ block.settings.enable_size_scale }}"
+        },
+        {
+          "type": "textarea",
+          "id": "conversion_table",
+          "label": "Conversion table",
+          "default": "US, UK, EU, JP, KR\n5, 4.5, 37.5, 23, 235\n5.5, 5, 38, 23.5, 235\n6, 5.5, 38.5, 24, 240\n6.5, 6, 39, 24.5, 245\n7, 6.5, 40, 25, 250\n7.5, 7, 40.5, 25.5, 255\n8, 7.5, 41, 26, 260\n8.5, 8, 42, 26.5, 265\n9, 8.5, 42.5, 27, 270\n9.5, 9, 43, 27.5, 275\n10, 9.5, 44, 28, 280\n10.5, 10, 44.5, 28.5, 285\n11, 10.5, 45, 29, 290\n11.5, 11, 45.5, 29.5, 295\n12, 11.5, 46, 30, 300\n12.5, 12, 47, 30.5, 305\n13, 12.5, 47.5, 31, 310\n13.5, 13, 48, 31.5, 315\n14, 13.5, 48.5, 32, 320\n14.5, 14, 49, 32.5, 325\n15, 14.5, 49.5, 33, 330\n15.5, 15, 50, 33.5, 335\n16, 15.5, 50.5, 34, 340\n16.5, 16, 51, 34.5, 345\n17, 16.5, 51.5, 35, 350",
+          "info": "One row per base size, columns in the same order as Scales. First row can be a header. Men's values — verify against your chart.",
+          "visible_if": "{{ block.settings.enable_size_scale }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "record_on_order",
+          "label": "Save the chosen scale & size to the cart/order",
+          "default": true,
+          "visible_if": "{{ block.settings.enable_size_scale }}"
+        },
+        {
+          "type": "text",
+          "id": "scale_property_name",
+          "label": "Scale property name",
+          "default": "Scale",
+          "visible_if": "{{ block.settings.enable_size_scale and block.settings.record_on_order }}"
+        },
+        {
+          "type": "text",
+          "id": "size_property_name",
+          "label": "Size property name",
+          "default": "Size",
+          "visible_if": "{{ block.settings.enable_size_scale and block.settings.record_on_order }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_debug",
+          "label": "Show scale debug info",
+          "default": false,
+          "visible_if": "{{ block.settings.enable_size_scale }}"
+        },
+        {
+          "type": "header",
           "content": "Padding"
         },
         {

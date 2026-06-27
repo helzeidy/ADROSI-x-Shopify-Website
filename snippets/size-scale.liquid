@@ -1,13 +1,13 @@
 {% comment %}
-  Size scale converter.
+  Size scale converter (the "Scale" selector).
 
-  Renders a persistent "Scale" selector (US / UK / EU / JP / KR …). The selector
-  is server-rendered (not injected by JS) so it never flickers when the theme
-  re-renders the size options on variant change. assets/size-scale.js relabels
-  the size buttons to the chosen scale and records the choice.
+  Rendered both by the Variant picker block (recommended, so it stays attached
+  to the Size option) and by the standalone "Size scale converter" block. The
+  options reuse the theme's .radio__button / .option-title markup so they look
+  exactly like the size boxes (border + fill when selected).
 
-  Place this block directly ABOVE the Variant picker block so the Scale row sits
-  above the Size options.
+  assets/size-scale.js relabels the size buttons to the chosen scale by COLUMN
+  INDEX and records the choice. Display-only: the variant added to cart stays US.
 
   Accepts:
   - block, product_form_id.
@@ -20,10 +20,11 @@
   assign base_scale = scales_raw | split: ',' | first | strip
   assign default_scale = block.settings.default_scale | default: base_scale
   assign scales_list = scales_raw | split: ','
+  assign uid = section.id | append: '-' | append: block.id
 -%}
 
 <div
-  class="size-scale"
+  class="selector-wrapper size-scale__wrapper"
   data-size-scale
   data-block-id="{{ block.id }}"
   data-size-option-name="{{ size_option_name | escape }}"
@@ -37,41 +38,43 @@
     data-scale-prop="{{ block.settings.scale_property_name | default: 'Scale' | escape }}"
     data-size-prop="{{ block.settings.size_property_name | default: 'Size' | escape }}"
   {% endif %}
-  {{ block.shopify_attributes }}
 >
-  <div class="selector-wrapper size-scale__wrapper">
-    <fieldset class="product-form__input">
-      <div class="radio__fieldset">
-        <legend class="radio__legend">
-          <span class="radio__legend__option-name">{{ heading | escape_once }}</span>
-        </legend>
+  <fieldset class="product-form__input">
+    <div class="radio__fieldset">
+      <legend class="radio__legend">
+        <span class="radio__legend__option-name">{{ heading | escape_once }}</span>
+      </legend>
 
-        <div class="size-scale__options">
-          {%- for sc in scales_list -%}
-            {%- assign sc = sc | strip -%}
-            {%- if sc != blank -%}
-              <button
-                type="button"
-                class="size-scale__btn{% if sc == default_scale %} is-active{% endif %}"
-                data-scale="{{ sc | escape }}"
+      <div class="radio__buttons">
+        {%- for sc in scales_list -%}
+          {%- assign sc = sc | strip -%}
+          {%- if sc != blank -%}
+            {%- assign opt_id = 'scale-' | append: uid | append: '-' | append: forloop.index0 -%}
+            <span class="radio__button">
+              <input
+                type="radio"
+                id="{{ opt_id }}"
+                name="size-scale-{{ uid }}"
+                data-scale
                 data-scale-index="{{ forloop.index0 }}"
+                {% if sc == default_scale %}checked{% endif %}
               >
-                {{- sc | escape_once -}}
-              </button>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
+              <label for="{{ opt_id }}">
+                <span class="option-title">{{ sc | escape_once }}</span>
+              </label>
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
-    </fieldset>
-  </div>
+    </div>
+  </fieldset>
 
   <script type="text/plain" data-scale-table>{{ block.settings.conversion_table | escape }}</script>
 
   {%- if block.settings.show_debug -%}
-    <div class="product-addon__debug" style="margin-top: 12px">
-      <strong>Scale debug</strong> — turn off in this block's settings when done.<br>
-      Base scale: {{ base_scale }} · Scales: {{ scales_raw }}<br>
-      Size option name: "{{ size_option_name }}"<br>
+    <div class="product-addon__debug" style="margin-top: 10px">
+      <strong>Scale debug</strong> — turn off when done.<br>
+      Base: {{ base_scale }} · Scales: {{ scales_raw }} · Size option: "{{ size_option_name }}"<br>
       <span data-scale-debug>JS not loaded…</span>
     </div>
   {%- endif -%}
