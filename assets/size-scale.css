@@ -8,6 +8,11 @@
    no custom option styling is needed — they match the size buttons (border +
    fill when selected) automatically. */
 
+/* Gap between the scale buttons and the next option (the Size label). */
+.size-scale__wrapper {
+  margin-bottom: 24px;
+}
+
 .size-scale .product-addon__debug {
   padding: 10px 12px;
   border-radius: 6px;
