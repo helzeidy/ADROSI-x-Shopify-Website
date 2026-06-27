@@ -71,8 +71,9 @@
             {%- for val in width_values -%}
               {%- liquid
                 assign opt_id = 'width-' | append: uid | append: '-' | append: forloop.index0
+                assign val_norm = val | strip | downcase
                 assign is_paid = false
-                if paid_norm != '' and val | strip | downcase == paid_norm
+                if paid_norm != '' and val_norm == paid_norm
                   assign is_paid = true
                 endif
               -%}
