@@ -1,0 +1,104 @@
+{% comment %}
+  Width selector.
+
+  Renders the values of a list metafield (default custom.width_values) as
+  buttons on the product page, styled like the theme's size buttons. The chosen
+  value is submitted as a line item property (default "Width"), so it appears in
+  the cart and order.
+
+  Optional pricing: one value (e.g. "Wide (EEE)") can carry an upcharge. When it
+  is selected, a hidden charge product is bundled into the cart via the add-on
+  engine (assets/product-addons.js). The other values stay free.
+
+  Accepts:
+  - product, block, block_style, product_form_id.
+{% endcomment %}
+
+{%- liquid
+  assign mf_key = block.settings.metafield_key | default: 'custom.width_values'
+  assign parts = mf_key | split: '.'
+  assign ns = parts[0]
+  assign key = parts[1]
+  assign width_values = product.metafields[ns][key].value
+
+  assign property_name = block.settings.property_name | default: 'Width'
+  assign heading = block.settings.heading | default: property_name
+  assign paid_value = block.settings.paid_value
+  assign charge_product = block.settings.charge_product
+  assign charge_variant = charge_product.selected_or_first_available_variant | default: charge_product.variants.first
+  assign uid = section.id | append: '-' | append: block.id
+
+  assign has_default = false
+  for val in width_values
+    if val == block.settings.default_value
+      assign has_default = true
+    endif
+  endfor
+  assign resolved_default = block.settings.default_value
+  unless has_default
+    assign resolved_default = width_values.first
+  endunless
+-%}
+
+{%- if width_values.size > 0 -%}
+  <div class="product__block product-width block-padding" {{ block.shopify_attributes }} {{ block_style }}>
+    <div
+      class="selector-wrapper"
+      data-width-selector
+      data-paid-value="{{ paid_value | escape }}"
+      {% if paid_value != blank and charge_variant %}data-charge-toggle="width-charge-{{ uid }}"{% endif %}
+    >
+      <fieldset class="product-form__input">
+        <div class="radio__fieldset">
+          <legend class="radio__legend">
+            <span class="radio__legend__option-name">{{ heading | escape_once }}</span>
+          </legend>
+
+          <div class="radio__buttons">
+            {%- for val in width_values -%}
+              {%- assign opt_id = 'width-' | append: uid | append: '-' | append: forloop.index0 -%}
+              <span class="radio__button">
+                <input
+                  type="radio"
+                  id="{{ opt_id }}"
+                  name="properties[{{ property_name | escape }}]"
+                  value="{{ val | escape }}"
+                  form="{{ product_form_id }}"
+                  data-width-option
+                  {% if val == paid_value %}data-width-paid{% endif %}
+                  {% if val == resolved_default %}checked{% endif %}
+                >
+                <label for="{{ opt_id }}">
+                  <span class="option-title">
+                    {{- val | escape_once -}}
+                    {%- if val == paid_value and charge_variant.price > 0 and block.settings.show_price_on_option -%}
+                      <small class="product-width__upcharge">+{{ charge_variant.price | money }}</small>
+                    {%- endif -%}
+                  </span>
+                </label>
+              </span>
+            {%- endfor -%}
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    {%- if paid_value != blank and charge_variant -%}
+      {%- comment -%} Hidden charge carrier: the add-on engine adds this product when the paid width is selected. {%- endcomment -%}
+      <div class="product-width__charge" style="display: none" aria-hidden="true">
+        <div
+          class="product-addon__card"
+          data-product-addon
+          data-addon-type="toggle"
+          data-product-form-id="{{ product_form_id }}"
+          data-variant-id="{{ charge_variant.id }}"
+          data-addon-title="{{ property_name }}: {{ paid_value | escape }}"
+          data-addon-for-title="{{ product.title | escape }}"
+          data-stamp-main="false"
+        >
+          <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}">
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -690,6 +690,24 @@
                     {%- endunless -%}
                     {%- render 'size-scale', block: block, product_form_id: product_form_id -%}
 
+                  {%- when 'width_selector' -%}
+                    {%- unless addon_assets_enqueued -%}
+                      {{ 'product-addons.css' | asset_url | stylesheet_tag }}
+                      <script src="{{ 'product-addons.js' | asset_url }}" defer></script>
+                      {%- assign addon_assets_enqueued = true -%}
+                    {%- endunless -%}
+                    {%- unless width_selector_assets_enqueued -%}
+                      {{ 'width-selector.css' | asset_url | stylesheet_tag }}
+                      <script src="{{ 'width-selector.js' | asset_url }}" defer></script>
+                      {%- assign width_selector_assets_enqueued = true -%}
+                    {%- endunless -%}
+                    {%- render 'width-selector',
+                      product: product,
+                      block: block,
+                      block_style: block_style,
+                      product_form_id: product_form_id
+                    -%}
+
                   {%- when 'features' -%}
                     {%- liquid
                       assign block_id = block.id

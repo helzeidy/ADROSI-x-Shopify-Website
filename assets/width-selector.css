@@ -1,0 +1,11 @@
+/* ==========================================================================
+   Width selector — buttons reuse the theme's .radio__button styling; this only
+   styles the optional upcharge label.
+   ========================================================================== */
+
+.product-width__upcharge {
+  margin-left: 6px;
+  font-size: 0.75em;
+  opacity: 0.65;
+  white-space: nowrap;
+}

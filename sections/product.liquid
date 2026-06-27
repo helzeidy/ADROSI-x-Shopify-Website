@@ -1579,6 +1579,77 @@
       ]
     },
     {
+      "type": "width_selector",
+      "name": "Width selector",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Shows the values of a list metafield as buttons and records the choice as a line item property (shown in cart and order). Optionally one value can carry an upcharge via a hidden charge product; the others are free."
+        },
+        {
+          "type": "text",
+          "id": "metafield_key",
+          "label": "Metafield",
+          "default": "custom.width_values",
+          "info": "namespace.key of a list (single line text) metafield on the product."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Width"
+        },
+        {
+          "type": "text",
+          "id": "property_name",
+          "label": "Cart property name",
+          "default": "Width"
+        },
+        {
+          "type": "text",
+          "id": "default_value",
+          "label": "Default selected value",
+          "info": "Exact value to preselect. Leave blank to use the first option."
+        },
+        {
+          "type": "header",
+          "content": "Pricing"
+        },
+        {
+          "type": "text",
+          "id": "paid_value",
+          "label": "Paid value",
+          "info": "Exact metafield value that costs extra (e.g. Wide (EEE)). Leave blank if none charge."
+        },
+        {
+          "type": "product",
+          "id": "charge_product",
+          "label": "Charge product (hidden)",
+          "info": "Hidden product priced at the upcharge. Added to the cart when the paid value is selected."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_price_on_option",
+          "label": "Show the upcharge on the option",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Padding"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 16
+        }
+      ]
+    },
+    {
       "type": "size_scale",
       "name": "Size scale converter",
       "settings": [
