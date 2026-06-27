@@ -88,6 +88,20 @@
             "padding_bottom": 16
           }
         },
+        "size_scale_G98wEY": {
+          "type": "size_scale",
+          "settings": {
+            "size_option_name": "Size",
+            "heading": "Scale",
+            "scales": "US, UK, EU, JP, KR",
+            "default_scale": "US",
+            "conversion_table": "US, UK, EU, JP, KR\n5, 4.5, 37.5, 23, 235\n5.5, 5, 38, 23.5, 235\n6, 5.5, 38.5, 24, 240\n6.5, 6, 39, 24.5, 245\n7, 6.5, 40, 25, 250\n7.5, 7, 40.5, 25.5, 255\n8, 7.5, 41, 26, 260\n8.5, 8, 42, 26.5, 265\n9, 8.5, 42.5, 27, 270\n9.5, 9, 43, 27.5, 275\n10, 9.5, 44, 28, 280\n10.5, 10, 44.5, 28.5, 285\n11, 10.5, 45, 29, 290\n11.5, 11, 45.5, 29.5, 295\n12, 11.5, 46, 30, 300\n13, 12.5, 47.5, 31, 310\n14, 13.5, 48.5, 32, 320",
+            "record_on_order": true,
+            "scale_property_name": "Scale",
+            "size_property_name": "Size",
+            "padding_bottom": 16
+          }
+        },
         "variants": {
           "type": "variants",
           "settings": {
@@ -113,7 +127,7 @@
             "text_maxlength": 3,
             "text_uppercase": true,
             "text_required": true,
-            "error_text": "Please add your initials.",
+            "error_text": "Please select the size and the buckle",
             "stamp_on_product": true,
             "show_debug": false,
             "padding_bottom": 16
@@ -202,6 +216,7 @@
         "icon_nWrbgH",
         "icon_Hc4jVe",
         "icon_TmYz4p",
+        "size_scale_G98wEY",
         "variants",
         "addon_mUmDKp",
         "addon_TWP3Lb",
