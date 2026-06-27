@@ -136,10 +136,16 @@
     });
 
     if (debugEl) {
+      var sample = bases[0];
+      var rowKeys = cfg.map[sample] ? Object.keys(cfg.map[sample]).join('/') : '(no row)';
+      var mapped = cfg.map[sample] ? cfg.map[sample][cfg.current] : undefined;
       debugEl.textContent =
         'scale: ' + cfg.current +
         ' · clicks: ' + (cfg.clicks || 0) +
-        ' · matched ' + matched + '/' + bases.length + ' sizes';
+        ' · matched ' + matched + '/' + bases.length +
+        ' · sample ' + sample + '→' + convert(cfg, sample, cfg.current) +
+        ' · row[' + sample + ']=' + rowKeys +
+        ' · ' + sample + '/' + cfg.current + '=' + mapped;
     }
   }
 
