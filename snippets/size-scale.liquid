@@ -39,23 +39,30 @@
   {% endif %}
   {{ block.shopify_attributes }}
 >
-  <div class="size-scale__row">
-    <span class="size-scale__heading">{{ heading | escape_once }}</span>
-    <div class="size-scale__options">
-      {%- for sc in scales_list -%}
-        {%- assign sc = sc | strip -%}
-        {%- if sc != blank -%}
-          <button
-            type="button"
-            class="size-scale__btn{% if sc == default_scale %} is-active{% endif %}"
-            data-scale="{{ sc | escape }}"
-            data-scale-index="{{ forloop.index0 }}"
-          >
-            {{- sc | escape_once -}}
-          </button>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
+  <div class="selector-wrapper size-scale__wrapper">
+    <fieldset class="product-form__input">
+      <div class="radio__fieldset">
+        <legend class="radio__legend">
+          <span class="radio__legend__option-name">{{ heading | escape_once }}</span>
+        </legend>
+
+        <div class="size-scale__options">
+          {%- for sc in scales_list -%}
+            {%- assign sc = sc | strip -%}
+            {%- if sc != blank -%}
+              <button
+                type="button"
+                class="size-scale__btn{% if sc == default_scale %} is-active{% endif %}"
+                data-scale="{{ sc | escape }}"
+                data-scale-index="{{ forloop.index0 }}"
+              >
+                {{- sc | escape_once -}}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </fieldset>
   </div>
 
   <script type="text/plain" data-scale-table>{{ block.settings.conversion_table | escape }}</script>
