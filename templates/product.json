@@ -148,6 +148,7 @@
             "text_required": true,
             "error_text": "Please select the size and the buckle",
             "stamp_on_product": true,
+            "visibility_metafield": "custom.matching_belt",
             "show_debug": false,
             "padding_bottom": 16
           }
@@ -169,6 +170,7 @@
             "text_required": true,
             "error_text": "Please add your initials.",
             "stamp_on_product": true,
+            "visibility_metafield": "custom.custom_initials",
             "show_debug": false,
             "padding_bottom": 16
           }
