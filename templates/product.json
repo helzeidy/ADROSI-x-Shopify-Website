@@ -93,9 +93,14 @@
             "padding_bottom": 16
           }
         },
-        "size_scale_G98wEY": {
-          "type": "size_scale",
+        "variants": {
+          "type": "variants",
           "settings": {
+            "info_page": "design-custom-loafers-blake-stitch",
+            "size_chart_style": "text",
+            "option_font_size": "body-medium",
+            "value_font_size": "body-x-small",
+            "enable_size_scale": true,
             "size_option_name": "Size",
             "heading": "Scale",
             "scales": "US, UK, EU, JP, KR",
@@ -105,16 +110,6 @@
             "scale_property_name": "Scale",
             "size_property_name": "Size",
             "show_debug": false,
-            "padding_bottom": 0
-          }
-        },
-        "variants": {
-          "type": "variants",
-          "settings": {
-            "info_page": "design-custom-loafers-blake-stitch",
-            "size_chart_style": "text",
-            "option_font_size": "body-medium",
-            "value_font_size": "body-x-small",
             "padding_bottom": 16
           }
         },
@@ -242,7 +237,6 @@
         "icon_nWrbgH",
         "icon_Hc4jVe",
         "icon_TmYz4p",
-        "size_scale_G98wEY",
         "variants",
         "width_selector_JXMde6",
         "addon_mUmDKp",
