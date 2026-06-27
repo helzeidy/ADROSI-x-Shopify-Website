@@ -149,16 +149,21 @@
 
     if (debugEl) {
       var sample = bases[0];
-      var rowKeys = cfg.map[sample] ? Object.keys(cfg.map[sample]).join('/') : '(no row)';
-      var mapped = cfg.map[sample] ? cfg.map[sample][cfg.current] : undefined;
+      var row = cfg.map[sample] || {};
+      var keys = Object.keys(row);
+      var codes = function (s) {
+        return Array.prototype.map
+          .call(s || '', function (c) { return c.charCodeAt(0); })
+          .join('.');
+      };
       debugEl.textContent =
         VERSION +
-        ' · scale: ' + cfg.current +
-        ' · clicks: ' + (cfg.clicks || 0) +
-        ' · matched ' + matched + '/' + bases.length +
+        ' · scale=' + cfg.current + ' [' + codes(cfg.current) + ']' +
         ' · sample ' + sample + '→' + convert(cfg, sample, cfg.current) +
-        ' · row[' + sample + ']=' + rowKeys +
-        ' · ' + sample + '/' + cfg.current + '=' + mapped;
+        ' · keys=' + keys.join('/') +
+        ' · key0=' + keys[0] + ' [' + codes(keys[0]) + ']' +
+        ' · base=' + cfg.baseScale + ' [' + codes(cfg.baseScale) + ']' +
+        ' · direct=' + row[cfg.current];
     }
   }
 
