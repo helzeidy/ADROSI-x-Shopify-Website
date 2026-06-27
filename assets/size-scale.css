@@ -46,3 +46,15 @@
   outline: 2px solid var(--btn-primary-bg, #1c1c1c);
   outline-offset: 2px;
 }
+
+.size-scale .product-addon__debug {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fff8e1;
+  border: 1px dashed #e0b400;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #6b5800;
+  word-break: break-word;
+}

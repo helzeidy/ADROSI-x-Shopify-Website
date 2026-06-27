@@ -58,4 +58,13 @@
   </div>
 
   <script type="text/plain" data-scale-table>{{ block.settings.conversion_table | escape }}</script>
+
+  {%- if block.settings.show_debug -%}
+    <div class="product-addon__debug" style="margin-top: 12px">
+      <strong>Scale debug</strong> — turn off in this block's settings when done.<br>
+      Base scale: {{ base_scale }} · Scales: {{ scales_raw }}<br>
+      Size option name: "{{ size_option_name }}"<br>
+      <span data-scale-debug>JS not loaded…</span>
+    </div>
+  {%- endif -%}
 </div>

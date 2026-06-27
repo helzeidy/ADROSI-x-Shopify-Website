@@ -85,14 +85,30 @@
       });
     }
 
+    var debugEl = el && el.querySelector('[data-scale-debug]');
     var wrapper = findSizeWrapper(cfg.optionName);
-    if (!wrapper) return;
+    if (!wrapper) {
+      if (debugEl) debugEl.textContent = 'Size option "' + cfg.optionName + '" NOT found on the page.';
+      return;
+    }
 
+    var bases = [];
+    var matched = 0;
     Array.prototype.forEach.call(wrapper.querySelectorAll('.option-title'), function (t) {
       if (!t.dataset.baseValue) t.dataset.baseValue = (t.textContent || '').trim();
+      bases.push(t.dataset.baseValue);
+      if (cfg.map[t.dataset.baseValue]) matched++;
       var converted = convert(cfg, t.dataset.baseValue, cfg.current);
       if (t.textContent !== converted) t.textContent = converted;
     });
+
+    if (debugEl) {
+      debugEl.textContent =
+        'scale: ' + cfg.current +
+        ' · matched ' + matched + '/' + bases.length + ' sizes' +
+        ' · sizes: [' + bases.join(', ') + ']' +
+        ' · table base values: [' + Object.keys(cfg.map).join(', ') + ']';
+    }
 
     var selectedDisplay = wrapper.querySelector('[data-selected-value]');
     if (selectedDisplay) {
@@ -117,10 +133,15 @@
   function schedule() {
     if (scheduled) return;
     scheduled = true;
-    (window.requestAnimationFrame || window.setTimeout)(function () {
+    var run = function () {
       scheduled = false;
       applyAll();
-    }, 0);
+    };
+    if (window.requestAnimationFrame) {
+      window.requestAnimationFrame(run);
+    } else {
+      window.setTimeout(run, 16);
+    }
   }
 
   function setup(el) {
