@@ -31,6 +31,51 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "cart_bar_show_image",
+      "label": "Show product image in cart bar",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "cart_bar_variant_action",
+      "label": "Cart bar button action (products with options)",
+      "default": "add",
+      "info": "For products with size/color options: add the selected variant straight from the bar, or scroll up to the options.",
+      "options": [
+        {"value": "add", "label": "Add to cart"},
+        {"value": "scroll", "label": "Scroll to options"}
+      ]
+    },
+    {
+      "type": "text",
+      "id": "cart_bar_label",
+      "label": "Cart bar button label",
+      "info": "Optional. Overrides the default \"Add to cart\" / \"Configure\" text."
+    },
+    {
+      "type": "select",
+      "id": "cart_bar_button_type",
+      "label": "Cart bar button color",
+      "default": "btn--primary",
+      "options": [
+        {"value": "btn--black", "label": "Black"},
+        {"value": "btn--white", "label": "White"},
+        {"value": "btn--primary", "label": "Primary"},
+        {"value": "btn--secondary", "label": "Secondary"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "cart_bar_button_style",
+      "label": "Cart bar button style",
+      "default": "btn--solid",
+      "options": [
+        {"value": "btn--solid", "label": "Solid"},
+        {"value": "btn--outline", "label": "Outline"}
+      ]
+    },
+    {
       "type": "header",
       "content": "Media",
       "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"

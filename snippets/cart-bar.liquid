@@ -26,6 +26,24 @@
       endif
     endfor
   endfor
+
+  assign bar_button_type = section.settings.cart_bar_button_type | default: 'btn--primary'
+  assign bar_button_style = section.settings.cart_bar_button_style | default: 'btn--solid'
+  assign bar_label = section.settings.cart_bar_label
+  assign bar_variant_action = section.settings.cart_bar_variant_action | default: 'add'
+  assign bar_show_image = section.settings.cart_bar_show_image
+  assign bar_image = current_variant.featured_media.preview_image | default: product.featured_image
+
+  comment
+    Decide whether the cart bar button adds to cart or scrolls to the options.
+    Default-variant products always add; products with options follow the setting.
+  endcomment
+  assign bar_is_add = true
+  unless button_add
+    if bar_variant_action == 'scroll'
+      assign bar_is_add = false
+    endif
+  endunless
 -%}
 
 {%- render 'stylesheet', name: 'cart-bar.css' -%}
@@ -43,6 +61,12 @@
     class="cart-bar__form__wrapper form__wrapper{% if button_add and current_variant.available != true %} variant--soldout{% endif %}{% if settings.show_newsletter %} show-product-notification{% endif %}{% unless any_variant_available %} all-variants--soldout{% endunless %}"
     data-form-wrapper
   >
+    {%- if bar_show_image and bar_image -%}
+      <div class="cart-bar__image">
+        {{ bar_image | image_url: width: 120 | image_tag: widths: '60, 120', sizes: '60px', loading: 'lazy', alt: product.title | escape }}
+      </div>
+    {%- endif -%}
+
     <div class="cart-bar__info">
       <h4 class="cart-bar__product__title">{{ product.title | strip_html }}</h4>
 
@@ -75,23 +99,25 @@
       <div class="cart-bar__submit product__submit product__submit--spb">
         <button
           type="button"
-          class="btn btn--primary btn--outline product__submit__add{% unless button_add %} product__submit__add--default{% endunless %}"
-          {% if button_add %}
+          class="btn {{ bar_button_type }} {{ bar_button_style }} product__submit__add{% unless bar_is_add %} product__submit__add--default{% endunless %}"
+          {% if bar_is_add %}
             data-cart-bar-add-to-cart
           {% elsif any_variant_available %}
             data-cart-bar-scroll
           {% endif %}
-          {% if any_variant_available == false or button_add and current_variant.available != true %}
+          {% if any_variant_available == false or bar_is_add and current_variant.available != true %}
             disabled="disabled"
           {% endif %}
         >
           <span
             class="btn__text"
-            {% if button_add %}
+            {% if bar_is_add %}
               data-add-to-cart-text
             {% endif %}
           >
-            {%- if button_add -%}
+            {%- if bar_label != blank -%}
+              {{ bar_label }}
+            {%- elsif bar_is_add -%}
               {%- assign preorder_check = false -%}
 
               {%- if product.tags contains '_preorder' or product.metafields.theme.preorder.value -%}
@@ -121,7 +147,7 @@
 
           <span class="btn__added">&nbsp;</span>
 
-          {%- unless button_add or any_variant_available == false -%}
+          {%- unless bar_is_add or any_variant_available == false -%}
             {%- render 'icon-nav-arrow-up' -%}
           {%- endunless -%}
         </button>

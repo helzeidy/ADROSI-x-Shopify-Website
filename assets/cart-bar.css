@@ -223,3 +223,21 @@
 .cart-bar__submit {
   margin-right: 0;
 }
+/* Product image thumbnail in the cart bar */
+.cart-bar__image {
+  flex: 0 0 auto;
+  margin-right: 12px;
+}
+.cart-bar__image img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+@media only screen and (max-width: 749px) {
+  .cart-bar__image img {
+    width: 40px;
+    height: 40px;
+  }
+}
