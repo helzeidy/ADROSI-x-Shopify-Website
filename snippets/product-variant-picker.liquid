@@ -273,7 +273,7 @@
                         <div class="radio__legend__values">
                       {%- endif -%}
 
-                      {%- if settings.show_labels -%}
+                      {%- if settings.show_labels and block.settings.hide_selected_value != true -%}
                         <small class="radio__legend__value {{ value_font_size }}" data-option-value data-selected-value>
                           {{- option.selected_value -}}
                         </small>
@@ -340,7 +340,7 @@
                         <div class="radio__legend__values">
                       {%- endif -%}
 
-                      {%- if settings.show_labels -%}
+                      {%- if settings.show_labels and block.settings.hide_selected_value != true -%}
                         <small class="radio__legend__value {{ value_font_size }}" data-option-value data-selected-value>
                           {{- option.selected_value -}}
                         </small>
@@ -394,7 +394,7 @@
                       <div class="radio__legend__values">
                     {%- endif -%}
 
-                    {%- if settings.show_labels -%}
+                    {%- if settings.show_labels and block.settings.hide_selected_value != true -%}
                       <small class="radio__legend__value {{ value_font_size }}" data-option-value data-selected-value>
                         {{- option.selected_value -}}
                       </small>
