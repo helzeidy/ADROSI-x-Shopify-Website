@@ -28,71 +28,6 @@
             "padding_bottom": 16
           }
         },
-        "icon_1": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "icon_name": "icon-email",
-            "icon_size": 20,
-            "icon_color": "#545454",
-            "text": "<p>Title</p>",
-            "text_font_size": "body-medium",
-            "width": "full",
-            "padding_bottom": 16
-          }
-        },
-        "icon_2": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "icon_name": "icon-truck",
-            "icon_size": 20,
-            "icon_color": "#545454",
-            "text": "<p>Title</p>",
-            "text_font_size": "body-medium",
-            "width": "full",
-            "padding_bottom": 16
-          }
-        },
-        "icon_nWrbgH": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "icon_name": "icon-award",
-            "icon_size": 20,
-            "icon_color": "#545454",
-            "text": "<p>Title</p>",
-            "text_font_size": "body-medium",
-            "width": "full",
-            "padding_bottom": 16
-          }
-        },
-        "icon_Hc4jVe": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "icon_name": "icon-donation",
-            "icon_size": 20,
-            "icon_color": "#545454",
-            "text": "<p>Title</p>",
-            "text_font_size": "body-medium",
-            "width": "full",
-            "padding_bottom": 16
-          }
-        },
-        "icon_TmYz4p": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "icon_name": "icon-phone",
-            "icon_size": 20,
-            "icon_color": "#545454",
-            "text": "<p>Title</p>",
-            "text_font_size": "body-medium",
-            "width": "full",
-            "padding_bottom": 16
-          }
-        },
         "variants": {
           "type": "variants",
           "settings": {
@@ -232,11 +167,6 @@
       "block_order": [
         "title",
         "price",
-        "icon_1",
-        "icon_2",
-        "icon_nWrbgH",
-        "icon_Hc4jVe",
-        "icon_TmYz4p",
         "variants",
         "width_selector_JXMde6",
         "addon_mUmDKp",
