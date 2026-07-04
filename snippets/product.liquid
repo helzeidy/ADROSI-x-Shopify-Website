@@ -690,6 +690,34 @@
                     {%- endunless -%}
                     {%- render 'size-scale', block: block, product_form_id: product_form_id -%}
 
+                  {%- when 'customize_link' -%}
+                    {%- liquid
+                      assign target = block.settings.page
+                      assign btn_size = block.settings.button_size
+                      assign btn_style = block.settings.button_style | default: 'btn--solid'
+                      assign btn_type = block.settings.button_type | default: 'btn--primary'
+                      if block.settings.param_value == 'handle'
+                        assign param_val = product.handle
+                      else
+                        assign param_val = product.id
+                      endif
+                      assign sep = '?'
+                      if target.url contains '?'
+                        assign sep = '&'
+                      endif
+                    -%}
+                    {%- if target != blank and product != blank -%}
+                      <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
+                        <a
+                          href="{{ target.url }}{{ sep }}{{ block.settings.param_name | default: 'id' | escape }}={{ param_val | url_encode }}{% if block.settings.also_pass_handle %}&handle={{ product.handle | url_encode }}{% endif %}"
+                          class="btn {{ btn_size }} {{ btn_style }} {{ btn_type }}{% if block.settings.full_width %} btn--full{% endif %}"
+                          {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}
+                        >
+                          <span class="btn__text">{{ block.settings.label | default: 'Customize' | escape }}</span>
+                        </a>
+                      </div>
+                    {%- endif -%}
+
                   {%- when 'width_selector' -%}
                     {%- unless addon_assets_enqueued -%}
                       {{ 'product-addons.css' | asset_url | stylesheet_tag }}
