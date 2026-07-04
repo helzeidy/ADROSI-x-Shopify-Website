@@ -35,7 +35,7 @@
             "size_chart_style": "text",
             "option_font_size": "body-medium",
             "value_font_size": "body-x-small",
-            "hide_selected_value": false,
+            "hide_selected_value": true,
             "enable_size_scale": true,
             "size_option_name": "Size",
             "heading": "Scale",
