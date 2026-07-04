@@ -1738,26 +1738,29 @@
         {
           "type": "text",
           "id": "param_name",
-          "label": "Query parameter name",
-          "default": "id",
-          "info": "The URL key the target page/app reads, e.g. id → ?id=123."
-        },
-        {
-          "type": "select",
-          "id": "param_value",
-          "label": "Value to pass",
-          "default": "id",
-          "options": [
-            {"value": "id", "label": "Product ID"},
-            {"value": "handle", "label": "Product handle"}
-          ]
+          "label": "Parameter name",
+          "default": "o",
+          "info": "The customizer app reads this key, e.g. o → #/?o=<id>."
         },
         {
           "type": "checkbox",
-          "id": "also_pass_handle",
-          "label": "Also append &handle=… ",
+          "id": "use_hash",
+          "label": "Use hash route (#/?)",
           "default": true,
-          "info": "Adds the product handle too, so the page has both regardless of which it needs."
+          "info": "On: builds /pages/customize#/?o=<id> (matches the app). Off: /pages/customize?o=<id>."
+        },
+        {
+          "type": "text",
+          "id": "value_metafield",
+          "label": "Customizer ID metafield",
+          "default": "custom.customize_id",
+          "info": "namespace.key of a product metafield holding the app's customizer id (the UUID after o=). Set it per product. If empty, the button links to the page without a product."
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_if_no_id",
+          "label": "Hide the button if the product has no customizer id",
+          "default": false
         },
         {
           "type": "checkbox",

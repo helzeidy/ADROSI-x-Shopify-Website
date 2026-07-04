@@ -696,26 +696,39 @@
                       assign btn_size = block.settings.button_size
                       assign btn_style = block.settings.button_style | default: 'btn--solid'
                       assign btn_type = block.settings.button_type | default: 'btn--primary'
-                      if block.settings.param_value == 'handle'
-                        assign param_val = product.handle
-                      else
-                        assign param_val = product.id
-                      endif
-                      assign sep = '?'
-                      if target.url contains '?'
-                        assign sep = '&'
+                      assign param_name = block.settings.param_name | default: 'o'
+
+                      assign mf_key = block.settings.value_metafield | default: 'custom.customize_id'
+                      assign mf_parts = mf_key | split: '.'
+                      assign mf_ns = mf_parts[0]
+                      assign mf_field = mf_parts[1]
+                      assign customize_id = product.metafields[mf_ns][mf_field].value
+
+                      assign customize_href = target.url
+                      if customize_id != blank
+                        if block.settings.use_hash
+                          assign customize_href = target.url | append: '#/?' | append: param_name | append: '=' | append: customize_id
+                        else
+                          assign joiner = '?'
+                          if target.url contains '?'
+                            assign joiner = '&'
+                          endif
+                          assign customize_href = target.url | append: joiner | append: param_name | append: '=' | append: customize_id
+                        endif
                       endif
                     -%}
                     {%- if target != blank and product != blank -%}
-                      <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
-                        <a
-                          href="{{ target.url }}{{ sep }}{{ block.settings.param_name | default: 'id' | escape }}={{ param_val | url_encode }}{% if block.settings.also_pass_handle %}&handle={{ product.handle | url_encode }}{% endif %}"
-                          class="btn {{ btn_size }} {{ btn_style }} {{ btn_type }}{% if block.settings.full_width %} btn--full{% endif %}"
-                          {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}
-                        >
-                          <span class="btn__text">{{ block.settings.label | default: 'Customize' | escape }}</span>
-                        </a>
-                      </div>
+                      {%- unless block.settings.hide_if_no_id and customize_id == blank -%}
+                        <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
+                          <a
+                            href="{{ customize_href }}"
+                            class="btn {{ btn_size }} {{ btn_style }} {{ btn_type }}{% if block.settings.full_width %} btn--full{% endif %}"
+                            {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}
+                          >
+                            <span class="btn__text">{{ block.settings.label | default: 'Customize' | escape }}</span>
+                          </a>
+                        </div>
+                      {%- endunless -%}
                     {%- endif -%}
 
                   {%- when 'width_selector' -%}
