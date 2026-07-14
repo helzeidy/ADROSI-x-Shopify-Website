@@ -726,6 +726,7 @@
                       {%- unless block.settings.hide_if_no_id and customize_id == blank -%}
                         <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                           <a
+                            {% if block.settings.element_id != blank %}id="{{ block.settings.element_id | escape }}"{% endif %}
                             href="{{ customize_href }}"
                             class="btn {{ btn_size }} {{ btn_style }} {{ btn_type }}{% if block.settings.full_width %} btn--full{% endif %}"
                             {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}
