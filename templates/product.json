@@ -264,6 +264,18 @@
           "settings": {
             "text": "<p>{{ product.metafields.custom.shoe_last | metafield_tag }}</p>"
           }
+        },
+        "header_fyqYww": {
+          "type": "header",
+          "settings": {
+            "title": "{{ product.metafields.custom.made_in_spain_headline.value }}"
+          }
+        },
+        "text_qxVRKg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.made_in_spain | metafield_tag }}</p>"
+          }
         }
       },
       "block_order": [
@@ -274,7 +286,9 @@
         "header_iX83rD",
         "text_Y6k3RU",
         "header_EeRF3j",
-        "text_PBcFUY"
+        "text_PBcFUY",
+        "header_fyqYww",
+        "text_qxVRKg"
       ],
       "name": "Sidebar",
       "settings": {
