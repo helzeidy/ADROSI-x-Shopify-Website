@@ -214,89 +214,120 @@
         "padding_bottom": 30
       }
     },
-    "section_sidebar_rmdGmr": {
-      "type": "section-sidebar",
+    "tabs_section_naNTMc": {
+      "type": "tabs-section",
       "blocks": {
-        "header_p7pTPn": {
-          "type": "header",
+        "tab_yjGgYx": {
+          "type": "tab",
           "settings": {
-            "title": "{{ product.metafields.custom.material_headline.value }}"
+            "tab_label": "MATERIAL",
+            "layout": "image_overlay",
+            "subheading": "",
+            "heading": "{{ product.metafields.custom.material_headline.value }}",
+            "text": "<p>{{ product.metafields.accordion.leather_type_text | metafield_tag }}</p>",
+            "image": "{{ product.metafields.accordion.leather_type_image.value }}",
+            "video_loop": false,
+            "media_position": "left",
+            "min_height": 500,
+            "overlay_color": "#000000",
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "text_max_width": 560,
+            "vertical_position": "center",
+            "horizontal_position": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
           }
         },
-        "text_reYmCz": {
-          "type": "text",
+        "tab_4LwkdK": {
+          "type": "tab",
           "settings": {
-            "text": "<p>{{ product.metafields.accordion.leather_type_text | metafield_tag }}</p>"
+            "tab_label": "CONSTRUCTION",
+            "layout": "image_overlay",
+            "subheading": "",
+            "heading": "{{ product.metafields.custom.construction_headling.value }}",
+            "text": "<p>{{ product.metafields.accordion._sourcing_material_2nd_text | metafield_tag }}</p>",
+            "image": "{{ product.metafields.accordion._sourcing_material_2nd_image.value }}",
+            "video_loop": false,
+            "media_position": "left",
+            "min_height": 500,
+            "overlay_color": "#000000",
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "text_max_width": 560,
+            "vertical_position": "center",
+            "horizontal_position": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
           }
         },
-        "header_JB8VWG": {
-          "type": "header",
+        "tab_THR7Hx": {
+          "type": "tab",
           "settings": {
-            "title": "{{ product.metafields.custom.construction_headling.value }}"
+            "tab_label": "SOLE",
+            "layout": "media_text",
+            "subheading": "",
+            "heading": "{{ product.metafields.custom.sole_headline.value }}",
+            "text": "<p>{{ product.metafields.accordion._sourcing_material_3rd_text | metafield_tag }}</p>",
+            "image": "{{ product.metafields.accordion._sourcing_material_3rd_image.value }}",
+            "video_loop": false,
+            "media_position": "right",
+            "min_height": 500,
+            "overlay_color": "#000000",
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "text_max_width": 560,
+            "vertical_position": "center",
+            "horizontal_position": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
           }
         },
-        "text_mKUnXM": {
-          "type": "text",
+        "tab_z7nzkV": {
+          "type": "tab",
           "settings": {
-            "text": "<p>{{ product.metafields.accordion._sourcing_material_2nd_text | metafield_tag }}</p>"
-          }
-        },
-        "header_iX83rD": {
-          "type": "header",
-          "settings": {
-            "title": "{{ product.metafields.custom.sole_headline.value }}"
-          }
-        },
-        "text_Y6k3RU": {
-          "type": "text",
-          "settings": {
-            "text": "<p>{{ product.metafields.accordion._sourcing_material_3rd_text | metafield_tag }}</p>"
-          }
-        },
-        "header_EeRF3j": {
-          "type": "header",
-          "settings": {
-            "title": "{{ product.metafields.custom.shoe_last_headline.value }}"
-          }
-        },
-        "text_PBcFUY": {
-          "type": "text",
-          "settings": {
-            "text": "<p>{{ product.metafields.custom.shoe_last | metafield_tag }}</p>"
-          }
-        },
-        "header_fyqYww": {
-          "type": "header",
-          "settings": {
-            "title": "{{ product.metafields.custom.made_in_spain_headline.value }}"
-          }
-        },
-        "text_qxVRKg": {
-          "type": "text",
-          "settings": {
-            "text": "<p>{{ product.metafields.custom.made_in_spain | metafield_tag }}</p>"
+            "tab_label": "SHOE LAST",
+            "layout": "media_text",
+            "subheading": "",
+            "heading": "{{ product.metafields.custom.shoe_last_headline.value }}",
+            "text": "<p>{{ product.metafields.custom.shoe_last | metafield_tag }}</p>",
+            "image": "{{ product.metafields.custom.shoe_last_image.value }}",
+            "video_loop": false,
+            "media_position": "right",
+            "min_height": 500,
+            "overlay_color": "#000000",
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "text_max_width": 560,
+            "vertical_position": "center",
+            "horizontal_position": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
           }
         }
       },
       "block_order": [
-        "header_p7pTPn",
-        "text_reYmCz",
-        "header_JB8VWG",
-        "text_mKUnXM",
-        "header_iX83rD",
-        "text_Y6k3RU",
-        "header_EeRF3j",
-        "text_PBcFUY",
-        "header_fyqYww",
-        "text_qxVRKg"
+        "tab_yjGgYx",
+        "tab_4LwkdK",
+        "tab_THR7Hx",
+        "tab_z7nzkV"
       ],
-      "name": "Sidebar",
+      "name": "Tabs",
       "settings": {
-        "heading_font_size": "heading-small",
-        "width": "wrapper--full-padded",
+        "heading": "",
+        "heading_size": "heading-small",
+        "tab_alignment": "left",
         "color_scheme": "",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "17254558578b312487": {
@@ -395,7 +426,7 @@
   },
   "order": [
     "main",
-    "section_sidebar_rmdGmr",
+    "tabs_section_naNTMc",
     "17254558578b312487",
     "related"
   ]
