@@ -128,8 +128,9 @@
             "label": "Customize",
             "page": "customize",
             "param_name": "id",
-            "param_value": "id",
-            "also_pass_handle": true,
+            "use_hash": true,
+            "value_metafield": "custom.customize_id",
+            "hide_if_no_id": false,
             "open_new_tab": true,
             "button_type": "btn--black",
             "button_style": "btn--outline",
@@ -211,6 +212,64 @@
         "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
         "padding_top": 90,
         "padding_bottom": 30
+      }
+    },
+    "section_sidebar_rmdGmr": {
+      "type": "section-sidebar",
+      "blocks": {
+        "header_p7pTPn": {
+          "type": "header",
+          "settings": {
+            "title": "{{ product.metafields.custom.material_headline.value }}"
+          }
+        },
+        "text_reYmCz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share details about your shipping policies, item returns, or customer service.{{ product.metafields.accordion.leather_type_text | metafield_tag }}</p>"
+          }
+        },
+        "header_4w8MiK": {
+          "type": "header",
+          "settings": {
+            "title": "Discount"
+          }
+        },
+        "accordion_xzeAVN": {
+          "type": "accordion",
+          "settings": {
+            "title": "Can I use more than one discount code?",
+            "content": "<p>Only one discount code can be used per order and cannot be combined with other promotions.</p>"
+          }
+        },
+        "header_DRxia8": {
+          "type": "header",
+          "settings": {
+            "title": "Contact"
+          }
+        },
+        "text_f8t7z6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Still have questions? We're happy to help! Please email us at hi@email.com and we will get back to you within 24 hours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "header_p7pTPn",
+        "text_reYmCz",
+        "header_4w8MiK",
+        "accordion_xzeAVN",
+        "header_DRxia8",
+        "text_f8t7z6"
+      ],
+      "name": "Sidebar",
+      "settings": {
+        "heading_font_size": "heading-small",
+        "width": "wrapper--full-padded",
+        "color_scheme": "",
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "17254558578b312487": {
@@ -309,6 +368,7 @@
   },
   "order": [
     "main",
+    "section_sidebar_rmdGmr",
     "17254558578b312487",
     "related"
   ]
