@@ -58,6 +58,10 @@
             "default_value": "",
             "paid_value": "Wide (EEE)",
             "charge_product": "wide-eee",
+            "paid_value_2": "Wide (EE)",
+            "charge_product_2": "wide-ee",
+            "paid_value_3": "",
+            "charge_product_3": "",
             "show_price_on_option": true,
             "show_debug": false,
             "padding_bottom": 16
