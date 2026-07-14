@@ -324,7 +324,7 @@
       "settings": {
         "heading": "",
         "heading_size": "heading-small",
-        "tab_alignment": "left",
+        "tab_alignment": "center",
         "color_scheme": "",
         "padding_top": 60,
         "padding_bottom": 60
