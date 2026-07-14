@@ -39,12 +39,13 @@
   padding: 0 0 8px;
   border: 0;
   background: none;
+  /* Mirror the theme's Subheadings settings (font, size, spacing, uppercase). */
   font-family: var(--FONT-STACK-SUBHEADING, var(--font-body-family, sans-serif));
   font-weight: var(--FONT-WEIGHT-SUBHEADING, 500);
   font-style: var(--FONT-STYLE-SUBHEADING, normal);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: var(--FONT-SIZE-SUBHEADING-DESKTOP, 18px);
+  letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.1em);
+  text-transform: var(--FONT-UPPERCASE-SUBHEADING, uppercase);
   line-height: 1.2;
   color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
@@ -207,6 +208,9 @@
     margin-right: -20px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .tabs-section__tab {
+    font-size: var(--FONT-SIZE-SUBHEADING-MOBILE, 16px);
   }
   .tabs-section__heading {
     font-size: 1.5rem;
