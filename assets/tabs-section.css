@@ -18,10 +18,10 @@
 .tabs-section__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 28px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  gap: 32px;
   margin-bottom: 32px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 
@@ -36,11 +36,15 @@
 .tabs-section__tab {
   position: relative;
   flex: 0 0 auto;
-  padding: 0 0 14px;
+  padding: 0 0 8px;
   border: 0;
   background: none;
-  font-family: var(--font-heading-family, serif);
-  font-size: 1.05rem;
+  font-family: var(--FONT-STACK-SUBHEADING, var(--font-body-family, sans-serif));
+  font-weight: var(--FONT-WEIGHT-SUBHEADING, 500);
+  font-style: var(--FONT-STYLE-SUBHEADING, normal);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   line-height: 1.2;
   color: rgba(0, 0, 0, 0.4);
   cursor: pointer;
@@ -61,8 +65,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -1px;
-  height: 2px;
+  bottom: 0;
+  height: 1px;
   background: currentColor;
 }
 
@@ -195,8 +199,14 @@
     direction: ltr;
   }
   .tabs-section__nav {
-    gap: 22px;
+    flex-wrap: nowrap;
+    gap: 24px;
     margin-bottom: 24px;
+    /* Bleed to the screen edges so the scroll clips at the viewport. */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .tabs-section__heading {
     font-size: 1.5rem;
