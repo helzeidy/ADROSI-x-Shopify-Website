@@ -1,0 +1,207 @@
+/* ==========================================================================
+   Tabs section
+   ========================================================================== */
+
+.tabs-section__inner {
+  max-width: var(--page-width, 1400px);
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tabs-section__title {
+  font-family: var(--font-heading-family, serif);
+  margin: 0 0 24px;
+}
+
+/* Tab nav ------------------------------------------------------------- */
+.tabs-section__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs-section__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs-section__nav--center {
+  justify-content: center;
+}
+
+.tabs-section__tab {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 0 0 14px;
+  border: 0;
+  background: none;
+  font-family: var(--font-heading-family, serif);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.tabs-section__tab:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.tabs-section__tab.is-active {
+  color: #000;
+}
+
+.tabs-section__tab.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: currentColor;
+}
+
+.tabs-section__tab:focus-visible {
+  outline: 2px solid var(--btn-primary-bg, #1c1c1c);
+  outline-offset: 3px;
+}
+
+/* Panels -------------------------------------------------------------- */
+.tabs-section__panel[hidden] {
+  display: none;
+}
+
+.tabs-section__panel {
+  animation: tabs-fade 0.35s ease;
+}
+
+@keyframes tabs-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Split layout (media + text) ---------------------------------------- */
+.tabs-section__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.tabs-section__split--media-right {
+  direction: rtl;
+}
+
+.tabs-section__split--media-right > * {
+  direction: ltr;
+}
+
+.tabs-section__media img,
+.tabs-section__media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.tabs-section__heading {
+  font-family: var(--font-heading-family, serif);
+  font-size: 1.9rem;
+  line-height: 1.15;
+  margin: 0 0 20px;
+}
+
+.tabs-section__subheading {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.tabs-section__text {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.tabs-section__text > * + * {
+  margin-top: 1em;
+}
+
+.tabs-section__cta {
+  margin-top: 28px;
+}
+
+/* Overlay layout (full image + text on top) -------------------------- */
+.tabs-section__overlay {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  border-radius: 2px;
+  background-size: cover;
+  background-position: center;
+}
+
+.tabs-section__overlay video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.tabs-section__overlay-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.tabs-section__overlay-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-section__overlay-content {
+  width: 100%;
+}
+
+/* Vertical position */
+.tabs-section__overlay-inner.v-top { justify-content: flex-start; }
+.tabs-section__overlay-inner.v-center { justify-content: center; }
+.tabs-section__overlay-inner.v-bottom { justify-content: flex-end; }
+/* Horizontal position */
+.tabs-section__overlay-inner.h-left { align-items: flex-start; text-align: left; }
+.tabs-section__overlay-inner.h-center { align-items: center; text-align: center; }
+.tabs-section__overlay-inner.h-right { align-items: flex-end; text-align: right; }
+
+/* Responsive ---------------------------------------------------------- */
+@media (max-width: 749px) {
+  .tabs-section__split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .tabs-section__split--media-right {
+    direction: ltr;
+  }
+  .tabs-section__nav {
+    gap: 22px;
+    margin-bottom: 24px;
+  }
+  .tabs-section__heading {
+    font-size: 1.5rem;
+  }
+  .tabs-section__overlay-inner {
+    padding: 28px;
+  }
+}
