@@ -3,12 +3,11 @@
 
   Renders the values of a list metafield (default custom.width_values) as
   buttons on the product page, styled like the theme's size buttons. The chosen
-  value is submitted as a line item property (default "Width"), so it appears in
-  the cart and order.
+  value is submitted as a line item property (default "Width").
 
-  Optional pricing: one value (e.g. "Wide (EEE)") can carry an upcharge. When it
-  is selected, a hidden charge product is bundled into the cart via the add-on
-  engine (assets/product-addons.js). The other values stay free.
+  Up to three values can carry an upcharge, each with its own charge product.
+  When such a value is selected, its hidden charge product is bundled into the
+  cart via the add-on engine (assets/product-addons.js). Other values stay free.
 
   Accepts:
   - product, block, block_style, product_form_id.
@@ -23,10 +22,17 @@
 
   assign property_name = block.settings.property_name | default: 'Width'
   assign heading = block.settings.heading | default: property_name
-  assign paid_value = block.settings.paid_value
-  assign charge_product = block.settings.charge_product
-  assign charge_variant = charge_product.selected_or_first_available_variant | default: charge_product.variants.first
   assign uid = section.id | append: '-' | append: block.id
+
+  comment
+    Up to 3 paid mappings: normalized value + its charge variant.
+  endcomment
+  assign paid1 = block.settings.paid_value | strip | downcase
+  assign paid2 = block.settings.paid_value_2 | strip | downcase
+  assign paid3 = block.settings.paid_value_3 | strip | downcase
+  assign cv1 = block.settings.charge_product.selected_or_first_available_variant | default: block.settings.charge_product.variants.first
+  assign cv2 = block.settings.charge_product_2.selected_or_first_available_variant | default: block.settings.charge_product_2.variants.first
+  assign cv3 = block.settings.charge_product_3.selected_or_first_available_variant | default: block.settings.charge_product_3.variants.first
 
   assign has_default = false
   for val in width_values
@@ -38,29 +44,11 @@
   unless has_default
     assign resolved_default = width_values.first
   endunless
-
-  comment
-    Tolerant match (ignore case + surrounding spaces) so the Paid value setting
-    doesn't have to match the metafield value byte-for-byte.
-  endcomment
-  assign paid_norm = paid_value | strip | downcase
-  assign paid_matched = false
-  for val in width_values
-    assign val_norm = val | strip | downcase
-    if paid_norm != '' and val_norm == paid_norm
-      assign paid_matched = true
-    endif
-  endfor
 -%}
 
 {%- if width_values.size > 0 -%}
   <div class="product__block product-width block-padding" {{ block.shopify_attributes }} {{ block_style }}>
-    <div
-      class="selector-wrapper"
-      data-width-selector
-      data-paid-value="{{ paid_value | escape }}"
-      {% if paid_value != blank and charge_variant %}data-charge-toggle="width-charge-{{ uid }}"{% endif %}
-    >
+    <div class="selector-wrapper" data-width-selector>
       <fieldset class="product-form__input">
         <div class="radio__fieldset">
           <legend class="radio__legend">
@@ -73,8 +61,16 @@
                 assign opt_id = 'width-' | append: uid | append: '-' | append: forloop.index0
                 assign val_norm = val | strip | downcase
                 assign is_paid = false
-                if paid_norm != '' and val_norm == paid_norm
+                assign match_variant = nil
+                if paid1 != '' and val_norm == paid1
                   assign is_paid = true
+                  assign match_variant = cv1
+                elsif paid2 != '' and val_norm == paid2
+                  assign is_paid = true
+                  assign match_variant = cv2
+                elsif paid3 != '' and val_norm == paid3
+                  assign is_paid = true
+                  assign match_variant = cv3
                 endif
               -%}
               <span class="radio__button">
@@ -91,8 +87,8 @@
                 <label for="{{ opt_id }}">
                   <span class="option-title">
                     {{- val | escape_once -}}
-                    {%- if is_paid and charge_variant.price > 0 and block.settings.show_price_on_option -%}
-                      <small class="product-width__upcharge">+{{ charge_variant.price | money }}</small>
+                    {%- if is_paid and match_variant.price > 0 and block.settings.show_price_on_option -%}
+                      <small class="product-width__upcharge">+{{ match_variant.price | money }}</small>
                     {%- endif -%}
                   </span>
                 </label>
@@ -103,44 +99,32 @@
       </fieldset>
     </div>
 
-    {%- if paid_value != blank and charge_variant -%}
-      {%- comment -%} Hidden charge carrier: the add-on engine adds this product when the paid width is selected. {%- endcomment -%}
-      <div class="product-width__charge" style="display: none" aria-hidden="true">
-        <div
-          class="product-addon__card"
-          data-product-addon
-          data-addon-type="toggle"
-          data-product-form-id="{{ product_form_id }}"
-          data-variant-id="{{ charge_variant.id }}"
-          data-addon-title="{{ property_name }}: {{ paid_value | escape }}"
-          data-addon-for-title="{{ product.title | escape }}"
-          data-stamp-main="false"
-        >
-          <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}">
+    {%- comment -%} Hidden charge carriers — one per paid width. JS ticks the matching one. {%- endcomment -%}
+    <div class="product-width__charges" style="display: none" aria-hidden="true">
+      {%- if block.settings.paid_value != blank and cv1 -%}
+        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ block.settings.paid_value | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv1.id }}" data-addon-title="{{ property_name }}: {{ block.settings.paid_value | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
+          <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}-1">
         </div>
-      </div>
-    {%- endif -%}
+      {%- endif -%}
+      {%- if block.settings.paid_value_2 != blank and cv2 -%}
+        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ block.settings.paid_value_2 | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv2.id }}" data-addon-title="{{ property_name }}: {{ block.settings.paid_value_2 | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
+          <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}-2">
+        </div>
+      {%- endif -%}
+      {%- if block.settings.paid_value_3 != blank and cv3 -%}
+        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ block.settings.paid_value_3 | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv3.id }}" data-addon-title="{{ property_name }}: {{ block.settings.paid_value_3 | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
+          <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}-3">
+        </div>
+      {%- endif -%}
+    </div>
 
     {%- if block.settings.show_debug -%}
       <div class="product-addon__debug">
         <strong>Width debug</strong> — turn off in this block's settings when done.<br>
         Metafield <code>{{ mf_key }}</code>: {{ width_values.size }} value(s)<br>
-        Paid value setting: "{{ paid_value }}" —
-        {%- if paid_value == blank -%}
-          none set (no width will charge)
-        {%- elsif paid_matched -%}
-          ✓ matches an option
-        {%- else -%}
-          ✗ does NOT match any metafield value (check spelling/spaces)
-        {%- endif -%}
-        <br>
-        Charge product:
-        {%- if charge_variant -%}
-          ✓ variant {{ charge_variant.id }} ({{ charge_variant.price | money }})
-        {%- else -%}
-          ✗ NOT SET or not published to Online Store
-        {%- endif -%}
-        <br>
+        Paid 1: "{{ block.settings.paid_value }}" → {% if cv1 %}✓ {{ cv1.price | money }}{% else %}✗ no product{% endif %}<br>
+        Paid 2: "{{ block.settings.paid_value_2 }}" → {% if cv2 %}✓ {{ cv2.price | money }}{% else %}✗ no product{% endif %}<br>
+        Paid 3: "{{ block.settings.paid_value_3 }}" → {% if cv3 %}✓ {{ cv3.price | money }}{% else %}✗ no product{% endif %}<br>
         Values: {% for val in width_values %}"{{ val }}"{% unless forloop.last %}, {% endunless %}{% endfor %}
       </div>
     {%- endif -%}
