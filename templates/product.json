@@ -323,7 +323,7 @@
       "name": "Tabs",
       "settings": {
         "heading": "",
-        "heading_size": "heading-small",
+        "heading_size": "heading-medium",
         "tab_alignment": "center",
         "color_scheme": "",
         "padding_top": 60,
