@@ -2,6 +2,10 @@
    Tabs section
    ========================================================================== */
 
+.tabs-section {
+  overflow-x: hidden; /* never let the tabs section push the page wider than the viewport */
+}
+
 .tabs-section__inner {
   max-width: var(--page-width, 1400px);
   margin: 0 auto;
@@ -203,11 +207,6 @@
     flex-wrap: nowrap;
     gap: 24px;
     margin-bottom: 24px;
-    /* Bleed to the screen edges so the scroll clips at the viewport. */
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
   }
   .tabs-section__tab {
     font-size: var(--FONT-SIZE-SUBHEADING-MOBILE, 16px);
