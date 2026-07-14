@@ -707,7 +707,12 @@
                       assign customize_href = target.url
                       if customize_id != blank
                         if block.settings.use_hash
-                          assign customize_href = target.url | append: '#/?' | append: param_name | append: '=' | append: customize_id
+                          assign base_url = target.url
+                          assign last_char = base_url | slice: -1
+                          unless last_char == '/'
+                            assign base_url = base_url | append: '/'
+                          endunless
+                          assign customize_href = base_url | append: '#/?' | append: param_name | append: '=' | append: customize_id
                         else
                           assign joiner = '?'
                           if target.url contains '?'
