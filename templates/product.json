@@ -226,42 +226,55 @@
         "text_reYmCz": {
           "type": "text",
           "settings": {
-            "text": "<p>Share details about your shipping policies, item returns, or customer service.{{ product.metafields.accordion.leather_type_text | metafield_tag }}</p>"
+            "text": "<p>{{ product.metafields.accordion.leather_type_text | metafield_tag }}</p>"
           }
         },
-        "header_4w8MiK": {
+        "header_JB8VWG": {
           "type": "header",
           "settings": {
-            "title": "Discount"
+            "title": "{{ product.metafields.custom.construction_headling.value }}"
           }
         },
-        "accordion_xzeAVN": {
-          "type": "accordion",
-          "settings": {
-            "title": "Can I use more than one discount code?",
-            "content": "<p>Only one discount code can be used per order and cannot be combined with other promotions.</p>"
-          }
-        },
-        "header_DRxia8": {
-          "type": "header",
-          "settings": {
-            "title": "Contact"
-          }
-        },
-        "text_f8t7z6": {
+        "text_mKUnXM": {
           "type": "text",
           "settings": {
-            "text": "<p>Still have questions? We're happy to help! Please email us at hi@email.com and we will get back to you within 24 hours.</p>"
+            "text": "<p>{{ product.metafields.accordion._sourcing_material_2nd_text | metafield_tag }}</p>"
+          }
+        },
+        "header_iX83rD": {
+          "type": "header",
+          "settings": {
+            "title": "{{ product.metafields.custom.sole_headline.value }}"
+          }
+        },
+        "text_Y6k3RU": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.accordion._sourcing_material_3rd_text | metafield_tag }}</p>"
+          }
+        },
+        "header_EeRF3j": {
+          "type": "header",
+          "settings": {
+            "title": "{{ product.metafields.custom.shoe_last_headline.value }}"
+          }
+        },
+        "text_PBcFUY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.shoe_last | metafield_tag }}</p>"
           }
         }
       },
       "block_order": [
         "header_p7pTPn",
         "text_reYmCz",
-        "header_4w8MiK",
-        "accordion_xzeAVN",
-        "header_DRxia8",
-        "text_f8t7z6"
+        "header_JB8VWG",
+        "text_mKUnXM",
+        "header_iX83rD",
+        "text_Y6k3RU",
+        "header_EeRF3j",
+        "text_PBcFUY"
       ],
       "name": "Sidebar",
       "settings": {
