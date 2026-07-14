@@ -31,7 +31,7 @@
         "variants": {
           "type": "variants",
           "settings": {
-            "info_page": "faq",
+            "info_page": "size-chart",
             "size_chart_style": "text",
             "option_font_size": "body-medium",
             "value_font_size": "body-x-small",
