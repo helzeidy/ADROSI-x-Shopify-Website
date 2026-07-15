@@ -740,14 +740,23 @@
                             assign base_url = base_url | append: '/'
                           endunless
                         endif
+                        comment
+                          The customizer app always reads o=. Force it (ignore any stale
+                          param_name like "id" saved on the block) unless the merchant set
+                          a non-default parameter explicitly.
+                        endcomment
+                        assign hash_param = param_name
+                        if hash_param == blank or hash_param == 'id'
+                          assign hash_param = 'o'
+                        endif
                         if block.settings.use_hash
-                          assign customize_href = base_url | append: '#/?' | append: param_name | append: '=' | append: customize_id
+                          assign customize_href = base_url | append: '#/?' | append: hash_param | append: '=' | append: customize_id
                         else
                           assign joiner = '?'
                           if base_url contains '?'
                             assign joiner = '&'
                           endif
-                          assign customize_href = base_url | append: joiner | append: param_name | append: '=' | append: customize_id
+                          assign customize_href = base_url | append: joiner | append: hash_param | append: '=' | append: customize_id
                         endif
                       endif
                     -%}
