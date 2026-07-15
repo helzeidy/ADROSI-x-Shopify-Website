@@ -13,16 +13,22 @@
   >
     {%- if template.suffix == 'customize' -%}
       {%- style -%}
-        .template-page-customize iframe {
-          display: block;
-          width: 100vw;
-          max-width: 100vw;
-          height: 90vh;
-          margin-left: calc(50% - 50vw);
-          margin-right: calc(50% - 50vw);
+        /* Override the configurator's own inline styles (needs !important). */
+        .template-page-customize #configurator-container {
+          width: 100vw !important;
+          max-width: 100vw !important;
+          height: 90vh !important;
+          max-height: 90vh !important;
+          margin-left: calc(50% - 50vw) !important;
+          margin-right: calc(50% - 50vw) !important;
+        }
+        .template-page-customize #configurator-container iframe {
+          width: 100% !important;
+          height: 100% !important;
+          max-height: 100% !important;
           border: 0;
         }
-        /* Prevent the 100vw iframe from creating a horizontal scrollbar. */
+        /* Prevent the 100vw width from creating a horizontal scrollbar. */
         .template-page-customize {
           overflow-x: hidden;
         }
