@@ -727,6 +727,15 @@
                           else
                             assign base_url = base_url | append: '?' | append: prehash
                           endif
+                        elsif block.settings.use_hash
+                          comment
+                            No pre-hash query: match the old theme exactly with a trailing slash
+                            before the hash, e.g. /pages/customize/#/?o=<id>.
+                          endcomment
+                          assign lc = base_url | slice: -1
+                          unless lc == '/'
+                            assign base_url = base_url | append: '/'
+                          endunless
                         endif
                         if block.settings.use_hash
                           assign customize_href = base_url | append: '#/?' | append: param_name | append: '=' | append: customize_id
