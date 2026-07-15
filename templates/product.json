@@ -131,10 +131,13 @@
           "settings": {
             "label": "Customize",
             "page": "customize",
+            "id_source": "sku",
             "param_name": "id",
             "use_hash": true,
+            "prehash_query": "pb=0",
             "value_metafield": "custom.customize_id",
             "hide_if_no_id": false,
+            "element_id": "product-customize",
             "open_new_tab": true,
             "button_type": "btn--black",
             "button_style": "btn--outline",
@@ -316,13 +319,38 @@
             "button_type": "btn--primary",
             "button_style": "btn--solid"
           }
+        },
+        "tab_iDE6nc": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Made in Spain",
+            "layout": "media_text",
+            "subheading": "",
+            "heading": "{{ product.metafields.custom.made_in_spain_headline.value }}",
+            "text": "<p>{{ product.metafields.custom.made_in_spain | metafield_tag }}</p>",
+            "image": "{{ product.metafields.custom.made_in_spain_image.value }}",
+            "video_loop": false,
+            "media_position": "right",
+            "min_height": 500,
+            "overlay_color": "#000000",
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "text_max_width": 560,
+            "vertical_position": "center",
+            "horizontal_position": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
         }
       },
       "block_order": [
         "tab_yjGgYx",
         "tab_4LwkdK",
         "tab_THR7Hx",
-        "tab_z7nzkV"
+        "tab_z7nzkV",
+        "tab_iDE6nc"
       ],
       "name": "Tabs",
       "settings": {
