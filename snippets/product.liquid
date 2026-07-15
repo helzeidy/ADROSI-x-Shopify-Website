@@ -717,19 +717,23 @@
 
                       assign customize_href = target.url
                       if customize_id != blank
+                        assign base_url = target.url
+                        assign prehash = block.settings.prehash_query
+                        if prehash != blank
+                          if base_url contains '?'
+                            assign base_url = base_url | append: '&' | append: prehash
+                          else
+                            assign base_url = base_url | append: '?' | append: prehash
+                          endif
+                        endif
                         if block.settings.use_hash
-                          assign base_url = target.url
-                          assign last_char = base_url | slice: -1
-                          unless last_char == '/'
-                            assign base_url = base_url | append: '/'
-                          endunless
                           assign customize_href = base_url | append: '#/?' | append: param_name | append: '=' | append: customize_id
                         else
                           assign joiner = '?'
-                          if target.url contains '?'
+                          if base_url contains '?'
                             assign joiner = '&'
                           endif
-                          assign customize_href = target.url | append: joiner | append: param_name | append: '=' | append: customize_id
+                          assign customize_href = base_url | append: joiner | append: param_name | append: '=' | append: customize_id
                         endif
                       endif
                     -%}

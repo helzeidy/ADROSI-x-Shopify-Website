@@ -1758,7 +1758,14 @@
           "id": "use_hash",
           "label": "Use hash route (#/?)",
           "default": true,
-          "info": "On: builds /pages/customize#/?o=<id> (matches the app). Off: /pages/customize?o=<id>."
+          "info": "On: builds /pages/customize?...#/?o=<id> (matches the app). Off: /pages/customize?o=<id>."
+        },
+        {
+          "type": "text",
+          "id": "prehash_query",
+          "label": "Query before the hash",
+          "default": "pb=0",
+          "info": "Added before the #, e.g. pb=0 → /pages/customize?pb=0#/?o=<id>. Required by the app to open the specific product. Leave blank to omit."
         },
         {
           "type": "text",
