@@ -699,9 +699,7 @@
                       assign param_name = block.settings.param_name | default: 'o'
 
                       assign id_source = block.settings.id_source | default: 'sku_whole'
-                      if id_source == 'sku_whole'
-                        assign customize_id = product.selected_or_first_available_variant.sku
-                      elsif id_source == 'sku_before_dash'
+                      if id_source == 'sku_before_dash'
                         comment
                           Customizer id = the SKU with everything after the last dash removed.
                         endcomment
@@ -709,12 +707,17 @@
                         assign cz_rev = cz_sku | split: '' | reverse | join: ''
                         assign cz_rev = cz_rev | replace_first: '-', '---'
                         assign customize_id = cz_rev | split: '---' | last | split: '' | reverse | join: ''
-                      else
+                      elsif id_source == 'metafield'
                         assign mf_key = block.settings.value_metafield | default: 'custom.customize_id'
                         assign mf_parts = mf_key | split: '.'
                         assign mf_ns = mf_parts[0]
                         assign mf_field = mf_parts[1]
                         assign customize_id = product.metafields[mf_ns][mf_field].value
+                      else
+                        comment
+                          Default / legacy "sku" / "sku_whole": use the whole variant SKU.
+                        endcomment
+                        assign customize_id = product.selected_or_first_available_variant.sku
                       endif
 
                       assign customize_href = target.url
