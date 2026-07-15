@@ -1736,6 +1736,17 @@
           "label": "Target page"
         },
         {
+          "type": "select",
+          "id": "id_source",
+          "label": "Customizer id source",
+          "default": "sku",
+          "options": [
+            {"value": "sku", "label": "Product SKU (before the last dash)"},
+            {"value": "metafield", "label": "Metafield"}
+          ],
+          "info": "SKU: uses the variant SKU up to the last dash (matches the old theme). Metafield: reads the id from a product metafield."
+        },
+        {
           "type": "text",
           "id": "param_name",
           "label": "Parameter name",

@@ -698,11 +698,22 @@
                       assign btn_type = block.settings.button_type | default: 'btn--primary'
                       assign param_name = block.settings.param_name | default: 'o'
 
-                      assign mf_key = block.settings.value_metafield | default: 'custom.customize_id'
-                      assign mf_parts = mf_key | split: '.'
-                      assign mf_ns = mf_parts[0]
-                      assign mf_field = mf_parts[1]
-                      assign customize_id = product.metafields[mf_ns][mf_field].value
+                      assign id_source = block.settings.id_source | default: 'sku'
+                      if id_source == 'sku'
+                        comment
+                          Customizer id = the SKU with everything after the last dash removed.
+                        endcomment
+                        assign cz_sku = product.selected_or_first_available_variant.sku
+                        assign cz_rev = cz_sku | split: '' | reverse | join: ''
+                        assign cz_rev = cz_rev | replace_first: '-', '---'
+                        assign customize_id = cz_rev | split: '---' | last | split: '' | reverse | join: ''
+                      else
+                        assign mf_key = block.settings.value_metafield | default: 'custom.customize_id'
+                        assign mf_parts = mf_key | split: '.'
+                        assign mf_ns = mf_parts[0]
+                        assign mf_field = mf_parts[1]
+                        assign customize_id = product.metafields[mf_ns][mf_field].value
+                      endif
 
                       assign customize_href = target.url
                       if customize_id != blank
