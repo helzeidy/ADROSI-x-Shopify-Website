@@ -698,8 +698,10 @@
                       assign btn_type = block.settings.button_type | default: 'btn--primary'
                       assign param_name = block.settings.param_name | default: 'o'
 
-                      assign id_source = block.settings.id_source | default: 'sku'
-                      if id_source == 'sku'
+                      assign id_source = block.settings.id_source | default: 'sku_whole'
+                      if id_source == 'sku_whole'
+                        assign customize_id = product.selected_or_first_available_variant.sku
+                      elsif id_source == 'sku_before_dash'
                         comment
                           Customizer id = the SKU with everything after the last dash removed.
                         endcomment

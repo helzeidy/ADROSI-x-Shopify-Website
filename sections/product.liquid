@@ -1739,19 +1739,20 @@
           "type": "select",
           "id": "id_source",
           "label": "Customizer id source",
-          "default": "sku",
+          "default": "sku_whole",
           "options": [
-            {"value": "sku", "label": "Product SKU (before the last dash)"},
+            {"value": "sku_whole", "label": "Product SKU (whole)"},
+            {"value": "sku_before_dash", "label": "Product SKU (before the last dash)"},
             {"value": "metafield", "label": "Metafield"}
           ],
-          "info": "SKU: uses the variant SKU up to the last dash (matches the old theme). Metafield: reads the id from a product metafield."
+          "info": "Whole: the full variant SKU (use when the SKU is exactly the UUID). Before last dash: strips a trailing -suffix. Metafield: reads from a product metafield."
         },
         {
           "type": "text",
           "id": "param_name",
           "label": "Parameter name",
           "default": "o",
-          "info": "The customizer app reads this key, e.g. o → #/?o=<id>."
+          "info": "MUST be o for the customizer app (o → #/?o=<id>). If yours shows id, change it to o."
         },
         {
           "type": "checkbox",
