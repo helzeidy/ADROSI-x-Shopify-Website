@@ -89,9 +89,28 @@
   animation: tabs-fade 0.35s ease;
 }
 
+/* Directional slide when moving between tabs (click or swipe). */
+.tabs-section__panel.is-active[data-dir='next'] {
+  animation: tabs-slide-next 0.3s ease;
+}
+
+.tabs-section__panel.is-active[data-dir='prev'] {
+  animation: tabs-slide-prev 0.3s ease;
+}
+
 @keyframes tabs-fade {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tabs-slide-next {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes tabs-slide-prev {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* Split layout (media + text) ---------------------------------------- */
