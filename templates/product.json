@@ -63,7 +63,7 @@
             "paid_value_3": "",
             "charge_product_3": "",
             "show_price_on_option": true,
-            "show_debug": false,
+            "show_debug": true,
             "padding_bottom": 16
           }
         },
@@ -85,7 +85,7 @@
             "error_text": "Please select the size and the buckle",
             "stamp_on_product": true,
             "visibility_metafield": "custom.matching_belt",
-            "show_debug": false,
+            "show_debug": true,
             "padding_bottom": 16
           }
         },
@@ -107,7 +107,7 @@
             "error_text": "Please add your initials.",
             "stamp_on_product": true,
             "visibility_metafield": "custom.custom_initials",
-            "show_debug": false,
+            "show_debug": true,
             "padding_bottom": 16
           }
         },
