@@ -22,7 +22,7 @@
 (function () {
   'use strict';
 
-  var VERSION = 'v11';
+  var VERSION = 'v12';
 
   var SELECTORS = {
     addon: '[data-product-addon]',
@@ -76,10 +76,14 @@
   }
 
   function money(cents) {
+    var out;
     if (window.theme && typeof window.theme.formatMoney === 'function') {
-      return window.theme.formatMoney(cents, window.theme.moneyFormat);
+      out = window.theme.formatMoney(cents, window.theme.moneyFormat);
+    } else {
+      out = '$' + (cents / 100).toFixed(2);
     }
-    return '$' + (cents / 100).toFixed(2);
+    // Currency apps can inject HTML into the money format; we render as text.
+    return String(out).replace(/<[^>]*>/g, '');
   }
 
   /* Wire up a configurable add-on: resolve the chosen variant from the option
@@ -105,7 +109,10 @@
       var match = null;
       if (complete) {
         match = variants.filter(function (v) {
-          return v.options.length === chosen.length && v.options.every(function (o, i) { return o === chosen[i]; });
+          if (v.options.length !== chosen.length) return false;
+          return v.options.every(function (o, i) {
+            return String(o).trim() === String(chosen[i]).trim();
+          });
         })[0];
       }
       if (match) {
@@ -231,9 +238,16 @@
     var addons = allAddons();
     var active = addons.filter(isActive);
 
-    // Validate required text fields first.
+    // Validate required text fields / chosen options first.
     for (var i = 0; i < active.length; i++) {
-      if (!validate(active[i])) return;
+      if (!validate(active[i])) {
+        var blockedTitle = active[i].dataset.addonTitle || 'add-on';
+        debug('✗ blocked by "' + blockedTitle + '" — choose its options / fill its text, or turn it off');
+        if (active[i].scrollIntoView) {
+          active[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
     }
 
     adding = true;
