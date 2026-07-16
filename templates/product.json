@@ -454,12 +454,96 @@
         "padding_top": 30,
         "padding_bottom": 0
       }
+    },
+    "section_text_row_GrpNEb": {
+      "type": "section-text-row",
+      "blocks": {
+        "icon_tjqwxq": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "image": "shopify://shop_images/Spain_d04fe72b-6d5e-4017-9482-9e70ec9ce475.svg",
+            "icon_size": 40,
+            "icon_color": "#545454",
+            "title": "Handcrafted in Spain",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Built on a single bench in Alicante by hands we know by name.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_xzbDbd": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-smile",
+            "image": "shopify://shop_images/Size_3987de2c-d7c3-4360-a8eb-09d10a85b1ce.svg",
+            "icon_size": 40,
+            "icon_color": "#461214",
+            "title": "BIG & WIDE Sizes Available",
+            "heading_font_size": "heading-medium",
+            "text": "<p>We cater to all sizes and widths, from 5 to 17 US, including half and wide sizes.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_iDrB4B": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "image": "shopify://shop_images/Remake_57998cbf-1b2f-4d5c-b8c4-301065559b7c.svg",
+            "icon_size": 40,
+            "icon_color": "#545454",
+            "title": "Free remake guarantee",
+            "heading_font_size": "heading-medium",
+            "text": "<p>If the fit isn't right, we make it again — on us.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_YNxaBb": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "image": "shopify://shop_images/World_cf991536-aa1f-4797-849e-ec8d393f4b37.svg",
+            "icon_size": 40,
+            "icon_color": "#545454",
+            "title": "Worldwide shipping",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Free, insured, tracked. Anywhere we can reach a doorstep.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "icon_tjqwxq",
+        "icon_xzbDbd",
+        "icon_iDrB4B",
+        "icon_YNxaBb"
+      ],
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-medium",
+        "align_heading": "text-left",
+        "align_text": "text-left",
+        "icon_alignment": "icon--top",
+        "width": "wrapper--full-padded",
+        "align_columns": "flex-align-top",
+        "layout": "grid",
+        "grid": 4,
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "padding_top": 70,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
     }
   },
   "order": [
     "main",
     "tabs_section_naNTMc",
     "17254558578b312487",
-    "related"
+    "related",
+    "section_text_row_GrpNEb"
   ]
 }
