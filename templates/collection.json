@@ -29,8 +29,8 @@
     "subcollections": {
       "type": "subcollections",
       "settings": {
-        "subcollection_layout": "grid",
-        "subcollection_description": false,
+        "subcollection_layout": "slider",
+        "subcollection_description": true,
         "select_image": "collection",
         "color_scheme": "",
         "color": "#ffffff",
