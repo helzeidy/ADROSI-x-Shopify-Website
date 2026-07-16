@@ -44,7 +44,7 @@
       "settings": {
         "enable_sort": true,
         "enable_filters": true,
-        "filter_layout": "inline-open",
+        "filter_layout": "slide-out",
         "default_open": true,
         "collection_linklist": "",
         "grid": 4,
