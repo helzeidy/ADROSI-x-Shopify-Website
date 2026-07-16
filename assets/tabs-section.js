@@ -1,21 +1,35 @@
 /* ==========================================================================
-   Tabs section — horizontal tabs on top, swapping content beneath.
-   Delegated + keyboard accessible. On touch devices the content can be swiped
-   left/right like a carousel to move between tabs.
+   Tabs section — horizontal tabs on top, content beneath.
+
+   Desktop: classic tabs (one panel shown at a time, directional animation).
+   Mobile:  the panels form a real swipeable carousel (scroll-snap) — the
+            content follows the finger, snaps to a panel, and the active tab
+            syncs both ways (tap a tab to slide there, swipe to update tabs).
    ========================================================================== */
 (function () {
   'use strict';
 
-  function activate(root, index) {
-    var tabs = root.querySelectorAll('[data-tab-btn]');
-    var panels = root.querySelectorAll('[data-tab-panel]');
-    var prev = parseInt(root.dataset.activeIndex || '0', 10);
-    var dir = '';
-    if (index > prev) dir = 'next';
-    if (index < prev) dir = 'prev';
-    root.dataset.activeIndex = index;
+  var MOBILE = window.matchMedia('(max-width: 749px)');
 
-    Array.prototype.forEach.call(tabs, function (t) {
+  function tabsOf(root) {
+    return root.querySelectorAll('[data-tab-btn]');
+  }
+
+  function panelsOf(root) {
+    return root.querySelectorAll('[data-tab-panel]');
+  }
+
+  function wrapOf(root) {
+    return root.querySelector('.tabs-section__panels');
+  }
+
+  function isCarousel() {
+    return MOBILE.matches;
+  }
+
+  /* Highlight a tab + keep it visible in the nav. */
+  function setTabActive(root, index) {
+    Array.prototype.forEach.call(tabsOf(root), function (t) {
       var on = parseInt(t.getAttribute('data-tab-btn'), 10) === index;
       t.classList.toggle('is-active', on);
       t.setAttribute('aria-selected', on ? 'true' : 'false');
@@ -28,8 +42,29 @@
         }
       }
     });
+    root.dataset.activeIndex = index;
+  }
 
-    Array.prototype.forEach.call(panels, function (p) {
+  function activate(root, index) {
+    var prev = parseInt(root.dataset.activeIndex || '0', 10);
+    setTabActive(root, index);
+
+    var wrap = wrapOf(root);
+    if (isCarousel() && wrap) {
+      var target = wrap.clientWidth * index;
+      if (wrap.scrollTo) {
+        wrap.scrollTo({ left: target, behavior: 'smooth' });
+      } else {
+        wrap.scrollLeft = target;
+      }
+      return;
+    }
+
+    var dir = '';
+    if (index > prev) dir = 'next';
+    if (index < prev) dir = 'prev';
+
+    Array.prototype.forEach.call(panelsOf(root), function (p) {
       var on = parseInt(p.getAttribute('data-tab-panel'), 10) === index;
       p.classList.toggle('is-active', on);
       p.hidden = !on;
@@ -43,11 +78,32 @@
     });
   }
 
+  /* Apply the current mode: carousel (all panels visible, snap) or tabs. */
+  function applyMode(root) {
+    var wrap = wrapOf(root);
+    var index = parseInt(root.dataset.activeIndex || '0', 10);
+
+    if (isCarousel()) {
+      Array.prototype.forEach.call(panelsOf(root), function (p) {
+        p.hidden = false;
+        p.removeAttribute('data-dir');
+      });
+      if (wrap) wrap.scrollLeft = wrap.clientWidth * index;
+    } else {
+      Array.prototype.forEach.call(panelsOf(root), function (p) {
+        var on = parseInt(p.getAttribute('data-tab-panel'), 10) === index;
+        p.classList.toggle('is-active', on);
+        p.hidden = !on;
+      });
+      if (wrap) wrap.scrollLeft = 0;
+    }
+  }
+
   function initRoot(root) {
     if (root.dataset.tabsReady) return;
     root.dataset.tabsReady = 'true';
     root.dataset.activeIndex = root.dataset.activeIndex || '0';
-    var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-tab-btn]'));
+    var tabs = Array.prototype.slice.call(tabsOf(root));
 
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
@@ -69,43 +125,36 @@
       });
     });
 
-    // Carousel-style swipe on the content (mobile/touch).
-    var panelsWrap = root.querySelector('[data-tab-panels]') || root.querySelector('.tabs-section__panels');
-    if (panelsWrap) {
-      var startX = 0;
-      var startY = 0;
-      var tracking = false;
-
-      panelsWrap.addEventListener(
-        'touchstart',
-        function (e) {
-          if (e.touches.length !== 1) return;
-          startX = e.touches[0].clientX;
-          startY = e.touches[0].clientY;
-          tracking = true;
+    // Sync the active tab while the customer swipes the carousel.
+    var wrap = wrapOf(root);
+    if (wrap) {
+      var raf = null;
+      wrap.addEventListener(
+        'scroll',
+        function () {
+          if (!isCarousel() || raf) return;
+          raf = requestAnimationFrame(function () {
+            raf = null;
+            var count = panelsOf(root).length;
+            var idx = Math.round(wrap.scrollLeft / Math.max(wrap.clientWidth, 1));
+            if (idx < 0) idx = 0;
+            if (idx > count - 1) idx = count - 1;
+            if (String(idx) !== root.dataset.activeIndex) setTabActive(root, idx);
+          });
         },
         { passive: true }
       );
+    }
 
-      panelsWrap.addEventListener(
-        'touchend',
-        function (e) {
-          if (!tracking) return;
-          tracking = false;
-          var touch = e.changedTouches[0];
-          var dx = touch.clientX - startX;
-          var dy = touch.clientY - startY;
-          // Require a clearly horizontal swipe so normal page scrolling wins.
-          if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    applyMode(root);
 
-          var current = parseInt(root.dataset.activeIndex || '0', 10);
-          var count = root.querySelectorAll('[data-tab-panel]').length;
-          var next = dx < 0 ? current + 1 : current - 1;
-          if (next < 0 || next >= count) return;
-          activate(root, next);
-        },
-        { passive: true }
-      );
+    var onModeChange = function () {
+      applyMode(root);
+    };
+    if (MOBILE.addEventListener) {
+      MOBILE.addEventListener('change', onModeChange);
+    } else if (MOBILE.addListener) {
+      MOBILE.addListener(onModeChange);
     }
   }
 

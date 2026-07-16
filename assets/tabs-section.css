@@ -230,6 +230,27 @@
   .tabs-section__tab {
     font-size: var(--FONT-SIZE-SUBHEADING-MOBILE, 16px);
   }
+
+  /* True carousel: panels sit side by side and follow the finger. */
+  .tabs-section__panels {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs-section__panels::-webkit-scrollbar {
+    display: none;
+  }
+  .tabs-section__panel,
+  .tabs-section__panel[hidden] {
+    display: block;
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    animation: none !important;
+  }
   .tabs-section__heading {
     font-size: 1.5rem;
   }
