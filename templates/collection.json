@@ -19,6 +19,7 @@
         "show_text_background": false,
         "overlay_type": "disabled",
         "show_image": true,
+        "custom_image": "{{ collection.metafields.custom.collection_main_banner.value }}",
         "banner_layout": "overlay",
         "height": "screen-height-one-third",
         "mobile_height": "screen-height-one-half--mobile",
