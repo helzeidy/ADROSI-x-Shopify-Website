@@ -12,6 +12,12 @@
   assign title = collection.title
   assign description = collection.description
 
+  comment
+    Banner image: use the custom image (connect a metafield dynamic source to it)
+    when set, otherwise fall back to the collection image.
+  endcomment
+  assign banner_image = section.settings.custom_image | default: collection.image
+
   case overlay_type
     when 'opacity'
       assign opacity_overlay = true
@@ -72,11 +78,11 @@
 {%- endcapture -%}
 
 <section
-  class="collection-image-with-title section-padding {{ color_scheme }}{% unless section.settings.show_image and collection.image %} prevent-transparent-header{% endunless %}"
+  class="collection-image-with-title section-padding {{ color_scheme }}{% unless section.settings.show_image and banner_image %} prevent-transparent-header{% endunless %}"
   data-section-id="{{ section.id }}"
   data-section-type="collection-image-with-title"
 >
-  {%- if collection.image and section.settings.show_image -%}
+  {%- if banner_image and section.settings.show_image -%}
     {%- if banner_layout == 'inline' -%}
       <div class="collection__image-inline">
     {%- endif -%}
@@ -93,7 +99,7 @@
 
       <div class="hero__image{% if banner_layout == 'overlay' %} frame__item{% endif %}">
         {%- render 'image-hero',
-          image: collection.image,
+          image: banner_image,
           desktop_height: section.settings.height,
           mobile_height: section.settings.mobile_height,
           loading: 'eager',
@@ -200,6 +206,12 @@
       "id": "show_image",
       "label": "Show collection image",
       "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Image override",
+      "info": "Connect a dynamic source (a collection metafield) here, or pick an image. When set, it replaces the collection image. Leave empty to use the collection image."
     },
     {
       "type": "select",
