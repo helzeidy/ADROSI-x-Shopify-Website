@@ -16,7 +16,7 @@
         "show_description": true,
         "description_max_width": 420,
         "show_breadcrumb": true,
-        "breadcrumb_collection": "",
+        "breadcrumb_collection": "{{ collection.metafields.custom.parent_collections.value }}",
         "flex_align": "align--middle-left",
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "show_text_background": false,
