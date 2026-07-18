@@ -6,6 +6,11 @@
   assign sub_collection_html = ''
   assign sub_collection_counter = 0
   assign sub_collection_limit = 6
+  assign card_style = section.settings.card_style | default: 'overlay'
+  assign is_minimal = false
+  if card_style == 'minimal'
+    assign is_minimal = true
+  endif
 -%}
 
 {%- if linklists[collection.handle].links.size > 0 -%}
@@ -13,6 +18,7 @@
     #Subcollections--{{ section.id }} {
       --PT: {{ section.settings.padding_top }}px;
       --PB: {{ section.settings.padding_bottom }}px;
+      --subcard-max: {{ section.settings.card_max_width | default: 220 }}px;
 
       {%- unless text_color == 'rgba(0,0,0,0)' or text_color == blank -%}
         --text: {{ text_color }};
@@ -22,12 +28,95 @@
         --bg: {{ bg_color }};
       {%- endunless -%}
     }
+
+    {%- if is_minimal -%}
+      /* Minimal card style: square image, centered title below, no overlay. */
+      .subcollections--minimal .grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 28px;
+      }
+      .subcollections--minimal .grid-item.subcollection__item {
+        position: relative;
+        height: auto;
+        flex: 0 0 auto;
+        width: var(--subcard-max, 220px);
+        max-width: var(--subcard-max, 220px);
+        overflow: visible;
+      }
+      .subcollections--minimal .subcollection__inner {
+        height: auto;
+      }
+      .subcollections--minimal .subcollection__link {
+        position: static;
+        display: block;
+        padding: 0;
+        height: auto;
+      }
+      .subcollections--minimal .subcollection__image {
+        position: relative;
+        transform: none;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: background-color 0.2s ease;
+      }
+      .subcollections--minimal .subcollection__link:hover .subcollection__image {
+        transform: none;
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+      .subcollections--minimal .subcollection__image .image-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .subcollections--minimal .subcollection__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .subcollections--minimal .subcollection__text {
+        position: static;
+        padding: 14px 4px 0;
+        text-align: center;
+      }
+      .subcollections--minimal .subcollection__title {
+        margin: 0;
+        font-family: var(--FONT-STACK-SUBHEADING, inherit);
+        font-weight: var(--FONT-WEIGHT-SUBHEADING, 400);
+        font-size: calc(var(--FONT-SIZE-SUBHEADING-DESKTOP, 16px) * 0.85);
+        letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.1em);
+        text-transform: uppercase;
+      }
+      @media (max-width: 749px) {
+        .subcollections--minimal .grid {
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          overflow-x: auto;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+        }
+        .subcollections--minimal .grid::-webkit-scrollbar {
+          display: none;
+        }
+        .subcollections--minimal .grid-item.subcollection__item {
+          width: 160px;
+        }
+        .subcollections--minimal .subcollection__title {
+          font-size: calc(var(--FONT-SIZE-SUBHEADING-MOBILE, 14px) * 0.85);
+        }
+      }
+    {%- endif -%}
   {%- endstyle -%}
 
 {%- render 'stylesheet', name: 'subcollections.css', inline: true -%}
 
   <section
-    class="subcollections collection-{{ collection.handle }} section-padding {{ color_scheme }}"
+    class="subcollections{% if is_minimal %} subcollections--minimal{% endif %} collection-{{ collection.handle }} section-padding {{ color_scheme }}"
     id="Subcollections--{{ section.id }}"
   >
     {%- if sub_collections.size > 0 -%}
@@ -65,7 +154,9 @@
 
                   {%- render 'image' image: image, sizes: sizes, cover: true -%}
                 </div>
-                <div class="image-overlay-bottom"></div>
+                {%- unless is_minimal -%}
+                  <div class="image-overlay-bottom"></div>
+                {%- endunless -%}
                 <div class="subcollection__text">
                   <p class="subcollection__title h4">{{ sub_collection.title }}</p>
                   {%- if sub_collection.description != '' and section.settings.subcollection_description -%}
@@ -142,6 +233,28 @@
         }
       ],
       "default": "grid"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "default": "overlay",
+      "options": [
+        {"value": "overlay", "label": "Title over image (default)"},
+        {"value": "minimal", "label": "Square image, title below"}
+      ],
+      "info": "Square style: centered title under the image, no dark overlay."
+    },
+    {
+      "type": "range",
+      "id": "card_max_width",
+      "min": 120,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Card max width",
+      "default": 220,
+      "visible_if": "{{ section.settings.card_style == 'minimal' }}"
     },
     {
       "type": "checkbox",
