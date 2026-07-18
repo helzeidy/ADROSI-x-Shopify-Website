@@ -49,7 +49,7 @@
         "enable_sort": true,
         "enable_filters": true,
         "filter_layout": "slide-out",
-        "default_open": true,
+        "default_open": false,
         "collection_linklist": "",
         "grid": 4,
         "grid_mobile": "2",
