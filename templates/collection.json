@@ -33,7 +33,7 @@
         "card_style": "minimal",
         "card_max_width": 120,
         "card_gap": 0,
-        "title_size": 14,
+        "title_size": 12,
         "subcollection_description": false,
         "select_image": "collection",
         "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
