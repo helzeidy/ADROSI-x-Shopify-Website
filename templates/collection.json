@@ -85,34 +85,32 @@
             "text_font_size": "body-large",
             "padding_bottom": 16
           }
-        },
-        "buttons_hfWNyi": {
-          "type": "buttons",
-          "settings": {
-            "button_text": "Learn more",
-            "button_url": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "padding_bottom": 16
-          }
         }
       },
       "block_order": [
         "subheading_zpXcQt",
         "heading_xgfk4f",
-        "text_q4pPkW",
-        "buttons_hfWNyi"
+        "text_q4pPkW"
       ],
       "name": "Rich text",
       "settings": {
         "align_text": "text-left",
         "width": "wrapper",
-        "color_scheme": "",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
         "overlay_type": "disabled",
         "padding_top": 100,
         "padding_bottom": 100
+      }
+    },
+    "section_divider_MgkHay": {
+      "type": "section-divider",
+      "name": "Divider",
+      "settings": {
+        "show_line": true,
+        "width": "wrapper--full-padded",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "section_text_row_f3XpCf": {
@@ -204,6 +202,7 @@
     "subcollections",
     "main",
     "section_rich_text_4cXRm9",
+    "section_divider_MgkHay",
     "section_text_row_f3XpCf"
   ]
 }
