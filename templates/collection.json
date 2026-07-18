@@ -141,12 +141,78 @@
         "padding_bottom": 50,
         "heading_tag": "automatic"
       }
+    },
+    "section_custom_content_MGebQf": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image_VLpWRa": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_yWKRV8": {
+          "type": "text",
+          "settings": {
+            "subheading": "{{ collection.title }}",
+            "title": "{{ collection.metafields.custom.rich_text_title.value }}",
+            "heading_font_size": "heading-large",
+            "text": "{{ collection.description }}",
+            "text_font_size": "body-medium",
+            "button_text": "Learn more",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "image_VLpWRa",
+        "text_yWKRV8"
+      ],
+      "name": "Custom section",
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full-padded",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "hero",
     "subcollections",
     "main",
-    "section_text_row_f3XpCf"
+    "section_text_row_f3XpCf",
+    "section_custom_content_MGebQf"
   ]
 }
