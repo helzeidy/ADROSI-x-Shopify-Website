@@ -59,6 +59,62 @@
         "padding_bottom": 0
       }
     },
+    "section_rich_text_4cXRm9": {
+      "type": "section-rich-text",
+      "blocks": {
+        "subheading_zpXcQt": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "{{ collection.title }}",
+            "padding_bottom": 16
+          }
+        },
+        "heading_xgfk4f": {
+          "type": "heading",
+          "settings": {
+            "title": "{{ collection.metafields.custom.rich_text_title.value }}",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_q4pPkW": {
+          "type": "text",
+          "settings": {
+            "text": "{{ collection.metafields.custom.rich_text_content | metafield_tag }}",
+            "text_font_size": "body-large",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_hfWNyi": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Learn more",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "subheading_zpXcQt",
+        "heading_xgfk4f",
+        "text_q4pPkW",
+        "buttons_hfWNyi"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "align_text": "text-left",
+        "width": "wrapper",
+        "color_scheme": "",
+        "overlay_type": "disabled",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
     "section_text_row_f3XpCf": {
       "type": "section-text-row",
       "blocks": {
@@ -141,78 +197,13 @@
         "padding_bottom": 50,
         "heading_tag": "automatic"
       }
-    },
-    "section_custom_content_MGebQf": {
-      "type": "section-custom-content",
-      "blocks": {
-        "image_VLpWRa": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "title": "",
-            "heading_font_size": "heading-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "flex_align": "align--middle-center",
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "",
-            "overlay_type": "disabled",
-            "link_text": "",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "heading_tag": "automatic"
-          }
-        },
-        "text_yWKRV8": {
-          "type": "text",
-          "settings": {
-            "subheading": "{{ collection.title }}",
-            "title": "{{ collection.metafields.custom.rich_text_title.value }}",
-            "heading_font_size": "heading-large",
-            "text": "{{ collection.description }}",
-            "text_font_size": "body-medium",
-            "button_text": "Learn more",
-            "button_url": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_social_links": false,
-            "text_columns": 1,
-            "align_text": "text-left",
-            "bg_color": "",
-            "color": "",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "image_VLpWRa",
-        "text_yWKRV8"
-      ],
-      "name": "Custom section",
-      "settings": {
-        "borders": false,
-        "gutters": false,
-        "width": "wrapper--full-padded",
-        "height": "screen-height-one-half",
-        "mobile_height": "screen-height-one-half--mobile",
-        "reverse_blocks": false,
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
     "hero",
     "subcollections",
     "main",
-    "section_text_row_f3XpCf",
-    "section_custom_content_MGebQf"
+    "section_rich_text_4cXRm9",
+    "section_text_row_f3XpCf"
   ]
 }
