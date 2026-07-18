@@ -30,10 +30,12 @@
       "type": "subcollections",
       "settings": {
         "subcollection_layout": "slider",
+        "card_style": "minimal",
+        "card_max_width": 120,
         "subcollection_description": false,
         "select_image": "collection",
-        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
-        "color": "#ffffff",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "color": "#200E13",
         "bg_color": "",
         "padding_top": 20,
         "padding_bottom": 20
