@@ -45,9 +45,46 @@
 {%- render 'stylesheet', name: 'collection-image-with-title.css' -%}
 
 {%- style -%}
-  .collection-image-with-title {
+  #Collection-banner-{{ section.id }} {
     --PT: {{ section.settings.padding_top }}px;
     --PB: {{ section.settings.padding_bottom }}px;
+  }
+
+  {%- if section.settings.description_max_width > 0 -%}
+    #Collection-banner-{{ section.id }} .hero__description {
+      max-width: {{ section.settings.description_max_width }}px;
+    }
+    #Collection-banner-{{ section.id }} .hero__content__wrapper.text-center .hero__description,
+    #Collection-banner-{{ section.id }} .text-center .hero__description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  {%- endif -%}
+
+  #Collection-banner-{{ section.id }} .hero__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-family: var(--FONT-STACK-SUBHEADING, inherit);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  #Collection-banner-{{ section.id }} .text-center .hero__breadcrumb {
+    justify-content: center;
+  }
+  #Collection-banner-{{ section.id }} .hero__breadcrumb a {
+    color: inherit;
+    opacity: 0.75;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  #Collection-banner-{{ section.id }} .hero__breadcrumb a:hover {
+    opacity: 1;
+  }
+  #Collection-banner-{{ section.id }} .hero__breadcrumb-sep {
+    opacity: 0.5;
   }
 {%- endstyle -%}
 
@@ -55,6 +92,20 @@
   {%- if show_title or show_description -%}
     <div class="hero__content__wrapper{% if show_header_backdrop %} backdrop--linear{% endif %} {{ section.settings.flex_align }}{% if banner_layout == 'overlay' %} frame__item{% endif %}">
       <div class="hero__content{% if text_underlay %} backdrop--radial{% endif %}{% if hero_transparent %} hero__content--transparent{% endif %}">
+        {%- if section.settings.show_breadcrumb -%}
+          {%- assign breadcrumb_parent = section.settings.breadcrumb_collection -%}
+          <nav class="hero__breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</a>
+            {%- if breadcrumb_parent != blank and breadcrumb_parent.url != blank -%}
+              <span class="hero__breadcrumb-sep" aria-hidden="true">|</span>
+              <a href="{{ breadcrumb_parent.url }}">{{ breadcrumb_parent.title }}</a>
+            {%- elsif collection.url != blank -%}
+              <span class="hero__breadcrumb-sep" aria-hidden="true">|</span>
+              <a href="{{ collection.url }}">{{ collection.title }}</a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
+
         {%- if show_title -%}
           <h1 class="hero__title h3">
             {{ title }}
@@ -78,6 +129,7 @@
 {%- endcapture -%}
 
 <section
+  id="Collection-banner-{{ section.id }}"
   class="collection-image-with-title section-padding {{ color_scheme }}{% unless section.settings.show_image and banner_image %} prevent-transparent-header{% endunless %}"
   data-section-id="{{ section.id }}"
   data-section-type="collection-image-with-title"
@@ -154,6 +206,34 @@
       "id": "show_description",
       "label": "Show collection description",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "description_max_width",
+      "min": 0,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Description max width",
+      "default": 0,
+      "info": "0 = full width."
+    },
+    {
+      "type": "header",
+      "content": "Breadcrumb"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show breadcrumb (Home | …)",
+      "default": false
+    },
+    {
+      "type": "collection",
+      "id": "breadcrumb_collection",
+      "label": "Back to collection",
+      "info": "The parent collection the breadcrumb links back to (e.g. Men). If empty, links to the current collection.",
+      "visible_if": "{{ section.settings.show_breadcrumb }}"
     },
     {
       "type": "select",
