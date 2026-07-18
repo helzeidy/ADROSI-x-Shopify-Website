@@ -19,6 +19,8 @@
       --PT: {{ section.settings.padding_top }}px;
       --PB: {{ section.settings.padding_bottom }}px;
       --subcard-max: {{ section.settings.card_max_width | default: 220 }}px;
+      --subcard-gap: {{ section.settings.card_gap | default: 28 }}px;
+      --subcard-title-size: {{ section.settings.title_size | default: 14 }}px;
 
       {%- unless text_color == 'rgba(0,0,0,0)' or text_color == blank -%}
         --text: {{ text_color }};
@@ -35,7 +37,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 28px;
+        gap: var(--subcard-gap, 28px);
       }
       .subcollections--minimal .grid-item.subcollection__item {
         position: relative;
@@ -88,7 +90,7 @@
         margin: 0;
         font-family: var(--FONT-STACK-SUBHEADING, inherit);
         font-weight: var(--FONT-WEIGHT-SUBHEADING, 400);
-        font-size: calc(var(--FONT-SIZE-SUBHEADING-DESKTOP, 16px) * 0.85);
+        font-size: var(--subcard-title-size, 14px);
         letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.1em);
         text-transform: uppercase;
       }
@@ -105,9 +107,6 @@
         }
         .subcollections--minimal .grid-item.subcollection__item {
           width: 160px;
-        }
-        .subcollections--minimal .subcollection__title {
-          font-size: calc(var(--FONT-SIZE-SUBHEADING-MOBILE, 14px) * 0.85);
         }
       }
     {%- endif -%}
@@ -254,6 +253,28 @@
       "unit": "px",
       "label": "Card max width",
       "default": 220,
+      "visible_if": "{{ section.settings.card_style == 'minimal' }}"
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 28,
+      "visible_if": "{{ section.settings.card_style == 'minimal' }}"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 8,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Title text size",
+      "default": 14,
       "visible_if": "{{ section.settings.card_style == 'minimal' }}"
     },
     {
