@@ -1,1 +1,834 @@
-{"sections":{"section_slideshow_yADrDe":{"type":"section-slideshow","blocks":{"image_bazccn":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/ADORSI-IMAGE-2_a992fa6f-4acd-4290-9357-bda626c11aa3.jpg","image_link":"","title":"Made for the man who knows the difference.","heading_font_size":"heading-x-large","description":"Bespoke men's footwear, handcrafted in Spain. Extended sizing from 5 to 17 — in widths Standard (D), Wide (EE), Extra Wide (EEE)","text_font_size":"body-large","first_button_text":"Shop All Products","first_button_link":"shopify:\/\/collections\/all","first_button_type":"btn--secondary","first_button_size":"","first_button_style":"btn--solid","first_button_show_arrow":false,"second_button_text":"","second_button_link":"","second_button_type":"btn--primary","second_button_size":"","second_button_style":"btn--solid","second_button_show_arrow":false,"flex_align_desktop":"align--bottom-left-desktop","mobile_image":"shopify:\/\/shop_images\/ADORSI-IMAGE-2_a992fa6f-4acd-4290-9357-bda626c11aa3.jpg","flex_align_mobile":"align--bottom-left-mobile","show_text_background":false,"bg_color":"","color":"","overlay_type":"disabled","heading_tag":"automatic"}}},"block_order":["image_bazccn"],"name":"Slideshow (Legacy)","settings":{"transition":"slide","show_arrows":true,"autoplay":false,"autoplay_speed":8,"width":"wrapper--full","height":"screen-height-full","content_width":50,"mobile_height":"screen-height-three-quarters--mobile","color_scheme":"scheme-e56b258a-b428-48f9-b1c6-09db0a76b408","padding_top":0,"padding_bottom":0}},"section_rich_text_R37UEc":{"type":"section-rich-text","blocks":{"heading_hBbXwT":{"type":"heading","settings":{"title":"Our Collections","heading_font_size":"heading-large","padding_bottom":16,"heading_tag":"automatic"}},"text_r9VfHf":{"type":"text","settings":{"text":"<p>Every style. Every width. Every occasion.<\/p>","text_font_size":"body-large","padding_bottom":16}},"buttons_tYYAHL":{"type":"buttons","settings":{"button_text":"Shop NOW","button_url":"shopify:\/\/collections","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"padding_bottom":16}}},"block_order":["heading_hBbXwT","text_r9VfHf","buttons_tYYAHL"],"name":"Rich text","settings":{"align_text":"text-left","width":"wrapper--full-padded","color_scheme":"","overlay_type":"disabled","padding_top":100,"padding_bottom":32}},"section_collections_list_Eby3tp":{"type":"section-collections-list","blocks":{"collection_KL9pKE":{"type":"collection","settings":{"collection":"custom-oxford-shoes","collection_image":"{{ block.settings.collection.metafields.custom.collection_main_banner.value }}","title":"{{ block.settings.collection.title }}"}},"collection_GBXgTn":{"type":"collection","settings":{"collection":"custom-loafers","collection_image":"{{ block.settings.collection.metafields.custom.collection_main_banner.value }}","title":"{{ block.settings.collection.title }}"}},"collection_gThUwK":{"type":"collection","settings":{"collection":"designer-loafers","collection_image":"{{ block.settings.collection.metafields.custom.collection_main_banner.value }}","title":"{{ block.settings.collection.title }}"}},"collection_WyKVAN":{"type":"collection","settings":{"collection":"golf-shoes","collection_image":"{{ block.settings.collection.metafields.custom.collection_main_banner.value }}","title":"{{ block.settings.collection.title }}"}},"collection_cibAK9":{"type":"collection","settings":{"collection":"exotic-skin-shoes","collection_image":"{{ block.settings.collection.metafields.custom.collection_main_banner.value }}","title":"{{ block.settings.collection.title }}"}}},"block_order":["collection_KL9pKE","collection_GBXgTn","collection_gThUwK","collection_WyKVAN","collection_cibAK9"],"custom_css":[],"settings":{"title":"","heading_font_size":"heading-large","description":"","text_font_size":"body-medium","button_text":"","button_url":"shopify:\/\/collections","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":true,"aspect_ratio":1.5,"width":"wrapper--full-padded","layout":"slider","grid":3,"layout_mobile":"slider","color_scheme":"scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618","padding_top":0,"padding_bottom":50,"heading_tag":"automatic"}},"section_custom_content_NdQXKa":{"type":"section-custom-content","blocks":{"text_eCWrdk":{"type":"text","settings":{"subheading":"BIG & WIDE","title":"The size range menswear forgets.","heading_font_size":"heading-x-large","text":"","text_font_size":"body-medium","button_text":"","button_url":"","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"show_social_links":false,"text_columns":1,"align_text":"text-left","bg_color":"","color":"","heading_tag":"automatic"}},"text_4gL7MV":{"type":"text","settings":{"subheading":"","title":"","heading_font_size":"heading-large","text":"<p>Most makers stop at 13. We don't. Every ADORSI last is cut in full and half sizes from US 5 through 17, in four widths from standard D to extra-wide EEE — no upcharge, no waiting on a special order.<\/p>","text_font_size":"body-large","button_text":"Learn more","button_url":"","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"show_social_links":false,"text_columns":1,"align_text":"text-left","bg_color":"","color":"","heading_tag":"automatic"}}},"block_order":["text_eCWrdk","text_4gL7MV"],"name":"Custom section","settings":{"borders":false,"gutters":false,"width":"wrapper--full","height":"screen-height-one-half","mobile_height":"screen-height-one-half--mobile","reverse_blocks":false,"color_scheme":"scheme-e56b258a-b428-48f9-b1c6-09db0a76b408","padding_top":100,"padding_bottom":0}},"section_hero_Q7zzN4":{"type":"section-hero","blocks":{"text_7wLwdy":{"type":"text","settings":{"text":"<p>For the man who's spent his life sizing down.<\/p>","text_font_size":"body-x-large","padding_bottom":0}},"heading_cHKFin":{"type":"heading","settings":{"title":"FULL & HALF SIZES 5-17 │ EE & EEE WIDTH","heading_font_size":"heading-x-large","heading_tag":"automatic","padding_bottom":16}},"text_L8dd99":{"type":"text","settings":{"text":"<p>If you've ever bought a shoe a half-size off because the right one didn't exist — this is for you. Every last in our line is graded the full range, on the same bench, by the same hands.<\/p>","text_font_size":"body-large","padding_bottom":8}}},"block_order":["text_7wLwdy","heading_cHKFin","text_L8dd99"],"name":"Image banner","settings":{"image_1":"shopify:\/\/shop_images\/Panels.jpg","link":"","width":"wrapper--full-padded","height":"screen-height-one-third","flex_align_desktop":"align--middle-center-desktop","content_width":60,"mobile_height":"screen-height-three-quarters--mobile","flex_align_mobile":"align--middle-left-mobile","color_scheme":"scheme-e56b258a-b428-48f9-b1c6-09db0a76b408","show_text_background":false,"overlay_type":"disabled","padding_top":0,"padding_bottom":50,"show_placeholder":true}},"section_hero_product_i6KxhK":{"type":"section-hero-product","blocks":{"heading_xcgEEW":{"type":"heading","settings":{"title":"Image banner","heading_font_size":"heading-x-large","heading_tag":"automatic"}},"text_8gx3QR":{"type":"text","settings":{"text":"<p>Tell your brand's story through images.<\/p>","text_font_size":"body-large"}},"button_QtYpAT":{"type":"button","settings":{"link_text":"View products","link":"","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"full_width":false}}},"block_order":["heading_xcgEEW","text_8gx3QR","button_QtYpAT"],"name":"Image with product","settings":{"image_1":"shopify:\/\/shop_images\/Firefly_Gemini_Flash_Enhance_the_gold_metal_hardware_to_look_polished_smooth_and_luxurious._Increase_ref_509694.png","link":"","product":"cognac-calf-leather-horsebit-loafer","description":"","text_font_size":"body-medium","enable_quick_add":true,"color_product_bg":"#F5F2EC","color_product_text":"#212121","width":"wrapper--full","height":"screen-height-three-quarters","mobile_height":"four-fifty-height-hero--mobile","flex_align_mobile":"align--middle-left-mobile","color_scheme":"scheme-025a5426-514e-4a02-9e15-80cab8125ad9","show_text_background":false,"overlay_type":"disabled","padding_top":0,"padding_bottom":0,"show_placeholder":true}},"section_custom_content_GcCeRY":{"type":"section-custom-content","blocks":{"image_LApcFH":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Firefly_Gemini_Flash_Enhance_the_gold_metal_hardware_to_look_polished_smooth_and_luxurious._Increase_ref_509694.png","title":"","heading_font_size":"heading-large","text":"","text_font_size":"body-medium","flex_align":"align--middle-center","show_text_background":false,"bg_color":"","color":"","overlay_type":"disabled","link_text":"","link":"","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"heading_tag":"automatic"}},"collection_3UC6UV":{"type":"collection","settings":{"collection":"designer-loafers","title":"Shop the look","bg_color":"","color":""}}},"block_order":["image_LApcFH","collection_3UC6UV"],"disabled":true,"name":"Custom section","settings":{"borders":false,"gutters":false,"width":"wrapper--full","height":"image-height","mobile_height":"screen-height-one-half--mobile","reverse_blocks":true,"color_scheme":"scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618","padding_top":0,"padding_bottom":0}},"section_products_image_yWErRm":{"type":"section-products-image","blocks":{"products_WhLen4":{"type":"products","settings":{"product_list":["cognac-calf-leather-horsebit-loafer","black-calf-leather-horsebit-loafer","cognac-calf-web-stripe-leather-loafer","black-calf-web-stripe-leather-loafer-runner-sole"],"layout_mobile":"slider"}},"image_tbbfFR":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/6033_0.png","mobile_height":"screen-height-one-half--mobile","title":"","heading_font_size":"heading-large","text":"","text_font_size":"body-medium","flex_align":"align--middle-center","overlay_type":"disabled","link_text":"","link":"","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"show_text_background":false,"bg_color":"","color":"#ffffff","heading_tag":"automatic"}}},"block_order":["products_WhLen4","image_tbbfFR"],"name":"Products with image","settings":{"width":"wrapper--full","reverse_blocks":true,"color_scheme":"scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618","padding_top":0,"padding_bottom":0}},"section_announcement_R7KWbe":{"type":"section-announcement","blocks":{"text_NQbKDU":{"type":"text","disabled":true,"settings":{"text":"<p>Free worldwide shipping | Free Remake Guarantee | Made to order | Custom Made Shoes | Big and Wide with Half Sizes Available | Handcrafted in Spain |<\/p>","text_font_size":"body-medium","color":"","target_device_enabled":false,"target_device":"mobile"}},"text_cAW6Dd":{"type":"text","settings":{"text":"<p>Free worldwide shipping<\/p>","text_font_size":"body-large","color":"","target_device_enabled":false,"target_device":"mobile"}},"text_Mw7nX4":{"type":"text","settings":{"text":"<p>Free Remake Guarantee<\/p>","text_font_size":"body-large","color":"","target_device_enabled":false,"target_device":"mobile"}},"text_Vy7U4J":{"type":"text","settings":{"text":"<p>Made to order<\/p>","text_font_size":"body-large","color":"","target_device_enabled":false,"target_device":"mobile"}},"text_8VgGW6":{"type":"text","settings":{"text":"<p>Custom Made Shoes<\/p>","text_font_size":"body-large","color":"","target_device_enabled":false,"target_device":"mobile"}},"text_UiqHcV":{"type":"text","settings":{"text":"<p>Big and Wide with Half Sizes Available<\/p>","text_font_size":"body-large","color":"","target_device_enabled":false,"target_device":"mobile"}},"text_GTXMze":{"type":"text","settings":{"text":"<p>Handcrafted in Spain<\/p>","text_font_size":"body-large","color":"","target_device_enabled":false,"target_device":"mobile"}}},"block_order":["text_NQbKDU","text_cAW6Dd","text_Mw7nX4","text_Vy7U4J","text_8VgGW6","text_UiqHcV","text_GTXMze"],"name":"Scrolling text","settings":{"slider_speed":5,"text_alignment":"center","marquee_speed":150,"direction":"ticker-rtl","message_spacing":40,"show_border":false,"layout":"marquee","color_scheme":"scheme-e56b258a-b428-48f9-b1c6-09db0a76b408","padding_top":12,"padding_bottom":12}},"section_reviews_fiwDiK":{"type":"section-reviews","blocks":{"review_GTa8mY":{"type":"review","settings":{"title":"David P.","subheading":"","review_content":"<p>Fantastic shooes in brown ostrich I've had a pair before in black very well made and true to size.<\/p>","featured_image":"shopify:\/\/shop_images\/5288_0_110x110_2x_7b756204-e031-4a32-9ba5-862d09aa9f7e.jpg","review_url":""}},"review_J6nizb":{"type":"review","settings":{"title":"Kip D.","subheading":"","review_content":"<p>LOVE, LOVE, LOVE these shoes! The fit is great and the look amazing. Its so difficult to find this size.<\/p>","featured_image":"shopify:\/\/shop_images\/5632_0_1024x1024_2x_210114c8-b8c7-4d89-a382-865a6c48807a.jpg","review_url":""}},"review_PXf3DD":{"type":"review","settings":{"title":"Aleksandr C.","subheading":"","review_content":"<p>Happy with my purchase from you, will buy again! Communication is great!<\/p>","featured_image":"shopify:\/\/shop_images\/6033_0.png","review_url":""}}},"block_order":["review_GTa8mY","review_J6nizb","review_PXf3DD"],"name":"Testimonials","settings":{"show_featured_image":true,"image_aspect_ratio":1.2,"show_quotation_marks":true,"heading_font_size":"heading-medium","text_align":"text-left","color_scheme":"scheme-e23b9f31-588f-4979-b31d-259015c439c7","card_bg_color":"","padding_top":70,"padding_bottom":70}},"1750856207ec25272b":{"type":"apps","blocks":{"loox_reviews_loox_card_carousel_section_eLVegG":{"type":"shopify:\/\/apps\/loox-reviews\/blocks\/loox-card-carousel-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e","settings":{"maxWidth":1600,"borderRadius":10,"itemsPerView":4,"mobileItemsPerView":1,"maxNumberOfCharacters":100,"imageRatio":"1","reviewerNameColor":"#000000","textColor":"#000000","itemBackgroundColor":"#ffffff","starsColor":"","starsBackgroundColor":"#ffffff","arrows_backgroundColor":"#ffffff","arrows_iconColor":"#9a9a9a","shadow":"offset-light","border_active":false,"border_width":2,"border_color":"#000000","productIds":""}}},"block_order":["loox_reviews_loox_card_carousel_section_eLVegG"],"disabled":true,"custom_css":[],"settings":{"include_margins":true}},"section_rich_text_kHXa9F":{"type":"section-rich-text","blocks":{"subheading_PcVE7h":{"type":"subheading","settings":{"subheading":"Designed for the Journey","padding_bottom":16}},"heading_kfWjEC":{"type":"heading","settings":{"title":"\"Every journey begins with a step, and every step deserves to be in shoes as unique as the person taking them\"","heading_font_size":"heading-large","padding_bottom":16,"heading_tag":"automatic"}},"text_hp78hw":{"type":"text","settings":{"text":"<p>At ADORSI, we invite you to craft your own path with our bespoke shoes, tailored for your individuality. Using our 3D customization tool, you have the power to design shoes that reflect your style, purpose, and journey. From the first stitch to the final polish, each pair is meticulously crafted to accompany you wherever life takes you. Get inspired and create the perfect companion for your next adventure.<\/p>","text_font_size":"body-large","padding_bottom":16}},"buttons_YjMzec":{"type":"buttons","settings":{"button_text":"Get Inspired","button_url":"","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"padding_bottom":16}}},"block_order":["subheading_PcVE7h","heading_kfWjEC","text_hp78hw","buttons_YjMzec"],"settings":{"align_text":"text-left","width":"wrapper--full-padded","color_scheme":"scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618","overlay_type":"disabled","padding_top":100,"padding_bottom":100}},"section_collection_pbdUnA":{"type":"section-collection","settings":{"featured_collection":"golf-shoes","heading":"GOLF EDITION - The course deserves better shoes.","heading_font_size":"heading-large","description":"<p>From the tee to the 19th hole — without changing your shoes.<\/p>","text_font_size":"body-large","layout":"inline","link_text":"Shop Golf Edition","link_url":"shopify:\/\/collections\/golf-shoes","button_type":"btn--primary","button_size":"","button_style":"btn--solid","show_arrow":false,"layout_desktop":"slider","grid":4,"rows":3,"width":"wrapper","layout_mobile":"slider","color_scheme":"scheme-e91cab0e-1933-4c93-9241-b75f3ab20fa1","padding_top":50,"padding_bottom":50,"heading_tag":"automatic"}},"section_text_row_tzpdW9":{"type":"section-text-row","blocks":{"icon_NXyG6z":{"type":"icon","settings":{"icon_name":"icon-shield","image":"shopify:\/\/shop_images\/Spain_d04fe72b-6d5e-4017-9482-9e70ec9ce475.svg","icon_size":40,"icon_color":"#545454","title":"Handcrafted in Spain","heading_font_size":"heading-medium","text":"<p>Built on a single bench in Alicante by hands we know by name.<\/p>","text_font_size":"body-medium","heading_tag":"automatic"}},"icon_AFkCi9":{"type":"icon","settings":{"icon_name":"icon-smile","image":"shopify:\/\/shop_images\/Size_3987de2c-d7c3-4360-a8eb-09d10a85b1ce.svg","icon_size":40,"icon_color":"#461214","title":"BIG & WIDE Sizes Available","heading_font_size":"heading-medium","text":"<p>We cater to all sizes and widths, from 5 to 17 US, including half and wide sizes.<\/p>","text_font_size":"body-medium","heading_tag":"automatic"}},"icon_i3kHfE":{"type":"icon","settings":{"icon_name":"icon-shield","image":"shopify:\/\/shop_images\/Remake_57998cbf-1b2f-4d5c-b8c4-301065559b7c.svg","icon_size":40,"icon_color":"#545454","title":"Free remake guarantee","heading_font_size":"heading-medium","text":"<p>If the fit isn't right, we make it again — on us.<\/p>","text_font_size":"body-medium","heading_tag":"automatic"}},"icon_DVPH6W":{"type":"icon","settings":{"icon_name":"icon-shield","image":"shopify:\/\/shop_images\/World_cf991536-aa1f-4797-849e-ec8d393f4b37.svg","icon_size":40,"icon_color":"#545454","title":"Worldwide shipping","heading_font_size":"heading-medium","text":"<p>Free, insured, tracked. Anywhere we can reach a doorstep.<\/p>","text_font_size":"body-medium","heading_tag":"automatic"}}},"block_order":["icon_NXyG6z","icon_AFkCi9","icon_i3kHfE","icon_DVPH6W"],"settings":{"title":"","heading_font_size":"heading-medium","align_heading":"text-left","align_text":"text-left","icon_alignment":"icon--top","width":"wrapper--full-padded","align_columns":"flex-align-top","layout":"grid","grid":4,"layout_mobile":"slider","color_scheme":"scheme-e23b9f31-588f-4979-b31d-259015c439c7","padding_top":70,"padding_bottom":50,"heading_tag":"automatic"}}},"order":["section_slideshow_yADrDe","section_rich_text_R37UEc","section_collections_list_Eby3tp","section_custom_content_NdQXKa","section_hero_Q7zzN4","section_hero_product_i6KxhK","section_custom_content_GcCeRY","section_products_image_yWErRm","section_announcement_R7KWbe","section_reviews_fiwDiK","1750856207ec25272b","section_rich_text_kHXa9F","section_collection_pbdUnA","section_text_row_tzpdW9"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_slideshow_yADrDe": {
+      "type": "section-slideshow",
+      "blocks": {
+        "image_bazccn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ADORSI-IMAGE-2_a992fa6f-4acd-4290-9357-bda626c11aa3.jpg",
+            "image_link": "",
+            "title": "Made for the man who knows the difference.",
+            "heading_font_size": "heading-x-large",
+            "description": "Bespoke men's footwear, handcrafted in Spain. Extended sizing from 5 to 17 — in widths Standard (D), Wide (EE), Extra Wide (EEE)",
+            "text_font_size": "body-large",
+            "first_button_text": "Shop All Products",
+            "first_button_link": "shopify://collections/all",
+            "first_button_type": "btn--secondary",
+            "first_button_size": "",
+            "first_button_style": "btn--solid",
+            "first_button_show_arrow": false,
+            "second_button_text": "",
+            "second_button_link": "",
+            "second_button_type": "btn--primary",
+            "second_button_size": "",
+            "second_button_style": "btn--solid",
+            "second_button_show_arrow": false,
+            "flex_align_desktop": "align--bottom-left-desktop",
+            "mobile_image": "shopify://shop_images/ADORSI-IMAGE-2_a992fa6f-4acd-4290-9357-bda626c11aa3.jpg",
+            "flex_align_mobile": "align--bottom-left-mobile",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "image_bazccn"
+      ],
+      "name": "Slideshow (Legacy)",
+      "settings": {
+        "transition": "slide",
+        "show_arrows": true,
+        "autoplay": false,
+        "autoplay_speed": 8,
+        "width": "wrapper--full",
+        "height": "screen-height-full",
+        "content_width": 50,
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_rich_text_R37UEc": {
+      "type": "section-rich-text",
+      "blocks": {
+        "heading_hBbXwT": {
+          "type": "heading",
+          "settings": {
+            "title": "Our Collections",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_r9VfHf": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every style. Every width. Every occasion.</p>",
+            "text_font_size": "body-large",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_tYYAHL": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Shop NOW",
+            "button_url": "shopify://collections",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_hBbXwT",
+        "text_r9VfHf",
+        "buttons_tYYAHL"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "align_text": "text-left",
+        "width": "wrapper--full-padded",
+        "color_scheme": "",
+        "overlay_type": "disabled",
+        "padding_top": 100,
+        "padding_bottom": 32
+      }
+    },
+    "section_collections_list_Eby3tp": {
+      "type": "section-collections-list",
+      "blocks": {
+        "collection_KL9pKE": {
+          "type": "collection",
+          "settings": {
+            "collection": "custom-oxford-shoes",
+            "collection_image": "shopify://shop_images/oxford_3.png",
+            "title": "{{ block.settings.collection.title }}"
+          }
+        },
+        "collection_GBXgTn": {
+          "type": "collection",
+          "settings": {
+            "collection": "custom-loafers",
+            "collection_image": "{{ block.settings.collection.metafields.custom.collection_main_banner.value }}",
+            "title": "{{ block.settings.collection.title }}"
+          }
+        },
+        "collection_gThUwK": {
+          "type": "collection",
+          "settings": {
+            "collection": "designer-loafers",
+            "collection_image": "{{ block.settings.collection.metafields.custom.collection_main_banner.value }}",
+            "title": "{{ block.settings.collection.title }}"
+          }
+        },
+        "collection_WyKVAN": {
+          "type": "collection",
+          "settings": {
+            "collection": "golf-shoes",
+            "collection_image": "{{ block.settings.collection.metafields.custom.collection_main_banner.value }}",
+            "title": "{{ block.settings.collection.title }}"
+          }
+        },
+        "collection_cibAK9": {
+          "type": "collection",
+          "settings": {
+            "collection": "exotic-skin-shoes",
+            "collection_image": "{{ block.settings.collection.metafields.custom.collection_main_banner.value }}",
+            "title": "{{ block.settings.collection.title }}"
+          }
+        }
+      },
+      "block_order": [
+        "collection_KL9pKE",
+        "collection_GBXgTn",
+        "collection_gThUwK",
+        "collection_WyKVAN",
+        "collection_cibAK9"
+      ],
+      "custom_css": [],
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-large",
+        "description": "",
+        "text_font_size": "body-medium",
+        "button_text": "",
+        "button_url": "shopify://collections",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": true,
+        "aspect_ratio": 1.5,
+        "width": "wrapper--full-padded",
+        "layout": "slider",
+        "grid": 3,
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_custom_content_NdQXKa": {
+      "type": "section-custom-content",
+      "blocks": {
+        "text_eCWrdk": {
+          "type": "text",
+          "settings": {
+            "subheading": "BIG & WIDE",
+            "title": "The size range menswear forgets.",
+            "heading_font_size": "heading-x-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        },
+        "text_4gL7MV": {
+          "type": "text",
+          "settings": {
+            "subheading": "",
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "<p>Most makers stop at 13. We don't. Every ADORSI last is cut in full and half sizes from US 5 through 17, in four widths from standard D to extra-wide EEE — no upcharge, no waiting on a special order.</p>",
+            "text_font_size": "body-large",
+            "button_text": "Learn more",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "text_eCWrdk",
+        "text_4gL7MV"
+      ],
+      "name": "Custom section",
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "padding_top": 100,
+        "padding_bottom": 0
+      }
+    },
+    "section_hero_Q7zzN4": {
+      "type": "section-hero",
+      "blocks": {
+        "text_7wLwdy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>For the man who's spent his life sizing down.</p>",
+            "text_font_size": "body-x-large",
+            "padding_bottom": 0
+          }
+        },
+        "heading_cHKFin": {
+          "type": "heading",
+          "settings": {
+            "title": "FULL & HALF SIZES 5-17 │ EE & EEE WIDTH",
+            "heading_font_size": "heading-x-large",
+            "heading_tag": "automatic",
+            "padding_bottom": 16
+          }
+        },
+        "text_L8dd99": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If you've ever bought a shoe a half-size off because the right one didn't exist — this is for you. Every last in our line is graded the full range, on the same bench, by the same hands.</p>",
+            "text_font_size": "body-large",
+            "padding_bottom": 8
+          }
+        }
+      },
+      "block_order": [
+        "text_7wLwdy",
+        "heading_cHKFin",
+        "text_L8dd99"
+      ],
+      "name": "Image banner",
+      "settings": {
+        "image_1": "shopify://shop_images/Panels.jpg",
+        "link": "",
+        "width": "wrapper--full-padded",
+        "height": "screen-height-one-third",
+        "flex_align_desktop": "align--middle-center-desktop",
+        "content_width": 60,
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "flex_align_mobile": "align--middle-left-mobile",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "show_text_background": false,
+        "overlay_type": "disabled",
+        "padding_top": 0,
+        "padding_bottom": 50,
+        "show_placeholder": true
+      }
+    },
+    "section_hero_product_i6KxhK": {
+      "type": "section-hero-product",
+      "blocks": {
+        "heading_xcgEEW": {
+          "type": "heading",
+          "settings": {
+            "title": "Image banner",
+            "heading_font_size": "heading-x-large",
+            "heading_tag": "automatic"
+          }
+        },
+        "text_8gx3QR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tell your brand's story through images.</p>",
+            "text_font_size": "body-large"
+          }
+        },
+        "button_QtYpAT": {
+          "type": "button",
+          "settings": {
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "full_width": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_xcgEEW",
+        "text_8gx3QR",
+        "button_QtYpAT"
+      ],
+      "name": "Image with product",
+      "settings": {
+        "image_1": "shopify://shop_images/Firefly_Gemini_Flash_Enhance_the_gold_metal_hardware_to_look_polished_smooth_and_luxurious._Increase_ref_509694.png",
+        "link": "",
+        "product": "cognac-calf-leather-horsebit-loafer",
+        "description": "",
+        "text_font_size": "body-medium",
+        "enable_quick_add": true,
+        "color_product_bg": "#f5f2ec",
+        "color_product_text": "#212121",
+        "width": "wrapper--full",
+        "height": "screen-height-three-quarters",
+        "mobile_height": "four-fifty-height-hero--mobile",
+        "flex_align_mobile": "align--middle-left-mobile",
+        "color_scheme": "scheme-025a5426-514e-4a02-9e15-80cab8125ad9",
+        "show_text_background": false,
+        "overlay_type": "disabled",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
+    "section_custom_content_GcCeRY": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image_LApcFH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Firefly_Gemini_Flash_Enhance_the_gold_metal_hardware_to_look_polished_smooth_and_luxurious._Increase_ref_509694.png",
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        },
+        "collection_3UC6UV": {
+          "type": "collection",
+          "settings": {
+            "collection": "designer-loafers",
+            "title": "Shop the look",
+            "bg_color": "",
+            "color": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_LApcFH",
+        "collection_3UC6UV"
+      ],
+      "disabled": true,
+      "name": "Custom section",
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full",
+        "height": "image-height",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": true,
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_products_image_yWErRm": {
+      "type": "section-products-image",
+      "blocks": {
+        "products_WhLen4": {
+          "type": "products",
+          "settings": {
+            "product_list": [
+              "cognac-calf-leather-horsebit-loafer",
+              "black-calf-leather-horsebit-loafer",
+              "cognac-calf-web-stripe-leather-loafer",
+              "black-calf-web-stripe-leather-loafer-runner-sole"
+            ],
+            "layout_mobile": "slider"
+          }
+        },
+        "image_tbbfFR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6033_0.png",
+            "mobile_height": "screen-height-one-half--mobile",
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "#ffffff",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "products_WhLen4",
+        "image_tbbfFR"
+      ],
+      "name": "Products with image",
+      "settings": {
+        "width": "wrapper--full",
+        "reverse_blocks": true,
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_announcement_R7KWbe": {
+      "type": "section-announcement",
+      "blocks": {
+        "text_NQbKDU": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Free worldwide shipping | Free Remake Guarantee | Made to order | Custom Made Shoes | Big and Wide with Half Sizes Available | Handcrafted in Spain |</p>",
+            "text_font_size": "body-medium",
+            "color": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "text_cAW6Dd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Free worldwide shipping</p>",
+            "text_font_size": "body-large",
+            "color": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "text_Mw7nX4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Free Remake Guarantee</p>",
+            "text_font_size": "body-large",
+            "color": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "text_Vy7U4J": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Made to order</p>",
+            "text_font_size": "body-large",
+            "color": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "text_8VgGW6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Custom Made Shoes</p>",
+            "text_font_size": "body-large",
+            "color": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "text_UiqHcV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Big and Wide with Half Sizes Available</p>",
+            "text_font_size": "body-large",
+            "color": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        },
+        "text_GTXMze": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Handcrafted in Spain</p>",
+            "text_font_size": "body-large",
+            "color": "",
+            "target_device_enabled": false,
+            "target_device": "mobile"
+          }
+        }
+      },
+      "block_order": [
+        "text_NQbKDU",
+        "text_cAW6Dd",
+        "text_Mw7nX4",
+        "text_Vy7U4J",
+        "text_8VgGW6",
+        "text_UiqHcV",
+        "text_GTXMze"
+      ],
+      "name": "Scrolling text",
+      "settings": {
+        "slider_speed": 5,
+        "text_alignment": "center",
+        "marquee_speed": 150,
+        "direction": "ticker-rtl",
+        "message_spacing": 40,
+        "show_border": false,
+        "layout": "marquee",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "section_reviews_fiwDiK": {
+      "type": "section-reviews",
+      "blocks": {
+        "review_GTa8mY": {
+          "type": "review",
+          "settings": {
+            "title": "David P.",
+            "subheading": "",
+            "review_content": "<p>Fantastic shooes in brown ostrich I've had a pair before in black very well made and true to size.</p>",
+            "featured_image": "shopify://shop_images/5288_0_110x110_2x_7b756204-e031-4a32-9ba5-862d09aa9f7e.jpg",
+            "review_url": ""
+          }
+        },
+        "review_J6nizb": {
+          "type": "review",
+          "settings": {
+            "title": "Kip D.",
+            "subheading": "",
+            "review_content": "<p>LOVE, LOVE, LOVE these shoes! The fit is great and the look amazing. Its so difficult to find this size.</p>",
+            "featured_image": "shopify://shop_images/5632_0_1024x1024_2x_210114c8-b8c7-4d89-a382-865a6c48807a.jpg",
+            "review_url": ""
+          }
+        },
+        "review_PXf3DD": {
+          "type": "review",
+          "settings": {
+            "title": "Aleksandr C.",
+            "subheading": "",
+            "review_content": "<p>Happy with my purchase from you, will buy again! Communication is great!</p>",
+            "featured_image": "shopify://shop_images/6033_0.png",
+            "review_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_GTa8mY",
+        "review_J6nizb",
+        "review_PXf3DD"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "show_featured_image": true,
+        "image_aspect_ratio": 1.2,
+        "show_quotation_marks": true,
+        "heading_font_size": "heading-medium",
+        "text_align": "text-left",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "card_bg_color": "",
+        "padding_top": 70,
+        "padding_bottom": 70
+      }
+    },
+    "1750856207ec25272b": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_card_carousel_section_eLVegG": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1600,
+            "borderRadius": 10,
+            "itemsPerView": 4,
+            "mobileItemsPerView": 1,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "1",
+            "reviewerNameColor": "#000000",
+            "textColor": "#000000",
+            "itemBackgroundColor": "#ffffff",
+            "starsColor": "",
+            "starsBackgroundColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "offset-light",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": ""
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_card_carousel_section_eLVegG"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "section_rich_text_kHXa9F": {
+      "type": "section-rich-text",
+      "blocks": {
+        "subheading_PcVE7h": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Designed for the Journey",
+            "padding_bottom": 16
+          }
+        },
+        "heading_kfWjEC": {
+          "type": "heading",
+          "settings": {
+            "title": "\"Every journey begins with a step, and every step deserves to be in shoes as unique as the person taking them\"",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_hp78hw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At ADORSI, we invite you to craft your own path with our bespoke shoes, tailored for your individuality. Using our 3D customization tool, you have the power to design shoes that reflect your style, purpose, and journey. From the first stitch to the final polish, each pair is meticulously crafted to accompany you wherever life takes you. Get inspired and create the perfect companion for your next adventure.</p>",
+            "text_font_size": "body-large",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_YjMzec": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Get Inspired",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "subheading_PcVE7h",
+        "heading_kfWjEC",
+        "text_hp78hw",
+        "buttons_YjMzec"
+      ],
+      "settings": {
+        "align_text": "text-left",
+        "width": "wrapper--full-padded",
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "overlay_type": "disabled",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "section_collection_pbdUnA": {
+      "type": "section-collection",
+      "settings": {
+        "featured_collection": "golf-shoes",
+        "heading": "GOLF EDITION - The course deserves better shoes.",
+        "heading_font_size": "heading-large",
+        "description": "<p>From the tee to the 19th hole — without changing your shoes.</p>",
+        "text_font_size": "body-large",
+        "layout": "inline",
+        "link_text": "Shop Golf Edition",
+        "link_url": "shopify://collections/golf-shoes",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "layout_desktop": "slider",
+        "grid": 4,
+        "rows": 3,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-e91cab0e-1933-4c93-9241-b75f3ab20fa1",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_text_row_tzpdW9": {
+      "type": "section-text-row",
+      "blocks": {
+        "icon_NXyG6z": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "image": "shopify://shop_images/Spain_d04fe72b-6d5e-4017-9482-9e70ec9ce475.svg",
+            "icon_size": 40,
+            "icon_color": "#545454",
+            "title": "Handcrafted in Spain",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Built on a single bench in Alicante by hands we know by name.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_AFkCi9": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-smile",
+            "image": "shopify://shop_images/Size_3987de2c-d7c3-4360-a8eb-09d10a85b1ce.svg",
+            "icon_size": 40,
+            "icon_color": "#461214",
+            "title": "BIG & WIDE Sizes Available",
+            "heading_font_size": "heading-medium",
+            "text": "<p>We cater to all sizes and widths, from 5 to 17 US, including half and wide sizes.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_i3kHfE": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "image": "shopify://shop_images/Remake_57998cbf-1b2f-4d5c-b8c4-301065559b7c.svg",
+            "icon_size": 40,
+            "icon_color": "#545454",
+            "title": "Free remake guarantee",
+            "heading_font_size": "heading-medium",
+            "text": "<p>If the fit isn't right, we make it again — on us.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        },
+        "icon_DVPH6W": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-shield",
+            "image": "shopify://shop_images/World_cf991536-aa1f-4797-849e-ec8d393f4b37.svg",
+            "icon_size": 40,
+            "icon_color": "#545454",
+            "title": "Worldwide shipping",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Free, insured, tracked. Anywhere we can reach a doorstep.</p>",
+            "text_font_size": "body-medium",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "icon_NXyG6z",
+        "icon_AFkCi9",
+        "icon_i3kHfE",
+        "icon_DVPH6W"
+      ],
+      "settings": {
+        "title": "",
+        "heading_font_size": "heading-medium",
+        "align_heading": "text-left",
+        "align_text": "text-left",
+        "icon_alignment": "icon--top",
+        "width": "wrapper--full-padded",
+        "align_columns": "flex-align-top",
+        "layout": "grid",
+        "grid": 4,
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "padding_top": 70,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    }
+  },
+  "order": [
+    "section_slideshow_yADrDe",
+    "section_rich_text_R37UEc",
+    "section_collections_list_Eby3tp",
+    "section_custom_content_NdQXKa",
+    "section_hero_Q7zzN4",
+    "section_hero_product_i6KxhK",
+    "section_custom_content_GcCeRY",
+    "section_products_image_yWErRm",
+    "section_announcement_R7KWbe",
+    "section_reviews_fiwDiK",
+    "1750856207ec25272b",
+    "section_rich_text_kHXa9F",
+    "section_collection_pbdUnA",
+    "section_text_row_tzpdW9"
+  ]
+}
