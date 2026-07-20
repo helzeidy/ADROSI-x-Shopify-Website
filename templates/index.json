@@ -821,7 +821,7 @@
           "type": "collection",
           "settings": {
             "collection": "lace-up-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_19.png",
+            "image": "shopify://shop_images/brown_and_white_golf_shoes.png",
             "title": "",
             "heading_font_size": "heading-large",
             "button_text": "Shop now",
@@ -896,7 +896,7 @@
         "text_font_size": "body-medium",
         "layout": "",
         "width": "wrapper--full",
-        "height": "screen-height-one-half",
+        "height": "screen-height-two-thirds",
         "mobile_height": "screen-height-one-half--mobile",
         "reverse_blocks": false,
         "color_scheme": "scheme-e91cab0e-1933-4c93-9241-b75f3ab20fa1",
