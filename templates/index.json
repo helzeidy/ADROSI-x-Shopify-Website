@@ -133,7 +133,7 @@
           "type": "collection",
           "settings": {
             "collection": "designer-loafers",
-            "collection_image": "{{ block.settings.collection.metafields.custom.collection_main_banner.value }}",
+            "collection_image": "shopify://shop_images/originals_8.png",
             "title": "{{ block.settings.collection.title }}"
           }
         },
@@ -149,7 +149,7 @@
           "type": "collection",
           "settings": {
             "collection": "exotic-skin-shoes",
-            "collection_image": "{{ block.settings.collection.metafields.custom.collection_main_banner.value }}",
+            "collection_image": "shopify://shop_images/4_12.png",
             "title": "{{ block.settings.collection.title }}"
           }
         }
