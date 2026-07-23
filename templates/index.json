@@ -15,7 +15,7 @@
         "image_bazccn": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_4.jpg",
+            "image": "shopify://shop_images/1_8.jpg",
             "image_link": "",
             "title": "Made for the man who knows the difference.",
             "heading_font_size": "heading-x-large",
@@ -125,7 +125,7 @@
           "type": "collection",
           "settings": {
             "collection": "custom-loafers",
-            "collection_image": "shopify://shop_images/loafeer_6.png",
+            "collection_image": "shopify://shop_images/loafeer_9.png",
             "title": "{{ block.settings.collection.title }}"
           }
         },
@@ -141,7 +141,7 @@
           "type": "collection",
           "settings": {
             "collection": "golf-shoes",
-            "collection_image": "shopify://shop_images/golf_shoes_23.png",
+            "collection_image": "shopify://shop_images/golf_shoes_24.png",
             "title": "{{ block.settings.collection.title }}"
           }
         },
@@ -869,7 +869,7 @@
           "type": "collection",
           "settings": {
             "collection": "monk-strap-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_31.png",
+            "image": "shopify://shop_images/golf_shoes_28.png",
             "title": "",
             "heading_font_size": "heading-large",
             "button_text": "Shop now",
