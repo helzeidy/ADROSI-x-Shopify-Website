@@ -149,7 +149,7 @@
           "type": "collection",
           "settings": {
             "collection": "exotic-skin-shoes",
-            "collection_image": "shopify://shop_images/4_12.png",
+            "collection_image": "shopify://shop_images/4_11.png",
             "title": "{{ block.settings.collection.title }}"
           }
         }
