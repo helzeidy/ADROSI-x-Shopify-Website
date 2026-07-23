@@ -141,7 +141,7 @@
           "type": "collection",
           "settings": {
             "collection": "golf-shoes",
-            "collection_image": "shopify://shop_images/golf_shoes_24.png",
+            "collection_image": "shopify://shop_images/golf_shoes_26.png",
             "title": "{{ block.settings.collection.title }}"
           }
         },
