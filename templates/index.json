@@ -370,7 +370,7 @@
       ],
       "name": "Image with product",
       "settings": {
-        "image_1": "shopify://shop_images/3_1.png",
+        "image_1": "shopify://shop_images/1_12_efbbc162-25e0-465b-810a-a625eb10d1e3.jpg",
         "link": "",
         "product": "cognac-calf-leather-horsebit-loafer",
         "description": "",
@@ -852,7 +852,7 @@
           "type": "collection",
           "settings": {
             "collection": "lace-up-golf-shoes",
-            "image": "shopify://shop_images/brown_and_white_golf_shoes.png",
+            "image": "shopify://shop_images/golf_shoes_20.png",
             "title": "",
             "heading_font_size": "heading-large",
             "button_text": "Shop now",
@@ -884,7 +884,7 @@
           "type": "collection",
           "settings": {
             "collection": "saddle-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_33.png",
+            "image": "shopify://shop_images/golf_shoes_22.png",
             "title": "",
             "heading_font_size": "heading-large",
             "button_text": "Shop now",
@@ -900,7 +900,7 @@
           "type": "collection",
           "settings": {
             "collection": "monk-strap-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_28.png",
+            "image": "shopify://shop_images/golf_shoes_14.png",
             "title": "",
             "heading_font_size": "heading-large",
             "button_text": "Shop now",
