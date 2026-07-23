@@ -148,7 +148,7 @@
           "type": "collection",
           "settings": {
             "collection": "custom-oxford-shoes",
-            "collection_image": "shopify://shop_images/oxford_3.png",
+            "collection_image": "shopify://shop_images/oxford.png",
             "title": "{{ block.settings.collection.title }}"
           }
         },
@@ -164,7 +164,7 @@
           "type": "collection",
           "settings": {
             "collection": "designer-loafers",
-            "collection_image": "shopify://shop_images/originals_8.png",
+            "collection_image": "shopify://shop_images/originals_10.png",
             "title": "{{ block.settings.collection.title }}"
           }
         },
