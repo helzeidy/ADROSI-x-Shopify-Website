@@ -12,10 +12,40 @@
     "section_slideshow_yADrDe": {
       "type": "section-slideshow",
       "blocks": {
-        "image_bazccn": {
+        "image_xxeJAD": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/1_8.jpg",
+            "image_link": "",
+            "title": "Image slide",
+            "heading_font_size": "heading-x-large",
+            "description": "Tell your brand's story through images.",
+            "text_font_size": "body-large",
+            "first_button_text": "View products",
+            "first_button_link": "",
+            "first_button_type": "btn--primary",
+            "first_button_size": "",
+            "first_button_style": "btn--solid",
+            "first_button_show_arrow": false,
+            "second_button_text": "",
+            "second_button_link": "",
+            "second_button_type": "btn--primary",
+            "second_button_size": "",
+            "second_button_style": "btn--solid",
+            "second_button_show_arrow": false,
+            "flex_align_desktop": "align--middle-center-desktop",
+            "flex_align_mobile": "align--middle-center-mobile",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "heading_tag": "automatic"
+          }
+        },
+        "image_bazccn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_4.jpg",
             "image_link": "",
             "title": "Made for the man who knows the difference.",
             "heading_font_size": "heading-x-large",
@@ -45,6 +75,7 @@
         }
       },
       "block_order": [
+        "image_xxeJAD",
         "image_bazccn"
       ],
       "name": "Slideshow (Legacy)",
