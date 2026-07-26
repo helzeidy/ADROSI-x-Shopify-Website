@@ -8,8 +8,11 @@
   assign sub_collection_limit = 6
   assign card_style = section.settings.card_style | default: 'overlay'
   assign is_minimal = false
+  assign is_text = false
   if card_style == 'minimal'
     assign is_minimal = true
+  elsif card_style == 'text'
+    assign is_text = true
   endif
 -%}
 
@@ -110,14 +113,107 @@
         }
       }
     {%- endif -%}
+
+    {%- if is_text -%}
+      /* Text tabs style: no images, just links; active one underlined. */
+      .subcollections--text .subcollections__tabs {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: center;
+        gap: var(--subcard-gap, 28px);
+      }
+      .subcollections--text .subcollections__tab {
+        position: relative;
+        color: var(--text-color, currentColor);
+        text-decoration: none;
+        font-family: var(--FONT-STACK-SUBHEADING, inherit);
+        font-weight: var(--FONT-WEIGHT-SUBHEADING, 400);
+        font-size: var(--subcard-title-size, 15px);
+        letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.06em);
+        white-space: nowrap;
+        opacity: 0.55;
+        transition: opacity 0.2s ease;
+      }
+      .subcollections--text .subcollections__tab:hover {
+        opacity: 0.9;
+      }
+      .subcollections--text .subcollections__tab.is-active {
+        opacity: 1;
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+      .subcollections--text .subcollections__count {
+        font-size: 0.62em;
+        margin-left: 3px;
+        opacity: 0.7;
+      }
+      @media (max-width: 749px) {
+        .subcollections--text .subcollections__tabs {
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          overflow-x: auto;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+          gap: 22px;
+        }
+        .subcollections--text .subcollections__tabs::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    {%- endif -%}
   {%- endstyle -%}
 
 {%- render 'stylesheet', name: 'subcollections.css', inline: true -%}
 
   <section
-    class="subcollections{% if is_minimal %} subcollections--minimal{% endif %} collection-{{ collection.handle }} section-padding {{ color_scheme }}"
+    class="subcollections{% if is_minimal %} subcollections--minimal{% endif %}{% if is_text %} subcollections--text{% endif %} collection-{{ collection.handle }} section-padding {{ color_scheme }}"
     id="Subcollections--{{ section.id }}"
   >
+    {%- if is_text -%}
+      {%- if sub_collections.size > 0 -%}
+        <nav class="subcollections__tabs" aria-label="Subcollections">
+          {%- if section.settings.text_all_collection != blank -%}
+            {%- assign all_col = section.settings.text_all_collection -%}
+            <a
+              class="subcollections__tab{% if collection.handle == all_col.handle %} is-active{% endif %}"
+              href="{{ all_col.url }}"
+            >
+              {{- section.settings.text_all_label | default: 'All' -}}
+              {%- if section.settings.text_show_count and collection.handle == all_col.handle -%}
+                <sup class="subcollections__count">{{ all_col.all_products_count }}</sup>
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+
+          {%- for sublink in sub_collections -%}
+            {%- liquid
+              if sublink.type != 'collection_link' or sublink.object.handle == blank
+                continue
+              endif
+              assign sc = collections[sublink.object.handle]
+              if sc == blank
+                continue
+              endif
+              assign is_active = false
+              if sc.handle == collection.handle
+                assign is_active = true
+              endif
+            -%}
+            <a
+              class="subcollections__tab{% if is_active %} is-active{% endif %}"
+              href="{{ sc.url }}"
+              {% if is_active %}aria-current="page"{% endif %}
+            >
+              {{- sc.title -}}
+              {%- if section.settings.text_show_count -%}
+                <sup class="subcollections__count">{{ sc.all_products_count }}</sup>
+              {%- endif -%}
+            </a>
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+    {%- else -%}
     {%- if sub_collections.size > 0 -%}
       {%- for sublink in sub_collections -%}
         {%- liquid
@@ -206,6 +302,7 @@
         </div>
       {%- endif -%}
     {%- endif -%}
+    {%- endif -%}
   </section>
 {%- endif -%}
 
@@ -240,9 +337,10 @@
       "default": "overlay",
       "options": [
         {"value": "overlay", "label": "Title over image (default)"},
-        {"value": "minimal", "label": "Square image, title below"}
+        {"value": "minimal", "label": "Square image, title below"},
+        {"value": "text", "label": "Text tabs (no images)"}
       ],
-      "info": "Square style: centered title under the image, no dark overlay."
+      "info": "Square: title under the image. Text tabs: just links with the active one underlined."
     },
     {
       "type": "range",
@@ -262,9 +360,9 @@
       "max": 80,
       "step": 2,
       "unit": "px",
-      "label": "Gap between cards",
+      "label": "Gap between cards / tabs",
       "default": 28,
-      "visible_if": "{{ section.settings.card_style == 'minimal' }}"
+      "visible_if": "{{ section.settings.card_style == 'minimal' or section.settings.card_style == 'text' }}"
     },
     {
       "type": "range",
@@ -273,9 +371,34 @@
       "max": 28,
       "step": 1,
       "unit": "px",
-      "label": "Title text size",
+      "label": "Title / tab text size",
       "default": 14,
-      "visible_if": "{{ section.settings.card_style == 'minimal' }}"
+      "visible_if": "{{ section.settings.card_style == 'minimal' or section.settings.card_style == 'text' }}"
+    },
+    {
+      "type": "header",
+      "content": "Text tabs",
+      "visible_if": "{{ section.settings.card_style == 'text' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "text_show_count",
+      "label": "Show product count (superscript)",
+      "default": true,
+      "visible_if": "{{ section.settings.card_style == 'text' }}"
+    },
+    {
+      "type": "collection",
+      "id": "text_all_collection",
+      "label": "\"All\" tab collection",
+      "info": "Optional. Adds an \"All\" tab (first) linking to this collection."
+    },
+    {
+      "type": "text",
+      "id": "text_all_label",
+      "label": "\"All\" tab label",
+      "default": "All",
+      "visible_if": "{{ section.settings.card_style == 'text' }}"
     },
     {
       "type": "checkbox",
