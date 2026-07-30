@@ -130,13 +130,6 @@
           "type": "customize_link",
           "settings": {
             "label": "Customize",
-            "page": "customize",
-            "id_source": "sku",
-            "param_name": "id",
-            "use_hash": true,
-            "prehash_query": "pb=0",
-            "value_metafield": "custom.customize_id",
-            "hide_if_no_id": false,
             "element_id": "product-customize",
             "open_new_tab": true,
             "button_type": "btn--black",
