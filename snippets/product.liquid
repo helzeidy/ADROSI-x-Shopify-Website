@@ -692,87 +692,35 @@
 
                   {%- when 'customize_link' -%}
                     {%- liquid
-                      assign target = block.settings.page
                       assign btn_size = block.settings.button_size
                       assign btn_style = block.settings.button_style | default: 'btn--solid'
                       assign btn_type = block.settings.button_type | default: 'btn--primary'
-                      assign param_name = block.settings.param_name | default: 'o'
+                      assign base_url = block.settings.base_url | default: 'https://adorsi.com/pages/customize/'
 
-                      assign id_source = block.settings.id_source | default: 'sku_whole'
-                      if id_source == 'sku_before_dash'
-                        comment
-                          Customizer id = the SKU with everything after the last dash removed.
-                        endcomment
-                        assign cz_sku = product.selected_or_first_available_variant.sku
-                        assign cz_rev = cz_sku | split: '' | reverse | join: ''
-                        assign cz_rev = cz_rev | replace_first: '-', '---'
-                        assign customize_id = cz_rev | split: '---' | last | split: '' | reverse | join: ''
-                      elsif id_source == 'metafield'
-                        assign mf_key = block.settings.value_metafield | default: 'custom.customize_id'
-                        assign mf_parts = mf_key | split: '.'
-                        assign mf_ns = mf_parts[0]
-                        assign mf_field = mf_parts[1]
-                        assign customize_id = product.metafields[mf_ns][mf_field].value
-                      else
-                        comment
-                          Default / legacy "sku" / "sku_whole": use the whole variant SKU.
-                        endcomment
-                        assign customize_id = product.selected_or_first_available_variant.sku
-                      endif
-
-                      assign customize_href = target.url
-                      if customize_id != blank
-                        assign base_url = target.url
-                        assign prehash = block.settings.prehash_query
-                        if prehash != blank
-                          if base_url contains '?'
-                            assign base_url = base_url | append: '&' | append: prehash
-                          else
-                            assign base_url = base_url | append: '?' | append: prehash
-                          endif
-                        elsif block.settings.use_hash
-                          comment
-                            No pre-hash query: match the old theme exactly with a trailing slash
-                            before the hash, e.g. /pages/customize/#/?o=<id>.
-                          endcomment
-                          assign lc = base_url | slice: -1
-                          unless lc == '/'
-                            assign base_url = base_url | append: '/'
-                          endunless
-                        endif
-                        comment
-                          The customizer app always reads o=. Force it (ignore any stale
-                          param_name like "id" saved on the block) unless the merchant set
-                          a non-default parameter explicitly.
-                        endcomment
-                        assign hash_param = param_name
-                        if hash_param == blank or hash_param == 'id'
-                          assign hash_param = 'o'
-                        endif
-                        if block.settings.use_hash
-                          assign customize_href = base_url | append: '#/?' | append: hash_param | append: '=' | append: customize_id
-                        else
-                          assign joiner = '?'
-                          if base_url contains '?'
-                            assign joiner = '&'
-                          endif
-                          assign customize_href = base_url | append: joiner | append: hash_param | append: '=' | append: customize_id
-                        endif
-                      endif
+                      comment
+                        Same logic as the Apolo theme's Customize button: reverse the SKU
+                        so its LAST "-" becomes the FIRST "-", replace_first + split on
+                        that, then reverse back. This strips everything after the last
+                        dash in the SKU (the size/variant suffix), leaving the base
+                        product id the external customizer app expects in ?o=.
+                      endcomment
+                      assign cz_sku = product.selected_or_first_available_variant.sku
+                      assign cz_rev = cz_sku | split: '' | reverse | join: ''
+                      assign cz_rev = cz_rev | replace_first: '-', '---'
+                      assign cz_rev2 = cz_rev | split: '---'
+                      assign customize_id = cz_rev2[1] | split: '' | reverse | join: ''
                     -%}
-                    {%- if target != blank and product != blank -%}
-                      {%- unless block.settings.hide_if_no_id and customize_id == blank -%}
-                        <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
-                          <a
-                            {% if block.settings.element_id != blank %}id="{{ block.settings.element_id | escape }}"{% endif %}
-                            href="{{ customize_href }}"
-                            class="btn {{ btn_size }} {{ btn_style }} {{ btn_type }}{% if block.settings.full_width %} btn--full{% endif %}"
-                            {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}
-                          >
-                            <span class="btn__text">{{ block.settings.label | default: 'Customize' | escape }}</span>
-                          </a>
-                        </div>
-                      {%- endunless -%}
+                    {%- if product.available and product != blank -%}
+                      <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
+                        <a
+                          {% if block.settings.element_id != blank %}id="{{ block.settings.element_id | escape }}"{% endif %}
+                          href="{{ base_url }}#/?o={{ customize_id }}"
+                          class="btn {{ btn_size }} {{ btn_style }} {{ btn_type }}{% if block.settings.full_width %} btn--full{% endif %}"
+                          {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}
+                        >
+                          <span class="btn__text">{{ block.settings.label | default: 'Customize' | escape }}</span>
+                        </a>
+                      </div>
                     {%- endif -%}
 
                   {%- when 'width_selector' -%}

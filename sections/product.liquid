@@ -1722,7 +1722,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "A button that links to a page (e.g. your Customize page), passing the current product so it can be customized there."
+          "content": "Same logic as the Apolo theme's Customize button: links straight to the external customizer with the product's base SKU (everything before the last dash) as ?o=<id>."
         },
         {
           "type": "text",
@@ -1731,55 +1731,11 @@
           "default": "Customize"
         },
         {
-          "type": "page",
-          "id": "page",
-          "label": "Target page"
-        },
-        {
-          "type": "select",
-          "id": "id_source",
-          "label": "Customizer id source",
-          "default": "sku_whole",
-          "options": [
-            {"value": "sku_whole", "label": "Product SKU (whole)"},
-            {"value": "sku_before_dash", "label": "Product SKU (before the last dash)"},
-            {"value": "metafield", "label": "Metafield"}
-          ],
-          "info": "Whole: the full variant SKU (use when the SKU is exactly the UUID). Before last dash: strips a trailing -suffix. Metafield: reads from a product metafield."
-        },
-        {
           "type": "text",
-          "id": "param_name",
-          "label": "Parameter name",
-          "default": "o",
-          "info": "MUST be o for the customizer app (o → #/?o=<id>). If yours shows id, change it to o."
-        },
-        {
-          "type": "checkbox",
-          "id": "use_hash",
-          "label": "Use hash route (#/?)",
-          "default": true,
-          "info": "On: builds /pages/customize?...#/?o=<id> (matches the app). Off: /pages/customize?o=<id>."
-        },
-        {
-          "type": "text",
-          "id": "prehash_query",
-          "label": "Query before the hash",
-          "default": "pb=0",
-          "info": "Added before the #, e.g. pb=0 → /pages/customize?pb=0#/?o=<id>. Required by the app to open the specific product. Leave blank to omit."
-        },
-        {
-          "type": "text",
-          "id": "value_metafield",
-          "label": "Customizer ID metafield",
-          "default": "custom.customize_id",
-          "info": "namespace.key of a product metafield holding the app's customizer id (the UUID after o=). Set it per product. If empty, the button links to the page without a product."
-        },
-        {
-          "type": "checkbox",
-          "id": "hide_if_no_id",
-          "label": "Hide the button if the product has no customizer id",
-          "default": false
+          "id": "base_url",
+          "label": "Customizer base URL",
+          "default": "https://adorsi.com/pages/customize/",
+          "info": "The id is appended as #/?o=<id>, e.g. https://adorsi.com/pages/customize/#/?o=ABC-1234."
         },
         {
           "type": "text",
