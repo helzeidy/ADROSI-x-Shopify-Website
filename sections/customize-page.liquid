@@ -18,6 +18,24 @@
       --text: {{ text_color }};
     {%- endunless -%}
   }
+
+  /*
+    hero__content--compact is a flex-grow:0 item elsewhere in the theme
+    (hero banners pair it with side-by-side media, so it should only take
+    the width its text needs). On a plain Page template there's no
+    side-by-side media, so it must be free to grow — otherwise it
+    shrink-wraps to the intrinsic size of its content (e.g. a default
+    300px iframe with no width set), leaving the rest of the row blank.
+  */
+  .index-page .hero__content.hero__content--compact {
+    flex-grow: 1;
+    max-width: 100%;
+  }
+
+  .index-page .rte iframe {
+    display: block;
+    width: 100%;
+  }
 {%- endstyle -%}
 
 {%- if section.settings.show_content or section.settings.subheading != blank or section.settings.show_title -%}
