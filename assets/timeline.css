@@ -363,6 +363,14 @@ body.has-header-sticky .timeline {
 .timeline__row.is-selected .timeline__content__outer {
   opacity: 1;
 }
+
+/* "Show only the active step" — fully hide inactive text instead of dimming. */
+@media only screen and (min-width: 750px) {
+  .timeline--solo .timeline__row:not(.is-selected) .timeline__content__outer {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
 @media only screen and (min-width: 750px) {
   .timeline__row.is-selected .timeline__image-figure {
     transform: translateY(0);
