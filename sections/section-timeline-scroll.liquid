@@ -25,33 +25,31 @@
       --PB: {{ section.settings.padding_bottom }}px;
       --tls-steps: {{ steps }};
       --tls-step-scroll: {{ section.settings.step_scroll }};
-      --tls-gap: {{ section.settings.column_gap }}px;
-      --tls-image-height: {{ section.settings.image_height }}vh;
+      --tls-text-width: {{ section.settings.text_width }}px;
+      --tls-rail-gap: {{ section.settings.rail_gap }}px;
     }
   {%- endstyle -%}
 
   {%- if section.settings.heading != blank or section.settings.text != blank -%}
-    <div class="{{ section.settings.width }}">
-      <div class="tls__intro {{ section.settings.intro_alignment }}">
-        {%- if section.settings.heading != blank -%}
-          <h2 class="tls__intro-title {{ section.settings.heading_font_size }}">
-            {{- section.settings.heading | escape -}}
-          </h2>
-        {%- endif -%}
+    <div class="tls__intro {{ section.settings.intro_alignment }}">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="tls__intro-title {{ section.settings.heading_font_size }}">
+          {{- section.settings.heading | escape -}}
+        </h2>
+      {%- endif -%}
 
-        {%- if section.settings.text != blank -%}
-          <div class="tls__intro-text rte {{ section.settings.text_font_size }}">
-            {{ section.settings.text }}
-          </div>
-        {%- endif -%}
-      </div>
+      {%- if section.settings.text != blank -%}
+        <div class="tls__intro-text rte {{ section.settings.text_font_size }}">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
     </div>
   {%- endif -%}
 
   <div class="tls__track" data-tls-track>
     <div class="tls__viewport">
-      <div class="{{ section.settings.width }}">
-        <div class="tls__layout">
+      <div class="tls__stage">
+        <div class="tls__col-text">
           <div class="tls__rail" data-tls-rail>
             <span class="tls__rail-line" aria-hidden="true"></span>
             <span class="tls__rail-fill" aria-hidden="true"></span>
@@ -73,56 +71,69 @@
                 data-tls-panel
                 {{ block.shopify_attributes }}
               >
-                <div class="tls__content">
-                  {%- if block.settings.subheading != blank -%}
-                    <span class="tls__step">{{ block.settings.subheading | escape }}</span>
-                  {%- endif -%}
+                {%- if block.settings.subheading != blank -%}
+                  <span class="tls__step">{{ block.settings.subheading | escape }}</span>
+                {%- endif -%}
 
-                  {%- if block.settings.title != blank -%}
-                    <h3 class="tls__title {{ block.settings.heading_font_size }}">
-                      {{- block.settings.title | escape -}}
-                    </h3>
-                  {%- endif -%}
+                {%- if block.settings.title != blank -%}
+                  <h3 class="tls__title {{ block.settings.heading_font_size }}">
+                    {{- block.settings.title | escape -}}
+                  </h3>
+                {%- endif -%}
 
-                  {%- if block.settings.text != blank -%}
-                    <div class="tls__text rte {{ block.settings.text_font_size }}">
-                      {{ block.settings.text }}
-                    </div>
-                  {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="tls__text rte {{ block.settings.text_font_size }}">
+                    {{ block.settings.text }}
+                  </div>
+                {%- endif -%}
 
-                  {%- if block.settings.button_text != blank -%}
-                    <div class="tls__button">
-                      <a
-                        href="{{ block.settings.button_url | default: '#' }}"
-                        class="btn {{ block.settings.button_style }} {{ block.settings.button_type }}"
-                      >
-                        {{- block.settings.button_text | escape -}}
-                      </a>
-                    </div>
-                  {%- endif -%}
-                </div>
+                {%- if block.settings.button_text != blank -%}
+                  <div class="tls__button">
+                    <a
+                      href="{{ block.settings.button_url | default: '#' }}"
+                      class="btn {{ block.settings.button_style }} {{ block.settings.button_type }}"
+                    >
+                      {{- block.settings.button_text | escape -}}
+                    </a>
+                  </div>
+                {%- endif -%}
 
-                {%- if show_images -%}
+                {%- comment -%} Mobile-only image (hidden on desktop). {%- endcomment -%}
+                {%- if show_images and block.settings.image != blank -%}
                   <div class="tls__figure">
-                    {%- if block.settings.image != blank -%}
-                      {{
-                        block.settings.image
-                        | image_url: width: 1600
-                        | image_tag:
-                          widths: '400, 600, 800, 1000, 1200, 1600',
-                          sizes: '(min-width: 750px) 45vw, 100vw',
-                          loading: 'lazy',
-                          alt: block.settings.title | escape
-                      }}
-                    {%- else -%}
-                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                    {%- endif -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1200
+                      | image_tag: widths: '400, 600, 800, 1200', sizes: '100vw', loading: 'lazy', alt: block.settings.title | escape
+                    }}
                   </div>
                 {%- endif -%}
               </div>
             {%- endfor -%}
           </div>
         </div>
+
+        {%- if show_images -%}
+          <div class="tls__col-media">
+            {%- for block in section.blocks -%}
+              <div class="tls__figure{% if forloop.first %} is-active{% endif %}" data-tls-figure>
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1800
+                    | image_tag:
+                      widths: '600, 800, 1000, 1200, 1600, 1800',
+                      sizes: '50vw',
+                      loading: 'lazy',
+                      alt: block.settings.title | escape
+                  }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -176,7 +187,7 @@
       "type": "select",
       "id": "intro_alignment",
       "label": "Intro alignment",
-      "default": "text-center",
+      "default": "text-left",
       "options": [
         {"value": "text-left", "label": "Left"},
         {"value": "text-center", "label": "Centered"}
@@ -205,34 +216,23 @@
     },
     {
       "type": "range",
-      "id": "column_gap",
-      "min": 16,
-      "max": 120,
-      "step": 4,
+      "id": "text_width",
+      "min": 320,
+      "max": 720,
+      "step": 10,
       "unit": "px",
-      "label": "Gap between text and image",
-      "default": 56
+      "label": "Text column max width",
+      "default": 520
     },
     {
       "type": "range",
-      "id": "image_height",
-      "min": 30,
-      "max": 80,
-      "step": 2,
-      "unit": "vh",
-      "label": "Image height",
-      "default": 68
-    },
-    {
-      "type": "select",
-      "id": "width",
-      "label": "Width",
-      "default": "wrapper",
-      "options": [
-        {"value": "wrapper", "label": "Normal"},
-        {"value": "wrapper--narrow", "label": "Narrow"},
-        {"value": "wrapper--full-padded", "label": "Full width padded"}
-      ]
+      "id": "rail_gap",
+      "min": 24,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between dots and text",
+      "default": 72
     },
     {
       "type": "header",

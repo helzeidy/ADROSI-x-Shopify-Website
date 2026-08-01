@@ -1,28 +1,29 @@
 /* ==========================================================================
    Timeline scroll
    --------------------------------------------------------------------------
-   Desktop: the section pins while you scroll through it. Exactly ONE step is
-   active at a time. Panels are absolutely stacked, so hidden steps take NO
-   space (no gaps) and the active panel hugs its own content height, centred.
+   Desktop: the section pins while you scroll. Exactly ONE step is active at a
+   time. Layout matches the theme's timeline: rail + text on the left half,
+   image full-bleed on the right half, full height. Panels are absolutely
+   stacked so hidden steps take NO space (no gaps) and the active panel hugs
+   its own content height.
    Mobile: a plain stacked list (text + image per step), no pinning.
    ========================================================================== */
 
 .tls {
-  --tls-dot: 12px;
-  --tls-rail-col: 40px;
+  --tls-dot: 14px;
+  --tls-rail-gap: 72px;
+  --tls-edge: var(--outer, 50px);
   --tls-offset: var(--header-height, 0px);
-  --tls-gap: 56px;
   position: relative;
 }
 
 /* Intro ---------------------------------------------------------------- */
 .tls__intro {
-  max-width: 760px;
-  margin: 0 auto 48px;
+  margin: 0 0 40px;
 }
 
 .tls__intro-title {
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   font-family: var(--FONT-STACK-HEADING, inherit);
 }
 
@@ -34,8 +35,57 @@
   margin-bottom: 0;
 }
 
-/* Track + pinned viewport (desktop) ------------------------------------ */
+/* Typography ------------------------------------------------------------ */
+.tls__step {
+  display: block;
+  margin: 0 0 14px;
+  font-family: var(--FONT-STACK-SUBHEADING, inherit);
+  font-weight: var(--FONT-WEIGHT-SUBHEADING, 400);
+  font-size: var(--FONT-SIZE-SUBHEADING-MOBILE, 14px);
+  letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.12em);
+  text-transform: var(--FONT-UPPERCASE-SUBHEADING, uppercase);
+  opacity: 0.75;
+}
+
+.tls__title {
+  margin: 0 0 20px;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+}
+
+.tls__text > *:first-child {
+  margin-top: 0;
+}
+
+.tls__text > *:last-child {
+  margin-bottom: 0;
+}
+
+.tls__button {
+  margin-top: 28px;
+}
+
+.tls__figure img,
+.tls__figure svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======================================================================
+   Desktop
+   ====================================================================== */
 @media only screen and (min-width: 750px) {
+  .tls__step {
+    font-size: var(--FONT-SIZE-SUBHEADING-DESKTOP, 16px);
+  }
+
+  .tls__intro {
+    padding-left: var(--tls-edge);
+    padding-right: var(--tls-edge);
+    margin-bottom: 56px;
+  }
+
   .tls__track {
     position: relative;
     /* One viewport of scroll per step, times the merchant's multiplier. */
@@ -46,35 +96,35 @@
     position: sticky;
     top: var(--tls-offset);
     height: calc(100vh - var(--tls-offset));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     overflow: hidden;
   }
 
-  /* The theme's wrapper is a flex child here — force it to fill the width,
-     otherwise it shrinks to content and the grid columns collapse. */
-  .tls__viewport > * {
-    width: 100%;
-    flex: 0 0 auto;
-  }
-
-  .tls__layout {
+  /* Left half = rail + text · right half = full-bleed image */
+  .tls__stage {
     display: grid;
-    grid-template-columns: var(--tls-rail-col) minmax(0, 1fr);
-    align-items: stretch;
-    width: 100%;
-    height: 78vh;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
   }
-}
 
-/* Rail (progress line + dots) ------------------------------------------ */
-@media only screen and (min-width: 750px) {
-  .tls__rail {
+  .tls--no-images .tls__stage {
+    grid-template-columns: 1fr;
+  }
+
+  /* Text column ------------------------------------------------------- */
+  .tls__col-text {
     position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: 0 40px 0 var(--tls-edge);
+  }
+
+  .tls__rail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--tls-edge);
     width: var(--tls-dot);
-    justify-self: start;
-    align-self: stretch;
   }
 
   .tls__rail-line,
@@ -89,7 +139,7 @@
 
   .tls__rail-line {
     bottom: 0;
-    opacity: 0.18;
+    opacity: 0.2;
   }
 
   .tls__rail-fill {
@@ -106,7 +156,7 @@
     border: 0;
     border-radius: 50%;
     background: currentColor;
-    opacity: 0.25;
+    opacity: 0.28;
     transform: translate(-50%, -50%);
     cursor: pointer;
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -118,16 +168,15 @@
 
   .tls__dot.is-active {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.3);
+    transform: translate(-50%, -50%) scale(1.15);
   }
-}
 
-/* Panels — absolutely stacked, only the active one visible -------------- */
-@media only screen and (min-width: 750px) {
+  /* Panels: absolutely stacked, only the active one visible ------------ */
   .tls__panels {
     position: relative;
-    align-self: stretch;
+    width: 100%;
     min-width: 0;
+    margin-left: var(--tls-rail-gap);
   }
 
   .tls__panel {
@@ -135,18 +184,11 @@
     top: 50%;
     left: 0;
     width: 100%;
+    max-width: var(--tls-text-width, 520px);
     transform: translateY(-50%);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--tls-gap);
-    align-items: center;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.45s ease, visibility 0.45s ease;
-  }
-
-  .tls--no-images .tls__panel {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .tls__panel.is-active {
@@ -154,79 +196,44 @@
     visibility: visible;
   }
 
-  .tls__content {
-    min-width: 0;
-    padding-right: 12px;
+  /* The in-panel image is mobile-only. */
+  .tls__panel .tls__figure {
+    display: none;
+  }
+
+  /* Media column: full-bleed, full height ------------------------------ */
+  .tls__col-media {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tls__col-media .tls__figure {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 0.6s ease, transform 0.9s ease;
+  }
+
+  .tls__col-media .tls__figure.is-active {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-/* Typography ------------------------------------------------------------ */
-.tls__step {
-  display: block;
-  margin: 0 0 12px;
-  font-family: var(--FONT-STACK-SUBHEADING, inherit);
-  font-weight: var(--FONT-WEIGHT-SUBHEADING, 400);
-  font-size: var(--FONT-SIZE-SUBHEADING-MOBILE, 14px);
-  letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.12em);
-  text-transform: var(--FONT-UPPERCASE-SUBHEADING, uppercase);
-  opacity: 0.7;
-}
-
-@media only screen and (min-width: 750px) {
-  .tls__step {
-    font-size: var(--FONT-SIZE-SUBHEADING-DESKTOP, 16px);
-  }
-}
-
-.tls__title {
-  margin: 0 0 18px;
-  font-family: var(--FONT-STACK-HEADING, inherit);
-}
-
-.tls__text > *:first-child {
-  margin-top: 0;
-}
-
-.tls__text > *:last-child {
-  margin-bottom: 0;
-}
-
-.tls__button {
-  margin-top: 28px;
-}
-
-/* Media ---------------------------------------------------------------- */
-.tls__figure {
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.tls__figure img,
-.tls__figure svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media only screen and (min-width: 750px) {
-  .tls__figure {
-    height: var(--tls-image-height, 68vh);
-  }
-}
-
-/* Mobile: plain stacked list ------------------------------------------- */
+/* ======================================================================
+   Mobile — plain stacked list
+   ====================================================================== */
 @media only screen and (max-width: 749px) {
-  .tls__rail {
+  .tls__rail,
+  .tls__col-media {
     display: none;
   }
 
   .tls__panel {
     position: relative;
     padding: 0 0 40px 24px;
-    border-left: 1px solid currentColor;
-    border-left-color: rgba(128, 128, 128, 0.3);
+    border-left: 1px solid rgba(128, 128, 128, 0.3);
   }
 
   .tls__panel::before {
@@ -245,11 +252,11 @@
     border-left-color: transparent;
   }
 
-  .tls__figure {
+  .tls__panel .tls__figure {
     margin-top: 20px;
   }
 
-  .tls__figure img {
+  .tls__panel .tls__figure img {
     height: auto;
   }
 }

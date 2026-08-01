@@ -15,6 +15,7 @@
     this.track = root.querySelector('[data-tls-track]');
     this.rail = root.querySelector('[data-tls-rail]');
     this.panels = Array.prototype.slice.call(root.querySelectorAll('[data-tls-panel]'));
+    this.figures = Array.prototype.slice.call(root.querySelectorAll('[data-tls-figure]'));
     this.dots = Array.prototype.slice.call(root.querySelectorAll('[data-tls-dot]'));
     this.count = this.panels.length;
     this.index = -1;
@@ -90,6 +91,9 @@
 
     this.panels.forEach(function (panel, i) {
       panel.classList.toggle('is-active', i === index);
+    });
+    this.figures.forEach(function (figure, i) {
+      figure.classList.toggle('is-active', i === index);
     });
     this.dots.forEach(function (dot, i) {
       dot.classList.toggle('is-active', i === index);
