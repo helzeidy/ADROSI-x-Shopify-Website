@@ -374,18 +374,6 @@ body.has-header-sticky .timeline {
     opacity: 0;
     pointer-events: none;
   }
-
-  /* Hug the content: keep only the active step's text height, and center it in
-     the step so it aligns with the image instead of sitting at the top with a
-     large empty gap below. */
-  .timeline--solo .timeline__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .timeline--solo .timeline__content__outer {
-    height: auto;
-  }
 }
 @media only screen and (min-width: 750px) {
   .timeline__row.is-selected .timeline__image-figure {
