@@ -364,11 +364,27 @@ body.has-header-sticky .timeline {
   opacity: 1;
 }
 
-/* "Show only the active step" — fully hide inactive text instead of dimming. */
+/* "Show only the active step" — only the CURRENT step's text is visible.
+   The theme keeps every passed step marked .is-selected (so the progress line
+   fills), so we hide inactive steps AND already-passed ones — the current step
+   is the last .is-selected row (no later selected sibling). */
 @media only screen and (min-width: 750px) {
-  .timeline--solo .timeline__row:not(.is-selected) .timeline__content__outer {
+  .timeline--solo .timeline__row:not(.is-selected) .timeline__content__outer,
+  .timeline--solo .timeline__row.is-selected:has(~ .timeline__row.is-selected) .timeline__content__outer {
     opacity: 0;
     pointer-events: none;
+  }
+
+  /* Hug the content: keep only the active step's text height, and center it in
+     the step so it aligns with the image instead of sitting at the top with a
+     large empty gap below. */
+  .timeline--solo .timeline__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .timeline--solo .timeline__content__outer {
+    height: auto;
   }
 }
 @media only screen and (min-width: 750px) {
