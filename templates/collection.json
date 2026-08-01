@@ -38,7 +38,7 @@
         "card_max_width": 120,
         "card_gap": 20,
         "title_size": 14,
-        "text_show_count": true,
+        "text_show_count": false,
         "text_all_collection": "{{ collection }}",
         "text_all_label": "All",
         "subcollection_description": false,
