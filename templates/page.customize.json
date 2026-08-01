@@ -182,6 +182,8 @@
       "name": "Timeline",
       "settings": {
         "show_images": true,
+        "step_scroll": 1,
+        "only_active_text": true,
         "title": "A shoe like no other: the birth of ADORSI",
         "heading_font_size": "heading-large",
         "text": "<p>Would you like to be the proud owner of your very own pair of custom made shoes? Adorsi offers this chance for everyone. <br/>The company takes great pride in its Spanish heritage and craftsmanship, which is evident in every pair of shoes they produce.</p><p>The process begins when you are initiated into the art of shoemaking, this is an opportunity that not many people can boast.</p><p>You can choose from an array of styles and materials so that they fit just right, all at affordable prices!</p><p>From there, ADORSI's skilled craftsmen will begin custom-making your shoes from start to finish. Every detail - from the stitching to the construction of the sole - is done by hand.</p><p>The end result will be a pair of uniquely crafted shoes that are truly one-of-a-kind.</p>",
