@@ -16,7 +16,7 @@
 
 <section
   id="IndexTimeline--{{ section.id }}"
-  class="index-timeline timeline{% if show_images %} timeline--images{% endif %}{% if section.settings.only_active_text %} timeline--solo{% endif %} section-padding {{ color_scheme }}"
+  class="index-timeline timeline{% if show_images %} timeline--images{% endif %} section-padding {{ color_scheme }}"
   data-section-id="{{ section.id }}"
   data-section-type="timeline"
 >
@@ -285,13 +285,6 @@
       "label": "Scroll length per step",
       "default": 1,
       "info": "Desktop only. Higher = you scroll more before each step advances and before the content below appears. The timeline pins while you scroll through its steps."
-    },
-    {
-      "type": "checkbox",
-      "id": "only_active_text",
-      "label": "Show only the active step's text",
-      "default": false,
-      "info": "Desktop only. Hides the other steps' text so only the current one shows as you scroll (instead of dimming them)."
     },
     {
       "type": "header",

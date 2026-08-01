@@ -364,17 +364,6 @@ body.has-header-sticky .timeline {
   opacity: 1;
 }
 
-/* "Show only the active step" — only the CURRENT step's text is visible.
-   The theme keeps every passed step marked .is-selected (so the progress line
-   fills), so we hide inactive steps AND already-passed ones — the current step
-   is the last .is-selected row (no later selected sibling). */
-@media only screen and (min-width: 750px) {
-  .timeline--solo .timeline__row:not(.is-selected) .timeline__content__outer,
-  .timeline--solo .timeline__row.is-selected:has(~ .timeline__row.is-selected) .timeline__content__outer {
-    opacity: 0;
-    pointer-events: none;
-  }
-}
 @media only screen and (min-width: 750px) {
   .timeline__row.is-selected .timeline__image-figure {
     transform: translateY(0);
