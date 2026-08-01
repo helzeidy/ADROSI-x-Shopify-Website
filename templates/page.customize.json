@@ -183,7 +183,6 @@
       "settings": {
         "show_images": true,
         "step_scroll": 1,
-        "only_active_text": true,
         "title": "A shoe like no other: the birth of ADORSI",
         "heading_font_size": "heading-large",
         "text": "<p>Would you like to be the proud owner of your very own pair of custom made shoes? Adorsi offers this chance for everyone. <br/>The company takes great pride in its Spanish heritage and craftsmanship, which is evident in every pair of shoes they produce.</p><p>The process begins when you are initiated into the art of shoemaking, this is an opportunity that not many people can boast.</p><p>You can choose from an array of styles and materials so that they fit just right, all at affordable prices!</p><p>From there, ADORSI's skilled craftsmen will begin custom-making your shoes from start to finish. Every detail - from the stitching to the construction of the sole - is done by hand.</p><p>The end result will be a pair of uniquely crafted shoes that are truly one-of-a-kind.</p>",
@@ -205,11 +204,130 @@
         "padding_bottom": 32,
         "heading_tag": "automatic"
       }
+    },
+    "section_timeline_scroll_pBcEyA": {
+      "type": "section-timeline-scroll",
+      "blocks": {
+        "step_aNzjRn": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 1",
+            "title": "Step heading",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "image": "shopify://shop_images/golf_shoes_29.png",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        },
+        "step_WXmWKR": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 1",
+            "title": "Step heading",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "image": "shopify://shop_images/golf_shoes_20.png",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        },
+        "step_WH7Ykj": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 1",
+            "title": "Step heading",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "image": "shopify://shop_images/originals_10.png",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        },
+        "step_LXpExQ": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 1",
+            "title": "Sourcing the leathers",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "image": "shopify://shop_images/oxford_6.png",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        },
+        "step_wGGywQ": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 2",
+            "title": "Pattern cutting",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "image": "shopify://shop_images/1_8.jpg",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        },
+        "step_riWkrn": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 3",
+            "title": "Sewing and sole mounting",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "image": "shopify://shop_images/golf_shoes_26.png",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        }
+      },
+      "block_order": [
+        "step_aNzjRn",
+        "step_WXmWKR",
+        "step_WH7Ykj",
+        "step_LXpExQ",
+        "step_wGGywQ",
+        "step_riWkrn"
+      ],
+      "name": "Timeline scroll",
+      "settings": {
+        "heading": "",
+        "heading_font_size": "heading-medium",
+        "text": "",
+        "text_font_size": "body-medium",
+        "intro_alignment": "text-left",
+        "show_images": true,
+        "step_scroll": 1,
+        "column_gap": 56,
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
     "section_hero_pdMktC",
-    "section_timeline_mtCJea"
+    "section_timeline_mtCJea",
+    "section_timeline_scroll_pBcEyA"
   ]
 }
