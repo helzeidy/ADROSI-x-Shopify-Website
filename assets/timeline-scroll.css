@@ -47,8 +47,16 @@
     top: var(--tls-offset);
     height: calc(100vh - var(--tls-offset));
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     overflow: hidden;
+  }
+
+  /* The theme's wrapper is a flex child here — force it to fill the width,
+     otherwise it shrinks to content and the grid columns collapse. */
+  .tls__viewport > * {
+    width: 100%;
+    flex: 0 0 auto;
   }
 
   .tls__layout {
@@ -56,7 +64,7 @@
     grid-template-columns: var(--tls-rail-col) minmax(0, 1fr);
     align-items: stretch;
     width: 100%;
-    height: 82vh;
+    height: 78vh;
   }
 }
 
@@ -118,8 +126,8 @@
 @media only screen and (min-width: 750px) {
   .tls__panels {
     position: relative;
-    align-self: center;
-    min-height: 100%;
+    align-self: stretch;
+    min-width: 0;
   }
 
   .tls__panel {
@@ -147,6 +155,7 @@
   }
 
   .tls__content {
+    min-width: 0;
     padding-right: 12px;
   }
 }
@@ -189,10 +198,12 @@
 /* Media ---------------------------------------------------------------- */
 .tls__figure {
   position: relative;
+  min-width: 0;
   overflow: hidden;
 }
 
-.tls__figure img {
+.tls__figure img,
+.tls__figure svg {
   display: block;
   width: 100%;
   height: 100%;
@@ -201,8 +212,7 @@
 
 @media only screen and (min-width: 750px) {
   .tls__figure {
-    height: 70vh;
-    max-height: 100%;
+    height: var(--tls-image-height, 68vh);
   }
 }
 

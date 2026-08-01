@@ -26,6 +26,7 @@
       --tls-steps: {{ steps }};
       --tls-step-scroll: {{ section.settings.step_scroll }};
       --tls-gap: {{ section.settings.column_gap }}px;
+      --tls-image-height: {{ section.settings.image_height }}vh;
     }
   {%- endstyle -%}
 
@@ -211,6 +212,16 @@
       "unit": "px",
       "label": "Gap between text and image",
       "default": 56
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "vh",
+      "label": "Image height",
+      "default": 68
     },
     {
       "type": "select",
