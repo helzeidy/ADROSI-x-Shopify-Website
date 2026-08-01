@@ -115,12 +115,66 @@
             "show_arrow": false,
             "heading_tag": "automatic"
           }
+        },
+        "timeline_C4xnam": {
+          "type": "timeline",
+          "settings": {
+            "subheading": "2010",
+            "title": "Patina workshop",
+            "heading_font_size": "heading-large",
+            "text": "<p>Even when you're not a fan of shoe polish, this is way more than just another shine. </p><p>ADORSI hand-painted patina finishing is the crème de la crème of the handcrafting process. To achieve an aged, uniquely charming weathered look to their leather goods the process consists of carefully applying hand-painted layers. </p><p>The result of this unique artisanal precise bespoke process is a one-of-a-kind piece that cannot be replicated.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "Learn more",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        },
+        "timeline_x9Ghd4": {
+          "type": "timeline",
+          "settings": {
+            "subheading": "2010",
+            "title": "Finishing & Quality Control",
+            "heading_font_size": "heading-large",
+            "text": "<p>The finishing process for your shoe is a series of operations. The first step in the process includes painting all soles, according to what color you have chosen on top-notch leathers like ours! </p><p>Polishing is an important stage in the production of shoes.</p><p> This stage includes manual cleaning and polishing of both upper materials as well as the sole unit. It's done to remove any impurities from leather, which helps maintain its quality and improves how it looks on your foot!<br/><br/>After the final stage of production, the last check is made to ensure that each shoe meets our high standards. Once they pass this quality control test, they are finally ready to be packaged and shipped off to their new owner!</p>",
+            "text_font_size": "body-medium",
+            "button_text": "Learn more",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        },
+        "timeline_q9PyDh": {
+          "type": "timeline",
+          "settings": {
+            "subheading": "2010",
+            "title": "Packaging",
+            "heading_font_size": "heading-large",
+            "text": "<p>When you open the box, the first thing you will see is your new shoes, wrapped in an ADORSI dust bag and placed side by side. On top of that, you will find a shoehorn.</p><p>We recommend that you take your time to unwrap your new shoes and enjoy the experience. Inspect them closely and appreciate the craftsmanship that went into making them.</p><p>Once you have inspected your new shoes, we suggest that you put them on and walk around in them to get a feel for how they fit. If you are not satisfied with the fit, please contact us so that we can assist you further.</p><p>We hope that you enjoy your new shoes and the experience of unboxing them!</p>",
+            "text_font_size": "body-medium",
+            "button_text": "Learn more",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
         }
       },
       "block_order": [
         "timeline_Jz4Xjq",
         "timeline_xdCfgc",
-        "timeline_Hg6VkC"
+        "timeline_Hg6VkC",
+        "timeline_C4xnam",
+        "timeline_x9Ghd4",
+        "timeline_q9PyDh"
       ],
       "custom_css": [
         ".timeline__dot__holder span.timeline__dot {border-radius: 50%;}"
