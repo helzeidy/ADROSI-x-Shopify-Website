@@ -116,13 +116,15 @@
     display: flex;
     align-items: center;
     min-width: 0;
-    padding: 0 40px 0 var(--tls-edge);
+    padding: var(--tls-rail-inset, 24px) 40px var(--tls-rail-inset, 24px) var(--tls-edge);
   }
 
+  /* Inset the rail by the same amount so the first and last dots (which are
+     centred on 0% and 100%) are fully visible instead of half-clipped. */
   .tls__rail {
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: var(--tls-rail-inset, 24px);
+    bottom: var(--tls-rail-inset, 24px);
     left: var(--tls-edge);
     width: var(--tls-dot);
   }
