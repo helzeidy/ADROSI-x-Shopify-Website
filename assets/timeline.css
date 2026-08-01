@@ -56,7 +56,7 @@ body.has-header-sticky .timeline {
 }
 @media only screen and (min-width: 750px) {
   .timeline__body {
-    min-height: calc(var(--height) * var(--counter));
+    min-height: calc(var(--height) * var(--counter) * var(--step-scroll, 1));
   }
 }
 

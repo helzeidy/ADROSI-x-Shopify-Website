@@ -252,6 +252,7 @@
     --PT: {{ section.settings.padding_top }}px;
     --PB: {{ section.settings.padding_bottom }}px;
     --counter: {{ blocks_counter }};
+    --step-scroll: {{ section.settings.step_scroll | default: 1 }};
   }
 
   {%- if dot_background != 'rgba(0,0,0,0)' and dot_background != '' -%}
@@ -273,6 +274,17 @@
       "id": "show_images",
       "label": "Show images",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "step_scroll",
+      "min": 1,
+      "max": 4,
+      "step": 0.5,
+      "unit": "x",
+      "label": "Scroll length per step",
+      "default": 1,
+      "info": "Desktop only. Higher = you scroll more before each step advances and before the content below appears. The timeline pins while you scroll through its steps."
     },
     {
       "type": "header",
