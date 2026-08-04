@@ -11,6 +11,19 @@
     class="template-{{ template.name | handle }}{% if template.suffix != blank %} template-{{ template.name | handle }}-{{ template.suffix | handle }}{% endif %} grid-{{ settings.grid_style }}{% if customer %} customer-logged-in{% endif %}{% if settings.animations_enable %} aos-initialized{% endif %}{% if settings.product_grid_outline %} has-line-design{% endif %}"
     data-animations="{{ settings.animations_enable }}"
   >
+    {%- comment -%}
+      Mobile: stop any single wide element from making the whole page scroll
+      sideways into empty space. `clip` (not `hidden`) is used so position:
+      sticky keeps working for descendants.
+    {%- endcomment -%}
+    {%- style -%}
+      @media only screen and (max-width: 749px) {
+        .container[data-site-container] {
+          overflow-x: clip;
+        }
+      }
+    {%- endstyle -%}
+
     {%- if template.suffix == 'customize' -%}
       {%- style -%}
         /* Override the configurator's own inline styles (needs !important). */
