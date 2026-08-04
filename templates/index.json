@@ -215,6 +215,120 @@
         "heading_tag": "automatic"
       }
     },
+    "section_hero_Q7zzN4": {
+      "type": "section-hero",
+      "blocks": {
+        "text_7wLwdy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>For the man who's spent his life sizing down.</p>",
+            "text_font_size": "body-x-large",
+            "padding_bottom": 0
+          }
+        },
+        "heading_cHKFin": {
+          "type": "heading",
+          "settings": {
+            "title": "FULL & HALF SIZES 5-17 │ EE & EEE WIDTH",
+            "heading_font_size": "heading-x-large",
+            "heading_tag": "automatic",
+            "padding_bottom": 16
+          }
+        },
+        "text_L8dd99": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If you've ever bought a shoe a half-size off because the right one didn't exist — this is for you. Every last in our line is graded the full range, on the same bench, by the same hands.</p>",
+            "text_font_size": "body-large",
+            "padding_bottom": 8
+          }
+        }
+      },
+      "block_order": [
+        "text_7wLwdy",
+        "heading_cHKFin",
+        "text_L8dd99"
+      ],
+      "name": "Image banner",
+      "settings": {
+        "image_1": "shopify://shop_images/Panels.jpg",
+        "link": "",
+        "width": "wrapper--full-padded",
+        "height": "screen-height-one-third",
+        "flex_align_desktop": "align--middle-center-desktop",
+        "content_width": 60,
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "flex_align_mobile": "align--middle-left-mobile",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "show_text_background": false,
+        "overlay_type": "disabled",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_placeholder": true
+      }
+    },
+    "section_double_ALB37d": {
+      "type": "section-double",
+      "blocks": {
+        "subheading_TpVr7A": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "BIG & WIDE",
+            "padding_bottom": 16
+          }
+        },
+        "heading_ybPRaA": {
+          "type": "heading",
+          "settings": {
+            "title": "The size range menswear forgets.",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_7RzPyJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Most makers stop at 13. We don't. Every ADORSI last is cut in full and half sizes from US 5 through 17, in four widths from standard D to extra-wide EEE — no upcharge, no waiting on a special order.</p>",
+            "text_font_size": "body-medium",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_cb7jLr": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Learn more",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "subheading_TpVr7A",
+        "heading_ybPRaA",
+        "text_7RzPyJ",
+        "buttons_cb7jLr"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "image_1": "shopify://shop_images/1-_34.jpg",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "layout": "is-reversed",
+        "width": "wrapper--full",
+        "height": "screen-height-two-thirds",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
     "section_custom_content_NdQXKa": {
       "type": "section-custom-content",
       "blocks": {
@@ -267,6 +381,7 @@
         "text_eCWrdk",
         "text_4gL7MV"
       ],
+      "disabled": true,
       "name": "Custom section",
       "settings": {
         "borders": false,
@@ -278,58 +393,6 @@
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "padding_top": 100,
         "padding_bottom": 0
-      }
-    },
-    "section_hero_Q7zzN4": {
-      "type": "section-hero",
-      "blocks": {
-        "text_7wLwdy": {
-          "type": "text",
-          "settings": {
-            "text": "<p>For the man who's spent his life sizing down.</p>",
-            "text_font_size": "body-x-large",
-            "padding_bottom": 0
-          }
-        },
-        "heading_cHKFin": {
-          "type": "heading",
-          "settings": {
-            "title": "FULL & HALF SIZES 5-17 │ EE & EEE WIDTH",
-            "heading_font_size": "heading-x-large",
-            "heading_tag": "automatic",
-            "padding_bottom": 16
-          }
-        },
-        "text_L8dd99": {
-          "type": "text",
-          "settings": {
-            "text": "<p>If you've ever bought a shoe a half-size off because the right one didn't exist — this is for you. Every last in our line is graded the full range, on the same bench, by the same hands.</p>",
-            "text_font_size": "body-large",
-            "padding_bottom": 8
-          }
-        }
-      },
-      "block_order": [
-        "text_7wLwdy",
-        "heading_cHKFin",
-        "text_L8dd99"
-      ],
-      "name": "Image banner",
-      "settings": {
-        "image_1": "shopify://shop_images/Panels.jpg",
-        "link": "",
-        "width": "wrapper--full-padded",
-        "height": "screen-height-one-third",
-        "flex_align_desktop": "align--middle-center-desktop",
-        "content_width": 60,
-        "mobile_height": "screen-height-three-quarters--mobile",
-        "flex_align_mobile": "align--middle-left-mobile",
-        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
-        "show_text_background": false,
-        "overlay_type": "disabled",
-        "padding_top": 0,
-        "padding_bottom": 50,
-        "show_placeholder": true
       }
     },
     "section_hero_product_i6KxhK": {
@@ -940,8 +1003,9 @@
     "section_slideshow_yADrDe",
     "section_rich_text_R37UEc",
     "section_collections_list_Eby3tp",
-    "section_custom_content_NdQXKa",
     "section_hero_Q7zzN4",
+    "section_double_ALB37d",
+    "section_custom_content_NdQXKa",
     "section_hero_product_i6KxhK",
     "section_custom_content_GcCeRY",
     "section_products_image_yWErRm",
