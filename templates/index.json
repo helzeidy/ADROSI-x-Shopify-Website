@@ -144,6 +144,14 @@
     "section_collections_list_Eby3tp": {
       "type": "section-collections-list",
       "blocks": {
+        "collection_gThUwK": {
+          "type": "collection",
+          "settings": {
+            "collection": "designer-loafers",
+            "collection_image": "{{ block.settings.collection.image }}",
+            "title": "{{ block.settings.collection.title }}"
+          }
+        },
         "collection_KL9pKE": {
           "type": "collection",
           "settings": {
@@ -156,14 +164,6 @@
           "type": "collection",
           "settings": {
             "collection": "custom-loafers",
-            "collection_image": "{{ block.settings.collection.image }}",
-            "title": "{{ block.settings.collection.title }}"
-          }
-        },
-        "collection_gThUwK": {
-          "type": "collection",
-          "settings": {
-            "collection": "designer-loafers",
             "collection_image": "{{ block.settings.collection.image }}",
             "title": "{{ block.settings.collection.title }}"
           }
@@ -186,9 +186,9 @@
         }
       },
       "block_order": [
+        "collection_gThUwK",
         "collection_KL9pKE",
         "collection_GBXgTn",
-        "collection_gThUwK",
         "collection_WyKVAN",
         "collection_cibAK9"
       ],
