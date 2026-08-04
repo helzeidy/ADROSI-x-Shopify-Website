@@ -401,7 +401,7 @@
         "heading_xcgEEW": {
           "type": "heading",
           "settings": {
-            "title": "Image banner",
+            "title": "Best Seller!",
             "heading_font_size": "heading-x-large",
             "heading_tag": "automatic"
           }
@@ -417,7 +417,7 @@
           "type": "button",
           "settings": {
             "link_text": "View products",
-            "link": "",
+            "link": "shopify://products/classic-black-leather-oxford-shoes",
             "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
