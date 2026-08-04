@@ -43,7 +43,7 @@
             "title": "",
             "heading_font_size": "heading-x-small",
             "column_width": 25,
-            "enable_accordion": false
+            "enable_accordion": true
           }
         },
         "linklist_XHdrMh": {
@@ -53,7 +53,7 @@
             "title": "",
             "heading_font_size": "heading-x-small",
             "column_width": 25,
-            "enable_accordion": false
+            "enable_accordion": true
           }
         },
         "footer-0": {
