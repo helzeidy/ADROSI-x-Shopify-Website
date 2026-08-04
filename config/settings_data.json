@@ -29,7 +29,7 @@
     "btn_border_style": "square",
     "grid_style": "classic",
     "dots_style": "hidden",
-    "parallax_enable": true,
+    "parallax_enable": false,
     "product_grid_outline": false,
     "enable_superscript": true,
     "show_scroll_top_button": true,
