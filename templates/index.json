@@ -156,7 +156,7 @@
           "type": "collection",
           "settings": {
             "collection": "custom-loafers",
-            "collection_image": "shopify://shop_images/loafeer_9.png",
+            "collection_image": "{{ block.settings.collection.image }}",
             "title": "{{ block.settings.collection.title }}"
           }
         },
