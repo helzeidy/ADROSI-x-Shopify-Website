@@ -799,8 +799,114 @@
         "padding_bottom": 100
       }
     },
+    "section_tab_collections_TY7E4B": {
+      "type": "section-tab-collections",
+      "blocks": {
+        "collection_M7xNpD": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "lace-up-golf-shoes",
+            "show_image": true,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        },
+        "collection_AabfPh": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "loafer-golf-shoes",
+            "show_image": true,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        },
+        "collection_QHCQ9c": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "saddle-golf-shoes",
+            "show_image": true,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        },
+        "collection_f8nrXz": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "monk-strap-golf-shoes",
+            "show_image": true,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        }
+      },
+      "block_order": [
+        "collection_M7xNpD",
+        "collection_AabfPh",
+        "collection_QHCQ9c",
+        "collection_f8nrXz"
+      ],
+      "name": "Tab collections",
+      "settings": {
+        "show_product_count": false,
+        "title": "GOLF EDITION - The course deserves better shoes.",
+        "heading_font_size": "heading-medium",
+        "text": "<p>From the tee to the 19th hole — without changing your shoes.</p>",
+        "text_font_size": "body-medium",
+        "layout": "left",
+        "layout_desktop": "slider",
+        "product_limit": 6,
+        "grid": 4,
+        "rows": 3,
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-e91cab0e-1933-4c93-9241-b75f3ab20fa1",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
     "section_collection_pbdUnA": {
       "type": "section-collection",
+      "disabled": true,
       "settings": {
         "featured_collection": "golf-shoes",
         "heading": "GOLF EDITION - The course deserves better shoes.",
@@ -907,96 +1013,6 @@
         "padding_bottom": 50,
         "heading_tag": "automatic"
       }
-    },
-    "section_collection_links_spotlight_CAAxtt": {
-      "type": "section-collection-links-spotlight",
-      "blocks": {
-        "collection_LXyky4": {
-          "type": "collection",
-          "settings": {
-            "collection": "lace-up-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_20.png",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "button_text": "Shop now",
-            "button_link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "button_show_arrow": false,
-            "background_color": ""
-          }
-        },
-        "collection_UUpWcD": {
-          "type": "collection",
-          "settings": {
-            "collection": "loafer-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_12.png",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "button_text": "Shop now",
-            "button_link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "button_show_arrow": false,
-            "background_color": ""
-          }
-        },
-        "collection_mLkeJ3": {
-          "type": "collection",
-          "settings": {
-            "collection": "saddle-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_22.png",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "button_text": "Shop now",
-            "button_link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "button_show_arrow": false,
-            "background_color": ""
-          }
-        },
-        "collection_FtKYd6": {
-          "type": "collection",
-          "settings": {
-            "collection": "monk-strap-golf-shoes",
-            "image": "shopify://shop_images/golf_shoes_14.png",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "button_text": "Shop now",
-            "button_link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "button_show_arrow": false,
-            "background_color": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection_LXyky4",
-        "collection_UUpWcD",
-        "collection_mLkeJ3",
-        "collection_FtKYd6"
-      ],
-      "name": "Collection links: spotlight",
-      "settings": {
-        "title": "GOLF EDITION",
-        "heading_font_size": "heading-large",
-        "text": "<p>The course deserves better shoes.<br/>From the tee to the 19th hole — without changing your shoes.</p>",
-        "text_font_size": "body-medium",
-        "layout": "",
-        "width": "wrapper--full",
-        "height": "screen-height-two-thirds",
-        "mobile_height": "screen-height-one-half--mobile",
-        "reverse_blocks": false,
-        "color_scheme": "scheme-e91cab0e-1933-4c93-9241-b75f3ab20fa1",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
@@ -1013,8 +1029,8 @@
     "section_reviews_fiwDiK",
     "1750856207ec25272b",
     "section_rich_text_kHXa9F",
+    "section_tab_collections_TY7E4B",
     "section_collection_pbdUnA",
-    "section_text_row_tzpdW9",
-    "section_collection_links_spotlight_CAAxtt"
+    "section_text_row_tzpdW9"
   ]
 }
