@@ -7,6 +7,7 @@
   assign sub_collection_counter = 0
   assign sub_collection_limit = 6
   assign card_style = section.settings.card_style | default: 'overlay'
+  assign tabs_align = section.settings.tabs_alignment | default: 'left'
   assign is_minimal = false
   assign is_text = false
   if card_style == 'minimal'
@@ -115,14 +116,37 @@
     {%- endif -%}
 
     {%- if is_text -%}
-      /* Text tabs style: no images, just links; active one underlined. */
+      /* Text tabs style: no images, just links; active one underlined.
+         Single-line horizontal scroller at every breakpoint. Padding lives on
+         the scroller itself so the first/last tab clear the section edges at
+         both ends of the scroll, matching the .grid-outer padding the product
+         grid uses. */
       .subcollections--text .subcollections__tabs {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: baseline;
-        justify-content: center;
+        justify-content: flex-start;
         gap: var(--subcard-gap, 28px);
+        padding-inline: var(--outer, 20px);
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
       }
+      .subcollections--text .subcollections__tabs::-webkit-scrollbar {
+        display: none;
+      }
+      {%- if tabs_align == 'center' -%}
+        /* `width: fit-content` + auto margins centre the row while it fits,
+           then it falls back to left-aligned scrolling once it overflows —
+           centring an overflowing scroller would strand the first tabs. */
+        .subcollections--text .subcollections__tabs {
+          width: fit-content;
+          max-width: 100%;
+          margin-inline: auto;
+        }
+      {%- endif -%}
       .subcollections--text .subcollections__tab {
         position: relative;
         color: var(--text-color, currentColor);
@@ -150,15 +174,7 @@
       }
       @media (max-width: 749px) {
         .subcollections--text .subcollections__tabs {
-          flex-wrap: nowrap;
-          justify-content: flex-start;
-          overflow-x: auto;
-          scrollbar-width: none;
-          -webkit-overflow-scrolling: touch;
           gap: 22px;
-        }
-        .subcollections--text .subcollections__tabs::-webkit-scrollbar {
-          display: none;
         }
       }
     {%- endif -%}
@@ -378,6 +394,18 @@
     {
       "type": "header",
       "content": "Text tabs",
+      "visible_if": "{{ section.settings.card_style == 'text' }}"
+    },
+    {
+      "type": "select",
+      "id": "tabs_alignment",
+      "label": "Tab alignment",
+      "default": "left",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"}
+      ],
+      "info": "Applies on desktop and mobile. Centered tabs switch to left-aligned automatically once there are too many to fit.",
       "visible_if": "{{ section.settings.card_style == 'text' }}"
     },
     {
