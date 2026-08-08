@@ -25,7 +25,7 @@
         "custom_image": "{{ collection.metafields.custom.collection_main_banner.value }}",
         "banner_layout": "overlay",
         "height": "screen-height-one-third",
-        "mobile_height": "screen-height-one-half--mobile",
+        "mobile_height": "two-fifty-height-hero--mobile",
         "padding_top": 0,
         "padding_bottom": 0
       }
