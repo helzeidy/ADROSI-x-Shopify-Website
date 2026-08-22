@@ -14,7 +14,7 @@
       "settings": {
         "show_title": true,
         "show_description": true,
-        "description_max_width": 420,
+        "description_max_width": 620,
         "show_breadcrumb": true,
         "breadcrumb_collection": "{{ collection.metafields.custom.parent_collections.value }}",
         "flex_align": "align--middle-left",
@@ -24,7 +24,7 @@
         "show_image": true,
         "custom_image": "{{ collection.metafields.custom.collection_main_banner.value }}",
         "banner_layout": "overlay",
-        "height": "screen-height-one-third",
+        "height": "screen-height-one-half",
         "mobile_height": "two-fifty-height-hero--mobile",
         "padding_top": 0,
         "padding_bottom": 0
