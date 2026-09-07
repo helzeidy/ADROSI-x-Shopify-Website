@@ -23,7 +23,7 @@
         "overlay_type": "disabled",
         "show_image": true,
         "custom_image": "{{ collection.metafields.custom.collection_main_banner.value }}",
-        "banner_layout": "overlay",
+        "banner_layout": "inline",
         "height": "screen-height-one-third",
         "mobile_height": "two-fifty-height-hero--mobile",
         "padding_top": 0,
