@@ -620,6 +620,58 @@
   }
 </script>
 
+{%- comment -%}
+  FAQ structured data.
+
+  Built automatically from any <details><summary>…</summary>…</details>
+  accordions in the article body, so writers never hand-write JSON-LD —
+  Shopify's rich text editor strips <script> tags from article content, so
+  pasting it there would not survive a save.
+
+  Requires plain <summary> tags (no attributes), which is what the article
+  authoring guide specifies.
+{%- endcomment -%}
+
+{%- if section.settings.faq_schema -%}
+  {%- assign faq_chunks = article.content | split: '<summary>' -%}
+
+  {%- if faq_chunks.size > 1 -%}
+    {%- assign faq_written = 0 -%}
+    {%- capture faq_entities -%}
+      {%- for chunk in faq_chunks offset: 1 -%}
+        {%- assign question = chunk | split: '</summary>' | first | strip_html | strip -%}
+        {%- assign answer = chunk | split: '</summary>' | last | split: '</details>' | first | strip_html | strip -%}
+
+        {%- if question != blank and answer != blank -%}
+          {%- comment -%} Comma only between written entries, never before the first. {%- endcomment -%}
+          {%- if faq_written > 0 -%},{%- endif -%}
+          {%- assign faq_written = faq_written | plus: 1 -%}
+          {
+            "@type": "Question",
+            "name": {{ question | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ answer | json }}
+            }
+          }
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+
+    {%- assign faq_entities = faq_entities | strip -%}
+
+    {%- if faq_entities != blank -%}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [{{ faq_entities }}]
+        }
+      </script>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Article page",
@@ -830,6 +882,13 @@
     {
       "type": "header",
       "content": "Advanced"
+    },
+    {
+      "type": "checkbox",
+      "id": "faq_schema",
+      "label": "Add FAQ schema from accordions",
+      "default": true,
+      "info": "Builds FAQPage structured data from any accordions in the article body. Turn off if the accordions are not questions and answers."
     },
     {
       "type": "select",
