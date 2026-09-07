@@ -28,6 +28,10 @@
 {%- capture style -%}
   --PT: {{ section.settings.padding_top }}px;
   --PB: {{ section.settings.padding_bottom }}px;
+  --article-image-width: {{ section.settings.image_width }}%;
+  --article-image-radius: {{ section.settings.image_radius }}px;
+  --article-image-fit: {{ section.settings.image_fit }};
+  --article-image-gap: {{ section.settings.image_gap }}px;
 
   {%- unless scheme_bg_color == 'rgba(0,0,0,0)' or scheme_bg_color == blank -%}
     --bg: {{ scheme_bg_color }};
@@ -46,8 +50,28 @@
   data-section-type="article"
   style="{{ style }}"
 >
-  <div class="article__hero text-center">
+  {%- capture article_image -%}
+    {%- if section.settings.show_image and article.image -%}
+      <div
+        class="article__image article__image--{{ section.settings.image_alignment }} {{ section.settings.height }} {{ section.settings.mobile_height }}"
+      >
+        {%- render 'image-hero',
+          image: article.image,
+          sizes: '(min-width: 750px) 50vw, calc(100vw - 32px)',
+          desktop_height: section.settings.height,
+          mobile_height: section.settings.mobile_height,
+          show_backfill: false
+        -%}
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <div class="article__hero {{ section.settings.text_alignment }}">
     <div class="wrapper">
+      {%- if section.settings.image_placement == 'above' -%}
+        {{ article_image }}
+      {%- endif -%}
+
       <{{ title_tag }} class="article__title">{{ article.title }}</{{ title_tag }}>
 
       {%- if show_date or show_author -%}
@@ -64,17 +88,9 @@
         </p>
       {%- endif -%}
 
-      {%- if section.settings.show_image and article.image -%}
-        <div class="article__image {{ section.settings.height }} {{ section.settings.mobile_height }}">
-          {%- render 'image-hero',
-            image: article.image,
-            sizes: '(min-width: 750px) 50vw, calc(100vw - 32px)',
-            desktop_height: section.settings.height,
-            mobile_height: section.settings.mobile_height,
-            show_backfill: false
-          -%}
-        </div>
-      {%- endif -%}
+      {%- unless section.settings.image_placement == 'above' -%}
+        {{ article_image }}
+      {%- endunless -%}
     </div>
   </div>
 
@@ -648,6 +664,90 @@
       "id": "arrows",
       "label": "Show navigation arrows",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Title alignment",
+      "default": "text-center",
+      "options": [
+        {"value": "text-left", "label": "Left"},
+        {"value": "text-center", "label": "Centered"},
+        {"value": "text-right", "label": "Right"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Featured image"
+    },
+    {
+      "type": "select",
+      "id": "image_placement",
+      "label": "Position",
+      "default": "below",
+      "visible_if": "{{ section.settings.show_image }}",
+      "options": [
+        {"value": "above", "label": "Above the title"},
+        {"value": "below", "label": "Below the title"}
+      ]
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Width",
+      "default": 100,
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "select",
+      "id": "image_alignment",
+      "label": "Alignment",
+      "default": "center",
+      "info": "Only visible when the width is under 100%.",
+      "visible_if": "{{ section.settings.show_image }}",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Centered"},
+        {"value": "right", "label": "Right"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Fit",
+      "default": "contain",
+      "info": "Cover fills the height and crops. Contain shows the whole image.",
+      "visible_if": "{{ section.settings.show_image }}",
+      "options": [
+        {"value": "contain", "label": "Contain (show whole image)"},
+        {"value": "cover", "label": "Cover (fill and crop)"}
+      ]
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 0,
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Space between image and title",
+      "default": 40,
+      "visible_if": "{{ section.settings.show_image }}"
     },
     {
       "type": "header",

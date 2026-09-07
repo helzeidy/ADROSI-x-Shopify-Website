@@ -43,10 +43,31 @@ body:has([data-header-transparent]) .main-content > .shopify-section:first-of-ty
   opacity: 1;
 }
 .article__hero .article__image:not(:first-child) {
-  margin-top: var(--double-inner);
+  margin-top: var(--article-image-gap, var(--double-inner));
+}
+/* Image above the title needs the gap on the other side. */
+.article__hero .article__image:first-child {
+  margin-bottom: var(--article-image-gap, var(--double-inner));
+}
+.article__hero .article__image {
+  max-width: var(--article-image-width, 100%);
+  border-radius: var(--article-image-radius, 0);
+  overflow: hidden;
 }
 .article__hero .article__image .image__fill img {
-  object-fit: contain;
+  object-fit: var(--article-image-fit, contain);
+}
+
+/* Alignment only shows once the image is narrower than the wrapper. */
+.article__image--left {
+  margin-right: auto;
+}
+.article__image--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.article__image--right {
+  margin-left: auto;
 }
 @media only screen and (max-width: 749px) {
   .article__hero .article__title {
