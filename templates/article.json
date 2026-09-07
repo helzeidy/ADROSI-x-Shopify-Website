@@ -52,6 +52,33 @@
         "title_tag": "automatic"
       }
     },
+    "section_collection_NMPNiU": {
+      "type": "section-collection",
+      "name": "Featured collection",
+      "settings": {
+        "featured_collection": "custom-shoes",
+        "heading": "Best Sellers",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "text_font_size": "body-medium",
+        "layout": "inline",
+        "link_text": "Shop Now",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "layout_desktop": "slider",
+        "grid": 4,
+        "rows": 3,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
     "section_blog_C9kLpP": {
       "type": "section-blog",
       "name": "Blog posts",
@@ -71,36 +98,9 @@
         "rows": 1,
         "color_scheme": "",
         "padding_top": 32,
-        "padding_bottom": 96,
+        "padding_bottom": 32,
         "heading_tag": "automatic",
         "title_tag": "automatic"
-      }
-    },
-    "section_collection_NMPNiU": {
-      "type": "section-collection",
-      "name": "Featured collection",
-      "settings": {
-        "featured_collection": "",
-        "heading": "Best Sellers",
-        "heading_font_size": "heading-medium",
-        "description": "",
-        "text_font_size": "body-medium",
-        "layout": "inline",
-        "link_text": "Shop Now",
-        "link_url": "",
-        "button_type": "btn--primary",
-        "button_size": "",
-        "button_style": "btn--solid",
-        "show_arrow": false,
-        "layout_desktop": "slider",
-        "grid": 4,
-        "rows": 3,
-        "width": "wrapper",
-        "layout_mobile": "slider",
-        "color_scheme": "",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "heading_tag": "automatic"
       }
     }
   },
