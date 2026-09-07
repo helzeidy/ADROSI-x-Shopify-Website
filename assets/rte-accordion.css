@@ -1,0 +1,79 @@
+/* ==========================================================================
+   Rich-text accordions
+   --------------------------------------------------------------------------
+   Styles native <details>/<summary> pasted into a rich text field (article or
+   page body) so it matches the theme's Accordion section. No JavaScript — the
+   browser handles opening and closing.
+
+   The theme's reset hides the default summary marker, so the chevron below is
+   what makes the row read as expandable.
+
+   Usage in the editor's "</>" (HTML) view:
+     <details>
+       <summary>Question goes here</summary>
+       <p>Answer goes here.</p>
+     </details>
+   ========================================================================== */
+
+.rte details {
+  display: block;
+  border-top: 1px solid var(--border);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.rte details + details {
+  margin-top: 0;
+}
+
+/* Close off the last one in a run so the group reads as a bordered list. */
+.rte details:last-of-type {
+  border-bottom: 1px solid var(--border);
+}
+
+.rte details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 1.5rem 0;
+  margin: 0;
+  cursor: pointer;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+  font-weight: var(--FONT-WEIGHT-HEADING, 500);
+  list-style: none;
+}
+
+.rte details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Chevron drawn in CSS so no icon markup is needed inside the rich text. */
+.rte details > summary::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.rte details[open] > summary::after {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+.rte details > summary:hover {
+  opacity: 0.7;
+}
+
+/* Body: everything in the details except the summary row. */
+.rte details > *:not(summary) {
+  margin-top: 0;
+}
+
+.rte details > *:not(summary):last-child {
+  margin-bottom: 1.5rem;
+}

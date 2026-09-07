@@ -37,6 +37,8 @@
 {%- endcapture -%}
 
 {%- render 'stylesheet', name: 'article.css' -%}
+{%- comment -%} Styles <details> accordions pasted into the article body. {%- endcomment -%}
+{%- render 'stylesheet', name: 'rte-accordion.css' -%}
 
 <section
   class="article-single section-padding {{ color_scheme }}"
