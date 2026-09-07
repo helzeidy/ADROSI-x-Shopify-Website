@@ -75,10 +75,38 @@
         "heading_tag": "automatic",
         "title_tag": "automatic"
       }
+    },
+    "section_collection_NMPNiU": {
+      "type": "section-collection",
+      "name": "Featured collection",
+      "settings": {
+        "featured_collection": "",
+        "heading": "Best Sellers",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "text_font_size": "body-medium",
+        "layout": "inline",
+        "link_text": "Shop Now",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "layout_desktop": "slider",
+        "grid": 4,
+        "rows": 3,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
     }
   },
   "order": [
     "main",
+    "section_collection_NMPNiU",
     "section_blog_C9kLpP"
   ]
 }
