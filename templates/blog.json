@@ -15,7 +15,7 @@
         "feat": {
           "type": "featured_post",
           "settings": {
-            "featured_post": "",
+            "featured_post": "news/adorsis-gents-q-a",
             "subheading": "Featured post"
           }
         }
