@@ -49,30 +49,94 @@
         "padding_bottom": 48
       }
     },
+    "section_newsletter_zyRLnk": {
+      "type": "section-newsletter",
+      "blocks": {
+        "text_MNd9Ec": {
+          "type": "text",
+          "settings": {
+            "subheading": "",
+            "title": "Stay in touch",
+            "heading_font_size": "heading-large",
+            "text": "<p>Join our newsletter to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
+            "text_font_size": "body-medium",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        },
+        "newsletter_3mLT38": {
+          "type": "newsletter",
+          "settings": {
+            "subheading": "",
+            "heading": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "button_text": "Join",
+            "show_arrow": false,
+            "terms": false,
+            "show_name": false,
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_social_links": false,
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "text_MNd9Ec",
+        "newsletter_3mLT38"
+      ],
+      "name": "Newsletter",
+      "settings": {
+        "width": "wrapper--full",
+        "height": "image-height",
+        "mobile_height": "screen-height-one-half--mobile",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "main": {
       "type": "blog",
       "settings": {
-        "show_title": true,
+        "show_title": false,
         "show_rss": false,
         "show_tag_nav": false,
         "aspect_ratio": 1,
         "title_font_size": "heading-small",
-        "show_tags": false,
-        "show_author": false,
-        "show_date": false,
+        "show_tags": true,
+        "show_author": true,
+        "show_date": true,
         "show_button": true,
         "show_comments": false,
         "grid": 4,
         "rows": 4,
         "color_scheme": "",
-        "padding_top": 32,
-        "padding_bottom": 0,
+        "padding_top": 96,
+        "padding_bottom": 96,
         "title_tag": "automatic"
       }
     }
   },
   "order": [
     "featured",
+    "section_newsletter_zyRLnk",
     "main"
   ]
 }
