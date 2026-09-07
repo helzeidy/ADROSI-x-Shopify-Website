@@ -130,6 +130,7 @@
           "type": "customize_link",
           "settings": {
             "label": "Customize",
+            "base_url": "https://adorsi.com/pages/customize/",
             "element_id": "product-customize",
             "open_new_tab": true,
             "button_type": "btn--black",
@@ -212,6 +213,17 @@
         "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
         "padding_top": 90,
         "padding_bottom": 30
+      }
+    },
+    "section_divider_T4ayJJ": {
+      "type": "section-divider",
+      "name": "Divider",
+      "settings": {
+        "show_line": true,
+        "width": "wrapper--full-padded",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "tabs_section_naNTMc": {
@@ -350,8 +362,8 @@
         "heading": "",
         "heading_size": "heading-medium",
         "tab_alignment": "center",
-        "color_scheme": "",
-        "padding_top": 60,
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "padding_top": 32,
         "padding_bottom": 60
       }
     },
@@ -534,6 +546,7 @@
   },
   "order": [
     "main",
+    "section_divider_T4ayJJ",
     "tabs_section_naNTMc",
     "17254558578b312487",
     "related",
