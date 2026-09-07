@@ -9,6 +9,63 @@
  */
 {
   "sections": {
+    "featured_posts_carousel_fYgddA": {
+      "type": "featured-posts-carousel",
+      "blocks": {
+        "post_zJYnJC": {
+          "type": "post",
+          "settings": {
+            "post": "news/adorsis-gents-q-a",
+            "subheading": "",
+            "title": "",
+            "excerpt": "",
+            "custom_url": ""
+          }
+        },
+        "post_7YCaAk": {
+          "type": "post",
+          "settings": {
+            "post": "news/adorsis-gents-q-a",
+            "subheading": "",
+            "title": "",
+            "excerpt": "",
+            "custom_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "post_zJYnJC",
+        "post_7YCaAk"
+      ],
+      "name": "Featured posts carousel",
+      "settings": {
+        "subheading": "",
+        "heading": "The Article",
+        "heading_font_size": "heading-medium",
+        "header_alignment": "text-center",
+        "header_gap": 40,
+        "background_image": "shopify://shop_images/1_2.jpg",
+        "overlay_opacity": 40,
+        "image_position": "right",
+        "peek": 12,
+        "slide_gap": 24,
+        "image_height": 460,
+        "image_height_mobile": 260,
+        "card_padding": 48,
+        "title_font_size": "heading-x-small",
+        "show_excerpt": true,
+        "show_link": true,
+        "link_text": "Read more",
+        "show_arrows": true,
+        "show_dots": false,
+        "color_scheme": "scheme-025a5426-514e-4a02-9e15-80cab8125ad9",
+        "card_bg": "#ffffff",
+        "card_text": "#111111",
+        "arrow_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "featured": {
       "type": "featured-posts",
       "blocks": {
@@ -135,6 +192,7 @@
     }
   },
   "order": [
+    "featured_posts_carousel_fYgddA",
     "featured",
     "section_newsletter_zyRLnk",
     "main"
