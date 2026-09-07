@@ -24,6 +24,7 @@
         "show_image": true,
         "custom_image": "{{ collection.metafields.custom.collection_main_banner.value }}",
         "banner_layout": "inline",
+        "inline_image_position": "right",
         "height": "screen-height-one-third",
         "mobile_height": "two-fifty-height-hero--mobile",
         "padding_top": 0,
