@@ -1,0 +1,286 @@
+/* ==========================================================================
+   Featured posts carousel
+   --------------------------------------------------------------------------
+   A horizontal carousel of featured articles over a full-bleed background.
+   Each slide is a pair: a text card and an image, side by side on desktop.
+   Neighbouring slides peek in at the edges. Scroll-snap does the work, so it
+   swipes natively on touch; the arrows just scroll the track.
+   ========================================================================== */
+
+.fpc {
+  --fpc-arrow: 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background ------------------------------------------------------------ */
+.fpc__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.fpc__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fpc__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: var(--fpc-overlay, 0.4);
+}
+
+.fpc__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Heading --------------------------------------------------------------- */
+.fpc__header {
+  margin-bottom: var(--fpc-header-gap, 40px);
+  padding: 0 var(--outer);
+}
+
+.fpc__heading {
+  margin: 0;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+}
+
+.fpc__subheading {
+  margin: 10px 0 0;
+  font-family: var(--FONT-STACK-SUBHEADING, inherit);
+  letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.12em);
+  text-transform: var(--FONT-UPPERCASE-SUBHEADING, uppercase);
+  opacity: 0.8;
+}
+
+/* Track ----------------------------------------------------------------- */
+.fpc__viewport {
+  position: relative;
+}
+
+.fpc__track {
+  display: flex;
+  gap: var(--fpc-gap, 24px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* Peek: the first slide starts inset so neighbours show at both edges. */
+  padding: 0 var(--fpc-peek, 12%);
+  scroll-padding-left: var(--fpc-peek, 12%);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.fpc__track::-webkit-scrollbar {
+  display: none;
+}
+
+.fpc__slide {
+  flex: 0 0 auto;
+  width: 100%;
+  scroll-snap-align: center;
+}
+
+/* Slide: text card + image ---------------------------------------------- */
+.fpc__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  background: var(--fpc-card-bg, #fff);
+}
+
+.fpc--image-first .fpc__pair {
+  direction: rtl;
+}
+
+.fpc--image-first .fpc__pair > * {
+  direction: ltr;
+}
+
+.fpc__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: var(--fpc-card-padding, 48px);
+  text-align: center;
+  color: var(--fpc-card-text, #111);
+}
+
+.fpc__tag {
+  margin: 0;
+  font-family: var(--FONT-STACK-SUBHEADING, inherit);
+  font-size: var(--FONT-SIZE-SUBHEADING-MOBILE, 13px);
+  letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.14em);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.fpc__title {
+  margin: 0;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+  color: inherit;
+}
+
+.fpc__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fpc__title a:hover {
+  opacity: 0.7;
+}
+
+.fpc__excerpt {
+  margin: 0;
+  max-width: 42ch;
+  opacity: 0.85;
+}
+
+.fpc__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: inherit;
+  font-family: var(--FONT-STACK-SUBHEADING, inherit);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.fpc__link svg,
+.fpc__link .icon {
+  width: 16px;
+  transition: transform 0.25s ease;
+}
+
+.fpc__link:hover svg,
+.fpc__link:hover .icon {
+  transform: translateX(4px);
+}
+
+.fpc__image {
+  position: relative;
+  overflow: hidden;
+  min-height: var(--fpc-image-height, 460px);
+}
+
+.fpc__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Arrows ---------------------------------------------------------------- */
+.fpc__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fpc-arrow);
+  height: var(--fpc-arrow);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fpc-arrow-color, #fff);
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.fpc__arrow svg,
+.fpc__arrow .icon {
+  width: 26px;
+  height: auto;
+}
+
+.fpc__arrow--prev {
+  left: calc(var(--fpc-peek, 12%) / 2 - var(--fpc-arrow) / 2);
+}
+
+.fpc__arrow--next {
+  right: calc(var(--fpc-peek, 12%) / 2 - var(--fpc-arrow) / 2);
+}
+
+.fpc__arrow:hover {
+  opacity: 0.6;
+}
+
+.fpc__arrow[disabled] {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* Dots ------------------------------------------------------------------ */
+.fpc__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.fpc__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fpc-arrow-color, #fff);
+  opacity: 0.35;
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.fpc__dot.is-active {
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+/* ======================================================================
+   Mobile — one card per slide, image on top, swipe to move
+   ====================================================================== */
+@media only screen and (max-width: 749px) {
+  .fpc__track {
+    padding: 0 var(--outer);
+    scroll-padding-left: var(--outer);
+    gap: 16px;
+  }
+
+  .fpc__slide {
+    width: calc(100% - var(--outer) - 20px);
+  }
+
+  .fpc__pair,
+  .fpc--image-first .fpc__pair {
+    grid-template-columns: minmax(0, 1fr);
+    direction: ltr;
+  }
+
+  /* Image above the text regardless of the desktop order. */
+  .fpc__image {
+    grid-row: 1;
+    min-height: var(--fpc-image-height-mobile, 260px);
+  }
+
+  .fpc__card {
+    grid-row: 2;
+    padding: 28px 24px 34px;
+  }
+
+  .fpc__arrow {
+    display: none;
+  }
+}
