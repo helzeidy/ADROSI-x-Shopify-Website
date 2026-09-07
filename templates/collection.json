@@ -22,7 +22,6 @@
         "show_text_background": false,
         "overlay_type": "disabled",
         "show_image": true,
-        "custom_image": "{{ section.settings.breadcrumb_collection.metafields.custom.collection_main_banner.value }}",
         "banner_layout": "overlay",
         "height": "screen-height-one-third",
         "mobile_height": "two-fifty-height-hero--mobile",
