@@ -36,7 +36,7 @@
         "show_author": true,
         "tags": false,
         "show_sharing": true,
-        "arrows": false,
+        "arrows": true,
         "height": "screen-height-one-third",
         "mobile_height": "screen-height-one-third--mobile",
         "color_scheme": "",
