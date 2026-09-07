@@ -18,7 +18,7 @@
         "show_breadcrumb": true,
         "breadcrumb_collection": "{{ collection.metafields.custom.parent_collections.value }}",
         "flex_align": "align--middle-left",
-        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
         "show_text_background": false,
         "overlay_type": "disabled",
         "show_image": true,
