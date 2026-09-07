@@ -15,6 +15,20 @@
   align-items: stretch;
   position: relative;
 }
+/* Image on the right: flip the columns visually but keep the image first in
+   the DOM so it still preloads as the LCP element. */
+.collection__image-inline--image-right {
+  grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+}
+.collection__image-inline--image-right > .collection__image {
+  grid-row: 1;
+  grid-column: 2;
+}
+.collection__image-inline--image-right > .collection__title-wrapper {
+  grid-row: 1;
+  grid-column: 1;
+}
+
 .collection__image-inline .hero__content__wrapper {
   height: 100%;
 }
@@ -28,8 +42,15 @@
   margin: 0;
 }
 @media only screen and (max-width: 989px) {
-  .collection__image-inline {
+  .collection__image-inline,
+  .collection__image-inline--image-right {
     grid-template-columns: minmax(0, 1fr);
+  }
+  /* Stacked: drop the desktop column flip so both cells fall back in order. */
+  .collection__image-inline--image-right > .collection__image,
+  .collection__image-inline--image-right > .collection__title-wrapper {
+    grid-row: auto;
+    grid-column: auto;
   }
   .collection__image-inline .collection__title-wrapper {
     min-height: auto;

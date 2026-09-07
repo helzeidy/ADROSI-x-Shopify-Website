@@ -136,7 +136,7 @@
 >
   {%- if banner_image and section.settings.show_image -%}
     {%- if banner_layout == 'inline' -%}
-      <div class="collection__image-inline">
+      <div class="collection__image-inline{% if section.settings.inline_image_position == 'right' %} collection__image-inline--image-right{% endif %}">
     {%- endif -%}
 
     <div
@@ -300,6 +300,18 @@
       "options": [
         {"value": "inline", "label": "Inline"},
         {"value": "overlay", "label": "Overlay"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "inline_image_position",
+      "label": "Image position",
+      "default": "left",
+      "info": "Inline layout only. On mobile the image always stacks above the text.",
+      "visible_if": "{{ section.settings.banner_layout == 'inline' }}",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "right", "label": "Right"}
       ]
     },
     {
