@@ -33,7 +33,7 @@
       "settings": {
         "show_image": true,
         "show_date": true,
-        "show_author": true,
+        "show_author": false,
         "tags": false,
         "show_sharing": true,
         "arrows": true,
