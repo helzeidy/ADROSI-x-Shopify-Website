@@ -709,97 +709,6 @@
         "padding_bottom": 70
       }
     },
-    "1750856207ec25272b": {
-      "type": "apps",
-      "blocks": {
-        "loox_reviews_loox_card_carousel_section_eLVegG": {
-          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
-          "settings": {
-            "maxWidth": 1600,
-            "borderRadius": 10,
-            "itemsPerView": 4,
-            "mobileItemsPerView": 1,
-            "maxNumberOfCharacters": 100,
-            "imageRatio": "1",
-            "reviewerNameColor": "#000000",
-            "textColor": "#000000",
-            "itemBackgroundColor": "#ffffff",
-            "starsColor": "",
-            "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#ffffff",
-            "arrows_iconColor": "#9a9a9a",
-            "shadow": "offset-light",
-            "border_active": false,
-            "border_width": 2,
-            "border_color": "#000000",
-            "productIds": ""
-          }
-        }
-      },
-      "block_order": [
-        "loox_reviews_loox_card_carousel_section_eLVegG"
-      ],
-      "disabled": true,
-      "custom_css": [],
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "section_rich_text_kHXa9F": {
-      "type": "section-rich-text",
-      "blocks": {
-        "subheading_PcVE7h": {
-          "type": "subheading",
-          "settings": {
-            "subheading": "Designed for the Journey",
-            "padding_bottom": 16
-          }
-        },
-        "heading_kfWjEC": {
-          "type": "heading",
-          "settings": {
-            "title": "\"Every journey begins with a step, and every step deserves to be in shoes as unique as the person taking them\"",
-            "heading_font_size": "heading-large",
-            "padding_bottom": 16,
-            "heading_tag": "automatic"
-          }
-        },
-        "text_hp78hw": {
-          "type": "text",
-          "settings": {
-            "text": "<p>At ADORSI, we invite you to craft your own path with our bespoke shoes, tailored for your individuality. Using our 3D customization tool, you have the power to design shoes that reflect your style, purpose, and journey. From the first stitch to the final polish, each pair is meticulously crafted to accompany you wherever life takes you. Get inspired and create the perfect companion for your next adventure.</p>",
-            "text_font_size": "body-large",
-            "padding_bottom": 16
-          }
-        },
-        "buttons_YjMzec": {
-          "type": "buttons",
-          "settings": {
-            "button_text": "Get Inspired",
-            "button_url": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "padding_bottom": 16
-          }
-        }
-      },
-      "block_order": [
-        "subheading_PcVE7h",
-        "heading_kfWjEC",
-        "text_hp78hw",
-        "buttons_YjMzec"
-      ],
-      "settings": {
-        "align_text": "text-left",
-        "width": "wrapper--full-padded",
-        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
-        "overlay_type": "disabled",
-        "padding_top": 100,
-        "padding_bottom": 100
-      }
-    },
     "section_tab_collections_TY7E4B": {
       "type": "section-tab-collections",
       "blocks": {
@@ -903,6 +812,97 @@
         "padding_top": 50,
         "padding_bottom": 50,
         "heading_tag": "automatic"
+      }
+    },
+    "1750856207ec25272b": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_card_carousel_section_eLVegG": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1600,
+            "borderRadius": 10,
+            "itemsPerView": 4,
+            "mobileItemsPerView": 1,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "1",
+            "reviewerNameColor": "#000000",
+            "textColor": "#000000",
+            "itemBackgroundColor": "#ffffff",
+            "starsColor": "",
+            "starsBackgroundColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "offset-light",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": ""
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_card_carousel_section_eLVegG"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "section_rich_text_kHXa9F": {
+      "type": "section-rich-text",
+      "blocks": {
+        "subheading_PcVE7h": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Designed for the Journey",
+            "padding_bottom": 16
+          }
+        },
+        "heading_kfWjEC": {
+          "type": "heading",
+          "settings": {
+            "title": "\"Every journey begins with a step, and every step deserves to be in shoes as unique as the person taking them\"",
+            "heading_font_size": "heading-large",
+            "padding_bottom": 16,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_hp78hw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At ADORSI, we invite you to craft your own path with our bespoke shoes, tailored for your individuality. Using our 3D customization tool, you have the power to design shoes that reflect your style, purpose, and journey. From the first stitch to the final polish, each pair is meticulously crafted to accompany you wherever life takes you. Get inspired and create the perfect companion for your next adventure.</p>",
+            "text_font_size": "body-large",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_YjMzec": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "Get Inspired",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "subheading_PcVE7h",
+        "heading_kfWjEC",
+        "text_hp78hw",
+        "buttons_YjMzec"
+      ],
+      "settings": {
+        "align_text": "text-left",
+        "width": "wrapper--full-padded",
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "overlay_type": "disabled",
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "section_collection_pbdUnA": {
@@ -1028,9 +1028,9 @@
     "section_products_image_yWErRm",
     "section_announcement_R7KWbe",
     "section_reviews_fiwDiK",
+    "section_tab_collections_TY7E4B",
     "1750856207ec25272b",
     "section_rich_text_kHXa9F",
-    "section_tab_collections_TY7E4B",
     "section_collection_pbdUnA",
     "section_text_row_tzpdW9"
   ]
