@@ -22,7 +22,7 @@
             "description": "Tell your brand's story through images.",
             "text_font_size": "body-large",
             "first_button_text": "View products",
-            "first_button_link": "",
+            "first_button_link": "shopify://collections/custom-shoes",
             "first_button_type": "btn--primary",
             "first_button_size": "",
             "first_button_style": "btn--solid",
