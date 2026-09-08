@@ -14,7 +14,7 @@
       "name": "Divider",
       "settings": {
         "show_line": true,
-        "width": "wrapper--full-padded",
+        "width": "wrapper--full",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
