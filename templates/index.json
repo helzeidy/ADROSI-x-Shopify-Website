@@ -15,10 +15,10 @@
         "image_xxeJAD": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1_1_6f86f0d7-9b5e-420e-afa5-50d0886e7332.jpg",
+            "image": "shopify://shop_images/1_17.png",
             "image_link": "",
-            "title": "Image slide",
-            "heading_font_size": "heading-x-large",
+            "title": "MADE TO ORDER IN SPAIN",
+            "heading_font_size": "heading-medium",
             "description": "Tell your brand's story through images.",
             "text_font_size": "body-large",
             "first_button_text": "View products",
@@ -297,8 +297,8 @@
         "buttons_cb7jLr": {
           "type": "buttons",
           "settings": {
-            "button_text": "Learn more",
-            "button_url": "",
+            "button_text": "Shop Now",
+            "button_url": "shopify://collections/large-wide-mens-shoes",
             "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
