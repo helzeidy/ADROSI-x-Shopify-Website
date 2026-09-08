@@ -249,6 +249,7 @@
         "heading_cHKFin",
         "text_L8dd99"
       ],
+      "disabled": true,
       "name": "Image banner",
       "settings": {
         "image_1": "shopify://shop_images/Panels.jpg",
@@ -280,8 +281,8 @@
         "heading_ybPRaA": {
           "type": "heading",
           "settings": {
-            "title": "The size range menswear forgets.",
-            "heading_font_size": "heading-large",
+            "title": "FULL & HALF SIZES 5-17 │ EE & EEE WIDTH",
+            "heading_font_size": "heading-x-large",
             "padding_bottom": 16,
             "heading_tag": "automatic"
           }
