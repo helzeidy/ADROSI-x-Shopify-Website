@@ -31,7 +31,7 @@
             "footnote_uppercase": false,
             "first_button_text": "SHOP NOW",
             "first_button_link": "shopify://collections/custom-shoes",
-            "first_button_type": "btn--primary",
+            "first_button_type": "btn--secondary",
             "first_button_size": "",
             "first_button_style": "btn--solid",
             "first_button_show_arrow": false,
