@@ -122,3 +122,39 @@
   left: 0;
   visibility: hidden;
 }
+/* ==========================================================================
+   Slide: line above the heading, paragraph below the buttons, and the
+   per-block uppercase toggles.
+   ========================================================================== */
+.hero__eyebrow,
+.hero__footnote {
+  color: var(--text);
+  margin: 0 0 var(--block-padding-bottom, var(--line));
+}
+
+/* The eyebrow reads as a subheading, matching the theme's subheading style. */
+.hero__eyebrow {
+  font-family: var(--FONT-STACK-SUBHEADING);
+  font-style: var(--FONT-STYLE-SUBHEADING);
+  font-weight: var(--FONT-WEIGHT-SUBHEADING);
+  letter-spacing: var(--LETTER-SPACING-SUBHEADING);
+}
+
+/* Sits under the button group, so it needs the gap above, not below. */
+.hero__footnote {
+  margin: var(--line) 0 0;
+  opacity: 0.85;
+}
+
+.hero__footnote > *:first-child {
+  margin-top: 0;
+}
+
+.hero__footnote > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Uppercase toggle. Wins over the theme's own text-transform. */
+.hero__text--uppercase {
+  text-transform: uppercase !important;
+}

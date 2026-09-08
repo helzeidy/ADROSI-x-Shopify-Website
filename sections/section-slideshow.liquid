@@ -189,6 +189,8 @@
 
             {%- if block.settings.title != blank
               or block.settings.description != blank
+              or block.settings.eyebrow != blank
+              or block.settings.footnote != blank
               or first_button_text != blank
             -%}
               <div
@@ -200,6 +202,19 @@
                 <div
                   class="hero__content{% if hero_transparent %} hero__content--transparent{% endif %}{% if text_underlay %} backdrop--radial{% endif %}"
                 >
+                  {%- comment -%} Eyebrow line, above the heading. {%- endcomment -%}
+                  {%- unless block.settings.eyebrow == blank -%}
+                    <p
+                      class="hero__eyebrow{% if block.settings.eyebrow_uppercase %} hero__text--uppercase{% endif %} {{ block.settings.eyebrow_font_size }}"
+                      data-aos="hero"
+                      data-aos-anchor="{{ animation_anchor }}"
+                      data-aos-order="{{ animation_order }}"
+                    >
+                      {{ block.settings.eyebrow }}
+                    </p>
+                    {%- assign animation_order = animation_order | plus: 1 -%}
+                  {%- endunless -%}
+
                   {%- unless block.settings.title == '' -%}
                     {%- liquid
                       assign heading_tag = 'h2'
@@ -210,7 +225,7 @@
                     -%}
 
                     <{{ heading_tag }}
-                      class="hero__title {{ block.settings.heading_font_size }}"
+                      class="hero__title{% if block.settings.title_uppercase %} hero__text--uppercase{% endif %} {{ block.settings.heading_font_size }}"
                       data-aos="hero"
                       data-aos-anchor="{{ animation_anchor }}"
                       data-aos-order="{{ animation_order }}"
@@ -222,7 +237,7 @@
 
                   {%- unless block.settings.description == '' -%}
                     <p
-                      class="hero__description {{ block.settings.text_font_size }}"
+                      class="hero__description{% if block.settings.description_uppercase %} hero__text--uppercase{% endif %} {{ block.settings.text_font_size }}"
                       data-aos="hero"
                       data-aos-anchor="{{ animation_anchor }}"
                       data-aos-order="{{ animation_order }}"
@@ -275,6 +290,19 @@
                       {%- endunless -%}
                     </div>
                   {%- endif -%}
+
+                  {%- comment -%} Footnote paragraph, below the buttons. {%- endcomment -%}
+                  {%- unless block.settings.footnote == blank -%}
+                    <div
+                      class="hero__footnote rte{% if block.settings.footnote_uppercase %} hero__text--uppercase{% endif %} {{ block.settings.footnote_font_size }}"
+                      data-aos="hero"
+                      data-aos-anchor="{{ animation_anchor }}"
+                      data-aos-order="{{ animation_order }}"
+                    >
+                      {{ block.settings.footnote }}
+                    </div>
+                    {%- assign animation_order = animation_order | plus: 1 -%}
+                  {%- endunless -%}
                 </div>
               </div>
             {%- endif -%}
@@ -464,6 +492,30 @@
         },
         {
           "type": "textarea",
+          "id": "eyebrow",
+          "label": "Line above heading"
+        },
+        {
+          "type": "select",
+          "id": "eyebrow_font_size",
+          "label": "Line above heading size",
+          "default": "body-medium",
+          "options": [
+            {"value": "body-x-small", "label": "Extra small"},
+            {"value": "body-small", "label": "Small"},
+            {"value": "body-medium", "label": "Medium"},
+            {"value": "body-large", "label": "Large"},
+            {"value": "body-x-large", "label": "Extra large"}
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "eyebrow_uppercase",
+          "label": "Uppercase line above heading",
+          "default": true
+        },
+        {
+          "type": "textarea",
           "id": "title",
           "label": "Heading",
           "default": "Image slide"
@@ -481,6 +533,12 @@
             {"value": "heading-large", "label": "Large"},
             {"value": "heading-x-large", "label": "Extra large"}
           ]
+        },
+        {
+          "type": "checkbox",
+          "id": "title_uppercase",
+          "label": "Uppercase heading",
+          "default": false
         },
         {
           "type": "textarea",
@@ -501,6 +559,40 @@
             {"value": "body-large", "label": "Large"},
             {"value": "body-x-large", "label": "Extra large"}
           ]
+        },
+        {
+          "type": "checkbox",
+          "id": "description_uppercase",
+          "label": "Uppercase text",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Paragraph below buttons"
+        },
+        {
+          "type": "richtext",
+          "id": "footnote",
+          "label": "Paragraph"
+        },
+        {
+          "type": "select",
+          "id": "footnote_font_size",
+          "label": "Paragraph size",
+          "default": "body-small",
+          "options": [
+            {"value": "body-x-small", "label": "Extra small"},
+            {"value": "body-small", "label": "Small"},
+            {"value": "body-medium", "label": "Medium"},
+            {"value": "body-large", "label": "Large"},
+            {"value": "body-x-large", "label": "Extra large"}
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "footnote_uppercase",
+          "label": "Uppercase paragraph",
+          "default": false
         },
         {
           "type": "header",
