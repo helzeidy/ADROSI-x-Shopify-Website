@@ -42,11 +42,11 @@
             "second_button_style": "btn--solid",
             "second_button_show_arrow": false,
             "flex_align_desktop": "align--middle-left-desktop",
-            "flex_align_mobile": "align--bottom-left-mobile",
+            "flex_align_mobile": "align--top-left-mobile",
             "show_text_background": false,
             "bg_color": "",
             "color": "",
-            "overlay_type": "disabled",
+            "overlay_type": "text",
             "heading_tag": "automatic"
           }
         },
@@ -81,11 +81,11 @@
             "second_button_show_arrow": false,
             "flex_align_desktop": "align--middle-left-desktop",
             "mobile_image": "shopify://shop_images/1_4.jpg",
-            "flex_align_mobile": "align--bottom-left-mobile",
+            "flex_align_mobile": "align--top-left-mobile",
             "show_text_background": false,
             "bg_color": "",
             "color": "",
-            "overlay_type": "disabled",
+            "overlay_type": "text",
             "heading_tag": "automatic"
           }
         }
@@ -104,7 +104,7 @@
         "height": "screen-height-full",
         "content_width": 50,
         "mobile_height": "screen-height-one-half--mobile",
-        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "padding_top": 0,
         "padding_bottom": 0
       }
