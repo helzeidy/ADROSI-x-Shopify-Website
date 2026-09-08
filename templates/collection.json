@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "section_divider_zLMXFr": {
+      "type": "section-divider",
+      "name": "Divider",
+      "settings": {
+        "show_line": true,
+        "width": "wrapper--full-padded",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "hero": {
       "type": "collection-image-with-title",
       "settings": {
@@ -207,6 +218,7 @@
     }
   },
   "order": [
+    "section_divider_zLMXFr",
     "hero",
     "subcollections",
     "main",
