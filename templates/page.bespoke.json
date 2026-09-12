@@ -16,14 +16,14 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/1_14.jpg",
-            "title": "The new era of Custom footwear",
+            "title": "Bespoke experience",
             "heading_font_size": "heading-large",
-            "text": "<p>Founded in 2016<br/>Started in Dubai</p>",
+            "text": "<p>Design your loafers</p>",
             "text_font_size": "body-x-large",
             "flex_align": "align--middle-center",
             "show_text_background": false,
-            "bg_color": "#200E13",
-            "color": "#FFFFFF",
+            "bg_color": "#200e13",
+            "color": "#ffffff",
             "overlay_type": "opacity",
             "link_text": "",
             "link": "",
@@ -73,10 +73,10 @@
         "text-3-1": {
           "type": "text",
           "settings": {
-            "subheading": "The story",
-            "title": "Behind the brand",
+            "subheading": "personalized details",
+            "title": "Custom Pieces",
             "heading_font_size": "heading-large",
-            "text": "<p>Many people might think of what kind of outfit they should put together--but for me \"wearing a 45 EU shoe\", all that matters was finding something comfortable!<br/><br/>The constant search for the perfect dress shoes has been a frustrating experience.<br/><br/>Most companies don't make larger sizes; I have always found it difficult to find formal or semi-casual shoes that are both comfortable and stylish.<br/><br/>The search for the perfect pair of shoes was frustrating, so I decided to work on a solution.</p>",
+            "text": "<p>Adorsi savvy style focuses on sophisticated simplicity and understated elegance, making it a label with character and breed. We make it available for our customers to implement pernosolized items in our loafers such as name engraving on the heel, ideal for a special occasion or a memorable gift.</p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -187,6 +187,7 @@
         },
         "text_dDECNE": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<p>The result is a collection of timeless classics, with a modern twist, that will make you feel confident and stylish. From the initial sketch to the final product, each pair of shoes is handcrafted with the utmost care and attention to detail.</p>",
             "text_font_size": "body-large",
@@ -224,7 +225,7 @@
         "mobile_height": "screen-height-three-quarters--mobile",
         "flex_align_mobile": "align--middle-center-mobile",
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
-        "show_text_background": true,
+        "show_text_background": false,
         "overlay_type": "disabled",
         "padding_top": 0,
         "padding_bottom": 0,
@@ -237,10 +238,10 @@
         "text_EXAQLt": {
           "type": "text",
           "settings": {
-            "subheading": "practicing the best quality",
-            "title": "Part of the journey",
+            "subheading": "tailored loafers",
+            "title": "Make your Lusitano style",
             "heading_font_size": "heading-large",
-            "text": "<p>We worked with Portugal’s most renowned shoemaker works in Guimaraes in 2019, then we searched for the best materials all over the world.<br/></p>",
+            "text": "<p>Try Adorsi bespoke platform to custom design the loafer style that best fits your personality. Enjoy the creative process by selecting the color and material of your loafer, hand-pick the outsole, the innersole, the welt, the last and the burnishing effect. We have an offer of complementory accessories, such as our branded Adorsi signature metal-piece and cotton ribbon.</p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -323,10 +324,10 @@
         "text_EFpgtM": {
           "type": "text",
           "settings": {
-            "subheading": "Crafted for you",
-            "title": "You deserve the best",
+            "subheading": "handcrafted for you",
+            "title": "Made to Order",
             "heading_font_size": "heading-large",
-            "text": "<p>In 2020, we found this particular factory in Alicante, Spain had an excellent track record for producing high-quality products and providing customization options beyond what's imaginable!</p>",
+            "text": "<p>Adorsi loafers are handcrafted in the Spanish shoe-making town of Alicante, infusing sensibility, tradition and innovation in the consctruction of your product. Indulge in our sartorial experience and delight of creativing your bespoke Adorsi shoes. Your custom made loafers will be especially assembled for you and will be sent directly from the craftsman hands to your door step.</p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -364,6 +365,7 @@
       "blocks": {
         "heading_ijE3pE": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "title": "STORY NEVER ENDS!",
             "heading_font_size": "heading-medium",
@@ -373,6 +375,7 @@
         },
         "text_GVKcDF": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<p>The dream of having a perfect shoe has been an impossible one until now.<br/>Our company is dedicated to making a difference in the lives of plus-size everywhere, giving them comfort without sacrificing style.</p><p>Thank you for supporting us!</p><p>Adham Morsi<br/>Founder & CEO</p>",
             "text_font_size": "body-x-large",
@@ -410,7 +413,7 @@
         "mobile_height": "screen-height-three-quarters--mobile",
         "flex_align_mobile": "align--middle-center-mobile",
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
-        "show_text_background": true,
+        "show_text_background": false,
         "overlay_type": "disabled",
         "padding_top": 0,
         "padding_bottom": 0,
