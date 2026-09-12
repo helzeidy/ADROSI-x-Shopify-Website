@@ -167,7 +167,7 @@
         "borders": false,
         "gutters": false,
         "width": "wrapper--full",
-        "height": "screen-height-full",
+        "height": "image-height",
         "mobile_height": "screen-height-one-half--mobile",
         "reverse_blocks": false,
         "color_scheme": "",
@@ -231,7 +231,48 @@
         "borders": false,
         "gutters": false,
         "width": "wrapper--full",
-        "height": "screen-height-full",
+        "height": "image-height",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_custom_content_iQgpHN": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image_p8VAri": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ADORSI-Post-3.png",
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "#ffffff",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "image_p8VAri"
+      ],
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full",
+        "height": "image-height",
         "mobile_height": "screen-height-one-half--mobile",
         "reverse_blocks": false,
         "color_scheme": "",
@@ -281,8 +322,8 @@
             "show_social_links": false,
             "text_columns": 1,
             "align_text": "text-center",
-            "bg_color": "#f9f0d9",
-            "color": "#59090c",
+            "bg_color": "",
+            "color": "",
             "heading_tag": "automatic"
           }
         }
@@ -323,8 +364,8 @@
             "show_social_links": false,
             "text_columns": 1,
             "align_text": "text-center",
-            "bg_color": "#59090c",
-            "color": "#f9f0d9",
+            "bg_color": "",
+            "color": "",
             "heading_tag": "automatic"
           }
         },
@@ -409,8 +450,8 @@
             "show_social_links": false,
             "text_columns": 1,
             "align_text": "text-center",
-            "bg_color": "#f9f0d9",
-            "color": "#59090c",
+            "bg_color": "",
+            "color": "",
             "heading_tag": "automatic"
           }
         }
@@ -451,8 +492,8 @@
             "show_social_links": false,
             "text_columns": 1,
             "align_text": "text-center",
-            "bg_color": "#59090c",
-            "color": "#f9f0d9",
+            "bg_color": "",
+            "color": "",
             "heading_tag": "automatic"
           }
         },
@@ -537,8 +578,8 @@
             "show_social_links": false,
             "text_columns": 1,
             "align_text": "text-center",
-            "bg_color": "#f9f0d9",
-            "color": "#59090c",
+            "bg_color": "",
+            "color": "",
             "heading_tag": "automatic"
           }
         }
@@ -557,6 +598,73 @@
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "section_timeline_scroll_mEjGnJ": {
+      "type": "section-timeline-scroll",
+      "blocks": {
+        "step_eYQcye": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 1",
+            "title": "Go to our 3D design Tool.",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        },
+        "step_J6tH9T": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 2",
+            "title": "Choose the type of your shoe last.",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        },
+        "step_RK3gPL": {
+          "type": "step",
+          "settings": {
+            "subheading": "Step 3",
+            "title": "Customize your dress shoes.",
+            "heading_font_size": "heading-medium",
+            "text": "<p>Describe this step of the process.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid"
+          }
+        }
+      },
+      "block_order": [
+        "step_eYQcye",
+        "step_J6tH9T",
+        "step_RK3gPL"
+      ],
+      "name": "Timeline scroll",
+      "settings": {
+        "heading": "How ADORSI’s Online Shoe Customization Works",
+        "heading_font_size": "heading-medium",
+        "text": "",
+        "text_font_size": "body-medium",
+        "intro_alignment": "text-left",
+        "show_images": true,
+        "step_scroll": 1,
+        "text_width": 520,
+        "rail_gap": 72,
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "section_text_row_QWw8yh": {
@@ -581,7 +689,7 @@
             "icon_name": "icon-flare",
             "icon_size": 20,
             "icon_color": "#f9f0d9",
-            "title": "2. Choose the type of your shoe last.",
+            "title": "2.",
             "heading_font_size": "heading-small",
             "text": "",
             "text_font_size": "body-medium",
@@ -827,11 +935,13 @@
     "custom-content-3",
     "section_custom_content_jkmaAC",
     "section_custom_content_3xeDGj",
+    "section_custom_content_iQgpHN",
     "custom-content-4",
     "section_custom_content_rgxAn6",
     "section_custom_content_bbzP8k",
     "section_custom_content_9thYVe",
     "section_custom_content_THtnyP",
+    "section_timeline_scroll_mEjGnJ",
     "section_text_row_QWw8yh",
     "section_rich_text_rGJaY6",
     "section_rich_text_jJwnG9",
