@@ -106,7 +106,7 @@
         "height": "screen-height-two-thirds",
         "mobile_height": "screen-height-one-half--mobile",
         "reverse_blocks": true,
-        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
         "padding_top": 32,
         "padding_bottom": 32
       }
@@ -114,6 +114,28 @@
     "section_custom_content_jkmaAC": {
       "type": "section-custom-content",
       "blocks": {
+        "text_CPPyyw": {
+          "type": "text",
+          "settings": {
+            "subheading": "So Long, Compromises ",
+            "title": "Customize Your Shoe from Heel to Toe",
+            "heading_font_size": "heading-large",
+            "text": "<p>Forget about making compromises (really). </p><p>You see, there’s this shoe-shopping cycle that so many gentlemen are still trapped into: you see this shoe model, you like it, you want it, but then a big deal breaker hits you out of nowhere…</p><p>…The shoe is out of stock, unavailable in your region, not available in your shoe size, or worn by almost everyone in your event room!</p><p>We—gentlemen—have been stuck in this loop for a little while now. We’re tired of it. We want something different—yeah, no, EXQUISITE!</p><p>We want to feel special inside and out! It sounds pretty dull to waste our hard-earned money on expensive pairs of shoes that are available in every single dress shoe store—let alone all the unsettled suffering we have to go through just because of how narrow these shoes are.</p><p>Even when we go to bespoke shoe stores and we finally resolve our issue with sizes (after so many visits), we still feel that our design options are limited.</p><p>Finally, we’re putting an end to all this hassle.</p><p>Whether it’s your shoe size, the materials and colors, the shipping cost, or even the duration, say goodbye to anything that stands between you and obtaining your stunning pair of shoes. </p><p>Our rule is simple. We’re here to enable access to top-tier custom-made shoes with thousands of customization options so that you can regain the fineness and the choiceness that your online shoe-shopping journey is supposed to have.</p><p>By customizing even the slightest details of your dress shoe (from its length and width to its colors, designs, and accessories) you get to experience firsthand the process of designing your dress shoe and feel delighted with the results—all from the comfort of your home. </p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        },
         "image_Mmb6pG": {
           "type": "image",
           "settings": {
@@ -138,6 +160,7 @@
         }
       },
       "block_order": [
+        "text_CPPyyw",
         "image_Mmb6pG"
       ],
       "settings": {
@@ -150,49 +173,6 @@
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "section_rich_text_TttXi3": {
-      "type": "section-rich-text",
-      "blocks": {
-        "subheading_8P4Lfx": {
-          "type": "subheading",
-          "disabled": true,
-          "settings": {
-            "subheading": "So Long, Compromises",
-            "padding_bottom": 16
-          }
-        },
-        "heading_NH6EGw": {
-          "type": "heading",
-          "settings": {
-            "title": "Customize Your Shoe from Heel to Toe",
-            "heading_font_size": "heading-large",
-            "padding_bottom": 16,
-            "heading_tag": "automatic"
-          }
-        },
-        "text_PhEgN9": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Forget about making compromises (really). </p><p>You see, there’s this shoe-shopping cycle that so many gentlemen are still trapped into: you see this shoe model, you like it, you want it, but then a big deal breaker hits you out of nowhere…</p><p>…The shoe is out of stock, unavailable in your region, not available in your shoe size, or worn by almost everyone in your event room!</p><p>We—gentlemen—have been stuck in this loop for a little while now. We’re tired of it. We want something different—yeah, no, EXQUISITE!</p><p>We want to feel special inside and out! It sounds pretty dull to waste our hard-earned money on expensive pairs of shoes that are available in every single dress shoe store—let alone all the unsettled suffering we have to go through just because of how narrow these shoes are.</p><p>Even when we go to bespoke shoe stores and we finally resolve our issue with sizes (after so many visits), we still feel that our design options are limited.</p><p>Finally, we’re putting an end to all this hassle.</p><p>Whether it’s your shoe size, the materials and colors, the shipping cost, or even the duration, say goodbye to anything that stands between you and obtaining your stunning pair of shoes. </p><p>Our rule is simple. We’re here to enable access to top-tier custom-made shoes with thousands of customization options so that you can regain the fineness and the choiceness that your online shoe-shopping journey is supposed to have.</p><p>By customizing even the slightest details of your dress shoe (from its length and width to its colors, designs, and accessories) you get to experience firsthand the process of designing your dress shoe and feel delighted with the results—all from the comfort of your home. </p>",
-            "text_font_size": "body-medium",
-            "padding_bottom": 16
-          }
-        }
-      },
-      "block_order": [
-        "subheading_8P4Lfx",
-        "heading_NH6EGw",
-        "text_PhEgN9"
-      ],
-      "settings": {
-        "align_text": "text-left",
-        "width": "wrapper",
-        "color_scheme": "",
-        "overlay_type": "disabled",
-        "padding_top": 70,
-        "padding_bottom": 70
       }
     },
     "section_custom_content_3xeDGj": {
@@ -847,7 +827,6 @@
     "section_hero_xYgEzi",
     "custom-content-3",
     "section_custom_content_jkmaAC",
-    "section_rich_text_TttXi3",
     "section_custom_content_3xeDGj",
     "section_rich_text_8yzhGr",
     "custom-content-4",
