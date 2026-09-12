@@ -9,45 +9,34 @@
  */
 {
   "sections": {
-    "custom-content-1": {
-      "type": "section-custom-content",
-      "blocks": {
-        "image-1-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1_14.jpg",
-            "title": "The new era of Custom footwear",
-            "heading_font_size": "heading-large",
-            "text": "<p>Founded in 2016<br/>Started in Dubai</p>",
-            "text_font_size": "body-x-large",
-            "flex_align": "align--middle-center",
-            "show_text_background": false,
-            "bg_color": "#200E13",
-            "color": "#FFFFFF",
-            "overlay_type": "opacity",
-            "link_text": "",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "image-1-1"
-      ],
+    "section_video_X8hmyK": {
+      "type": "section-video",
+      "name": "Video",
       "settings": {
-        "borders": false,
-        "gutters": false,
+        "video": "shopify://files/videos/ADORSI-CRAFT-2-lowrate_789dfb5b-873d-47de-bd0e-34e2bbb0b1d5.mp4",
+        "show_video_popup": false,
+        "video_popup_social": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "title": "",
+        "heading_font_size": "heading-large",
+        "text": "",
+        "text_font_size": "body-medium",
+        "flex_align": "align--middle-center",
+        "link_text": "",
+        "link": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "desktop_height": "screen-height-three-quarters",
+        "mobile_height": "screen-height-three-quarters--mobile",
         "width": "wrapper--full",
-        "height": "screen-height-one-half",
-        "mobile_height": "screen-height-one-half--mobile",
-        "reverse_blocks": false,
-        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "color_scheme": "",
+        "show_text_background": false,
+        "color": "",
+        "overlay_type": "disabled",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "heading_tag": "automatic"
       }
     },
     "main": {
@@ -73,10 +62,10 @@
         "text-3-1": {
           "type": "text",
           "settings": {
-            "subheading": "The story",
-            "title": "Behind the brand",
+            "subheading": "adorsi loafers",
+            "title": "Handcrafted for you",
             "heading_font_size": "heading-large",
-            "text": "<p>Many people might think of what kind of outfit they should put together--but for me \"wearing a 45 EU shoe\", all that matters was finding something comfortable!<br/><br/>The constant search for the perfect dress shoes has been a frustrating experience.<br/><br/>Most companies don't make larger sizes; I have always found it difficult to find formal or semi-casual shoes that are both comfortable and stylish.<br/><br/>The search for the perfect pair of shoes was frustrating, so I decided to work on a solution.</p>",
+            "text": "<p>Adorsi loafers are handcrafted in the Spanish shoe-making town of Alicante, infusing sensibility, tradition and innovation in the consctruction of our product. Your custom made loafers will be especially assembled for you and will be sent directly from the craftsman hands to your door step.</p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -108,6 +97,66 @@
         "padding_bottom": 0
       }
     },
+    "section_hero_fLkmJU": {
+      "type": "section-hero",
+      "blocks": {
+        "heading_fxyXMh": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "title": "Image banner",
+            "heading_font_size": "heading-x-large",
+            "heading_tag": "automatic",
+            "padding_bottom": 8
+          }
+        },
+        "text_dDECNE": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>The result is a collection of timeless classics, with a modern twist, that will make you feel confident and stylish. From the initial sketch to the final product, each pair of shoes is handcrafted with the utmost care and attention to detail.</p>",
+            "text_font_size": "body-large",
+            "padding_bottom": 8
+          }
+        },
+        "button_6RwdqY": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "full_width": false,
+            "padding_bottom": 8
+          }
+        }
+      },
+      "block_order": [
+        "heading_fxyXMh",
+        "text_dDECNE",
+        "button_6RwdqY"
+      ],
+      "name": "Image banner",
+      "settings": {
+        "image_1": "shopify://shop_images/Firefly_Gemini_Flash_Enhance_the_gold_metal_hardware_to_look_polished_smooth_and_luxurious._Increase_ref_509694.png",
+        "link": "",
+        "width": "wrapper--full",
+        "height": "screen-height-three-quarters",
+        "flex_align_desktop": "align--middle-center-desktop",
+        "content_width": 50,
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "flex_align_mobile": "align--middle-center-mobile",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "show_text_background": false,
+        "overlay_type": "disabled",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
+    },
     "custom-content-4": {
       "type": "section-custom-content",
       "blocks": {
@@ -136,10 +185,10 @@
         "text-4-1": {
           "type": "text",
           "settings": {
-            "subheading": "Made to be unique",
-            "title": "A Journey Of Passion",
+            "subheading": "exclusive designs",
+            "title": "Branded Pieces",
             "heading_font_size": "heading-large",
-            "text": "<p>I founded & developing my line that makes designing your custom dress shoes, especially for people who are suffering from finding larger sizes, so they feel confident and stylish in whatever they wear. I understand the challenges that come with being plus-size, and I want to make sure that everyone has access to stylish and comfortable shoes.<br/></p>",
+            "text": "<p>Adorsi savvy style focuses on sophisticated simplicity and understated elegance, making it a label with character and breed, make it available for our customers to implement personalized items. We have an offer of complementory accessories, such as our Adorsi signature branded metal-piece and cotton ribbon.</p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -172,10 +221,10 @@
         "padding_bottom": 0
       }
     },
-    "section_hero_fLkmJU": {
+    "section_hero_jXYFWD": {
       "type": "section-hero",
       "blocks": {
-        "heading_fxyXMh": {
+        "heading_brDJ8X": {
           "type": "heading",
           "disabled": true,
           "settings": {
@@ -185,15 +234,16 @@
             "padding_bottom": 8
           }
         },
-        "text_dDECNE": {
+        "text_EnaFA6": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<p>The result is a collection of timeless classics, with a modern twist, that will make you feel confident and stylish. From the initial sketch to the final product, each pair of shoes is handcrafted with the utmost care and attention to detail.</p>",
             "text_font_size": "body-large",
             "padding_bottom": 8
           }
         },
-        "button_6RwdqY": {
+        "button_wRWkir": {
           "type": "button",
           "disabled": true,
           "settings": {
@@ -209,13 +259,14 @@
         }
       },
       "block_order": [
-        "heading_fxyXMh",
-        "text_dDECNE",
-        "button_6RwdqY"
+        "heading_brDJ8X",
+        "text_EnaFA6",
+        "button_wRWkir"
       ],
       "name": "Image banner",
       "settings": {
-        "image_1": "shopify://shop_images/1_17.png",
+        "image_1": "shopify://shop_images/ADORSI_MAKING-OF-A2.webp",
+        "image_2": "shopify://shop_images/Lusitano-5A_1950x_d6361e5e-62b6-4248-80e7-514aa833bc58.webp",
         "link": "",
         "width": "wrapper--full",
         "height": "screen-height-three-quarters",
@@ -224,7 +275,7 @@
         "mobile_height": "screen-height-three-quarters--mobile",
         "flex_align_mobile": "align--middle-center-mobile",
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
-        "show_text_background": true,
+        "show_text_background": false,
         "overlay_type": "disabled",
         "padding_top": 0,
         "padding_bottom": 0,
@@ -237,10 +288,10 @@
         "text_EXAQLt": {
           "type": "text",
           "settings": {
-            "subheading": "practicing the best quality",
-            "title": "Part of the journey",
+            "subheading": "handcrafted for you",
+            "title": "Built with character",
             "heading_font_size": "heading-large",
-            "text": "<p>We worked with Portugal’s most renowned shoemaker works in Guimaraes in 2019, then we searched for the best materials all over the world.<br/></p>",
+            "text": "<p>Take a look behind the scenes and enjoy a sneak peek into Adorsi loafers assembling process. We have immense trust in the know-how, tradition and innovation of our manufactures, which helps us infuse character and breed in the consctruction of our product. Indulge in our sartorial experience and delight of creating your bespoke Adorsi shoes.</p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -259,7 +310,7 @@
         "image_cjiDyB": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/oxford_3.png",
+            "image": "shopify://shop_images/1_1_6f86f0d7-9b5e-420e-afa5-50d0886e7332.jpg",
             "title": "",
             "heading_font_size": "heading-large",
             "text": "",
@@ -294,138 +345,15 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "section_custom_content_nfPB8X": {
-      "type": "section-custom-content",
-      "blocks": {
-        "image_qRahGB": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1_9.png",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "flex_align": "align--middle-center",
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "",
-            "overlay_type": "disabled",
-            "link_text": "",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "heading_tag": "automatic"
-          }
-        },
-        "text_EFpgtM": {
-          "type": "text",
-          "settings": {
-            "subheading": "Crafted for you",
-            "title": "You deserve the best",
-            "heading_font_size": "heading-large",
-            "text": "<p>In 2020, we found this particular factory in Alicante, Spain had an excellent track record for producing high-quality products and providing customization options beyond what's imaginable!</p>",
-            "text_font_size": "body-medium",
-            "button_text": "",
-            "button_url": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_social_links": false,
-            "text_columns": 1,
-            "align_text": "text-left",
-            "bg_color": "",
-            "color": "",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "image_qRahGB",
-        "text_EFpgtM"
-      ],
-      "settings": {
-        "borders": false,
-        "gutters": false,
-        "width": "wrapper--full",
-        "height": "screen-height-one-half",
-        "mobile_height": "screen-height-one-half--mobile",
-        "reverse_blocks": false,
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "section_hero_TG7km3": {
-      "type": "section-hero",
-      "blocks": {
-        "heading_ijE3pE": {
-          "type": "heading",
-          "settings": {
-            "title": "STORY NEVER ENDS!",
-            "heading_font_size": "heading-medium",
-            "heading_tag": "automatic",
-            "padding_bottom": 8
-          }
-        },
-        "text_GVKcDF": {
-          "type": "text",
-          "settings": {
-            "text": "<p>The dream of having a perfect shoe has been an impossible one until now.<br/>Our company is dedicated to making a difference in the lives of plus-size everywhere, giving them comfort without sacrificing style.</p><p>Thank you for supporting us!</p><p>Adham Morsi<br/>Founder & CEO</p>",
-            "text_font_size": "body-x-large",
-            "padding_bottom": 8
-          }
-        },
-        "button_j8jPDR": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "full_width": false,
-            "padding_bottom": 8
-          }
-        }
-      },
-      "block_order": [
-        "heading_ijE3pE",
-        "text_GVKcDF",
-        "button_j8jPDR"
-      ],
-      "name": "Image banner",
-      "settings": {
-        "image_1": "shopify://shop_images/1_3.jpg",
-        "link": "",
-        "width": "wrapper--full",
-        "height": "screen-height-three-quarters",
-        "flex_align_desktop": "align--middle-center-desktop",
-        "content_width": 50,
-        "mobile_height": "screen-height-three-quarters--mobile",
-        "flex_align_mobile": "align--middle-center-mobile",
-        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
-        "show_text_background": true,
-        "overlay_type": "disabled",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "show_placeholder": true
-      }
     }
   },
   "order": [
-    "custom-content-1",
+    "section_video_X8hmyK",
     "main",
     "custom-content-3",
-    "custom-content-4",
     "section_hero_fLkmJU",
-    "section_custom_content_xT8c9Y",
-    "section_custom_content_nfPB8X",
-    "section_hero_TG7km3"
+    "custom-content-4",
+    "section_hero_jXYFWD",
+    "section_custom_content_xT8c9Y"
   ]
 }
