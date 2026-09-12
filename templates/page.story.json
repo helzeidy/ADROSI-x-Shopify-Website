@@ -111,28 +111,6 @@
     "custom-content-4": {
       "type": "section-custom-content",
       "blocks": {
-        "text-4-1": {
-          "type": "text",
-          "settings": {
-            "subheading": "Made to be unique",
-            "title": "A Journey Of Passion",
-            "heading_font_size": "heading-large",
-            "text": "<p>I founded & developing my line that makes designing your custom dress shoes, especially for people who are suffering from finding larger sizes, so they feel confident and stylish in whatever they wear. I understand the challenges that come with being plus-size, and I want to make sure that everyone has access to stylish and comfortable shoes.<br/></p>",
-            "text_font_size": "body-medium",
-            "button_text": "",
-            "button_url": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_social_links": false,
-            "text_columns": 1,
-            "align_text": "text-left",
-            "bg_color": "",
-            "color": "",
-            "heading_tag": "automatic"
-          }
-        },
         "image-4-2": {
           "type": "image",
           "settings": {
@@ -154,45 +132,24 @@
             "show_arrow": false,
             "heading_tag": "automatic"
           }
-        }
-      },
-      "block_order": [
-        "text-4-1",
-        "image-4-2"
-      ],
-      "settings": {
-        "borders": false,
-        "gutters": false,
-        "width": "wrapper--full-padded",
-        "height": "screen-height-one-half",
-        "mobile_height": "screen-height-one-half--mobile",
-        "reverse_blocks": false,
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "custom-content-5": {
-      "type": "section-custom-content",
-      "blocks": {
-        "newsletter": {
-          "type": "newsletter",
+        },
+        "text-4-1": {
+          "type": "text",
           "settings": {
-            "subheading": "Newsletter",
-            "heading": "Sign up",
+            "subheading": "Made to be unique",
+            "title": "A Journey Of Passion",
             "heading_font_size": "heading-large",
-            "text": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
+            "text": "<p>I founded & developing my line that makes designing your custom dress shoes, especially for people who are suffering from finding larger sizes, so they feel confident and stylish in whatever they wear. I understand the challenges that come with being plus-size, and I want to make sure that everyone has access to stylish and comfortable shoes.<br/></p>",
             "text_font_size": "body-medium",
-            "text_columns": 1,
-            "align_text": "text-left",
-            "show_name": false,
-            "button_text": "Join",
-            "show_arrow": false,
-            "terms": true,
+            "button_text": "",
+            "button_url": "",
             "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
+            "show_arrow": false,
             "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
             "bg_color": "",
             "color": "",
             "heading_tag": "automatic"
@@ -200,12 +157,13 @@
         }
       },
       "block_order": [
-        "newsletter"
+        "image-4-2",
+        "text-4-1"
       ],
       "settings": {
         "borders": false,
         "gutters": false,
-        "width": "wrapper--full-padded",
+        "width": "wrapper--full",
         "height": "screen-height-one-half",
         "mobile_height": "screen-height-one-half--mobile",
         "reverse_blocks": false,
@@ -219,7 +177,6 @@
     "custom-content-1",
     "main",
     "custom-content-3",
-    "custom-content-4",
-    "custom-content-5"
+    "custom-content-4"
   ]
 }
