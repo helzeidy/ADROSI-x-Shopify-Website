@@ -15,7 +15,7 @@
         "image-1-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/WhatsApp_Image_2026-08-23_at_02.04.43.jpg",
+            "image": "shopify://shop_images/1_14.jpg",
             "title": "The new era of Custom footwear",
             "heading_font_size": "heading-large",
             "text": "<p>Founded in 2016<br/>Started in Dubai</p>",
@@ -114,7 +114,7 @@
         "image-4-2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/213.png",
+            "image": "shopify://shop_images/0.jpg",
             "title": "",
             "heading_font_size": "heading-large",
             "text": "",
@@ -237,10 +237,10 @@
         "text_EXAQLt": {
           "type": "text",
           "settings": {
-            "subheading": "Made to be unique",
-            "title": "A Journey Of Passion",
+            "subheading": "practicing the best quality",
+            "title": "Part of the journey",
             "heading_font_size": "heading-large",
-            "text": "<p>I founded & developing my line that makes designing your custom dress shoes, especially for people who are suffering from finding larger sizes, so they feel confident and stylish in whatever they wear. I understand the challenges that come with being plus-size, and I want to make sure that everyone has access to stylish and comfortable shoes.<br/></p>",
+            "text": "<p>We worked with Portugal’s most renowned shoemaker works in Guimaraes in 2019, then we searched for the best materials all over the world.<br/></p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -259,7 +259,7 @@
         "image_cjiDyB": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/213.png",
+            "image": "shopify://shop_images/oxford_3.png",
             "title": "",
             "heading_font_size": "heading-large",
             "text": "",
@@ -294,6 +294,128 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "section_custom_content_nfPB8X": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image_qRahGB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_9.png",
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        },
+        "text_EFpgtM": {
+          "type": "text",
+          "settings": {
+            "subheading": "Crafted for you",
+            "title": "You deserve the best",
+            "heading_font_size": "heading-large",
+            "text": "<p>In 2020, we found this particular factory in Alicante, Spain had an excellent track record for producing high-quality products and providing customization options beyond what's imaginable!</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "image_qRahGB",
+        "text_EFpgtM"
+      ],
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "section_hero_TG7km3": {
+      "type": "section-hero",
+      "blocks": {
+        "heading_ijE3pE": {
+          "type": "heading",
+          "settings": {
+            "title": "STORY NEVER ENDS!",
+            "heading_font_size": "heading-medium",
+            "heading_tag": "automatic",
+            "padding_bottom": 8
+          }
+        },
+        "text_GVKcDF": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The dream of having a perfect shoe has been an impossible one until now.<br/>Our company is dedicated to making a difference in the lives of plus-size everywhere, giving them comfort without sacrificing style.</p><p>Thank you for supporting us!</p><p>Adham Morsi<br/>Founder & CEO</p>",
+            "text_font_size": "body-x-large",
+            "padding_bottom": 8
+          }
+        },
+        "button_j8jPDR": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "full_width": false,
+            "padding_bottom": 8
+          }
+        }
+      },
+      "block_order": [
+        "heading_ijE3pE",
+        "text_GVKcDF",
+        "button_j8jPDR"
+      ],
+      "name": "Image banner",
+      "settings": {
+        "image_1": "shopify://shop_images/1_3.jpg",
+        "link": "",
+        "width": "wrapper--full",
+        "height": "screen-height-three-quarters",
+        "flex_align_desktop": "align--middle-center-desktop",
+        "content_width": 50,
+        "mobile_height": "screen-height-three-quarters--mobile",
+        "flex_align_mobile": "align--middle-center-mobile",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "show_text_background": true,
+        "overlay_type": "disabled",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_placeholder": true
+      }
     }
   },
   "order": [
@@ -302,6 +424,8 @@
     "custom-content-3",
     "custom-content-4",
     "section_hero_fLkmJU",
-    "section_custom_content_xT8c9Y"
+    "section_custom_content_xT8c9Y",
+    "section_custom_content_nfPB8X",
+    "section_hero_TG7km3"
   ]
 }
