@@ -664,72 +664,7 @@
         "rail_gap": 72,
         "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
         "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "section_text_row_QWw8yh": {
-      "type": "section-text-row",
-      "blocks": {
-        "icon_MUxLBT": {
-          "type": "icon",
-          "settings": {
-            "icon_name": "icon-ruler",
-            "icon_size": 20,
-            "icon_color": "#f9f0d9",
-            "title": "1. Go to our 3D design Tool.",
-            "heading_font_size": "heading-small",
-            "text": "",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_hYTwah": {
-          "type": "icon",
-          "settings": {
-            "icon_name": "icon-flare",
-            "icon_size": 20,
-            "icon_color": "#f9f0d9",
-            "title": "2.",
-            "heading_font_size": "heading-small",
-            "text": "",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        },
-        "icon_a8VDJF": {
-          "type": "icon",
-          "settings": {
-            "icon_name": "icon-diameter",
-            "icon_size": 20,
-            "icon_color": "#f9f0d9",
-            "title": "3. Customize your dress shoes.",
-            "heading_font_size": "heading-small",
-            "text": "",
-            "text_font_size": "body-medium",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "icon_MUxLBT",
-        "icon_hYTwah",
-        "icon_a8VDJF"
-      ],
-      "settings": {
-        "title": "How ADORSI’s Online Shoe Customization Works",
-        "heading_font_size": "heading-medium",
-        "align_heading": "text-center",
-        "align_text": "text-center",
-        "icon_alignment": "icon--top",
-        "width": "wrapper--full-padded",
-        "align_columns": "flex-align-center",
-        "layout": "grid",
-        "grid": 3,
-        "layout_mobile": "slider",
-        "color_scheme": "",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "heading_tag": "automatic"
+        "padding_bottom": 0
       }
     },
     "section_rich_text_rGJaY6": {
@@ -793,7 +728,7 @@
       "settings": {
         "align_text": "text-center",
         "width": "wrapper",
-        "color_scheme": "",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "overlay_type": "disabled",
         "padding_top": 100,
         "padding_bottom": 100
@@ -824,7 +759,7 @@
         "content_width": 50,
         "mobile_height": "screen-height-three-quarters--mobile",
         "flex_align_mobile": "align--middle-center-mobile",
-        "color_scheme": "",
+        "color_scheme": "scheme-025a5426-514e-4a02-9e15-80cab8125ad9",
         "show_text_background": false,
         "overlay_type": "disabled",
         "padding_top": 0,
@@ -850,7 +785,7 @@
       "settings": {
         "align_text": "text-left",
         "width": "wrapper",
-        "color_scheme": "",
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "overlay_type": "disabled",
         "padding_top": 100,
         "padding_bottom": 100
@@ -884,7 +819,7 @@
       "settings": {
         "align_text": "text-left",
         "width": "wrapper",
-        "color_scheme": "",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
         "overlay_type": "disabled",
         "padding_top": 100,
         "padding_bottom": 100
@@ -942,7 +877,6 @@
     "section_custom_content_9thYVe",
     "section_custom_content_THtnyP",
     "section_timeline_scroll_mEjGnJ",
-    "section_text_row_QWw8yh",
     "section_rich_text_rGJaY6",
     "section_rich_text_jJwnG9",
     "section_hero_VLEnn3",
