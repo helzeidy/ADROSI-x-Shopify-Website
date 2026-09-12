@@ -19,7 +19,7 @@
         "text_font_size": "body-medium",
         "align_text": "text-center",
         "width": "wrapper",
-        "color_scheme": "",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
         "padding_top": 50,
         "padding_bottom": 50,
         "heading_tag": "automatic"
@@ -73,74 +73,10 @@
         "padding_bottom": 50,
         "heading_tag": "automatic"
       }
-    },
-    "faq": {
-      "type": "section-accordion-group",
-      "blocks": {
-        "heading-0": {
-          "type": "heading",
-          "settings": {
-            "title": "FAQ"
-          }
-        },
-        "question-1": {
-          "type": "question",
-          "settings": {
-            "default_open": false,
-            "title": "Frequently asked question",
-            "content": "<p>Share details about your shipping policies, item returns, or customer service.</p>",
-            "show_icon": false,
-            "icon_name": "icon-award",
-            "icon_size": 20,
-            "icon_color": ""
-          }
-        },
-        "question-2": {
-          "type": "question",
-          "settings": {
-            "default_open": false,
-            "title": "Frequently asked question",
-            "content": "<p>Share details about your shipping policies, item returns, or customer service.</p>",
-            "show_icon": false,
-            "icon_name": "icon-award",
-            "icon_size": 20,
-            "icon_color": ""
-          }
-        },
-        "question-3": {
-          "type": "question",
-          "settings": {
-            "default_open": false,
-            "title": "Frequently asked question",
-            "content": "<p>Share details about your shipping policies, item returns, or customer service.</p>",
-            "show_icon": false,
-            "icon_name": "icon-award",
-            "icon_size": 20,
-            "icon_color": ""
-          }
-        }
-      },
-      "block_order": [
-        "heading-0",
-        "question-1",
-        "question-2",
-        "question-3"
-      ],
-      "disabled": true,
-      "settings": {
-        "heading_font_size": "heading-medium",
-        "question_font_size": "heading-small",
-        "width": "wrapper--narrow",
-        "columns": "1",
-        "color_scheme": "",
-        "padding_top": 50,
-        "padding_bottom": 50
-      }
     }
   },
   "order": [
     "main",
-    "contact",
-    "faq"
+    "contact"
   ]
 }
