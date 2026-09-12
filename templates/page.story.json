@@ -108,78 +108,16 @@
         "padding_bottom": 0
       }
     },
-    "custom-content-2": {
-      "type": "section-custom-content",
-      "blocks": {
-        "image-2-1": {
-          "type": "image",
-          "settings": {
-            "title": "How it started",
-            "heading_font_size": "heading-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "flex_align": "align--middle-center",
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "",
-            "overlay_type": "disabled",
-            "link_text": "",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "heading_tag": "automatic"
-          }
-        },
-        "image-2-2": {
-          "type": "image",
-          "settings": {
-            "title": "How it's going",
-            "heading_font_size": "heading-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "flex_align": "align--middle-center",
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "",
-            "overlay_type": "disabled",
-            "link_text": "",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "image-2-1",
-        "image-2-2"
-      ],
-      "settings": {
-        "borders": false,
-        "gutters": false,
-        "width": "wrapper--full-padded",
-        "height": "screen-height-one-half",
-        "mobile_height": "screen-height-one-half--mobile",
-        "reverse_blocks": false,
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "custom-content-4": {
       "type": "section-custom-content",
       "blocks": {
         "text-4-1": {
           "type": "text",
           "settings": {
-            "subheading": "Introducing",
-            "title": "Custom section",
+            "subheading": "Made to be unique",
+            "title": "A Journey Of Passion",
             "heading_font_size": "heading-large",
-            "text": "<p>Use this section to create unique side-by-side layouts with various content blocks. Pair text with images, newsletter blocks, products, videos, testimonials and more.</p>",
+            "text": "<p>I founded & developing my line that makes designing your custom dress shoes, especially for people who are suffering from finding larger sizes, so they feel confident and stylish in whatever they wear. I understand the challenges that come with being plus-size, and I want to make sure that everyone has access to stylish and comfortable shoes.<br/></p>",
             "text_font_size": "body-medium",
             "button_text": "",
             "button_url": "",
@@ -198,6 +136,7 @@
         "image-4-2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/213.png",
             "title": "",
             "heading_font_size": "heading-large",
             "text": "",
@@ -280,7 +219,6 @@
     "custom-content-1",
     "main",
     "custom-content-3",
-    "custom-content-2",
     "custom-content-4",
     "custom-content-5"
   ]
