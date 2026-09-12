@@ -172,59 +172,57 @@
         "padding_bottom": 0
       }
     },
-    "section_hero_fLkmJU": {
-      "type": "section-hero",
+    "section_hero_product_DifRRX": {
+      "type": "section-hero-product",
       "blocks": {
-        "heading_fxyXMh": {
+        "heading_ACxdQj": {
           "type": "heading",
-          "disabled": true,
           "settings": {
-            "title": "Image banner",
+            "title": "Best Seller!",
             "heading_font_size": "heading-x-large",
-            "heading_tag": "automatic",
-            "padding_bottom": 8
+            "heading_tag": "automatic"
           }
         },
-        "text_dDECNE": {
+        "text_WjxiWM": {
           "type": "text",
-          "disabled": true,
           "settings": {
-            "text": "<p>The result is a collection of timeless classics, with a modern twist, that will make you feel confident and stylish. From the initial sketch to the final product, each pair of shoes is handcrafted with the utmost care and attention to detail.</p>",
-            "text_font_size": "body-large",
-            "padding_bottom": 8
+            "text": "<p>Tell your brand's story through images.</p>",
+            "text_font_size": "body-large"
           }
         },
-        "button_6RwdqY": {
+        "button_HtPegV": {
           "type": "button",
-          "disabled": true,
           "settings": {
             "link_text": "View products",
-            "link": "",
+            "link": "shopify://products/classic-black-leather-oxford-shoes",
             "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
             "show_arrow": false,
-            "full_width": false,
-            "padding_bottom": 8
+            "full_width": false
           }
         }
       },
       "block_order": [
-        "heading_fxyXMh",
-        "text_dDECNE",
-        "button_6RwdqY"
+        "heading_ACxdQj",
+        "text_WjxiWM",
+        "button_HtPegV"
       ],
-      "name": "Image banner",
+      "name": "Image with product",
       "settings": {
-        "image_1": "shopify://shop_images/1_17.png",
+        "image_1": "shopify://shop_images/1_29_725eab23-1a70-44d4-bac8-980a8cb1d3b3.jpg",
         "link": "",
+        "product": "classic-black-leather-oxford-shoes",
+        "description": "",
+        "text_font_size": "body-medium",
+        "enable_quick_add": true,
+        "color_product_bg": "#f5f2ec",
+        "color_product_text": "#212121",
         "width": "wrapper--full",
-        "height": "screen-height-three-quarters",
-        "flex_align_desktop": "align--middle-center-desktop",
-        "content_width": 50,
-        "mobile_height": "screen-height-three-quarters--mobile",
-        "flex_align_mobile": "align--middle-center-mobile",
-        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "height": "image-height",
+        "mobile_height": "four-fifty-height-hero--mobile",
+        "flex_align_mobile": "align--middle-left-mobile",
+        "color_scheme": "scheme-025a5426-514e-4a02-9e15-80cab8125ad9",
         "show_text_background": false,
         "overlay_type": "disabled",
         "padding_top": 0,
@@ -419,6 +417,65 @@
         "padding_bottom": 0,
         "show_placeholder": true
       }
+    },
+    "section_look_tQy8Wk": {
+      "type": "section-look",
+      "blocks": {
+        "product_4X949k": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "show_product_card": false,
+            "position_x": 14,
+            "position_y": 37
+          }
+        },
+        "product_iQXj78": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "show_product_card": false,
+            "position_x": 14,
+            "position_y": 37
+          }
+        },
+        "product_rtipRk": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "show_product_card": false,
+            "position_x": 45,
+            "position_y": 60
+          }
+        }
+      },
+      "block_order": [
+        "product_4X949k",
+        "product_iQXj78",
+        "product_rtipRk"
+      ],
+      "name": "Shop the look",
+      "settings": {
+        "layout": "is-reversed",
+        "title": "Shop the look",
+        "heading": "",
+        "heading_font_size": "heading-large",
+        "show_dots": true,
+        "products_per_row": "1",
+        "enable_slider": false,
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--outline",
+        "show_arrow": false,
+        "enable_aspect_ratio": true,
+        "image_aspect_ratio": 1,
+        "color_scheme": "",
+        "dot_color": "rgba(0,0,0,0)",
+        "dot_background": "rgba(0,0,0,0)",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "heading_tag": "automatic"
+      }
     }
   },
   "order": [
@@ -426,9 +483,10 @@
     "main",
     "custom-content-3",
     "custom-content-4",
-    "section_hero_fLkmJU",
+    "section_hero_product_DifRRX",
     "section_custom_content_xT8c9Y",
     "section_custom_content_nfPB8X",
+    "section_look_tQy8Wk",
     "section_hero_TG7km3"
   ]
 }
