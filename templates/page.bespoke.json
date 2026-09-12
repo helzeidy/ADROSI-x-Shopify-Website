@@ -358,73 +358,30 @@
         "padding_bottom": 0
       }
     },
-    "section_look_tQy8Wk": {
-      "type": "section-look",
-      "blocks": {
-        "product_QrkXRt": {
-          "type": "product",
-          "settings": {
-            "product": "aubergine-patina-leather-hiking-boots",
-            "show_product_card": false,
-            "position_x": 50,
-            "position_y": 50
-          }
-        },
-        "product_4X949k": {
-          "type": "product",
-          "settings": {
-            "product": "black-white-houndstooth-low-top-sneakers",
-            "show_product_card": false,
-            "position_x": 14,
-            "position_y": 37
-          }
-        },
-        "product_iQXj78": {
-          "type": "product",
-          "settings": {
-            "product": "black-white-two-tone-penny-loafers",
-            "show_product_card": false,
-            "position_x": 14,
-            "position_y": 37
-          }
-        },
-        "product_rtipRk": {
-          "type": "product",
-          "settings": {
-            "product": "beige-black-linen-top-sider-trainers",
-            "show_product_card": false,
-            "position_x": 45,
-            "position_y": 60
-          }
-        }
-      },
-      "block_order": [
-        "product_QrkXRt",
-        "product_4X949k",
-        "product_iQXj78",
-        "product_rtipRk"
-      ],
-      "name": "Shop the look",
+    "section_collection_TRqGDf": {
+      "type": "section-collection",
+      "name": "Featured collection",
       "settings": {
-        "image": "shopify://shop_images/1_17.png",
-        "layout": "is-reversed",
-        "title": "Shop the look",
-        "heading": "",
-        "heading_font_size": "heading-large",
-        "show_dots": true,
-        "products_per_row": "1",
-        "enable_slider": false,
+        "featured_collection": "custom-loafers",
+        "heading": "Bespoke Collection",
+        "heading_font_size": "heading-medium",
+        "description": "",
+        "text_font_size": "body-medium",
+        "layout": "inline",
+        "link_text": "Shop Now",
+        "link_url": "",
         "button_type": "btn--primary",
         "button_size": "",
-        "button_style": "btn--outline",
+        "button_style": "btn--solid",
         "show_arrow": false,
-        "enable_aspect_ratio": true,
-        "image_aspect_ratio": 1,
+        "layout_desktop": "slider",
+        "grid": 4,
+        "rows": 3,
+        "width": "wrapper",
+        "layout_mobile": "slider",
         "color_scheme": "",
-        "dot_color": "rgba(0,0,0,0)",
-        "dot_background": "rgba(0,0,0,0)",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 50,
+        "padding_bottom": 50,
         "heading_tag": "automatic"
       }
     }
@@ -437,6 +394,6 @@
     "section_hero_product_DifRRX",
     "section_custom_content_xT8c9Y",
     "section_custom_content_nfPB8X",
-    "section_look_tQy8Wk"
+    "section_collection_TRqGDf"
   ]
 }
