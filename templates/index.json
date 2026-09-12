@@ -523,58 +523,6 @@
         "padding_bottom": 0
       }
     },
-    "section_products_image_yWErRm": {
-      "type": "section-products-image",
-      "blocks": {
-        "products_WhLen4": {
-          "type": "products",
-          "settings": {
-            "product_list": [
-              "cognac-calf-leather-horsebit-loafer",
-              "black-calf-leather-horsebit-loafer",
-              "cognac-calf-web-stripe-leather-loafer",
-              "black-calf-web-stripe-leather-loafer-runner-sole"
-            ],
-            "layout_mobile": "slider"
-          }
-        },
-        "image_tbbfFR": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/6033_0.png",
-            "mobile_height": "screen-height-one-half--mobile",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "flex_align": "align--middle-center",
-            "overlay_type": "disabled",
-            "link_text": "",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "#ffffff",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "products_WhLen4",
-        "image_tbbfFR"
-      ],
-      "name": "Products with image",
-      "settings": {
-        "width": "wrapper--full",
-        "reverse_blocks": true,
-        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "section_announcement_R7KWbe": {
       "type": "section-announcement",
       "blocks": {
@@ -671,6 +619,58 @@
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "padding_top": 12,
         "padding_bottom": 12
+      }
+    },
+    "section_products_image_yWErRm": {
+      "type": "section-products-image",
+      "blocks": {
+        "products_WhLen4": {
+          "type": "products",
+          "settings": {
+            "product_list": [
+              "cognac-calf-leather-horsebit-loafer",
+              "black-calf-leather-horsebit-loafer",
+              "cognac-calf-web-stripe-leather-loafer",
+              "black-calf-web-stripe-leather-loafer-runner-sole"
+            ],
+            "layout_mobile": "slider"
+          }
+        },
+        "image_tbbfFR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6033_0.png",
+            "mobile_height": "screen-height-one-half--mobile",
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "#ffffff",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "products_WhLen4",
+        "image_tbbfFR"
+      ],
+      "name": "Products with image",
+      "settings": {
+        "width": "wrapper--full",
+        "reverse_blocks": true,
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "section_reviews_fiwDiK": {
