@@ -153,7 +153,7 @@
         "width": "wrapper--full-padded",
         "color_scheme": "",
         "overlay_type": "disabled",
-        "padding_top": 100,
+        "padding_top": 48,
         "padding_bottom": 32
       }
     },
@@ -231,56 +231,61 @@
         "heading_tag": "automatic"
       }
     },
-    "section_hero_Q7zzN4": {
-      "type": "section-hero",
+    "section_hero_product_i6KxhK": {
+      "type": "section-hero-product",
       "blocks": {
-        "text_7wLwdy": {
-          "type": "text",
-          "settings": {
-            "text": "<p>For the man who's spent his life sizing down.</p>",
-            "text_font_size": "body-x-large",
-            "padding_bottom": 0
-          }
-        },
-        "heading_cHKFin": {
+        "heading_xcgEEW": {
           "type": "heading",
           "settings": {
-            "title": "FULL & HALF SIZES 5-17 │ EE & EEE WIDTH",
+            "title": "Best Seller!",
             "heading_font_size": "heading-x-large",
-            "heading_tag": "automatic",
-            "padding_bottom": 16
+            "heading_tag": "automatic"
           }
         },
-        "text_L8dd99": {
+        "text_8gx3QR": {
           "type": "text",
           "settings": {
-            "text": "<p>If you've ever bought a shoe a half-size off because the right one didn't exist — this is for you. Every last in our line is graded the full range, on the same bench, by the same hands.</p>",
-            "text_font_size": "body-large",
-            "padding_bottom": 8
+            "text": "<p>Tell your brand's story through images.</p>",
+            "text_font_size": "body-large"
+          }
+        },
+        "button_QtYpAT": {
+          "type": "button",
+          "settings": {
+            "link_text": "View products",
+            "link": "shopify://products/classic-black-leather-oxford-shoes",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "full_width": false
           }
         }
       },
       "block_order": [
-        "text_7wLwdy",
-        "heading_cHKFin",
-        "text_L8dd99"
+        "heading_xcgEEW",
+        "text_8gx3QR",
+        "button_QtYpAT"
       ],
-      "disabled": true,
-      "name": "Image banner",
+      "name": "Image with product",
       "settings": {
-        "image_1": "shopify://shop_images/Panels.jpg",
+        "image_1": "shopify://shop_images/1_29_725eab23-1a70-44d4-bac8-980a8cb1d3b3.jpg",
         "link": "",
-        "width": "wrapper--full-padded",
-        "height": "screen-height-one-third",
-        "flex_align_desktop": "align--middle-center-desktop",
-        "content_width": 60,
-        "mobile_height": "screen-height-three-quarters--mobile",
+        "product": "classic-black-leather-oxford-shoes",
+        "description": "",
+        "text_font_size": "body-medium",
+        "enable_quick_add": true,
+        "color_product_bg": "#f5f2ec",
+        "color_product_text": "#212121",
+        "width": "wrapper--full",
+        "height": "image-height",
+        "mobile_height": "four-fifty-height-hero--mobile",
         "flex_align_mobile": "align--middle-left-mobile",
-        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "color_scheme": "scheme-025a5426-514e-4a02-9e15-80cab8125ad9",
         "show_text_background": false,
         "overlay_type": "disabled",
-        "padding_top": 50,
-        "padding_bottom": 50,
+        "padding_top": 0,
+        "padding_bottom": 0,
         "show_placeholder": true
       }
     },
@@ -346,145 +351,31 @@
         "show_placeholder": true
       }
     },
-    "section_custom_content_NdQXKa": {
-      "type": "section-custom-content",
+    "section_products_image_yWErRm": {
+      "type": "section-products-image",
       "blocks": {
-        "text_eCWrdk": {
-          "type": "text",
+        "products_WhLen4": {
+          "type": "products",
           "settings": {
-            "subheading": "BIG & WIDE",
-            "title": "The size range menswear forgets.",
-            "heading_font_size": "heading-x-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "button_text": "",
-            "button_url": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_social_links": false,
-            "text_columns": 1,
-            "align_text": "text-left",
-            "bg_color": "",
-            "color": "",
-            "heading_tag": "automatic"
+            "product_list": [
+              "cognac-calf-leather-horsebit-loafer",
+              "black-calf-leather-horsebit-loafer",
+              "cognac-calf-web-stripe-leather-loafer",
+              "black-calf-web-stripe-leather-loafer-runner-sole"
+            ],
+            "layout_mobile": "slider"
           }
         },
-        "text_4gL7MV": {
-          "type": "text",
-          "settings": {
-            "subheading": "",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "text": "<p>Most makers stop at 13. We don't. Every ADORSI last is cut in full and half sizes from US 5 through 17, in four widths from standard D to extra-wide EEE — no upcharge, no waiting on a special order.</p>",
-            "text_font_size": "body-large",
-            "button_text": "Shop Now",
-            "button_url": "shopify://collections/large-wide-mens-shoes",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_social_links": false,
-            "text_columns": 1,
-            "align_text": "text-left",
-            "bg_color": "",
-            "color": "",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "text_eCWrdk",
-        "text_4gL7MV"
-      ],
-      "disabled": true,
-      "name": "Custom section",
-      "settings": {
-        "borders": false,
-        "gutters": false,
-        "width": "wrapper--full",
-        "height": "screen-height-one-half",
-        "mobile_height": "screen-height-one-half--mobile",
-        "reverse_blocks": false,
-        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
-        "padding_top": 100,
-        "padding_bottom": 0
-      }
-    },
-    "section_hero_product_i6KxhK": {
-      "type": "section-hero-product",
-      "blocks": {
-        "heading_xcgEEW": {
-          "type": "heading",
-          "settings": {
-            "title": "Best Seller!",
-            "heading_font_size": "heading-x-large",
-            "heading_tag": "automatic"
-          }
-        },
-        "text_8gx3QR": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Tell your brand's story through images.</p>",
-            "text_font_size": "body-large"
-          }
-        },
-        "button_QtYpAT": {
-          "type": "button",
-          "settings": {
-            "link_text": "View products",
-            "link": "shopify://products/classic-black-leather-oxford-shoes",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "full_width": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_xcgEEW",
-        "text_8gx3QR",
-        "button_QtYpAT"
-      ],
-      "name": "Image with product",
-      "settings": {
-        "image_1": "shopify://shop_images/1_29_725eab23-1a70-44d4-bac8-980a8cb1d3b3.jpg",
-        "link": "",
-        "product": "classic-black-leather-oxford-shoes",
-        "description": "",
-        "text_font_size": "body-medium",
-        "enable_quick_add": true,
-        "color_product_bg": "#f5f2ec",
-        "color_product_text": "#212121",
-        "width": "wrapper--full",
-        "height": "image-height",
-        "mobile_height": "four-fifty-height-hero--mobile",
-        "flex_align_mobile": "align--middle-left-mobile",
-        "color_scheme": "scheme-025a5426-514e-4a02-9e15-80cab8125ad9",
-        "show_text_background": false,
-        "overlay_type": "disabled",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "show_placeholder": true
-      }
-    },
-    "section_custom_content_GcCeRY": {
-      "type": "section-custom-content",
-      "blocks": {
-        "image_LApcFH": {
+        "image_tbbfFR": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Firefly_Gemini_Flash_Enhance_the_gold_metal_hardware_to_look_polished_smooth_and_luxurious._Increase_ref_509694.png",
+            "image": "shopify://shop_images/6033_0.png",
+            "mobile_height": "screen-height-one-half--mobile",
             "title": "",
             "heading_font_size": "heading-large",
             "text": "",
             "text_font_size": "body-medium",
             "flex_align": "align--middle-center",
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "",
             "overlay_type": "disabled",
             "link_text": "",
             "link": "",
@@ -492,51 +383,29 @@
             "button_size": "",
             "button_style": "btn--solid",
             "show_arrow": false,
-            "heading_tag": "automatic"
-          }
-        },
-        "collection_3UC6UV": {
-          "type": "collection",
-          "settings": {
-            "collection": "designer-loafers",
-            "title": "Shop the look",
+            "show_text_background": false,
             "bg_color": "",
-            "color": ""
+            "color": "#ffffff",
+            "heading_tag": "automatic"
           }
         }
       },
       "block_order": [
-        "image_LApcFH",
-        "collection_3UC6UV"
+        "products_WhLen4",
+        "image_tbbfFR"
       ],
-      "disabled": true,
-      "name": "Custom section",
+      "name": "Products with image",
       "settings": {
-        "borders": false,
-        "gutters": false,
-        "width": "wrapper--full",
-        "height": "image-height",
-        "mobile_height": "screen-height-one-half--mobile",
+        "width": "wrapper--full-padded",
         "reverse_blocks": true,
         "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "section_announcement_R7KWbe": {
       "type": "section-announcement",
       "blocks": {
-        "text_NQbKDU": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>Free worldwide shipping | Free Remake Guarantee | Made to order | Custom Made Shoes | Big and Wide with Half Sizes Available | Handcrafted in Spain |</p>",
-            "text_font_size": "body-medium",
-            "color": "",
-            "target_device_enabled": false,
-            "target_device": "mobile"
-          }
-        },
         "text_cAW6Dd": {
           "type": "text",
           "settings": {
@@ -599,7 +468,6 @@
         }
       },
       "block_order": [
-        "text_NQbKDU",
         "text_cAW6Dd",
         "text_Mw7nX4",
         "text_Vy7U4J",
@@ -619,58 +487,6 @@
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "padding_top": 12,
         "padding_bottom": 12
-      }
-    },
-    "section_products_image_yWErRm": {
-      "type": "section-products-image",
-      "blocks": {
-        "products_WhLen4": {
-          "type": "products",
-          "settings": {
-            "product_list": [
-              "cognac-calf-leather-horsebit-loafer",
-              "black-calf-leather-horsebit-loafer",
-              "cognac-calf-web-stripe-leather-loafer",
-              "black-calf-web-stripe-leather-loafer-runner-sole"
-            ],
-            "layout_mobile": "slider"
-          }
-        },
-        "image_tbbfFR": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/6033_0.png",
-            "mobile_height": "screen-height-one-half--mobile",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "flex_align": "align--middle-center",
-            "overlay_type": "disabled",
-            "link_text": "",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "#ffffff",
-            "heading_tag": "automatic"
-          }
-        }
-      },
-      "block_order": [
-        "products_WhLen4",
-        "image_tbbfFR"
-      ],
-      "name": "Products with image",
-      "settings": {
-        "width": "wrapper--full",
-        "reverse_blocks": true,
-        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     },
     "section_reviews_fiwDiK": {
@@ -1036,11 +852,8 @@
     "section_slideshow_yADrDe",
     "section_rich_text_R37UEc",
     "section_collections_list_Eby3tp",
-    "section_hero_Q7zzN4",
-    "section_double_ALB37d",
-    "section_custom_content_NdQXKa",
     "section_hero_product_i6KxhK",
-    "section_custom_content_GcCeRY",
+    "section_double_ALB37d",
     "section_products_image_yWErRm",
     "section_announcement_R7KWbe",
     "section_reviews_fiwDiK",
