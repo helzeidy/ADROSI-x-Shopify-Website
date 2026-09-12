@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Scale switcher inside the Size filter group
+   ========================================================================== */
+
+.filter-scale {
+  margin: 0 0 16px;
+}
+
+.filter-scale__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-scale__button {
+  padding: 5px 12px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--FONT-STACK-SUBHEADING, inherit);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-scale__button:hover {
+  border-color: currentColor;
+}
+
+/* Selected: filled, matching the product page's size boxes. */
+.filter-scale__button.is-active {
+  background: var(--text, #111);
+  border-color: var(--text, #111);
+  color: var(--bg, #fff);
+}

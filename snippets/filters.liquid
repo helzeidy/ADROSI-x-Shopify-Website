@@ -12,6 +12,11 @@
   endcapture
 -%}
 
+{%- if settings.size_scale_filter_enable and settings.size_scale_table != blank -%}
+  {%- render 'stylesheet', name: 'filter-size-scale.css' -%}
+  <script src="{{ 'filter-size-scale.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 <collapsible-elements>
   <form data-collection-filters-form class="collection__filters" id="{{ section.id }}-form-filter">
     {%- if template.name == 'search' and search.terms -%}
@@ -96,6 +101,18 @@
         if forloop.first and animation_delay == 50
           assign animation_delay = animation_delay | plus: 200
         endif
+
+        comment
+          Is this the size filter? Only that group gets the scale switcher.
+        endcomment
+        assign is_size_filter = false
+        if settings.size_scale_filter_enable and settings.size_scale_table != blank
+          assign size_filter_name = settings.size_scale_filter_name | default: 'Size' | downcase | strip
+          assign this_filter_name = filter.label | downcase | strip
+          if this_filter_name == size_filter_name
+            assign is_size_filter = true
+          endif
+        endif
       -%}
 
       <div
@@ -131,6 +148,39 @@
             {% endif %}
           >
             <div class="filter-group__content" data-collapsible-content>
+              {%- if is_size_filter -%}
+                {%- liquid
+                  assign scales_raw = settings.size_scale_scales | default: 'US, UK, EU, JP, KR'
+                  assign scales_list = scales_raw | split: ','
+                -%}
+
+                <div
+                  class="filter-scale"
+                  data-filter-size-scale
+                  data-scales="{{ scales_raw | escape }}"
+                >
+                  <div class="filter-scale__buttons">
+                    {%- for sc in scales_list -%}
+                      {%- assign sc = sc | strip -%}
+                      {%- if sc != blank -%}
+                        <button
+                          type="button"
+                          class="filter-scale__button{% if forloop.first %} is-active{% endif %}"
+                          data-filter-scale
+                          data-scale-index="{{ forloop.index0 }}"
+                        >
+                          {{- sc | escape_once -}}
+                        </button>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+
+                  <script type="text/plain" data-filter-scale-table>
+                    {{- settings.size_scale_table | escape -}}
+                  </script>
+                </div>
+              {%- endif -%}
+
               {%- case filter.type -%}
                 {%- when 'list', 'boolean' -%}
                   <ul class="collection-nav{% if filter.presentation == "image" %} collection-nav--image-grid{% endif %}">
@@ -210,7 +260,21 @@
                             -%}
                           {%- endif -%}
 
-                          <span>{{ filter_value.label }}</span>
+                          {%- if is_size_filter -%}
+                            {%- comment -%}
+                              data-base-label keeps the real (US) value so the
+                              relabelling is always computed from the original,
+                              never from an already-converted label.
+                            {%- endcomment -%}
+                            <span
+                              data-filter-scale-label
+                              data-base-label="{{ filter_value.label | escape }}"
+                            >
+                              {{- filter_value.label -}}
+                            </span>
+                          {%- else -%}
+                            <span>{{ filter_value.label }}</span>
+                          {%- endif -%}
                         </label>
                       </li>
                     {%- endfor -%}
