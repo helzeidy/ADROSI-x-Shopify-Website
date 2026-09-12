@@ -182,7 +182,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/ADORSI-Post-3.png",
-            "title": "Why Custom Made Shoes",
+            "title": "",
             "heading_font_size": "heading-large",
             "text": "",
             "text_font_size": "body-medium",
@@ -199,10 +199,33 @@
             "show_arrow": false,
             "heading_tag": "automatic"
           }
+        },
+        "text_9KYFVb": {
+          "type": "text",
+          "settings": {
+            "subheading": "",
+            "title": "Why Custom Made Shoes",
+            "heading_font_size": "heading-large",
+            "text": "<p>Customizing your shoe from its sole to its polishing seems like a good idea.</p><p>But so what, right? </p><p>After all, you might get unsatisfactory results or still feel misunderstood. Because here’s the thing: there is no guarantee that getting a custom-made shoe will open new doors for you, right? </p><p>We initially thought so as well. </p><p>Look, we’re gentlemen who once started just from the same point you’re at right now. We get how you feel now because we’d been there for so long. </p><p>Our custom-made shoes are your gateway to feeling seen, heard, and understood, as you’ll be able to:</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
         }
       },
       "block_order": [
-        "image_mUgNBk"
+        "image_mUgNBk",
+        "text_9KYFVb"
       ],
       "settings": {
         "borders": false,
@@ -214,30 +237,6 @@
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0
-      }
-    },
-    "section_rich_text_8yzhGr": {
-      "type": "section-rich-text",
-      "blocks": {
-        "text_z8m3ac": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Customizing your shoe from its sole to its polishing seems like a good idea.</p><p>But so what, right? </p><p>After all, you might get unsatisfactory results or still feel misunderstood. Because here’s the thing: there is no guarantee that getting a custom-made shoe will open new doors for you, right? </p><p>We initially thought so as well. </p><p>Look, we’re gentlemen who once started just from the same point you’re at right now. We get how you feel now because we’d been there for so long. </p><p>Our custom-made shoes are your gateway to feeling seen, heard, and understood, as you’ll be able to:</p>",
-            "text_font_size": "body-medium",
-            "padding_bottom": 16
-          }
-        }
-      },
-      "block_order": [
-        "text_z8m3ac"
-      ],
-      "settings": {
-        "align_text": "text-left",
-        "width": "wrapper--full-padded",
-        "color_scheme": "",
-        "overlay_type": "disabled",
-        "padding_top": 70,
-        "padding_bottom": 70
       }
     },
     "custom-content-4": {
@@ -828,7 +827,6 @@
     "custom-content-3",
     "section_custom_content_jkmaAC",
     "section_custom_content_3xeDGj",
-    "section_rich_text_8yzhGr",
     "custom-content-4",
     "section_custom_content_rgxAn6",
     "section_custom_content_bbzP8k",
