@@ -73,6 +73,7 @@
     "sale_text_color": "#af7b88",
     "badge_bg_color": "#ffffff",
     "badge_text_color": "#212121",
+    "size_scale_filter_enable": true,
     "checkout_logo_position": "left",
     "checkout_logo_size": "medium",
     "checkout_body_background_color": "#fff",
@@ -135,7 +136,7 @@
           "accent": "#461214",
           "lines_and_border": "#d1cdc4",
           "overlay": "#00000021",
-          "links": "#FFFFFF"
+          "links": "#ffffff"
         }
       },
       "scheme-e91cab0e-1933-4c93-9241-b75f3ab20fa1": {
