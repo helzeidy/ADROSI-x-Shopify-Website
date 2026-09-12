@@ -1,1 +1,287 @@
-{"sections":{"custom-content-1":{"type":"section-custom-content","blocks":{"image-1-1":{"type":"image","settings":{"title":"Our Story","link_text":""}}},"block_order":["image-1-1"],"settings":{}},"main":{"type":"main-page","settings":{}},"custom-content-2":{"type":"section-custom-content","blocks":{"image-2-1":{"type":"image","settings":{"title":"How it started","link_text":""}},"image-2-2":{"type":"image","settings":{"title":"How it's going","link_text":""}}},"block_order":["image-2-1","image-2-2"],"settings":{}},"custom-content-3":{"type":"section-custom-content","blocks":{"text-3-1":{"type":"text","settings":{"button_text":""}}},"block_order":["text-3-1"],"settings":{}},"custom-content-4":{"type":"section-custom-content","blocks":{"text-4-1":{"type":"text","settings":{"button_text":""}},"image-4-2":{"type":"image","settings":{"link_text":""}}},"block_order":["text-4-1","image-4-2"],"settings":{}},"custom-content-5":{"type":"section-custom-content","blocks":{"newsletter":{"type":"newsletter","settings":{}}},"block_order":["newsletter"],"settings":{}}},"order":["custom-content-1","main","custom-content-2","custom-content-3","custom-content-4","custom-content-5"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom-content-1": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image-1-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-08-23_at_02.04.43.jpg",
+            "title": "The new era of Custom footwear",
+            "heading_font_size": "heading-large",
+            "text": "<p>Founded in 2016<br/>Started in Dubai</p>",
+            "text_font_size": "body-x-large",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "#200E13",
+            "color": "#FFFFFF",
+            "overlay_type": "opacity",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "image-1-1"
+      ],
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "Behind the brand",
+        "show_title": true,
+        "heading_font_size": "heading-large",
+        "show_content": true,
+        "text_font_size": "body-medium",
+        "align_text": "text-left",
+        "width": "wrapper",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "custom-content-3": {
+      "type": "section-custom-content",
+      "blocks": {
+        "text-3-1": {
+          "type": "text",
+          "settings": {
+            "subheading": "The story",
+            "title": "Behind the brand",
+            "heading_font_size": "heading-large",
+            "text": "<p>Many people might think of what kind of outfit they should put together--but for me \"wearing a 45 EU shoe\", all that matters was finding something comfortable!<br/><br/>The constant search for the perfect dress shoes has been a frustrating experience.<br/><br/>Most companies don't make larger sizes; I have always found it difficult to find formal or semi-casual shoes that are both comfortable and stylish.<br/><br/>The search for the perfect pair of shoes was frustrating, so I decided to work on a solution.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "text-3-1"
+      ],
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full-padded",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom-content-2": {
+      "type": "section-custom-content",
+      "blocks": {
+        "image-2-1": {
+          "type": "image",
+          "settings": {
+            "title": "How it started",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        },
+        "image-2-2": {
+          "type": "image",
+          "settings": {
+            "title": "How it's going",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "image-2-1",
+        "image-2-2"
+      ],
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full-padded",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom-content-4": {
+      "type": "section-custom-content",
+      "blocks": {
+        "text-4-1": {
+          "type": "text",
+          "settings": {
+            "subheading": "Introducing",
+            "title": "Custom section",
+            "heading_font_size": "heading-large",
+            "text": "<p>Use this section to create unique side-by-side layouts with various content blocks. Pair text with images, newsletter blocks, products, videos, testimonials and more.</p>",
+            "text_font_size": "body-medium",
+            "button_text": "",
+            "button_url": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "show_social_links": false,
+            "text_columns": 1,
+            "align_text": "text-left",
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        },
+        "image-4-2": {
+          "type": "image",
+          "settings": {
+            "title": "",
+            "heading_font_size": "heading-large",
+            "text": "",
+            "text_font_size": "body-medium",
+            "flex_align": "align--middle-center",
+            "show_text_background": false,
+            "bg_color": "",
+            "color": "",
+            "overlay_type": "disabled",
+            "link_text": "",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "text-4-1",
+        "image-4-2"
+      ],
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full-padded",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom-content-5": {
+      "type": "section-custom-content",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "subheading": "Newsletter",
+            "heading": "Sign up",
+            "heading_font_size": "heading-large",
+            "text": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
+            "text_font_size": "body-medium",
+            "text_columns": 1,
+            "align_text": "text-left",
+            "show_name": false,
+            "button_text": "Join",
+            "show_arrow": false,
+            "terms": true,
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_social_links": false,
+            "bg_color": "",
+            "color": "",
+            "heading_tag": "automatic"
+          }
+        }
+      },
+      "block_order": [
+        "newsletter"
+      ],
+      "settings": {
+        "borders": false,
+        "gutters": false,
+        "width": "wrapper--full-padded",
+        "height": "screen-height-one-half",
+        "mobile_height": "screen-height-one-half--mobile",
+        "reverse_blocks": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "custom-content-1",
+    "main",
+    "custom-content-3",
+    "custom-content-2",
+    "custom-content-4",
+    "custom-content-5"
+  ]
+}
