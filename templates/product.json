@@ -73,7 +73,7 @@
             "addon_type": "configurable",
             "title": "Add Matching Belt",
             "description": "The matching belt will be manufactured and shipped together with the shoes. Artisans will decide the best design to match the shoes as closely as possible.",
-            "product": "matching-belt-test",
+            "product": "matching-belt",
             "show_image": false,
             "price_text": "+$220",
             "enable_text_input": true,
