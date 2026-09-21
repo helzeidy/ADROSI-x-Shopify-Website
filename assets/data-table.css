@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Data table (snippets/data-table.liquid)
+   --------------------------------------------------------------------------
+   Rounded, bordered table with an optional tinted header, zebra rows and a
+   frozen first column. Wide tables scroll sideways inside their own box, so
+   the page itself never scrolls horizontally on mobile.
+   ========================================================================== */
+
+.data-table {
+  --dt-border: var(--border, rgba(0, 0, 0, 0.1));
+  --dt-head-bg: rgba(0, 0, 0, 0.035);
+  --dt-stripe: rgba(0, 0, 0, 0.025);
+  --dt-radius: 14px;
+  --dt-cell-x: 18px;
+  --dt-cell-y: 16px;
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius);
+  overflow: hidden;
+  background: var(--bg, #fff);
+}
+
+.data-table__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table table {
+  width: 100%;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--dt-cell-y) var(--dt-cell-x);
+  border-bottom: 1px solid var(--dt-border);
+  font-weight: normal;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.data-table tbody tr:last-child th,
+.data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Header ---------------------------------------------------------------- */
+.data-table thead th {
+  background: var(--dt-head-bg);
+  vertical-align: bottom;
+  /* Headers may wrap, but never narrower than this — stops long labels like
+     "Ball girth width" from running into the next column. */
+  min-width: 96px;
+  white-space: normal;
+}
+
+.data-table__label {
+  display: block;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+  font-size: 0.82em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.data-table__unit {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.72em;
+  opacity: 0.6;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Body ------------------------------------------------------------------ */
+.data-table tbody th {
+  font-weight: 500;
+}
+
+.data-table--striped tbody tr:nth-child(even) th,
+.data-table--striped tbody tr:nth-child(even) td {
+  background: var(--dt-stripe);
+}
+
+.data-table tbody tr:hover th,
+.data-table tbody tr:hover td {
+  background: var(--dt-head-bg);
+}
+
+/* Frozen first column --------------------------------------------------- */
+.data-table--freeze thead th:first-child,
+.data-table--freeze tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  /* Needs a solid fill so scrolled cells don't show through. */
+  background-color: var(--bg, #fff);
+  box-shadow: 1px 0 0 var(--dt-border);
+}
+
+.data-table--freeze thead th:first-child {
+  background-image: linear-gradient(var(--dt-head-bg), var(--dt-head-bg));
+}
+
+.data-table--freeze.data-table--striped tbody tr:nth-child(even) th {
+  background-image: linear-gradient(var(--dt-stripe), var(--dt-stripe));
+}
+
+@media only screen and (max-width: 749px) {
+  .data-table {
+    --dt-cell-x: 14px;
+    --dt-cell-y: 12px;
+    --dt-radius: 10px;
+  }
+}

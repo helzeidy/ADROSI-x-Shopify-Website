@@ -1,4 +1,16 @@
 {{ 'tabs-section.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign tabs_has_table = false
+  for blk in section.blocks
+    if blk.settings.layout == 'table'
+      assign tabs_has_table = true
+      break
+    endif
+  endfor
+-%}
+{%- if tabs_has_table -%}
+  {{ 'data-table.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 <script src="{{ 'tabs-section.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
@@ -48,7 +60,37 @@
                 endif
               -%}
 
-              {%- if b.layout == 'image_overlay' -%}
+              {%- if b.layout == 'table' -%}
+                <div class="tabs-section__table-layout">
+                  {%- if b.subheading != blank or b.heading != blank or b.text != blank -%}
+                    <div class="tabs-section__table-intro">
+                      {%- if b.subheading != blank -%}<span class="tabs-section__subheading">{{ b.subheading | escape }}</span>{%- endif -%}
+                      {%- if b.heading != blank -%}<h3 class="tabs-section__heading">{{ b.heading | escape }}</h3>{%- endif -%}
+                      {%- if b.text != blank -%}<div class="tabs-section__text">{{ b.text }}</div>{%- endif -%}
+                    </div>
+                  {%- endif -%}
+
+                  {%- if b.table_data != blank -%}
+                    {%- render 'data-table',
+                      data: b.table_data,
+                      striped: b.table_striped,
+                      freeze_first: b.table_freeze_first,
+                      font_size: b.table_font_size
+                    -%}
+                  {%- endif -%}
+
+                  {%- if b.table_note != blank -%}
+                    <div class="tabs-section__table-note rte">{{ b.table_note }}</div>
+                  {%- endif -%}
+
+                  {%- if has_button -%}
+                    <div class="tabs-section__cta">
+                      <a href="{{ b.button_link }}" class="btn {{ b.button_style }} {{ b.button_type }}">{{ b.button_label | escape }}</a>
+                    </div>
+                  {%- endif -%}
+                </div>
+
+              {%- elsif b.layout == 'image_overlay' -%}
                 {%- capture bg_style -%}
                   min-height: {{ b.min_height }}px;
                   {%- if b.image and b.video == blank %} background-image: url('{{ b.image | image_url: width: 2000 }}');{% endif -%}
@@ -124,9 +166,18 @@
       "label": "Heading size",
       "default": "heading-medium",
       "options": [
-        {"value": "heading-small", "label": "Small"},
-        {"value": "heading-medium", "label": "Medium"},
-        {"value": "heading-large", "label": "Large"}
+        {
+          "value": "heading-small",
+          "label": "Small"
+        },
+        {
+          "value": "heading-medium",
+          "label": "Medium"
+        },
+        {
+          "value": "heading-large",
+          "label": "Large"
+        }
       ]
     },
     {
@@ -135,8 +186,14 @@
       "label": "Tabs alignment",
       "default": "left",
       "options": [
-        {"value": "left", "label": "Left"},
-        {"value": "center", "label": "Center"}
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
       ]
     },
     {
@@ -187,9 +244,77 @@
           "label": "Layout",
           "default": "media_text",
           "options": [
-            {"value": "media_text", "label": "Media + text (side by side)"},
-            {"value": "image_overlay", "label": "Full image with text on top"}
+            {
+              "value": "media_text",
+              "label": "Media + text (side by side)"
+            },
+            {
+              "value": "image_overlay",
+              "label": "Full image with text on top"
+            },
+            {
+              "value": "table",
+              "label": "Table (e.g. size chart)"
+            }
           ]
+        },
+        {
+          "type": "header",
+          "content": "Table",
+          "visible_if": "{{ block.settings.layout == 'table' }}"
+        },
+        {
+          "type": "textarea",
+          "id": "table_data",
+          "label": "Table rows",
+          "info": "One row per line. Separate cells with commas, | or tabs (paste from Google Sheets works). First line is the header. Add a unit under a header with brackets: Foot length [mm]",
+          "visible_if": "{{ block.settings.layout == 'table' }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "table_striped",
+          "label": "Striped rows",
+          "default": true,
+          "visible_if": "{{ block.settings.layout == 'table' }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "table_freeze_first",
+          "label": "Freeze first column on scroll",
+          "default": true,
+          "info": "Keeps the first column visible when the table scrolls sideways on mobile.",
+          "visible_if": "{{ block.settings.layout == 'table' }}"
+        },
+        {
+          "type": "select",
+          "id": "table_font_size",
+          "label": "Table text size",
+          "default": "body-small",
+          "options": [
+            {
+              "value": "body-x-small",
+              "label": "Extra small"
+            },
+            {
+              "value": "body-small",
+              "label": "Small"
+            },
+            {
+              "value": "body-medium",
+              "label": "Medium"
+            },
+            {
+              "value": "body-large",
+              "label": "Large"
+            }
+          ],
+          "visible_if": "{{ block.settings.layout == 'table' }}"
+        },
+        {
+          "type": "richtext",
+          "id": "table_note",
+          "label": "Note below table",
+          "visible_if": "{{ block.settings.layout == 'table' }}"
         },
         {
           "type": "header",
@@ -238,8 +363,14 @@
           "label": "Media position (side by side)",
           "default": "left",
           "options": [
-            {"value": "left", "label": "Left"},
-            {"value": "right", "label": "Right"}
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
           ]
         },
         {
@@ -295,9 +426,18 @@
           "label": "Text vertical position",
           "default": "center",
           "options": [
-            {"value": "top", "label": "Top"},
-            {"value": "center", "label": "Center"},
-            {"value": "bottom", "label": "Bottom"}
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            }
           ]
         },
         {
@@ -306,9 +446,18 @@
           "label": "Text horizontal position",
           "default": "left",
           "options": [
-            {"value": "left", "label": "Left"},
-            {"value": "center", "label": "Center"},
-            {"value": "right", "label": "Right"}
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
           ]
         },
         {
@@ -331,10 +480,22 @@
           "label": "Button color",
           "default": "btn--primary",
           "options": [
-            {"value": "btn--black", "label": "Black"},
-            {"value": "btn--white", "label": "White"},
-            {"value": "btn--primary", "label": "Primary"},
-            {"value": "btn--secondary", "label": "Secondary"}
+            {
+              "value": "btn--black",
+              "label": "Black"
+            },
+            {
+              "value": "btn--white",
+              "label": "White"
+            },
+            {
+              "value": "btn--primary",
+              "label": "Primary"
+            },
+            {
+              "value": "btn--secondary",
+              "label": "Secondary"
+            }
           ]
         },
         {
@@ -343,8 +504,14 @@
           "label": "Button style",
           "default": "btn--solid",
           "options": [
-            {"value": "btn--solid", "label": "Solid"},
-            {"value": "btn--outline", "label": "Outline"}
+            {
+              "value": "btn--solid",
+              "label": "Solid"
+            },
+            {
+              "value": "btn--outline",
+              "label": "Outline"
+            }
           ]
         }
       ]
@@ -354,9 +521,27 @@
     {
       "name": "Tabs",
       "blocks": [
-        {"type": "tab", "settings": {"tab_label": "Material", "heading": "Suede leather"}},
-        {"type": "tab", "settings": {"tab_label": "Construction", "heading": "Blake Rapid construction"}},
-        {"type": "tab", "settings": {"tab_label": "Sole", "heading": "Sole"}}
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Material",
+            "heading": "Suede leather"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Construction",
+            "heading": "Blake Rapid construction"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Sole",
+            "heading": "Sole"
+          }
+        }
       ]
     }
   ]

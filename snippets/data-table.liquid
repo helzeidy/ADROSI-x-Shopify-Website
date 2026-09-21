@@ -1,0 +1,80 @@
+{% comment %}
+  Data table from plain text.
+
+  Renders a table from a textarea: one line per row, cells separated by
+  commas, pipes or tabs (so rows pasted straight from Google Sheets or Excel
+  work). The first line is the header row.
+
+  A header cell can carry a unit on a second line using square brackets:
+    Foot length [mm]   →   FOOT LENGTH
+                            mm
+
+  Accepts:
+  - data: {String} the table text (required)
+  - striped: {Boolean} zebra rows
+  - freeze_first: {Boolean} keep the first column visible when scrolling sideways
+  - font_size: {String} a body-* size class
+{% endcomment %}
+
+{%- liquid
+  assign rows = data | newline_to_br | split: '<br />'
+  assign header_done = false
+-%}
+
+<div class="data-table{% if striped %} data-table--striped{% endif %}{% if freeze_first %} data-table--freeze{% endif %} {{ font_size }}">
+  <div class="data-table__scroll">
+    <table>
+      {%- for raw_row in rows -%}
+        {%- liquid
+          comment
+            Normalise every supported separator to a comma, then split.
+          endcomment
+          assign row = raw_row | strip | replace: '|', ',' | replace: '	', ','
+          if row == blank
+            continue
+          endif
+          assign cells = row | split: ','
+        -%}
+
+        {%- unless header_done -%}
+          <thead>
+            <tr>
+              {%- for cell in cells -%}
+                {%- liquid
+                  assign cell = cell | strip
+                  assign label = cell
+                  assign unit = ''
+                  if cell contains '['
+                    assign label = cell | split: '[' | first | strip
+                    assign unit = cell | split: '[' | last | remove: ']' | strip
+                  endif
+                -%}
+                <th scope="col">
+                  <span class="data-table__label">{{ label | escape }}</span>
+                  {%- if unit != blank -%}
+                    <span class="data-table__unit">{{ unit | escape }}</span>
+                  {%- endif -%}
+                </th>
+              {%- endfor -%}
+            </tr>
+          </thead>
+          <tbody>
+          {%- assign header_done = true -%}
+        {%- else -%}
+          <tr>
+            {%- for cell in cells -%}
+              {%- if forloop.first -%}
+                <th scope="row">{{ cell | strip | escape }}</th>
+              {%- else -%}
+                <td>{{ cell | strip | escape }}</td>
+              {%- endif -%}
+            {%- endfor -%}
+          </tr>
+        {%- endunless -%}
+      {%- endfor -%}
+      {%- if header_done -%}
+        </tbody>
+      {%- endif -%}
+    </table>
+  </div>
+</div>

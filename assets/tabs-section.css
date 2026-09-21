@@ -258,3 +258,18 @@
     padding: 28px;
   }
 }
+
+/* Table layout (size charts etc.) --------------------------------------- */
+.tabs-section__table-intro {
+  margin-bottom: 28px;
+}
+
+.tabs-section__table-note {
+  margin-top: 20px;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.tabs-section__table-layout .tabs-section__cta {
+  margin-top: 24px;
+}
