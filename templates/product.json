@@ -155,7 +155,7 @@
             "raw_content_3": "",
             "title_4": "Shipping",
             "raw_content_4": "<p>{{ product.metafields.my_fields.shipping | metafield_tag }}</p>",
-            "title_5": "",
+            "title_5": "Made to Order",
             "raw_content_5": "",
             "padding_bottom": 0
           }
