@@ -142,6 +142,23 @@
             "padding_bottom": 32
           }
         },
+        "hubspot_form_FteHUp": {
+          "type": "hubspot_form",
+          "settings": {
+            "label": "Enquire about this style",
+            "portal_id": "25632952",
+            "form_id": "a6bbe951-f3e6-4838-9cc8-2e245442c5c5",
+            "region": "na1",
+            "product_field": "",
+            "popup_heading": "",
+            "popup_text": "",
+            "button_type": "btn--primary",
+            "button_style": "btn--solid",
+            "button_size": "btn--large",
+            "full_width": true,
+            "padding_bottom": 16
+          }
+        },
         "tabs": {
           "type": "tab_richtext",
           "settings": {
@@ -190,6 +207,7 @@
         "addon_TWP3Lb",
         "buttons",
         "customize_link_J9Fjb3",
+        "hubspot_form_FteHUp",
         "tabs",
         "divider_1",
         "upsell"
