@@ -25,58 +25,34 @@
         "heading_tag": "automatic"
       }
     },
-    "contact": {
-      "type": "contact-form",
-      "blocks": {
-        "Name": {
-          "type": "text",
-          "settings": {
-            "title": "Full Name",
-            "required": false
-          }
-        },
-        "Email": {
-          "type": "email",
-          "settings": {
-            "title": "Email",
-            "required": true
-          }
-        },
-        "telephone_YnAE7g": {
-          "type": "telephone",
-          "settings": {
-            "title": "Phone Number",
-            "required": false
-          }
-        },
-        "Message": {
-          "type": "body",
-          "settings": {
-            "title": "Message",
-            "required": true
-          }
-        }
-      },
-      "block_order": [
-        "Name",
-        "Email",
-        "telephone_YnAE7g",
-        "Message"
-      ],
+    "hubspot_form_GFCdWU": {
+      "type": "hubspot-form",
+      "name": "HubSpot form",
       "settings": {
-        "title": "",
-        "heading_font_size": "heading-large",
-        "terms": true,
-        "width": "wrapper--narrow",
+        "subheading": "",
+        "heading": "",
+        "heading_font_size": "heading-medium",
+        "text": "",
+        "alignment": "text-center",
+        "max_width": 620,
+        "label": "Contact us",
+        "portal_id": "",
+        "form_id": "a6bbe951-f3e6-4838-9cc8-2e245442c5c5",
+        "region": "na1",
+        "popup_heading": "",
+        "popup_text": "",
+        "button_type": "btn--primary",
+        "button_style": "btn--solid",
+        "button_size": "btn--large",
+        "full_width": false,
         "color_scheme": "",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "heading_tag": "automatic"
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     }
   },
   "order": [
     "main",
-    "contact"
+    "hubspot_form_GFCdWU"
   ]
 }
