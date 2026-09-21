@@ -273,3 +273,78 @@
 .tabs-section__table-layout .tabs-section__cta {
   margin-top: 24px;
 }
+
+/* Steps layout (e.g. "How to measure") ---------------------------------- */
+.tabs-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs-steps__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px 40px;
+  align-items: start;
+  padding: 28px 0;
+  border-top: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+}
+
+.tabs-steps__item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.tabs-steps__item--media {
+  grid-template-columns: minmax(0, 1fr) var(--steps-image-width, 320px);
+}
+
+.tabs-steps--image-left .tabs-steps__item--media {
+  grid-template-columns: var(--steps-image-width, 320px) minmax(0, 1fr);
+}
+
+.tabs-steps--image-left .tabs-steps__media {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.tabs-steps__title {
+  margin: 0 0 10px;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+  font-size: 1.15em;
+}
+
+.tabs-steps__num {
+  opacity: 0.55;
+}
+
+.tabs-steps__text > *:first-child {
+  margin-top: 0;
+}
+
+.tabs-steps__text > *:last-child {
+  margin-bottom: 0;
+}
+
+.tabs-steps__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (max-width: 749px) {
+  .tabs-steps__item--media,
+  .tabs-steps--image-left .tabs-steps__item--media {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Text first, then its drawing, on every step. */
+  .tabs-steps--image-left .tabs-steps__media {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .tabs-steps__media {
+    max-width: 280px;
+  }
+}

@@ -90,6 +90,60 @@
                   {%- endif -%}
                 </div>
 
+              {%- elsif b.layout == 'steps' -%}
+                <div class="tabs-section__steps-layout{% if b.steps_image_side == 'left' %} tabs-steps--image-left{% endif %}" style="--steps-image-width: {{ b.steps_image_width }}px;">
+                  {%- if b.subheading != blank or b.heading != blank or b.text != blank -%}
+                    <div class="tabs-section__table-intro">
+                      {%- if b.subheading != blank -%}<span class="tabs-section__subheading">{{ b.subheading | escape }}</span>{%- endif -%}
+                      {%- if b.heading != blank -%}<h3 class="tabs-section__heading">{{ b.heading | escape }}</h3>{%- endif -%}
+                      {%- if b.text != blank -%}<div class="tabs-section__text">{{ b.text }}</div>{%- endif -%}
+                    </div>
+                  {%- endif -%}
+
+                  <ol class="tabs-steps">
+                    {%- assign step_number = 0 -%}
+                    {%- for i in (1..6) -%}
+                      {%- liquid
+                        assign title_key = 'step_' | append: i | append: '_title'
+                        assign text_key = 'step_' | append: i | append: '_text'
+                        assign image_key = 'step_' | append: i | append: '_image'
+                        assign step_title = b[title_key]
+                        assign step_text = b[text_key]
+                        assign step_image = b[image_key]
+                        if step_title == blank and step_text == blank
+                          continue
+                        endif
+                        assign step_number = step_number | plus: 1
+                      -%}
+                      <li class="tabs-steps__item{% if step_image != blank %} tabs-steps__item--media{% endif %}">
+                        <div class="tabs-steps__body">
+                          {%- if step_title != blank -%}
+                            <h4 class="tabs-steps__title">
+                              {%- if b.steps_numbered -%}<span class="tabs-steps__num">{{ step_number }}.</span> {% endif -%}
+                              {{- step_title | escape -}}
+                            </h4>
+                          {%- endif -%}
+                          {%- if step_text != blank -%}
+                            <div class="tabs-steps__text rte">{{ step_text }}</div>
+                          {%- endif -%}
+                        </div>
+
+                        {%- if step_image != blank -%}
+                          <div class="tabs-steps__media">
+                            {{ step_image | image_url: width: 800 | image_tag: widths: '300, 400, 600, 800', sizes: '(min-width: 750px) 320px, 80vw', loading: 'lazy', alt: step_title | escape }}
+                          </div>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ol>
+
+                  {%- if has_button -%}
+                    <div class="tabs-section__cta">
+                      <a href="{{ b.button_link }}" class="btn {{ b.button_style }} {{ b.button_type }}">{{ b.button_label | escape }}</a>
+                    </div>
+                  {%- endif -%}
+                </div>
+
               {%- elsif b.layout == 'image_overlay' -%}
                 {%- capture bg_style -%}
                   min-height: {{ b.min_height }}px;
@@ -255,8 +309,161 @@
             {
               "value": "table",
               "label": "Table (e.g. size chart)"
+            },
+            {
+              "value": "steps",
+              "label": "Steps with images (e.g. how to measure)"
             }
           ]
+        },
+        {
+          "type": "header",
+          "content": "Steps",
+          "visible_if": "{{ block.settings.layout == 'steps' }}",
+          "info": "Uses the subheading, heading and text above as the intro. Empty steps are skipped."
+        },
+        {
+          "type": "checkbox",
+          "id": "steps_numbered",
+          "label": "Number the steps",
+          "default": true,
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "select",
+          "id": "steps_image_side",
+          "label": "Image side",
+          "default": "right",
+          "visible_if": "{{ block.settings.layout == 'steps' }}",
+          "options": [
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "steps_image_width",
+          "label": "Image width",
+          "min": 160,
+          "max": 520,
+          "step": 20,
+          "unit": "px",
+          "default": 320,
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "text",
+          "id": "step_1_title",
+          "label": "Step 1 title",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "richtext",
+          "id": "step_1_text",
+          "label": "Step 1 text",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_1_image",
+          "label": "Step 1 image",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "text",
+          "id": "step_2_title",
+          "label": "Step 2 title",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "richtext",
+          "id": "step_2_text",
+          "label": "Step 2 text",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_2_image",
+          "label": "Step 2 image",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "text",
+          "id": "step_3_title",
+          "label": "Step 3 title",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "richtext",
+          "id": "step_3_text",
+          "label": "Step 3 text",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_3_image",
+          "label": "Step 3 image",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "text",
+          "id": "step_4_title",
+          "label": "Step 4 title",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "richtext",
+          "id": "step_4_text",
+          "label": "Step 4 text",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_4_image",
+          "label": "Step 4 image",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "text",
+          "id": "step_5_title",
+          "label": "Step 5 title",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "richtext",
+          "id": "step_5_text",
+          "label": "Step 5 text",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_5_image",
+          "label": "Step 5 image",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "text",
+          "id": "step_6_title",
+          "label": "Step 6 title",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "richtext",
+          "id": "step_6_text",
+          "label": "Step 6 text",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_6_image",
+          "label": "Step 6 image",
+          "visible_if": "{{ block.settings.layout == 'steps' }}"
         },
         {
           "type": "header",
