@@ -116,6 +116,27 @@
     }
   });
 
+  // Inline forms (the "HubSpot form" section set to show the form on the page)
+  // carry the same data attributes as a dialog, so buildForm works for both.
+  // They're built straight away rather than on click.
+  function initInline(scope) {
+    var forms = (scope || document).querySelectorAll('[data-hubspot-inline]');
+    Array.prototype.forEach.call(forms, buildForm);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      initInline();
+    });
+  } else {
+    initInline();
+  }
+
+  // Theme editor: the section is re-rendered when its settings change.
+  document.addEventListener('shopify:section:load', function (evt) {
+    initInline(evt.target);
+  });
+
   // Covers Esc, the close button and backdrop clicks alike.
   document.addEventListener(
     'close',

@@ -162,3 +162,9 @@ html.hubspot-popup-open {
   margin: 0;
   opacity: 0.7;
 }
+
+/* Form shown straight on the page: keep fields left-aligned even when the
+   section's intro is centred. */
+.hubspot-section__form {
+  text-align: left;
+}

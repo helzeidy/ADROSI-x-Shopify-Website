@@ -1,8 +1,9 @@
 <!-- /sections/hubspot-form.liquid -->
 {%- comment -%}
-  A HubSpot form in a popup, as a standalone section (e.g. for the Contact
-  page). Intro text + a button that opens the form. The button and popup are
-  the shared snippet used by the product page's HubSpot block.
+  A HubSpot form as a standalone section (e.g. for the Contact page): intro
+  text, then either the form itself (Display: Form on the page) or a button
+  that opens it in a popup. The popup is the shared snippet used by the
+  product page's HubSpot block.
 {%- endcomment -%}
 
 {%- liquid
@@ -48,9 +49,26 @@
         <div class="hubspot-section__text rte">{{ section.settings.text }}</div>
       {%- endif -%}
 
-      {%- if hs_ready -%}
+      {%- if hs_ready and section.settings.display == 'popup' -%}
         <div class="hubspot-section__button">
           {%- render 'hubspot-form-popup', hs: section.settings, uid: section.id -%}
+        </div>
+      {%- elsif hs_ready -%}
+        {%- comment -%}
+          Form straight on the page. Same data attributes as the popup's
+          <dialog>, so assets/hubspot-form-popup.js builds it the same way —
+          just on load instead of on click.
+        {%- endcomment -%}
+        <div
+          id="HubspotForm-{{ section.id }}"
+          class="hubspot-popup__form hubspot-section__form"
+          data-hubspot-inline
+          data-portal-id="{{ section.settings.portal_id | strip | escape }}"
+          data-form-id="{{ section.settings.form_id | strip | remove: 'hbspt-form-' | escape }}"
+          data-region="{{ section.settings.region | default: 'na1' | escape }}"
+          data-target="#HubspotForm-{{ section.id }}"
+        >
+          <p class="hubspot-popup__loading" data-hubspot-loading>Loading…</p>
         </div>
       {%- elsif request.design_mode -%}
         <p class="hubspot-section__notice">HubSpot form: add your Portal ID and Form ID in this section's settings.</p>
@@ -134,10 +152,27 @@
       "default": 620
     },
     {
+      "type": "select",
+      "id": "display",
+      "label": "Display",
+      "default": "inline",
+      "options": [
+        {
+          "value": "inline",
+          "label": "Form on the page"
+        },
+        {
+          "value": "popup",
+          "label": "Button that opens a popup"
+        }
+      ]
+    },
+    {
       "type": "text",
       "id": "label",
       "label": "Button label",
-      "default": "Contact us"
+      "default": "Contact us",
+      "visible_if": "{{ section.settings.display == 'popup' }}"
     },
     {
       "type": "header",
@@ -187,21 +222,23 @@
     },
     {
       "type": "header",
-      "content": "Popup"
+      "content": "Popup (popup display only)"
     },
     {
       "type": "text",
       "id": "popup_heading",
-      "label": "Popup heading"
+      "label": "Popup heading",
+      "visible_if": "{{ section.settings.display == 'popup' }}"
     },
     {
       "type": "richtext",
       "id": "popup_text",
-      "label": "Popup text"
+      "label": "Popup text",
+      "visible_if": "{{ section.settings.display == 'popup' }}"
     },
     {
       "type": "header",
-      "content": "Button"
+      "content": "Button (popup display only)"
     },
     {
       "type": "select",
@@ -225,7 +262,8 @@
           "value": "btn--secondary",
           "label": "Secondary"
         }
-      ]
+      ],
+      "visible_if": "{{ section.settings.display == 'popup' }}"
     },
     {
       "type": "select",
@@ -241,7 +279,8 @@
           "value": "btn--outline",
           "label": "Outline"
         }
-      ]
+      ],
+      "visible_if": "{{ section.settings.display == 'popup' }}"
     },
     {
       "type": "select",
@@ -261,13 +300,15 @@
           "value": "btn--large",
           "label": "Large"
         }
-      ]
+      ],
+      "visible_if": "{{ section.settings.display == 'popup' }}"
     },
     {
       "type": "checkbox",
       "id": "full_width",
       "label": "Full width",
-      "default": false
+      "default": false,
+      "visible_if": "{{ section.settings.display == 'popup' }}"
     },
     {
       "type": "header",
