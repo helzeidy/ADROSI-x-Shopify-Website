@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "subheading": "",
         "show_title": true,
@@ -30,11 +31,12 @@
       "name": "HubSpot form",
       "settings": {
         "subheading": "",
-        "heading": "",
-        "heading_font_size": "heading-medium",
+        "heading": "Contact Us",
+        "heading_font_size": "heading-large",
         "text": "",
         "alignment": "text-center",
         "max_width": 620,
+        "display": "inline",
         "label": "Contact us",
         "portal_id": "25632952",
         "form_id": "e2d7fa8d-972e-45b6-8909-f31f083c3150",
@@ -45,7 +47,7 @@
         "button_style": "btn--solid",
         "button_size": "btn--large",
         "full_width": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
         "padding_top": 60,
         "padding_bottom": 60
       }
