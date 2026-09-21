@@ -709,8 +709,31 @@
                       assign cz_rev = cz_rev | replace_first: '-', '---'
                       assign cz_rev2 = cz_rev | split: '---'
                       assign customize_id = cz_rev2[1] | split: '' | reverse | join: ''
+
+                      comment
+                        Per-product visibility from a metafield (default custom.customize_button).
+                        Visible unless the metafield explicitly says hide: a false boolean, or
+                        text such as "Hidden" / "Hide" / "No" / "Off". An empty or missing
+                        metafield keeps the button visible.
+                      endcomment
+                      assign cz_show = true
+                      assign cz_mf_key = block.settings.visibility_metafield | default: 'custom.customize_button' | strip
+                      if cz_mf_key contains '.'
+                        assign cz_mf_ns = cz_mf_key | split: '.' | first
+                        assign cz_mf_name = cz_mf_key | split: '.' | last
+                        comment
+                          No blank check on purpose: Liquid treats a boolean false as
+                          blank, which would skip exactly the value that means "hide".
+                          A missing metafield becomes '' and falls through as visible.
+                        endcomment
+                        assign cz_mf_value = product.metafields[cz_mf_ns][cz_mf_name].value | append: '' | strip | downcase
+                        case cz_mf_value
+                          when 'false', 'hidden', 'hide', 'no', 'off', '0'
+                            assign cz_show = false
+                        endcase
+                      endif
                     -%}
-                    {%- if product.available and product != blank -%}
+                    {%- if cz_show and product.available and product != blank -%}
                       <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                         <a
                           {% if block.settings.element_id != blank %}id="{{ block.settings.element_id | escape }}"{% endif %}
