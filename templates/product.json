@@ -149,7 +149,7 @@
             "show_read_more": false,
             "title_1": "Product Details",
             "raw_content_1": "<p>{{ product.metafields.custom.product_details | metafield_tag }}</p>",
-            "title_2": "",
+            "title_2": "{{ product.metafields.custom.material_headline.value }}",
             "raw_content_2": "",
             "title_3": "",
             "raw_content_3": "",
