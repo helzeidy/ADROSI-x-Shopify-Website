@@ -10,7 +10,7 @@
   INDEX and records the choice. Display-only: the variant added to cart stays US.
 
   Accepts:
-  - block, product_form_id.
+  - block, product, product_form_id.
 {% endcomment %}
 
 {%- liquid
@@ -21,8 +21,27 @@
   assign default_scale = block.settings.default_scale | default: base_scale
   assign scales_list = scales_raw | split: ','
   assign uid = section.id | append: '-' | append: block.id
+
+  comment
+    Per-product visibility from a metafield (default custom.size_scale), same
+    rules as the Customize button: hidden when the value is a false boolean or
+    Hidden/Hide/No/Off; visible when empty or missing. Compared as text with no
+    blank check, since Liquid treats a boolean false as blank.
+  endcomment
+  assign scale_show = true
+  assign scale_mf_key = block.settings.scale_visibility_metafield | default: 'custom.size_scale' | strip
+  if scale_mf_key contains '.'
+    assign scale_mf_ns = scale_mf_key | split: '.' | first
+    assign scale_mf_name = scale_mf_key | split: '.' | last
+    assign scale_mf_value = product.metafields[scale_mf_ns][scale_mf_name].value | append: '' | strip | downcase
+    case scale_mf_value
+      when 'false', 'hidden', 'hide', 'no', 'off', '0'
+        assign scale_show = false
+    endcase
+  endif
 -%}
 
+{%- if scale_show -%}
 <div
   class="selector-wrapper size-scale__wrapper"
   data-size-scale
@@ -79,3 +98,4 @@
     </div>
   {%- endif -%}
 </div>
+{%- endif -%}
