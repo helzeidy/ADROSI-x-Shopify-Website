@@ -142,23 +142,6 @@
             "padding_bottom": 32
           }
         },
-        "hubspot_form_FteHUp": {
-          "type": "hubspot_form",
-          "settings": {
-            "label": "Ask a Questions",
-            "portal_id": "25632952",
-            "form_id": "e2d7fa8d-972e-45b6-8909-f31f083c3150",
-            "region": "na1",
-            "product_field": "",
-            "popup_heading": "",
-            "popup_text": "",
-            "button_type": "btn--primary",
-            "button_style": "btn--solid",
-            "button_size": "btn--large",
-            "full_width": true,
-            "padding_bottom": 16
-          }
-        },
         "tabs": {
           "type": "tab_richtext",
           "settings": {
@@ -175,6 +158,23 @@
             "title_5": "Made to Order",
             "raw_content_5": "<p>Made to order is a process where items are not produced until a customer has placed an order for that item. Made to order reduces inventory waste, as items are only produced when they have been sold. This also ensures that the items are perfectly fitted to the customer, as opposed to mass-produced items which may not fit as well. Made to order also allows for traceability throughout the whole chain, as each step can be tracked and monitored. This results in a higher quality product, as any issues can be quickly identified and rectified. Overall, made to order is a superior solution that achieves zero inventory waste and produces higher quality products to get your loafers perfectly fitted to you and only you.</p>",
             "padding_bottom": 0
+          }
+        },
+        "hubspot_form_FteHUp": {
+          "type": "hubspot_form",
+          "settings": {
+            "label": "Ask a Questions",
+            "portal_id": "25632952",
+            "form_id": "e2d7fa8d-972e-45b6-8909-f31f083c3150",
+            "region": "na1",
+            "product_field": "",
+            "popup_heading": "Ask a Question",
+            "popup_text": "",
+            "button_type": "btn--black",
+            "button_style": "btn--outline",
+            "button_size": "btn--large",
+            "full_width": true,
+            "padding_bottom": 16
           }
         },
         "divider_1": {
@@ -207,8 +207,8 @@
         "addon_TWP3Lb",
         "buttons",
         "customize_link_J9Fjb3",
-        "hubspot_form_FteHUp",
         "tabs",
+        "hubspot_form_FteHUp",
         "divider_1",
         "upsell"
       ],
