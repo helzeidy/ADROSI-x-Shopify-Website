@@ -10,7 +10,7 @@
   --dt-border: var(--border, rgba(0, 0, 0, 0.1));
   --dt-head-bg: rgba(0, 0, 0, 0.035);
   --dt-stripe: rgba(0, 0, 0, 0.025);
-  --dt-radius: 14px;
+  --dt-radius: 0;
   --dt-cell-x: 18px;
   --dt-cell-y: 16px;
   border: 1px solid var(--dt-border);
@@ -27,6 +27,11 @@
 .data-table table {
   width: 100%;
   min-width: 100%;
+  /* Undo the theme's global table rule (margin: 1em 0 + its own border),
+     which otherwise leaves an empty band above and below the rows and a
+     second outline inside this box. */
+  margin: 0;
+  border: 0;
   border-collapse: separate;
   border-spacing: 0;
   text-align: left;
@@ -112,6 +117,5 @@
   .data-table {
     --dt-cell-x: 14px;
     --dt-cell-y: 12px;
-    --dt-radius: 10px;
   }
 }
