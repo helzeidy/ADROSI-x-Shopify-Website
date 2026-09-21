@@ -1824,6 +1824,168 @@
       ]
     },
     {
+      "type": "hubspot_form",
+      "name": "HubSpot form popup",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Button label",
+          "default": "Enquire about this style"
+        },
+        {
+          "type": "header",
+          "content": "HubSpot form"
+        },
+        {
+          "type": "text",
+          "id": "portal_id",
+          "label": "Portal (Hub) ID",
+          "info": "Your HubSpot account number. In HubSpot: click your account name, top right. Or copy portalId from the form's embed code."
+        },
+        {
+          "type": "text",
+          "id": "form_id",
+          "label": "Form ID",
+          "default": "a6bbe951-f3e6-4838-9cc8-2e245442c5c5",
+          "info": "The formId from the embed code. Pasting the hbspt-form-… version also works."
+        },
+        {
+          "type": "select",
+          "id": "region",
+          "label": "HubSpot region",
+          "default": "na1",
+          "info": "Use the region from the embed code. Most accounts are na1; EU data accounts are eu1.",
+          "options": [
+            {
+              "value": "na1",
+              "label": "na1 (North America)"
+            },
+            {
+              "value": "na2",
+              "label": "na2"
+            },
+            {
+              "value": "na3",
+              "label": "na3"
+            },
+            {
+              "value": "eu1",
+              "label": "eu1 (Europe)"
+            },
+            {
+              "value": "ap1",
+              "label": "ap1 (Asia Pacific)"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "product_field",
+          "label": "Product field (optional)",
+          "info": "Internal name of a hidden field in the form. It is filled with the product name and link so you know which shoe the enquiry is about."
+        },
+        {
+          "type": "header",
+          "content": "Popup"
+        },
+        {
+          "type": "text",
+          "id": "popup_heading",
+          "label": "Popup heading"
+        },
+        {
+          "type": "richtext",
+          "id": "popup_text",
+          "label": "Popup text"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "select",
+          "id": "button_type",
+          "label": "Color",
+          "default": "btn--primary",
+          "options": [
+            {
+              "value": "btn--black",
+              "label": "Black"
+            },
+            {
+              "value": "btn--white",
+              "label": "White"
+            },
+            {
+              "value": "btn--primary",
+              "label": "Primary"
+            },
+            {
+              "value": "btn--secondary",
+              "label": "Secondary"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Style",
+          "default": "btn--solid",
+          "options": [
+            {
+              "value": "btn--solid",
+              "label": "Solid"
+            },
+            {
+              "value": "btn--outline",
+              "label": "Outline"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "button_size",
+          "label": "Size",
+          "default": "btn--large",
+          "options": [
+            {
+              "value": "btn--small",
+              "label": "Small"
+            },
+            {
+              "value": "",
+              "label": "Medium"
+            },
+            {
+              "value": "btn--large",
+              "label": "Large"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "full_width",
+          "label": "Full width",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Padding"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Bottom",
+          "default": 16
+        }
+      ]
+    },
+    {
       "type": "width_selector",
       "name": "Width selector",
       "settings": [

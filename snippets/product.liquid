@@ -746,6 +746,14 @@
                       </div>
                     {%- endif -%}
 
+                  {%- when 'hubspot_form' -%}
+                    {%- unless hubspot_assets_enqueued -%}
+                      {{ 'hubspot-form-popup.css' | asset_url | stylesheet_tag }}
+                      <script src="{{ 'hubspot-form-popup.js' | asset_url }}" defer></script>
+                      {%- assign hubspot_assets_enqueued = true -%}
+                    {%- endunless -%}
+                    {%- render 'product-hubspot-form', block: block, product: product, block_style: block_style -%}
+
                   {%- when 'width_selector' -%}
                     {%- unless addon_assets_enqueued -%}
                       {{ 'product-addons.css' | asset_url | stylesheet_tag }}

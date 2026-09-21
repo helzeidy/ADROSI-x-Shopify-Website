@@ -1,0 +1,129 @@
+/* ==========================================================================
+   HubSpot form popup
+   ========================================================================== */
+
+html.hubspot-popup-open {
+  overflow: hidden;
+}
+
+.hubspot-popup {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--COLOR-BG, #efe7e1);
+  color: var(--COLOR-TEXT, #151515);
+  overflow: auto;
+}
+
+.hubspot-popup::backdrop {
+  background: rgba(21, 21, 21, 0.55);
+}
+
+.hubspot-popup[open] {
+  animation: hubspot-popup-in 0.25s ease;
+}
+
+@keyframes hubspot-popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hubspot-popup__inner {
+  position: relative;
+  padding: 44px 36px 36px;
+}
+
+.hubspot-popup__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.hubspot-popup__close .icon,
+.hubspot-popup__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.hubspot-popup__heading {
+  margin: 0 0 12px;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+}
+
+.hubspot-popup__text {
+  margin-bottom: 24px;
+}
+
+.hubspot-popup__loading {
+  margin: 0;
+  opacity: 0.6;
+}
+
+/* Tidy HubSpot's default form markup to sit with the theme. */
+.hubspot-popup__form .hs-form-field {
+  margin-bottom: 16px;
+}
+
+.hubspot-popup__form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85em;
+}
+
+.hubspot-popup__form input[type='text'],
+.hubspot-popup__form input[type='email'],
+.hubspot-popup__form input[type='tel'],
+.hubspot-popup__form input[type='number'],
+.hubspot-popup__form select,
+.hubspot-popup__form textarea {
+  width: 100% !important;
+  padding: 12px 14px;
+  border: 1px solid rgba(21, 21, 21, 0.2);
+  border-radius: 0;
+  background: #fff;
+  font: inherit;
+}
+
+.hubspot-popup__form .hs-button {
+  width: 100%;
+  padding: 14px 20px;
+  border: 0;
+  background: var(--COLOR-ACCENT, #461214);
+  color: #fff;
+  font-family: var(--FONT-STACK-SUBHEADING, inherit);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.hubspot-popup__form .hs-error-msgs {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #a32020;
+  font-size: 0.8em;
+}
+
+@media only screen and (max-width: 749px) {
+  .hubspot-popup__inner {
+    padding: 40px 20px 24px;
+  }
+}
