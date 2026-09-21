@@ -145,7 +145,7 @@
         "hubspot_form_FteHUp": {
           "type": "hubspot_form",
           "settings": {
-            "label": "Enquire about this style",
+            "label": "Ask a Questions",
             "portal_id": "25632952",
             "form_id": "e2d7fa8d-972e-45b6-8909-f31f083c3150",
             "region": "na1",
