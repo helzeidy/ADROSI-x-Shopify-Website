@@ -1,70 +1,18 @@
 {% comment %}
-  HubSpot form in a popup, opened by a button on the product page.
-
-  The popup is a native <dialog>, so Esc, focus trapping and the backdrop come
-  from the browser. HubSpot's embed script is only loaded the first time a
-  shopper opens the popup — it adds nothing to the initial page load.
+  Product-page block wrapper for the HubSpot form popup. The button and popup
+  themselves live in snippets/hubspot-form-popup.liquid, shared with the
+  "HubSpot form" section.
 
   Accepts:
   - block, product, block_style.
 {% endcomment %}
 
-{%- liquid
-  assign hs_portal = block.settings.portal_id | strip
-  assign hs_form = block.settings.form_id | strip | remove: 'hbspt-form-'
-  assign hs_region = block.settings.region | default: 'na1'
-  assign hs_dialog_id = 'HubspotDialog-' | append: block.id
-  assign hs_target_id = 'HubspotForm-' | append: block.id
--%}
-
-{%- if hs_portal != blank and hs_form != blank -%}
+{%- if block.settings.portal_id != blank and block.settings.form_id != blank -%}
   <div class="product__block product__block--buttons block-padding" {{ block_style }} {{ block.shopify_attributes }}>
-    <button
-      type="button"
-      class="btn {{ block.settings.button_size }} {{ block.settings.button_style | default: 'btn--solid' }} {{ block.settings.button_type | default: 'btn--primary' }}{% if block.settings.full_width %} btn--full{% endif %}"
-      data-hubspot-open="{{ hs_dialog_id }}"
-      aria-haspopup="dialog"
-    >
-      <span class="btn__text">{{ block.settings.label | default: 'Enquire' | escape }}</span>
-    </button>
+    {%- render 'hubspot-form-popup', hs: block.settings, uid: block.id, product: product -%}
   </div>
-
-  <dialog
-    id="{{ hs_dialog_id }}"
-    class="hubspot-popup"
-    data-hubspot-dialog
-    data-portal-id="{{ hs_portal | escape }}"
-    data-form-id="{{ hs_form | escape }}"
-    data-region="{{ hs_region | escape }}"
-    data-target="#{{ hs_target_id }}"
-    {% if block.settings.product_field != blank %}
-      data-product-field="{{ block.settings.product_field | strip | escape }}"
-      data-product-value="{{ product.title | escape }} — {{ shop.url }}{{ product.url }}"
-    {% endif %}
-    aria-labelledby="{{ hs_dialog_id }}-title"
-  >
-    <div class="hubspot-popup__inner">
-      <button type="button" class="hubspot-popup__close" data-hubspot-close aria-label="Close">
-        {%- render 'icon-cancel' -%}
-      </button>
-
-      {%- if block.settings.popup_heading != blank -%}
-        <h2 id="{{ hs_dialog_id }}-title" class="hubspot-popup__heading">{{ block.settings.popup_heading | escape }}</h2>
-      {%- else -%}
-        <h2 id="{{ hs_dialog_id }}-title" class="visually-hidden">{{ block.settings.label | default: 'Enquire' | escape }}</h2>
-      {%- endif -%}
-
-      {%- if block.settings.popup_text != blank -%}
-        <div class="hubspot-popup__text rte">{{ block.settings.popup_text }}</div>
-      {%- endif -%}
-
-      <div id="{{ hs_target_id }}" class="hubspot-popup__form">
-        <p class="hubspot-popup__loading" data-hubspot-loading>Loading…</p>
-      </div>
-    </div>
-  </dialog>
 {%- elsif request.design_mode -%}
   <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
-    <p class="product-addon__debug">HubSpot form: add your Portal ID and Form ID in this block's settings.</p>
+    <p>HubSpot form: add your Portal ID and Form ID in this block's settings.</p>
   </div>
 {%- endif -%}

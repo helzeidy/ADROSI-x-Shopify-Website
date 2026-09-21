@@ -127,3 +127,38 @@ html.hubspot-popup-open {
     padding: 40px 20px 24px;
   }
 }
+
+/* "HubSpot form" section (e.g. on the Contact page) --------------------- */
+.hubspot-section__inner {
+  margin: 0 auto;
+}
+
+.hubspot-section__inner.text-left {
+  margin-left: 0;
+}
+
+.hubspot-section__subheading {
+  margin: 0 0 12px;
+  font-family: var(--FONT-STACK-SUBHEADING, inherit);
+  letter-spacing: var(--LETTER-SPACING-SUBHEADING, 0.12em);
+  text-transform: var(--FONT-UPPERCASE-SUBHEADING, uppercase);
+  opacity: 0.75;
+}
+
+.hubspot-section__heading {
+  margin: 0 0 16px;
+  font-family: var(--FONT-STACK-HEADING, inherit);
+}
+
+.hubspot-section__text {
+  margin-bottom: 28px;
+}
+
+.hubspot-section__text > *:last-child {
+  margin-bottom: 0;
+}
+
+.hubspot-section__notice {
+  margin: 0;
+  opacity: 0.7;
+}

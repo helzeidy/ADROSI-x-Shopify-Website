@@ -1,0 +1,74 @@
+{% comment %}
+  HubSpot form in a popup: the button and the <dialog>, with no wrapper.
+  Shared by the product-page block (product-hubspot-form) and the
+  "HubSpot form" section, so both behave and look the same.
+
+  The popup is a native <dialog>, so Esc, focus trapping and the backdrop come
+  from the browser. HubSpot's embed script (assets/hubspot-form-popup.js) is
+  only loaded the first time the popup opens.
+
+  Outputs nothing when the Portal ID or Form ID is missing; callers check
+  the same two settings so they can skip their wrapper too.
+
+  Accepts:
+  - hs: {Object} the block's or section's settings (portal_id, form_id,
+    region, label, popup_heading, popup_text, button_type, button_style,
+    button_size, full_width, product_field)
+  - uid: {String} unique id for this instance (block.id or section.id)
+  - product: {Object} optional; only used to prefill product_field
+{% endcomment %}
+
+{%- liquid
+  assign hs_portal = hs.portal_id | strip
+  assign hs_form = hs.form_id | strip | remove: 'hbspt-form-'
+  assign hs_region = hs.region | default: 'na1'
+  assign hs_label = hs.label | default: 'Enquire'
+  assign hs_dialog_id = 'HubspotDialog-' | append: uid
+  assign hs_target_id = 'HubspotForm-' | append: uid
+-%}
+
+{%- if hs_portal != blank and hs_form != blank -%}
+  <button
+    type="button"
+    class="btn {{ hs.button_size }} {{ hs.button_style | default: 'btn--solid' }} {{ hs.button_type | default: 'btn--primary' }}{% if hs.full_width %} btn--full{% endif %}"
+    data-hubspot-open="{{ hs_dialog_id }}"
+    aria-haspopup="dialog"
+  >
+    <span class="btn__text">{{ hs_label | escape }}</span>
+  </button>
+
+  <dialog
+    id="{{ hs_dialog_id }}"
+    class="hubspot-popup"
+    data-hubspot-dialog
+    data-portal-id="{{ hs_portal | escape }}"
+    data-form-id="{{ hs_form | escape }}"
+    data-region="{{ hs_region | escape }}"
+    data-target="#{{ hs_target_id }}"
+    {% if hs.product_field != blank and product != blank %}
+      data-product-field="{{ hs.product_field | strip | escape }}"
+      data-product-value="{{ product.title | escape }} — {{ shop.url }}{{ product.url }}"
+    {% endif %}
+    aria-labelledby="{{ hs_dialog_id }}-title"
+  >
+    <div class="hubspot-popup__inner">
+      <button type="button" class="hubspot-popup__close" data-hubspot-close aria-label="Close">
+        {%- render 'icon-cancel' -%}
+      </button>
+
+      {%- if hs.popup_heading != blank -%}
+        <h2 id="{{ hs_dialog_id }}-title" class="hubspot-popup__heading">{{ hs.popup_heading | escape }}</h2>
+      {%- else -%}
+        <h2 id="{{ hs_dialog_id }}-title" class="visually-hidden">{{ hs_label | escape }}</h2>
+      {%- endif -%}
+
+      {%- if hs.popup_text != blank -%}
+        <div class="hubspot-popup__text rte">{{ hs.popup_text }}</div>
+      {%- endif -%}
+
+      <div id="{{ hs_target_id }}" class="hubspot-popup__form">
+        <p class="hubspot-popup__loading" data-hubspot-loading>Loading…</p>
+      </div>
+    </div>
+  </dialog>
+{%- endif -%}
