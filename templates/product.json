@@ -156,7 +156,7 @@
             "title_4": "Shipping",
             "raw_content_4": "<p>{{ product.metafields.my_fields.shipping | metafield_tag }}</p>",
             "title_5": "Made to Order",
-            "raw_content_5": "",
+            "raw_content_5": "<p>Made to order is a process where items are not produced until a customer has placed an order for that item. Made to order reduces inventory waste, as items are only produced when they have been sold. This also ensures that the items are perfectly fitted to the customer, as opposed to mass-produced items which may not fit as well. Made to order also allows for traceability throughout the whole chain, as each step can be tracked and monitored. This results in a higher quality product, as any issues can be quickly identified and rectified. Overall, made to order is a superior solution that achieves zero inventory waste and produces higher quality products to get your loafers perfectly fitted to you and only you.</p>",
             "padding_bottom": 0
           }
         },
