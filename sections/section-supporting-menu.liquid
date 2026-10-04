@@ -76,23 +76,21 @@
           </li>
         {% endfor %}
 
-        <!-- The following lines fix Lighthouse security warnings on the Shopify link. -->
-        {%- liquid
-          assign powered_by_link_html = powered_by_link
-          if powered_by_link_html contains 'rel="'
-            assign powered_link_rel_text = powered_by_link_html | split: 'rel="'
-            assign powered_link_rel_text = powered_link_rel_text[1] | split: '"' | first
-            assign powered_link_rel = 'rel="' | append: powered_link_rel_text | append: '"'
-            assign powered_by_link_html = powered_by_link_html | replace_first: powered_link_rel, ''
-          endif
-          if powered_by_link_html contains '<a '
-            assign powered_by_link_html = powered_by_link_html | replace: '<a ', '<a rel="noopener" '
-          endif
-          assign powered_by_link = powered_by_link_html
-        -%}
-
-        <!-- Remove the following line to delete 'Powered by Shopify' from your footer -->
-        <li data-powered-link>{{ powered_by_link }}</li>
+        {%- comment -%}
+          Site credit, replacing Shopify's "Powered by Shopify" link. Text and
+          URL are editable in this section's settings; clearing the text hides it.
+        {%- endcomment -%}
+        {%- if section.settings.credit_text != blank -%}
+          <li data-powered-link>
+            {%- if section.settings.credit_url != blank -%}
+              <a href="{{ section.settings.credit_url }}" target="_blank" rel="noopener">
+                {{- section.settings.credit_text | escape -}}
+              </a>
+            {%- else -%}
+              {{- section.settings.credit_text | escape -}}
+            {%- endif -%}
+          </li>
+        {%- endif -%}
         <!-- Do not delete below this line -->
       </ul>
     </div>
@@ -151,6 +149,19 @@
       "id": "enable_greyscale",
       "label": "Enable greyscale for payment icons",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "credit_text",
+      "label": "Credit text",
+      "default": "Developed by Helzeidy",
+      "info": "Replaces \"Powered by Shopify\" in the bottom bar. Leave empty to hide."
+    },
+    {
+      "type": "url",
+      "id": "credit_url",
+      "label": "Credit link",
+      "default": "https://helzeidy.com"
     },
     {
       "type": "header",
