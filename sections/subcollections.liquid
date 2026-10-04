@@ -2,7 +2,42 @@
   assign text_color = section.settings.color
   assign bg_color = section.settings.bg_color
   assign color_scheme = 'color-' | append: section.settings.color_scheme
+  comment
+    Which list of collections does this page show?
+
+    1. The collection's own menu (a menu whose handle matches the collection
+       handle) — its children. A collection that has children always shows
+       them, even if it also sits inside a parent menu.
+    2. Otherwise, look for a menu that links TO this collection — that menu
+       belongs to the parent, so we show the siblings with the current one
+       highlighted, and the "All" tab points at the parent collection.
+
+    This is what keeps the row visible all the way down the tree.
+  endcomment
   assign sub_collections = linklists[collection.handle].links
+  assign parent_collection = blank
+
+  if sub_collections.size == 0
+    assign parent_found = false
+
+    for menu_pair in linklists
+      if parent_found
+        break
+      endif
+
+      assign menu = menu_pair[1]
+
+      for menu_link in menu.links
+        if menu_link.type == 'collection_link' and menu_link.object.handle == collection.handle
+          assign sub_collections = menu.links
+          assign parent_collection = collections[menu.handle]
+          assign parent_found = true
+          break
+        endif
+      endfor
+    endfor
+  endif
+
   assign sub_collection_html = ''
   assign sub_collection_counter = 0
   assign sub_collection_limit = 6
@@ -17,7 +52,7 @@
   endif
 -%}
 
-{%- if linklists[collection.handle].links.size > 0 -%}
+{%- if sub_collections.size > 0 -%}
   {%- style -%}
     #Subcollections--{{ section.id }} {
       --PT: {{ section.settings.padding_top }}px;
@@ -189,8 +224,14 @@
     {%- if is_text -%}
       {%- if sub_collections.size > 0 -%}
         <nav class="subcollections__tabs" aria-label="Subcollections">
-          {%- if section.settings.text_all_collection != blank -%}
-            {%- assign all_col = section.settings.text_all_collection -%}
+          {%- liquid
+            comment
+              On a child page the parent collection is the natural "All".
+              Elsewhere, use the collection picked in the section settings.
+            endcomment
+            assign all_col = parent_collection | default: section.settings.text_all_collection
+          -%}
+          {%- if all_col != blank -%}
             <a
               class="subcollections__tab{% if collection.handle == all_col.handle %} is-active{% endif %}"
               href="{{ all_col.url }}"
