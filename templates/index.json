@@ -396,71 +396,6 @@
         "heading_tag": "automatic"
       }
     },
-    "section_tab_collections_TY7E4B": {
-      "type": "section-tab-collections",
-      "blocks": {
-        "collection_AabfPh": {
-          "type": "collection",
-          "settings": {
-            "title": "{{ block.settings.featured_collection.title }}",
-            "featured_collection": "bestsellers",
-            "show_image": false,
-            "align_with_product_images": false,
-            "image": "{{ block.settings.featured_collection.image }}",
-            "overlay_type": "disabled",
-            "description": "",
-            "color": "",
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--outline",
-            "show_arrow": false
-          }
-        },
-        "collection_M7xNpD": {
-          "type": "collection",
-          "settings": {
-            "title": "{{ block.settings.featured_collection.title }}",
-            "featured_collection": "bespoke-shoes",
-            "show_image": false,
-            "align_with_product_images": false,
-            "image": "{{ block.settings.featured_collection.image }}",
-            "overlay_type": "disabled",
-            "description": "",
-            "color": "",
-            "link_text": "View products",
-            "link": "",
-            "button_type": "btn--primary",
-            "button_size": "",
-            "button_style": "btn--outline",
-            "show_arrow": false
-          }
-        }
-      },
-      "block_order": [
-        "collection_AabfPh",
-        "collection_M7xNpD"
-      ],
-      "name": "Tab collections",
-      "settings": {
-        "show_product_count": false,
-        "title": "GOLF EDITION - The course deserves better shoes.",
-        "heading_font_size": "heading-medium",
-        "text": "<p>From the tee to the 19th hole — without changing your shoes.</p>",
-        "text_font_size": "body-medium",
-        "layout": "left",
-        "layout_desktop": "slider",
-        "product_limit": 6,
-        "grid": 4,
-        "rows": 3,
-        "layout_mobile": "slider",
-        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "heading_tag": "automatic"
-      }
-    },
     "section_announcement_R7KWbe": {
       "type": "section-announcement",
       "blocks": {
@@ -545,6 +480,71 @@
         "color_scheme": "scheme-e56b258a-b428-48f9-b1c6-09db0a76b408",
         "padding_top": 12,
         "padding_bottom": 12
+      }
+    },
+    "section_tab_collections_TY7E4B": {
+      "type": "section-tab-collections",
+      "blocks": {
+        "collection_AabfPh": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "bestsellers",
+            "show_image": false,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        },
+        "collection_M7xNpD": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "bespoke-shoes",
+            "show_image": false,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        }
+      },
+      "block_order": [
+        "collection_AabfPh",
+        "collection_M7xNpD"
+      ],
+      "name": "Tab collections",
+      "settings": {
+        "show_product_count": false,
+        "title": "GOLF EDITION - The course deserves better shoes.",
+        "heading_font_size": "heading-medium",
+        "text": "<p>From the tee to the 19th hole — without changing your shoes.</p>",
+        "text_font_size": "body-medium",
+        "layout": "left",
+        "layout_desktop": "slider",
+        "product_limit": 6,
+        "grid": 4,
+        "rows": 3,
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
       }
     },
     "1750856207ec25272b": {
@@ -860,10 +860,10 @@
     "section_hero_product_i6KxhK",
     "section_double_ALB37d",
     "section_tab_collections_XJgqMK",
-    "section_tab_collections_TY7E4B",
     "section_announcement_R7KWbe",
-    "1750856207ec25272b",
+    "section_tab_collections_TY7E4B",
     "section_tab_collections_rY9FXh",
+    "1750856207ec25272b",
     "section_rich_text_kHXa9F",
     "section_collection_pbdUnA",
     "section_text_row_tzpdW9"
