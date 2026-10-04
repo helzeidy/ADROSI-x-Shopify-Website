@@ -1,3 +1,28 @@
+{%- liquid
+  comment
+    Per-product visibility (default metafield custom.show_tabs): an on/off
+    switch on each product. Hidden only when it says off — a false boolean,
+    or text such as Hidden/Hide/No/Off. Unset = visible, so every product
+    keeps the tabs until switched off. Compared as text without a blank
+    check first, because Liquid treats a boolean false as blank.
+    Pages without a product (e.g. a normal page) always show the section.
+  endcomment
+  assign tabs_show = true
+  if product != blank
+    assign tabs_mf_key = section.settings.visibility_metafield | default: 'custom.show_tabs' | strip
+    if tabs_mf_key contains '.'
+      assign tabs_mf_ns = tabs_mf_key | split: '.' | first
+      assign tabs_mf_name = tabs_mf_key | split: '.' | last
+      assign tabs_mf_value = product.metafields[tabs_mf_ns][tabs_mf_name].value | append: '' | strip | downcase
+      case tabs_mf_value
+        when 'false', 'hidden', 'hide', 'no', 'off', '0'
+          assign tabs_show = false
+      endcase
+    endif
+  endif
+-%}
+
+{%- if tabs_show -%}
 {{ 'tabs-section.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign tabs_has_table = false
@@ -197,10 +222,11 @@
         </div>
       </div>
     {%- else -%}
-      <div class="tabs-section__inner">{{ 'sections.tabs.no_blocks' | t | default: 'Add tabs to this section.' }}</div>
+      <div class="tabs-section__inner">Add tabs to this section.</div>
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -213,6 +239,13 @@
       "id": "heading",
       "label": "Section heading",
       "info": "Optional heading above the tabs."
+    },
+    {
+      "type": "text",
+      "id": "visibility_metafield",
+      "label": "Hide with product metafield",
+      "default": "custom.show_tabs",
+      "info": "On product pages: the tabs hide when this product metafield (namespace.key) is switched off (false). Empty or missing = visible."
     },
     {
       "type": "select",
