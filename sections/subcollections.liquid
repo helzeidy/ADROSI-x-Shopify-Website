@@ -8,33 +8,69 @@
     1. The collection's own menu (a menu whose handle matches the collection
        handle) — its children. A collection that has children always shows
        them, even if it also sits inside a parent menu.
-    2. Otherwise, look for a menu that links TO this collection — that menu
-       belongs to the parent, so we show the siblings with the current one
-       highlighted, and the "All" tab points at the parent collection.
+    2. Otherwise, look for a parent menu that links TO this collection, and
+       show those siblings with the current one highlighted. The "All" tab
+       then points at the parent collection.
 
-    This is what keeps the row visible all the way down the tree.
+    Liquid can only open a menu by its handle — it can't loop over every
+    menu — so the possible parents are listed explicitly:
+    - every collection linked in the main menu (3 levels deep), and
+    - any extra menu handles typed into the "Parent menus" setting.
+    Each candidate is used only if a menu with that handle exists.
   endcomment
   assign sub_collections = linklists[collection.handle].links
   assign parent_collection = blank
 
   if sub_collections.size == 0
+    comment
+      The menu picker gives the menu itself, not its handle.
+    endcomment
+    assign nav_links = section.settings.nav_menu.links
+    if nav_links == blank
+      assign nav_links = linklists['main-menu'].links
+    endif
+
+    capture parent_candidates
+      echo section.settings.parent_menus | remove: ' '
+      for l1 in nav_links
+        if l1.type == 'collection_link'
+          echo ',' | append: l1.object.handle
+        endif
+        for l2 in l1.links
+          if l2.type == 'collection_link'
+            echo ',' | append: l2.object.handle
+          endif
+          for l3 in l2.links
+            if l3.type == 'collection_link'
+              echo ',' | append: l3.object.handle
+            endif
+          endfor
+        endfor
+      endfor
+    endcapture
+
+    assign parent_candidates = parent_candidates | split: ','
     assign parent_found = false
 
-    for menu_pair in linklists
-      if parent_found
-        break
+    for candidate in parent_candidates
+      if candidate == blank or candidate == collection.handle
+        continue
       endif
 
-      assign menu = menu_pair[1]
+      assign candidate_menu = linklists[candidate]
 
-      for menu_link in menu.links
+      for menu_link in candidate_menu.links
         if menu_link.type == 'collection_link' and menu_link.object.handle == collection.handle
-          assign sub_collections = menu.links
-          assign parent_collection = collections[menu.handle]
+          assign sub_collections = candidate_menu.links
+          assign parent_collection = collections[candidate]
           assign parent_found = true
           break
         endif
       endfor
+
+      if parent_found
+        break
+      endif
     endfor
   endif
 
@@ -370,6 +406,23 @@
     {
       "type": "paragraph",
       "content": "Create a [navigation list](/admin/content/menus) with the same name as this collection and link to other collections. [Learn more](https://broadcast.presidiocreative.com/collections/collection-pages/sub-collections)"
+    },
+    {
+      "type": "header",
+      "content": "Navigation between collections"
+    },
+    {
+      "type": "link_list",
+      "id": "nav_menu",
+      "label": "Main menu",
+      "default": "main-menu",
+      "info": "Collections linked in this menu are checked as possible parents. Usually your header menu."
+    },
+    {
+      "type": "text",
+      "id": "parent_menus",
+      "label": "Extra parent menus",
+      "info": "Optional. Handles of parent menus that aren't linked in the main menu, comma separated, e.g. men, women, golf. On a collection with no subcollections of its own, the row shows its siblings from whichever parent menu links to it."
     },
     {
       "type": "select",
