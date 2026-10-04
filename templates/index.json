@@ -547,56 +547,39 @@
         "padding_bottom": 12
       }
     },
-    "section_reviews_fiwDiK": {
-      "type": "section-reviews",
+    "1750856207ec25272b": {
+      "type": "apps",
       "blocks": {
-        "review_GTa8mY": {
-          "type": "review",
+        "loox_reviews_loox_card_carousel_section_eLVegG": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
           "settings": {
-            "title": "David P.",
-            "subheading": "",
-            "review_content": "<p>Fantastic shooes in brown ostrich I've had a pair before in black very well made and true to size.</p>",
-            "featured_image": "shopify://shop_images/5288_0_110x110_2x_7b756204-e031-4a32-9ba5-862d09aa9f7e.jpg",
-            "review_url": ""
-          }
-        },
-        "review_J6nizb": {
-          "type": "review",
-          "settings": {
-            "title": "Kip D.",
-            "subheading": "",
-            "review_content": "<p>LOVE, LOVE, LOVE these shoes! The fit is great and the look amazing. Its so difficult to find this size.</p>",
-            "featured_image": "shopify://shop_images/5632_0_1024x1024_2x_210114c8-b8c7-4d89-a382-865a6c48807a.jpg",
-            "review_url": ""
-          }
-        },
-        "review_PXf3DD": {
-          "type": "review",
-          "settings": {
-            "title": "Aleksandr C.",
-            "subheading": "",
-            "review_content": "<p>Happy with my purchase from you, will buy again! Communication is great!</p>",
-            "featured_image": "shopify://shop_images/6033_0.png",
-            "review_url": ""
+            "maxWidth": 1600,
+            "borderRadius": 10,
+            "itemsPerView": 4,
+            "mobileItemsPerView": 1,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "1",
+            "reviewerNameColor": "#000000",
+            "textColor": "#000000",
+            "itemBackgroundColor": "#ffffff",
+            "starsColor": "",
+            "starsBackgroundColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "offset-light",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": ""
           }
         }
       },
       "block_order": [
-        "review_GTa8mY",
-        "review_J6nizb",
-        "review_PXf3DD"
+        "loox_reviews_loox_card_carousel_section_eLVegG"
       ],
-      "name": "Testimonials",
+      "custom_css": [],
       "settings": {
-        "show_featured_image": true,
-        "image_aspect_ratio": 1.2,
-        "show_quotation_marks": true,
-        "heading_font_size": "heading-medium",
-        "text_align": "text-left",
-        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
-        "card_bg_color": "",
-        "padding_top": 50,
-        "padding_bottom": 50
+        "include_margins": true
       }
     },
     "section_tab_collections_rY9FXh": {
@@ -702,41 +685,6 @@
         "padding_top": 50,
         "padding_bottom": 50,
         "heading_tag": "automatic"
-      }
-    },
-    "1750856207ec25272b": {
-      "type": "apps",
-      "blocks": {
-        "loox_reviews_loox_card_carousel_section_eLVegG": {
-          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
-          "settings": {
-            "maxWidth": 1600,
-            "borderRadius": 10,
-            "itemsPerView": 4,
-            "mobileItemsPerView": 1,
-            "maxNumberOfCharacters": 100,
-            "imageRatio": "1",
-            "reviewerNameColor": "#000000",
-            "textColor": "#000000",
-            "itemBackgroundColor": "#ffffff",
-            "starsColor": "",
-            "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#ffffff",
-            "arrows_iconColor": "#9a9a9a",
-            "shadow": "offset-light",
-            "border_active": false,
-            "border_width": 2,
-            "border_color": "#000000",
-            "productIds": ""
-          }
-        }
-      },
-      "block_order": [
-        "loox_reviews_loox_card_carousel_section_eLVegG"
-      ],
-      "custom_css": [],
-      "settings": {
-        "include_margins": true
       }
     },
     "section_rich_text_kHXa9F": {
@@ -914,7 +862,6 @@
     "section_tab_collections_XJgqMK",
     "section_tab_collections_TY7E4B",
     "section_announcement_R7KWbe",
-    "section_reviews_fiwDiK",
     "1750856207ec25272b",
     "section_tab_collections_rY9FXh",
     "section_rich_text_kHXa9F",
