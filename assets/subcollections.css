@@ -69,3 +69,31 @@ body.is-focused .subcollection__item:focus-within .image-overlay-bottom {
 .subcollection__title {
   margin-bottom: 3px;
 }
+/* --------------------------------------------------------------------------
+   Sticky text tabs: header → tabs → Filters bar
+   A sticky element only sticks inside its parent, and the tabs' own section
+   wrapper is short, so the wrapper itself is the sticky element.
+   --subcollections-sticky-height is measured by subcollections-sticky.js.
+   -------------------------------------------------------------------------- */
+.shopify-section:has(.subcollections--sticky) {
+  position: sticky;
+  top: var(--header-sticky-height, 0px);
+  z-index: 12;
+}
+
+.subcollections--sticky {
+  background: var(--bg, var(--COLOR-BG));
+  transition: transform 0.15s linear;
+}
+
+/* Filters / Sort bar stacks under the tabs instead of sliding behind them. */
+body:has(.subcollections--sticky) .collection__nav {
+  top: calc(var(--header-sticky-height, 0px) + var(--subcollections-sticky-height, 0px) - var(--border-width, 0px));
+}
+
+@media only screen and (min-width: 750px) {
+  body:has(.subcollections--sticky) .collection__sidebar__slider {
+    top: calc(var(--collection-nav-height) + var(--header-sticky-height, 0px) + var(--subcollections-sticky-height, 0px) - var(--border-width, 0px));
+    height: calc(var(--full-screen) - var(--collection-nav-height) - var(--subcollections-sticky-height, 0px) + var(--border-width, 0px));
+  }
+}

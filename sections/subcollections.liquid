@@ -86,6 +86,15 @@
   elsif card_style == 'text'
     assign is_text = true
   endif
+
+  comment
+    Sticky only makes sense for the slim text-tabs row; image cards would
+    cover half the screen.
+  endcomment
+  assign is_sticky = false
+  if is_text and section.settings.sticky
+    assign is_sticky = true
+  endif
 -%}
 
 {%- if sub_collections.size > 0 -%}
@@ -252,9 +261,14 @@
   {%- endstyle -%}
 
 {%- render 'stylesheet', name: 'subcollections.css', inline: true -%}
+  {%- comment -%}
+    Always loaded: it also clears the stacking offset when sticky is switched
+    off in the theme editor.
+  {%- endcomment -%}
+  <script src="{{ 'subcollections-sticky.js' | asset_url }}" defer="defer"></script>
 
   <section
-    class="subcollections{% if is_minimal %} subcollections--minimal{% endif %}{% if is_text %} subcollections--text{% endif %} collection-{{ collection.handle }} section-padding {{ color_scheme }}"
+    class="subcollections{% if is_minimal %} subcollections--minimal{% endif %}{% if is_text %} subcollections--text{% endif %}{% if is_sticky %} subcollections--sticky{% endif %} collection-{{ collection.handle }} section-padding {{ color_scheme }}"
     id="Subcollections--{{ section.id }}"
   >
     {%- if is_text -%}
@@ -500,6 +514,14 @@
         {"value": "center", "label": "Center"}
       ],
       "info": "Applies on desktop and mobile. Centered tabs switch to left-aligned automatically once there are too many to fit.",
+      "visible_if": "{{ section.settings.card_style == 'text' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Stick under the header while scrolling",
+      "default": true,
+      "info": "The tabs stay visible between the header and the Filters bar. Text tabs only.",
       "visible_if": "{{ section.settings.card_style == 'text' }}"
     },
     {
