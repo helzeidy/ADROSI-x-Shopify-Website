@@ -82,13 +82,13 @@
         {%- endcomment -%}
         {%- if section.settings.credit_text != blank -%}
           <li data-powered-link>
-            {%- if section.settings.credit_url != blank -%}
-              <a href="{{ section.settings.credit_url }}" target="_blank" rel="noopener">
-                {{- section.settings.credit_text | escape -}}
-              </a>
-            {%- else -%}
+            {%- comment -%}
+              A url setting can't default to an external site, so the
+              helzeidy.com fallback lives here instead of in the schema.
+            {%- endcomment -%}
+            <a href="{{ section.settings.credit_url | default: 'https://helzeidy.com' }}" target="_blank" rel="noopener">
               {{- section.settings.credit_text | escape -}}
-            {%- endif -%}
+            </a>
           </li>
         {%- endif -%}
         <!-- Do not delete below this line -->
@@ -161,7 +161,7 @@
       "type": "url",
       "id": "credit_url",
       "label": "Credit link",
-      "default": "https://helzeidy.com"
+      "info": "Leave empty to link to helzeidy.com."
     },
     {
       "type": "header",
