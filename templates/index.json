@@ -351,56 +351,114 @@
         "show_placeholder": true
       }
     },
-    "section_products_image_yWErRm": {
-      "type": "section-products-image",
+    "section_tab_collections_XJgqMK": {
+      "type": "section-tab-collections",
       "blocks": {
-        "products_WhLen4": {
-          "type": "products",
+        "collection_khnGnj": {
+          "type": "collection",
           "settings": {
-            "product_list": [
-              "cognac-calf-leather-horsebit-loafer",
-              "black-calf-leather-horsebit-loafer",
-              "cognac-calf-web-stripe-leather-loafer",
-              "black-calf-web-stripe-leather-loafer-runner-sole"
-            ],
-            "layout_mobile": "slider"
-          }
-        },
-        "image_tbbfFR": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/6033_0.png",
-            "mobile_height": "screen-height-one-half--mobile",
-            "title": "",
-            "heading_font_size": "heading-large",
-            "text": "",
-            "text_font_size": "body-medium",
-            "flex_align": "align--middle-center",
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "designer-loafers",
+            "show_image": true,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
             "overlay_type": "disabled",
-            "link_text": "",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
             "link": "",
             "button_type": "btn--primary",
             "button_size": "",
-            "button_style": "btn--solid",
-            "show_arrow": false,
-            "show_text_background": false,
-            "bg_color": "",
-            "color": "#ffffff",
-            "heading_tag": "automatic"
+            "button_style": "btn--outline",
+            "show_arrow": false
           }
         }
       },
       "block_order": [
-        "products_WhLen4",
-        "image_tbbfFR"
+        "collection_khnGnj"
       ],
-      "name": "Products with image",
+      "name": "Tab collections",
       "settings": {
-        "width": "wrapper--full-padded",
-        "reverse_blocks": true,
+        "show_product_count": false,
+        "title": "Originals",
+        "heading_font_size": "heading-medium",
+        "text": "<p>From the tee to the 19th hole — without changing your shoes.</p>",
+        "text_font_size": "body-medium",
+        "layout": "left",
+        "layout_desktop": "slider",
+        "product_limit": 6,
+        "grid": 4,
+        "rows": 3,
+        "layout_mobile": "slider",
+        "color_scheme": "scheme-e23b9f31-588f-4979-b31d-259015c439c7",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
+      }
+    },
+    "section_tab_collections_TY7E4B": {
+      "type": "section-tab-collections",
+      "blocks": {
+        "collection_AabfPh": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "bestsellers",
+            "show_image": false,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        },
+        "collection_M7xNpD": {
+          "type": "collection",
+          "settings": {
+            "title": "{{ block.settings.featured_collection.title }}",
+            "featured_collection": "bespoke-shoes",
+            "show_image": false,
+            "align_with_product_images": false,
+            "image": "{{ block.settings.featured_collection.image }}",
+            "overlay_type": "disabled",
+            "description": "",
+            "color": "",
+            "link_text": "View products",
+            "link": "",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--outline",
+            "show_arrow": false
+          }
+        }
+      },
+      "block_order": [
+        "collection_AabfPh",
+        "collection_M7xNpD"
+      ],
+      "name": "Tab collections",
+      "settings": {
+        "show_product_count": false,
+        "title": "GOLF EDITION - The course deserves better shoes.",
+        "heading_font_size": "heading-medium",
+        "text": "<p>From the tee to the 19th hole — without changing your shoes.</p>",
+        "text_font_size": "body-medium",
+        "layout": "left",
+        "layout_desktop": "slider",
+        "product_limit": 6,
+        "grid": 4,
+        "rows": 3,
+        "layout_mobile": "slider",
         "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
         "padding_top": 50,
-        "padding_bottom": 50
+        "padding_bottom": 50,
+        "heading_tag": "automatic"
       }
     },
     "section_announcement_R7KWbe": {
@@ -541,10 +599,10 @@
         "padding_bottom": 50
       }
     },
-    "section_tab_collections_TY7E4B": {
+    "section_tab_collections_rY9FXh": {
       "type": "section-tab-collections",
       "blocks": {
-        "collection_M7xNpD": {
+        "collection_qjpYKe": {
           "type": "collection",
           "settings": {
             "title": "{{ block.settings.featured_collection.title }}",
@@ -563,7 +621,7 @@
             "show_arrow": false
           }
         },
-        "collection_AabfPh": {
+        "collection_gbnnXz": {
           "type": "collection",
           "settings": {
             "title": "{{ block.settings.featured_collection.title }}",
@@ -582,7 +640,7 @@
             "show_arrow": false
           }
         },
-        "collection_QHCQ9c": {
+        "collection_twpUgy": {
           "type": "collection",
           "settings": {
             "title": "{{ block.settings.featured_collection.title }}",
@@ -601,7 +659,7 @@
             "show_arrow": false
           }
         },
-        "collection_f8nrXz": {
+        "collection_LJqiqp": {
           "type": "collection",
           "settings": {
             "title": "{{ block.settings.featured_collection.title }}",
@@ -622,10 +680,10 @@
         }
       },
       "block_order": [
-        "collection_M7xNpD",
-        "collection_AabfPh",
-        "collection_QHCQ9c",
-        "collection_f8nrXz"
+        "collection_qjpYKe",
+        "collection_gbnnXz",
+        "collection_twpUgy",
+        "collection_LJqiqp"
       ],
       "name": "Tab collections",
       "settings": {
@@ -854,10 +912,11 @@
     "section_collections_list_Eby3tp",
     "section_hero_product_i6KxhK",
     "section_double_ALB37d",
-    "section_products_image_yWErRm",
+    "section_tab_collections_XJgqMK",
+    "section_tab_collections_TY7E4B",
     "section_announcement_R7KWbe",
     "section_reviews_fiwDiK",
-    "section_tab_collections_TY7E4B",
+    "section_tab_collections_rY9FXh",
     "1750856207ec25272b",
     "section_rich_text_kHXa9F",
     "section_collection_pbdUnA",

@@ -476,6 +476,7 @@
       "name": "Tabs",
       "settings": {
         "heading": "",
+        "visibility_metafield": "custom.show_tabs",
         "heading_size": "heading-medium",
         "tab_alignment": "center",
         "color_scheme": "scheme-b09bc568-df25-4c2a-a3e4-9a3aa7f72618",
