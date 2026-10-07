@@ -13,6 +13,7 @@
   "sections": {
     "section_divider_rW8qiE": {
       "type": "section-divider",
+      "disabled": true,
       "name": "Divider",
       "settings": {
         "show_line": true,
