@@ -9,6 +9,10 @@
 (function () {
   'use strict';
 
+  // Loaded by the Tabs section and by the size-chart popup; run once.
+  if (window.__tabsSectionInit) return;
+  window.__tabsSectionInit = true;
+
   var MOBILE = window.matchMedia('(max-width: 749px)');
 
   function tabsOf(root) {
@@ -168,6 +172,8 @@
     init();
   }
 
-  // Re-init when a section is added/edited in the theme editor.
+  // Re-init when a section is added/edited in the theme editor, or when a page
+  // is embedded into a popup (assets/page-embed.js).
   document.addEventListener('shopify:section:load', init);
+  document.addEventListener('page-embed:loaded', init);
 })();

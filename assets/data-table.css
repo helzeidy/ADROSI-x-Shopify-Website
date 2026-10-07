@@ -32,6 +32,9 @@
      second outline inside this box. */
   margin: 0;
   border: 0;
+  /* Rich-text wrappers (e.g. the product size-chart popup) set fixed layout,
+     which would squeeze every column to the same width. */
+  table-layout: auto;
   border-collapse: separate;
   border-spacing: 0;
   text-align: left;

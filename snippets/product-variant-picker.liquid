@@ -105,13 +105,28 @@
       -%}
 
       {%- render 'stylesheet', name: 'tabs.css' -%}
+      {%- comment -%}
+        The size-chart pages are rendered with their own templates inside the
+        popup (assets/page-embed.js). tabs-section.js is loaded here too, since
+        the product page's own Tabs section can be hidden per product.
+      {%- endcomment -%}
+      <style>
+        .product-modal--page .product-modal__outer { max-width: min(1100px, 100%); }
+        .product-modal--page .product-modal__content { width: 100%; }
+        .product-modal--page [data-page-embed][aria-busy='true'] { opacity: 0.4; transition: opacity 0.2s ease; }
+        .product-modal--page [data-page-embed].is-embedded .section-padding { --PT: 0px; }
+        /* The popup is a rich-text wrapper; keep embedded step lists unstyled. */
+        .product-modal--page [data-page-embed].is-embedded .tabs-steps { margin: 0; list-style: none; }
+      </style>
+      <script src="{{ 'page-embed.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'tabs-section.js' | asset_url }}" defer="defer"></script>
 
       <popup-component>
         <a href="{{ info_page.url }}" data-popup-open class="radio__legend__link body-x-small{% if product.has_only_default_variant %} size-popup-link{% endif %}{% if size_style == 'text' or show_size_link_separated %} text-link{% endif %}">
           {{ size_button }}
         </a>
 
-        <dialog class="product-modal" aria-hidden="true" inert data-scroll-lock-required>
+        <dialog class="product-modal product-modal--page" aria-hidden="true" inert data-scroll-lock-required>
           <form method="dialog">
             <button class="visually-hidden" aria-label="{{ 'general.accessibility.close' | t }}"></button>
           </form>
@@ -146,7 +161,7 @@
                       {{ tabs }}
 
                       <div class="tab-content tab-content-{{ forloop.index0 }}{% unless has_current %} current{% endunless %}">
-                        {{ page_size_chart.content }}
+                        <div data-page-embed="{{ page_size_chart.url }}">{{ page_size_chart.content }}</div>
                       </div>
                     {%- endcapture -%}
 
@@ -169,7 +184,7 @@
                     {{ tabs }}
 
                     <div class="tab-content tab-content-{{ number_tabs }}{% unless has_current %} current{% endunless %}">
-                      {{ info_page.content }}
+                      <div data-page-embed="{{ info_page.url }}">{{ info_page.content }}</div>
                     </div>
                   {%- endcapture -%}
 
