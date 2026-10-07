@@ -23,7 +23,17 @@
 
   if block.settings.info_page != blank
     assign size_translation = 'general.size_chart.size' | t
-    assign info_page = pages[block.settings.info_page]
+
+    comment
+      A page picked by hand arrives as its handle, but a page connected through
+      a metafield (e.g. product.metafields.custom.size_chart) arrives as the
+      page itself — and pages[<page>] finds nothing, which left the popup empty.
+      Use the page directly when it has a title; otherwise look it up by handle.
+    endcomment
+    assign info_page = block.settings.info_page
+    if info_page.title == blank
+      assign info_page = pages[block.settings.info_page]
+    endif
   endif
 
   if tags_string contains size_separator
