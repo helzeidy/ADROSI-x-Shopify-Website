@@ -39,8 +39,8 @@
         "linklist_xfrwHz": {
           "type": "linklist",
           "settings": {
-            "linklist": "main-menu",
-            "title": "",
+            "linklist": "footer-shop-menu-2026",
+            "title": "Shop",
             "heading_font_size": "heading-x-small",
             "column_width": 25,
             "enable_accordion": true
@@ -49,8 +49,8 @@
         "linklist_XHdrMh": {
           "type": "linklist",
           "settings": {
-            "linklist": "main-menu",
-            "title": "",
+            "linklist": "footer-menu-2026",
+            "title": "About",
             "heading_font_size": "heading-x-small",
             "column_width": 25,
             "enable_accordion": true
@@ -105,6 +105,8 @@
         "text_font_size": "body-small",
         "footer_payment_enable": false,
         "enable_greyscale": false,
+        "credit_text": "Developed by Helzeidy",
+        "credit_url": "",
         "show_locale_selector": true,
         "show_locale_code": false,
         "show_globe_icon": true,
