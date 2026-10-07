@@ -31,7 +31,7 @@
             "title": "About ADORSI",
             "heading_font_size": "heading-small",
             "text": "<p>Bespoke men's shoes, made to order in Alicante, Spain. Sizes 5 to 17, widths D through EEE — for the foot you actually have.</p>",
-            "column_width": 25,
+            "column_width": 30,
             "enable_follow_on_shop": true,
             "enable_accordion": true
           }
@@ -42,7 +42,7 @@
             "linklist": "footer-shop-menu-2026",
             "title": "Shop",
             "heading_font_size": "heading-x-small",
-            "column_width": 25,
+            "column_width": 15,
             "enable_accordion": true
           }
         },
@@ -52,7 +52,17 @@
             "linklist": "footer-menu-2026",
             "title": "About",
             "heading_font_size": "heading-x-small",
-            "column_width": 25,
+            "column_width": 15,
+            "enable_accordion": true
+          }
+        },
+        "linklist_3pp8aE": {
+          "type": "linklist",
+          "settings": {
+            "linklist": "customer-help",
+            "title": "Support",
+            "heading_font_size": "heading-x-small",
+            "column_width": 15,
             "enable_accordion": true
           }
         },
@@ -78,6 +88,7 @@
         "social_qxgNqB",
         "linklist_xfrwHz",
         "linklist_XHdrMh",
+        "linklist_3pp8aE",
         "footer-0"
       ],
       "settings": {
