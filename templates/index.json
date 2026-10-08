@@ -531,9 +531,9 @@
       "name": "Tab collections",
       "settings": {
         "show_product_count": false,
-        "title": "GOLF EDITION - The course deserves better shoes.",
+        "title": "THE ADORSI EDIT — Your next favorite starts here.",
         "heading_font_size": "heading-medium",
-        "text": "<p>From the tee to the 19th hole — without changing your shoes.</p>",
+        "text": "<p>From our most-loved designs to styles crafted on a shorter timeline. Discover your next pair, made for you.</p>",
         "text_font_size": "body-medium",
         "layout": "left",
         "layout_desktop": "slider",
@@ -545,41 +545,6 @@
         "padding_top": 50,
         "padding_bottom": 50,
         "heading_tag": "automatic"
-      }
-    },
-    "1750856207ec25272b": {
-      "type": "apps",
-      "blocks": {
-        "loox_reviews_loox_card_carousel_section_eLVegG": {
-          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
-          "settings": {
-            "maxWidth": 1600,
-            "borderRadius": 0,
-            "itemsPerView": 4,
-            "mobileItemsPerView": 1,
-            "maxNumberOfCharacters": 100,
-            "imageRatio": "1",
-            "reviewerNameColor": "#000000",
-            "textColor": "#000000",
-            "itemBackgroundColor": "#F6F4F2",
-            "starsColor": "",
-            "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#ffffff",
-            "arrows_iconColor": "#9a9a9a",
-            "shadow": "none",
-            "border_active": false,
-            "border_width": 1,
-            "border_color": "#000000",
-            "productIds": ""
-          }
-        }
-      },
-      "block_order": [
-        "loox_reviews_loox_card_carousel_section_eLVegG"
-      ],
-      "custom_css": [],
-      "settings": {
-        "include_margins": true
       }
     },
     "section_tab_collections_rY9FXh": {
@@ -685,6 +650,41 @@
         "padding_top": 50,
         "padding_bottom": 50,
         "heading_tag": "automatic"
+      }
+    },
+    "1750856207ec25272b": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_card_carousel_section_eLVegG": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1600,
+            "borderRadius": 0,
+            "itemsPerView": 4,
+            "mobileItemsPerView": 1,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "1",
+            "reviewerNameColor": "#000000",
+            "textColor": "#000000",
+            "itemBackgroundColor": "#f6f4f2",
+            "starsColor": "",
+            "starsBackgroundColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "none",
+            "border_active": false,
+            "border_width": 1,
+            "border_color": "#000000",
+            "productIds": ""
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_card_carousel_section_eLVegG"
+      ],
+      "custom_css": [],
+      "settings": {
+        "include_margins": true
       }
     },
     "section_rich_text_kHXa9F": {
