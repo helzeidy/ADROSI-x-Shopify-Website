@@ -490,7 +490,7 @@
           "settings": {
             "title": "{{ block.settings.featured_collection.title }}",
             "featured_collection": "bestsellers",
-            "show_image": false,
+            "show_image": true,
             "align_with_product_images": false,
             "image": "{{ block.settings.featured_collection.image }}",
             "overlay_type": "disabled",
@@ -509,7 +509,7 @@
           "settings": {
             "title": "{{ block.settings.featured_collection.title }}",
             "featured_collection": "bespoke-shoes",
-            "show_image": false,
+            "show_image": true,
             "align_with_product_images": false,
             "image": "{{ block.settings.featured_collection.image }}",
             "overlay_type": "disabled",
