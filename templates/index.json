@@ -237,7 +237,7 @@
         "heading_xcgEEW": {
           "type": "heading",
           "settings": {
-            "title": "Best Seller!",
+            "title": "MAKE THE CLASSIC YOURS.",
             "heading_font_size": "heading-x-large",
             "heading_tag": "automatic"
           }
@@ -245,14 +245,14 @@
         "text_8gx3QR": {
           "type": "text",
           "settings": {
-            "text": "<p>Tell your brand's story through images.</p>",
+            "text": "<p>An icon of timeless style, reimagined around you. Your leather, your fit, your choice.</p>",
             "text_font_size": "body-large"
           }
         },
         "button_QtYpAT": {
           "type": "button",
           "settings": {
-            "link_text": "View products",
+            "link_text": "MAKE IT YOURS",
             "link": "shopify://products/classic-black-leather-oxford-shoes",
             "button_type": "btn--primary",
             "button_size": "",
