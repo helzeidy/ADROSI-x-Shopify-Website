@@ -40,13 +40,56 @@
     data-update-url="false"
   >
     {%- comment -%}
-      Square images in the quick add drawer. The theme gives each slide a fixed
-      50vh height, which makes product shots tall and narrow on wide screens.
+      Quick add drawer images:
+      - Square slides. The theme gives each a fixed 50vh height, which made
+        product shots tall and narrow.
+      - Shown on mobile too (the theme hid them below 750px), with swipe
+        turned on via data-fader-mobile on <product-images> below.
+      - Prev/next arrows always visible: the theme only reveals them on hover,
+        so the carousel looked like a single image.
     {%- endcomment -%}
     <style>
       .product-quick-add__images .product__slide {
         height: auto;
         aspect-ratio: 1 / 1;
+      }
+
+      /* Desktop: the theme splits the drawer 50/50 between images and form;
+         let the square image take its own height instead, so it never
+         overlaps the form on short screens. */
+      @media only screen and (min-width: 750px) {
+        .product-quick-add__inner product-info {
+          grid-template-rows: auto 1fr;
+        }
+      }
+
+      @media only screen and (max-width: 749px) {
+        .product-quick-add__images {
+          display: block;
+        }
+      }
+
+      .product-quick-add__images .slider__arrows {
+        left: 0;
+        right: 0;
+      }
+
+      .product-quick-add__images .slider__button {
+        display: block;
+        opacity: 1;
+        transform: none;
+      }
+
+      .product-quick-add__images .slider__button--prev {
+        left: 10px;
+      }
+
+      .product-quick-add__images .slider__button--next {
+        right: 10px;
+      }
+
+      .product-quick-add__images .slider__button:disabled {
+        opacity: 0;
       }
     </style>
 
@@ -54,6 +97,7 @@
       class="product-quick-add__images product__images product__images--thumbs product__images--mobile-thumbs"
       data-active-media="{{ section.id }}-{{ featured_media.id }}"
       data-fader-desktop
+      data-fader-mobile
     >
       <div
         class="product__slides"
