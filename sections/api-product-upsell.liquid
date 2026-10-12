@@ -39,6 +39,17 @@
     data-url="{{ product.url }}"
     data-update-url="false"
   >
+    {%- comment -%}
+      Square images in the quick add drawer. The theme gives each slide a fixed
+      50vh height, which makes product shots tall and narrow on wide screens.
+    {%- endcomment -%}
+    <style>
+      .product-quick-add__images .product__slide {
+        height: auto;
+        aspect-ratio: 1 / 1;
+      }
+    </style>
+
     <product-images
       class="product-quick-add__images product__images product__images--thumbs product__images--mobile-thumbs"
       data-active-media="{{ section.id }}-{{ featured_media.id }}"
