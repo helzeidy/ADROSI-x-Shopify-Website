@@ -150,7 +150,12 @@
     </product-images>
 
     <div class="product-quick-add__form">
-      <div class="product-quick-add__form__inner" data-form-wrapper>
+      {%- comment -%}
+        Same Form style class as the product page (Theme settings > Product
+        form > Form style), so options lay out the same way here: with
+        "Classic", each title sits above its options.
+      {%- endcomment -%}
+      <div class="product-quick-add__form__inner{% if settings.form_style == 'classic' %} form__wrapper--classic{% else %} form__wrapper--modern{% endif %}" data-form-wrapper>
         {%- liquid
           assign product_form_id = 'product-form-' | append: section.id
 
