@@ -249,6 +249,7 @@
       "name": "Tabs",
       "settings": {
         "heading": "",
+        "visibility_metafield": "custom.show_tabs",
         "heading_size": "heading-medium",
         "tab_alignment": "left",
         "color_scheme": "",
