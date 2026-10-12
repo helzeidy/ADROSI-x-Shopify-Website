@@ -11,36 +11,54 @@
 
   Accepts:
   - product, block, block_style, product_form_id.
+  - Optional overrides (quick add drawer): metafield_key, property_name, heading,
+    default_value, show_price, paid_value(_2/_3), charge_product(_2/_3), width_id.
 {% endcomment %}
 
 {%- liquid
-  assign mf_key = block.settings.metafield_key | default: 'custom.width_values'
+  comment
+    Config comes from the block on the product page. The quick add drawer has
+    no block, so it passes the same values in as parameters (from Theme
+    settings > Quick add: Scale & Width); each one falls back to the block.
+  endcomment
+  assign mf_key = metafield_key | default: block.settings.metafield_key | default: 'custom.width_values'
   assign parts = mf_key | split: '.'
   assign ns = parts[0]
   assign key = parts[1]
   assign width_values = product.metafields[ns][key].value
 
-  assign property_name = block.settings.property_name | default: 'Width'
-  assign heading = block.settings.heading | default: property_name
-  assign uid = section.id | append: '-' | append: block.id
+  assign property_name = property_name | default: block.settings.property_name | default: 'Width'
+  assign heading = heading | default: block.settings.heading | default: property_name
+  assign uid = width_id | default: block.id
+  assign uid = section.id | append: '-' | append: uid
+  assign show_price = show_price | default: block.settings.show_price_on_option
+  assign default_value = default_value | default: block.settings.default_value
 
   comment
-    Up to 3 paid mappings: normalized value + its charge variant.
+    Up to 3 paid mappings: the value as typed, its normalized form, and its
+    charge variant.
   endcomment
-  assign paid1 = block.settings.paid_value | strip | downcase
-  assign paid2 = block.settings.paid_value_2 | strip | downcase
-  assign paid3 = block.settings.paid_value_3 | strip | downcase
-  assign cv1 = block.settings.charge_product.selected_or_first_available_variant | default: block.settings.charge_product.variants.first
-  assign cv2 = block.settings.charge_product_2.selected_or_first_available_variant | default: block.settings.charge_product_2.variants.first
-  assign cv3 = block.settings.charge_product_3.selected_or_first_available_variant | default: block.settings.charge_product_3.variants.first
+  assign pv1 = paid_value | default: block.settings.paid_value
+  assign pv2 = paid_value_2 | default: block.settings.paid_value_2
+  assign pv3 = paid_value_3 | default: block.settings.paid_value_3
+  assign cp1 = charge_product | default: block.settings.charge_product
+  assign cp2 = charge_product_2 | default: block.settings.charge_product_2
+  assign cp3 = charge_product_3 | default: block.settings.charge_product_3
+
+  assign paid1 = pv1 | strip | downcase
+  assign paid2 = pv2 | strip | downcase
+  assign paid3 = pv3 | strip | downcase
+  assign cv1 = cp1.selected_or_first_available_variant | default: cp1.variants.first
+  assign cv2 = cp2.selected_or_first_available_variant | default: cp2.variants.first
+  assign cv3 = cp3.selected_or_first_available_variant | default: cp3.variants.first
 
   assign has_default = false
   for val in width_values
-    if val == block.settings.default_value
+    if val == default_value
       assign has_default = true
     endif
   endfor
-  assign resolved_default = block.settings.default_value
+  assign resolved_default = default_value
   unless has_default
     assign resolved_default = width_values.first
   endunless
@@ -87,7 +105,7 @@
                 <label for="{{ opt_id }}">
                   <span class="option-title">
                     {{- val | escape_once -}}
-                    {%- if is_paid and match_variant.price > 0 and block.settings.show_price_on_option -%}
+                    {%- if is_paid and match_variant.price > 0 and show_price -%}
                       <small class="product-width__upcharge">+{{ match_variant.price | money }}</small>
                     {%- endif -%}
                   </span>
@@ -101,18 +119,18 @@
 
     {%- comment -%} Hidden charge carriers — one per paid width. JS ticks the matching one. {%- endcomment -%}
     <div class="product-width__charges" style="display: none" aria-hidden="true">
-      {%- if block.settings.paid_value != blank and cv1 -%}
-        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ block.settings.paid_value | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv1.id }}" data-addon-title="{{ property_name }}: {{ block.settings.paid_value | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
+      {%- if pv1 != blank and cv1 -%}
+        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ pv1 | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv1.id }}" data-addon-title="{{ property_name }}: {{ pv1 | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
           <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}-1">
         </div>
       {%- endif -%}
-      {%- if block.settings.paid_value_2 != blank and cv2 -%}
-        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ block.settings.paid_value_2 | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv2.id }}" data-addon-title="{{ property_name }}: {{ block.settings.paid_value_2 | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
+      {%- if pv2 != blank and cv2 -%}
+        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ pv2 | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv2.id }}" data-addon-title="{{ property_name }}: {{ pv2 | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
           <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}-2">
         </div>
       {%- endif -%}
-      {%- if block.settings.paid_value_3 != blank and cv3 -%}
-        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ block.settings.paid_value_3 | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv3.id }}" data-addon-title="{{ property_name }}: {{ block.settings.paid_value_3 | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
+      {%- if pv3 != blank and cv3 -%}
+        <div class="product-addon__card" data-product-addon data-addon-type="toggle" data-width-charge data-for-value="{{ pv3 | escape }}" data-product-form-id="{{ product_form_id }}" data-variant-id="{{ cv3.id }}" data-addon-title="{{ property_name }}: {{ pv3 | escape }}" data-addon-for-title="{{ product.title | escape }}" data-stamp-main="false">
           <input type="checkbox" class="product-addon__switch-input" data-addon-toggle id="width-charge-{{ uid }}-3">
         </div>
       {%- endif -%}

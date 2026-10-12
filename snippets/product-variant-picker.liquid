@@ -5,6 +5,7 @@
   - product: {Object} product object.
   - block: {Object} passing the block information.
   - product_form_id: {String} Id of the product form to which the variant picker is associated.
+  - quick_add_scale: {Boolean} Optional. Show the Scale selector from Theme settings (quick add drawer).
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
@@ -228,6 +229,22 @@
         {{ 'size-scale.css' | asset_url | stylesheet_tag }}
         <script src="{{ 'size-scale.js' | asset_url }}" defer></script>
         {%- render 'size-scale', block: block, product: product, product_form_id: product_form_id -%}
+      {%- elsif quick_add_scale and has_size_option -%}
+        {%- comment -%}
+          Quick add drawer: no block, so the config comes from Theme settings.
+          The script is loaded by layout/theme.liquid (scripts inside the
+          drawer's fetched HTML don't run).
+        {%- endcomment -%}
+        {{ 'size-scale.css' | asset_url | stylesheet_tag }}
+        {%- render 'size-scale',
+          product: product,
+          product_form_id: product_form_id,
+          scales: settings.size_scale_scales,
+          conversion_table: settings.size_scale_table,
+          size_option_name: settings.size_scale_filter_name,
+          record_on_order: true,
+          scale_id: product.id
+        -%}
       {%- endif -%}
 
       <variant-selects

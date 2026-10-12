@@ -46,17 +46,23 @@
     return map;
   }
 
-  function findSizeWrappers(optionName) {
+  /* The product area a Scale selector belongs to, so the product page and the
+     quick add drawer never relabel each other's sizes. */
+  function scopeOf(el) {
+    return (el && (el.closest('[data-form-wrapper]') || el.closest('.product-quick-add__form'))) || document;
+  }
+
+  function findSizeWrappers(optionName, scope) {
     var name = (optionName || '').trim().toLowerCase();
     var found = [];
-    var wrappers = document.querySelectorAll('.selector-wrapper');
+    var wrappers = (scope || document).querySelectorAll('.selector-wrapper');
     for (var i = 0; i < wrappers.length; i++) {
       var legend = wrappers[i].querySelector('.radio__legend__option-name, .radio__legend__label');
       var text = legend ? (legend.textContent || '').trim().toLowerCase() : '';
       if (text === name || (name && text.indexOf(name) === 0)) found.push(wrappers[i]);
     }
     if (!found.length) {
-      var fallback = document.querySelector('.selector-wrapper--size');
+      var fallback = (scope || document).querySelector('.selector-wrapper--size');
       if (fallback) found.push(fallback);
     }
     return found;
@@ -114,8 +120,11 @@
       });
     });
 
-    var debugEl = els[0] ? els[0].querySelector('[data-scale-debug]') : null;
-    var wrappers = findSizeWrappers(cfg.optionName);
+    // Its element is gone (e.g. the quick add drawer was closed): nothing to do.
+    if (!els.length) return;
+
+    var debugEl = els[0].querySelector('[data-scale-debug]');
+    var wrappers = findSizeWrappers(cfg.optionName, scopeOf(els[0]));
     if (!wrappers.length) {
       if (debugEl) debugEl.textContent = VERSION + ' · Size option "' + cfg.optionName + '" NOT found.';
       return;
@@ -216,12 +225,19 @@
     };
   }
 
-  function init() {
-    var els = document.querySelectorAll('[data-size-scale]');
-    if (!els.length) return;
-    Array.prototype.forEach.call(els, setup);
+  function setupAll() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-size-scale]'), setup);
+  }
 
-    observer = new MutationObserver(schedule);
+  function init() {
+    setupAll();
+
+    // Always observe: the quick add drawer inserts its Scale selector after
+    // page load (and the theme re-renders the variant picker on change).
+    observer = new MutationObserver(function () {
+      setupAll();
+      schedule();
+    });
     applyAll();
   }
 

@@ -1666,6 +1666,86 @@
     ]
   },
   {
+    "name": "Quick add: Scale & Width",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "The quick add drawer (opened from product cards) has no blocks of its own, so the Scale and Width selectors there are set up here. Keep these in step with the Variant picker and Width selector blocks on the product page."
+      },
+      {
+        "type": "header",
+        "content": "Scale"
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_add_scale",
+        "label": "Show the Scale selector",
+        "default": true,
+        "info": "Uses the scales and conversion table from Theme settings > Size scale."
+      },
+      {
+        "type": "header",
+        "content": "Width"
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_add_width",
+        "label": "Show the Width selector",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "quick_add_width_metafield",
+        "label": "Width values metafield",
+        "default": "custom.width_values"
+      },
+      {
+        "type": "text",
+        "id": "quick_add_width_property",
+        "label": "Name on the order",
+        "default": "Width"
+      },
+      {
+        "type": "checkbox",
+        "id": "quick_add_width_show_price",
+        "label": "Show upcharge on the button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "quick_add_width_paid_1",
+        "label": "Paid width 1",
+        "default": "Wide (EEE)"
+      },
+      {
+        "type": "product",
+        "id": "quick_add_width_charge_1",
+        "label": "Paid width 1 charge product"
+      },
+      {
+        "type": "text",
+        "id": "quick_add_width_paid_2",
+        "label": "Paid width 2",
+        "default": "Wide (EE)"
+      },
+      {
+        "type": "product",
+        "id": "quick_add_width_charge_2",
+        "label": "Paid width 2 charge product"
+      },
+      {
+        "type": "text",
+        "id": "quick_add_width_paid_3",
+        "label": "Paid width 3"
+      },
+      {
+        "type": "product",
+        "id": "quick_add_width_charge_3",
+        "label": "Paid width 3 charge product"
+      }
+    ]
+  },
+  {
     "name": "Advanced",
     "settings": [
       {

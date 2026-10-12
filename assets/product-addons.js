@@ -22,7 +22,12 @@
 (function () {
   'use strict';
 
-  var VERSION = 'v12';
+  // Loaded by the product page and globally for the quick add drawer. A second
+  // copy would add a second click handler and add everything to cart twice.
+  if (window.__productAddonsInit) return;
+  window.__productAddonsInit = true;
+
+  var VERSION = 'v13';
 
   var SELECTORS = {
     addon: '[data-product-addon]',
@@ -49,6 +54,19 @@
 
   function allAddons() {
     return Array.prototype.slice.call(document.querySelectorAll(SELECTORS.addon));
+  }
+
+  /* Add-ons that belong to this form only. The product page and the quick add
+     drawer can both be on the page, and each must only bundle its own add-ons
+     (e.g. a Wide width chosen in the drawer must not charge the page's shoe). */
+  function addonsFor(form) {
+    // getAttribute, not form.id: product forms contain an input named "id"
+    // (the variant), which shadows form.id and returns that input instead.
+    var id = form && form.getAttribute('id');
+    return allAddons().filter(function (addon) {
+      var owner = addon.getAttribute('data-product-form-id');
+      return !owner || !id || owner === id;
+    });
   }
 
   /* The product add-to-cart form for a given button. */
@@ -235,7 +253,7 @@
   /* Core: add the main product + active add-ons in one request. */
   function handleAdd(form, buttons) {
     if (adding) return;
-    var addons = allAddons();
+    var addons = addonsFor(form);
     var active = addons.filter(isActive);
 
     // Validate required text fields / chosen options first.
@@ -284,6 +302,12 @@
           window.location = CART_URL;
           return;
         }
+        // Added from the quick add drawer: close it, as the theme does after a
+        // normal add, so the cart drawer isn't opened underneath it.
+        var quickAdd = form.closest('[data-quick-add-modal]');
+        var quickAddClose = quickAdd && quickAdd.querySelector('[data-quick-add-modal-close]');
+        if (quickAddClose) quickAddClose.click();
+
         // The theme re-renders the cart and opens the drawer on this event.
         document.dispatchEvent(new CustomEvent('theme:cart:refresh', { bubbles: true }));
       })
@@ -302,26 +326,45 @@
       });
   }
 
+  function setupAddon(addon) {
+    if (addon.dataset.addonReady) return;
+    addon.dataset.addonReady = 'true';
+
+    if (addon.dataset.addonType === 'configurable') {
+      setupConfigurable(addon);
+    }
+
+    var input = addon.querySelector(SELECTORS.input);
+    var error = addon.querySelector(SELECTORS.error);
+    if (input && error) {
+      input.addEventListener('input', function () {
+        if (input.value.trim()) error.hidden = true;
+      });
+    }
+  }
+
+  function setupAll() {
+    allAddons().forEach(setupAddon);
+  }
+
   function init() {
-    var addons = document.querySelectorAll(SELECTORS.addon);
+    var addons = allAddons();
     // eslint-disable-next-line no-console
     console.log('[product-addons] loaded; add-ons found on page:', addons.length);
     debug('✓ loaded ' + VERSION + ' (found ' + addons.length + ' add-on' + (addons.length === 1 ? '' : 's') + ')');
-    if (!addons.length) return;
+    setupAll();
 
-    Array.prototype.forEach.call(addons, function (addon) {
-      if (addon.dataset.addonType === 'configurable') {
-        setupConfigurable(addon);
-      }
-
-      var input = addon.querySelector(SELECTORS.input);
-      var error = addon.querySelector(SELECTORS.error);
-      if (input && error) {
-        input.addEventListener('input', function () {
-          if (input.value.trim()) error.hidden = true;
-        });
-      }
-    });
+    // Add-ons can arrive after load (the quick add drawer), so the listeners
+    // below are always installed and new add-ons are set up as they appear.
+    var scheduled = false;
+    new MutationObserver(function () {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(function () {
+        scheduled = false;
+        setupAll();
+      });
+    }).observe(document.body, { childList: true, subtree: true });
 
     // Intercept the add-to-cart CLICK in capture phase. This is the most
     // reliable hook: it covers the main button and the sticky cart bar, and
@@ -336,14 +379,14 @@
         if (!button) return;
 
         debug('🖱️ clicked');
-        if (!allAddons().some(isActive)) {
-          debug('🖱️ clicked, toggle is OFF — theme adds normally');
-          return; // no add-on active: let theme handle it
-        }
         var form = getProductForm(button);
         if (!form) {
           debug('🖱️ clicked, but no product form found');
           return;
+        }
+        if (!addonsFor(form).some(isActive)) {
+          debug('🖱️ clicked, toggle is OFF — theme adds normally');
+          return; // no add-on active for this form: let the theme handle it
         }
 
         evt.preventDefault();
@@ -359,7 +402,7 @@
       function (evt) {
         var form = evt.target;
         if (!form || form.tagName !== 'FORM') return;
-        if (!allAddons().some(isActive)) return;
+        if (!addonsFor(form).some(isActive)) return;
         evt.preventDefault();
         evt.stopImmediatePropagation();
         handleAdd(form, [form.querySelector(SELECTORS.submit)]);

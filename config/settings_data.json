@@ -201,7 +201,9 @@
           "links": "#461214"
         }
       }
-    }
+    },
+    "quick_add_width_charge_1": "wide-eee",
+    "quick_add_width_charge_2": "wide-ee"
   },
   "presets": {
     "Broadcast": {
