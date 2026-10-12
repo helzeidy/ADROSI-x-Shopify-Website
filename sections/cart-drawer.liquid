@@ -111,7 +111,7 @@
 
         {%- if checkout_buttons_block[0].settings.show_view_cart_button -%}
           {%- assign additional_checkout_buttons = checkout_buttons_block[0].settings.enable_additional_buttons -%}
-          <a href="{{ routes.cart_url }}" class="cart__view{% if additional_checkout_buttons %} cart__view--additional-checkout-buttons{% endif %} btn btn--primary btn--outline">{{- 'cart.general.view_cart' | t -}}</a>
+          <a href="{{ routes.cart_url }}" class="cart__view{% if additional_checkout_buttons %} cart__view--additional-checkout-buttons{% endif %} btn {{ section.settings.empty_button_type | default: 'btn--black' }} {{ section.settings.empty_button_style | default: 'btn--outline' }}">{{- 'cart.general.view_cart' | t -}}</a>
         {%- endif -%}
       </div>
 
@@ -344,7 +344,7 @@
                     data-animation-delay="{{ animation_delay }}"
                     {%- assign animation_delay = animation_delay | plus: animation_delay_increment -%}
                   >
-                    <a href="{{ link.url }}" class="btn btn--full btn--primary btn--outline">
+                    <a href="{{ link.url }}" class="btn btn--full {{ section.settings.empty_button_type | default: 'btn--black' }} {{ section.settings.empty_button_style | default: 'btn--outline' }}">
                       {{ link.title | strip_html | escape }}
                     </a>
                   </div>
@@ -401,6 +401,54 @@
       "id": "color_scheme",
       "default": "scheme_1",
       "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Drawer buttons"
+    },
+    {
+      "type": "paragraph",
+      "content": "The View cart button, and the menu buttons shown when the cart is empty (that menu is chosen in Theme settings > Cart). Checkout keeps its own style."
+    },
+    {
+      "type": "select",
+      "id": "empty_button_type",
+      "label": "Color",
+      "default": "btn--black",
+      "options": [
+        {
+          "value": "btn--primary",
+          "label": "Primary"
+        },
+        {
+          "value": "btn--secondary",
+          "label": "Secondary"
+        },
+        {
+          "value": "btn--black",
+          "label": "Black"
+        },
+        {
+          "value": "btn--white",
+          "label": "White"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "empty_button_style",
+      "label": "Style",
+      "default": "btn--outline",
+      "options": [
+        {
+          "value": "btn--outline",
+          "label": "Outline"
+        },
+        {
+          "value": "btn--solid",
+          "label": "Solid"
+        }
+      ]
     }
   ],
   "blocks": [
