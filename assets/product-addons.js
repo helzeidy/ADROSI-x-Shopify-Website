@@ -360,10 +360,12 @@
     new MutationObserver(function () {
       if (scheduled) return;
       scheduled = true;
-      window.requestAnimationFrame(function () {
+      // A timer, not requestAnimationFrame: rAF is paused in hidden tabs,
+      // which would leave `scheduled` stuck and ignore later changes.
+      window.setTimeout(function () {
         scheduled = false;
         setupAll();
-      });
+      }, 30);
     }).observe(document.body, { childList: true, subtree: true });
 
     // Intercept the add-to-cart CLICK in capture phase. This is the most

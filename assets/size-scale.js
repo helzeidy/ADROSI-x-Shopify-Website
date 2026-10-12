@@ -179,11 +179,9 @@
       scheduled = false;
       applyAll();
     };
-    if (window.requestAnimationFrame) {
-      window.requestAnimationFrame(run);
-    } else {
-      window.setTimeout(run, 16);
-    }
+    // A timer, not requestAnimationFrame: rAF is paused in hidden tabs, which
+    // would leave `scheduled` stuck and ignore every later change.
+    window.setTimeout(run, 30);
   }
 
   function setup(el) {
