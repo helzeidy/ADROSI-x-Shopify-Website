@@ -7,16 +7,28 @@
    ========================================================================== */
 
 .data-table {
+  --dt-bg: var(--bg, #ffffff);
   --dt-border: var(--border, rgba(0, 0, 0, 0.1));
-  --dt-head-bg: rgba(0, 0, 0, 0.035);
-  --dt-stripe: rgba(0, 0, 0, 0.025);
+  /* Header and stripe tints are SOLID colours, not see-through overlays, so
+     the frozen first column fully covers the cells scrolling underneath it on
+     mobile. Hex values are the fallback for browsers without color-mix(). */
+  --dt-head-bg: #ebe5df;
+  --dt-stripe: #f1ece7;
   --dt-radius: 0;
   --dt-cell-x: 18px;
   --dt-cell-y: 16px;
   border: 1px solid var(--dt-border);
   border-radius: var(--dt-radius);
   overflow: hidden;
-  background: var(--bg, #fff);
+  background: var(--dt-bg);
+}
+
+@supports (color: color-mix(in srgb, red, blue)) {
+  .data-table {
+    /* Derived from the section's own background, so they suit any scheme. */
+    --dt-head-bg: color-mix(in srgb, #000 5%, var(--dt-bg));
+    --dt-stripe: color-mix(in srgb, #000 3%, var(--dt-bg));
+  }
 }
 
 .data-table__scroll {
@@ -47,6 +59,7 @@
   font-weight: normal;
   vertical-align: top;
   white-space: nowrap;
+  background-color: var(--dt-bg);
 }
 
 .data-table tbody tr:last-child th,
@@ -56,7 +69,7 @@
 
 /* Header ---------------------------------------------------------------- */
 .data-table thead th {
-  background: var(--dt-head-bg);
+  background-color: var(--dt-head-bg);
   vertical-align: bottom;
   /* Headers may wrap, but never narrower than this — stops long labels like
      "Ball girth width" from running into the next column. */
@@ -89,36 +102,43 @@
 
 .data-table--striped tbody tr:nth-child(even) th,
 .data-table--striped tbody tr:nth-child(even) td {
-  background: var(--dt-stripe);
+  background-color: var(--dt-stripe);
 }
 
 .data-table tbody tr:hover th,
 .data-table tbody tr:hover td {
-  background: var(--dt-head-bg);
+  background-color: var(--dt-head-bg);
 }
 
 /* Frozen first column --------------------------------------------------- */
+/* Every cell already has a solid background (above), so the frozen column
+   simply keeps its row's colour and hides what scrolls beneath it. */
 .data-table--freeze thead th:first-child,
 .data-table--freeze tbody th {
   position: sticky;
   left: 0;
   z-index: 1;
-  /* Needs a solid fill so scrolled cells don't show through. */
-  background-color: var(--bg, #fff);
   box-shadow: 1px 0 0 var(--dt-border);
 }
 
-.data-table--freeze thead th:first-child {
-  background-image: linear-gradient(var(--dt-head-bg), var(--dt-head-bg));
-}
-
-.data-table--freeze.data-table--striped tbody tr:nth-child(even) th {
-  background-image: linear-gradient(var(--dt-stripe), var(--dt-stripe));
-}
-
+/* Mobile: tighter cells and narrower columns, the first one most of all. */
 @media only screen and (max-width: 749px) {
   .data-table {
-    --dt-cell-x: 14px;
-    --dt-cell-y: 12px;
+    --dt-cell-x: 10px;
+    --dt-cell-y: 11px;
+  }
+
+  .data-table thead th {
+    min-width: 58px;
+  }
+
+  .data-table thead th:first-child,
+  .data-table tbody th {
+    /* Shrink to its content (sizes like "10.5") instead of sharing out the
+       spare width. */
+    width: 1%;
+    min-width: 0;
+    padding-left: 12px;
+    padding-right: 8px;
   }
 }
