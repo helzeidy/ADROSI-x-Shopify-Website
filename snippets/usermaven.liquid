@@ -1,0 +1,25 @@
+{%- comment -%}
+  Usermaven analytics (tracking code provided for ADORSI). Rendered in the
+  <head> of every page: layout/theme.liquid, layout/password.liquid and
+  templates/gift_card.liquid. Skipped in the theme editor so editing sessions
+  aren't recorded as visits. Checkout isn't covered by theme code; track it
+  with a Shopify Customer Events pixel if needed.
+{%- endcomment -%}
+{%- unless request.design_mode -%}
+  <script type="text/javascript">
+    (function () {
+      window.usermaven = window.usermaven || (function () { (window.usermavenQ = window.usermavenQ || []).push(arguments); })
+      var t = document.createElement('script'),
+        s = document.getElementsByTagName('script')[0];
+      t.defer = true;
+      t.id = 'um-tracker';
+      t.setAttribute('data-tracking-host', "https://events.adorsi.com")
+      t.setAttribute('data-key', 'UMnttDlMcp');
+      t.setAttribute('data-autocapture', 'true');
+      t.setAttribute('data-form-tracking', 'all');
+      t.setAttribute('data-randomize-url','true');
+      t.src = 'https://events.adorsi.com/lib.js';
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+{%- endunless -%}

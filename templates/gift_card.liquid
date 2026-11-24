@@ -110,6 +110,7 @@
     {%- render 'stylesheet', name: 'template-gift-card.css', blocking: true -%}
 
     {{ content_for_header }}
+    {%- render 'usermaven' -%}
   </head>
 
   <body class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '/', '-' | split: '.' }}">
